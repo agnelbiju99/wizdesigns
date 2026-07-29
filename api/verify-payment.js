@@ -8,11 +8,15 @@ import Razorpay from "razorpay";
 const DRIVE_LINKS = {
   "zero-to-trader": "https://drive.google.com/file/d/1WUH-JyctTKCeYb7d5OA5NIgyymOKeBHJ/view?usp=sharing",
   "screener-guide": "https://drive.google.com/file/d/1bCGHwBVjoOmcaCyIO5xd6bthgoT_7KH6/view?usp=sharing",
+  "chart-setups-bible": "https://drive.google.com/file/d/1fJD-0DeBXaWZsQrmT8MB_RMNotEqJJfJ/view?usp=drive_link",
+  "price-action-strategies": "https://drive.google.com/file/d/1ZGTOkevnGxMnDw8JH41OXJkJ9QB9F7pM/view?usp=sharing",
 };
 
 const PRODUCT_NAMES = {
   "zero-to-trader": "From Zero to Trader",
   "screener-guide": "NSE Stock Screener Guide",
+  "chart-setups-bible": "Chart Setups Bible",
+  "price-action-strategies": "Price Action Strategies",
 };
 
 function driveDirectDownloadUrl(shareUrl) {
