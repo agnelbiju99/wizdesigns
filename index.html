@@ -4,27 +4,164 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Wiz Designs — Trading Guides & Tools</title>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
+  * { box-sizing: border-box; }
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: #0D1117;
     color: #E6EDF3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    text-align: center;
-    padding: 20px;
+    padding: 40px 20px;
   }
-  h1 { color: #00C9A7; margin-bottom: 8px; }
-  p { color: #8B949E; }
+  header { text-align: center; margin-bottom: 40px; }
+  header h1 { color: #00C9A7; margin-bottom: 4px; }
+  header p { color: #8B949E; margin: 0; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .card {
+    background: #161B22;
+    border: 1px solid #30363D;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .card h2 { margin: 0 0 8px; font-size: 20px; }
+  .card p.desc { color: #8B949E; font-size: 14px; flex-grow: 1; margin-bottom: 16px; }
+  .price { font-size: 24px; font-weight: bold; color: #FFB347; margin-bottom: 16px; }
+  button.buy {
+    background: #00C9A7;
+    color: #0D1117;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  button.buy:disabled { opacity: 0.6; cursor: not-allowed; }
+  .disclaimer {
+    max-width: 900px;
+    margin: 40px auto 0;
+    font-size: 12px;
+    color: #6E7681;
+    text-align: center;
+    line-height: 1.5;
+  }
+  #status-message {
+    max-width: 900px;
+    margin: 0 auto 20px;
+    text-align: center;
+    color: #00C9A7;
+    font-size: 14px;
+    min-height: 20px;
+  }
 </style>
 </head>
 <body>
-  <div>
-    <h1>Wiz Designs</h1>
-    <p>Store coming soon — product catalog under construction.</p>
+
+<header>
+  <h1>Wiz Designs</h1>
+  <p>Trading guides & tools for beginner NSE traders</p>
+</header>
+
+<div id="status-message"></div>
+
+<div class="grid">
+
+  <div class="card">
+    <h2>From Zero to Trader</h2>
+    <p class="desc">9-chapter, 78-page eBook covering the fundamentals of intraday trading on NSE — plus a bonus Trading Journal.</p>
+    <div class="price">₹239</div>
+    <button class="buy" data-product="zero-to-trader" data-name="From Zero to Trader" data-amount="23900">Buy Now</button>
   </div>
+
+  <div class="card">
+    <h2>NSE Stock Screener Guide</h2>
+    <p class="desc">30-page PDF: 4-pillar screening framework, five free tools, position sizing, pre-trade checklist, and a nightly routine cheat sheet.</p>
+    <div class="price">₹249</div>
+    <button class="buy" data-product="screener-guide" data-name="NSE Stock Screener Guide" data-amount="24900">Buy Now</button>
+  </div>
+
+</div>
+
+<p class="disclaimer">
+  📄 Digital PDF · Instant Download · No Physical Copy<br/>
+  Educational content only. Not investment advice. Trading in securities markets is subject to market risk.
+  Wiz Designs is not a SEBI-registered investment advisor.
+</p>
+
+<script>
+  document.querySelectorAll(".buy").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const productId = btn.dataset.product;
+      const productName = btn.dataset.name;
+      const amount = btn.dataset.amount;
+
+      btn.disabled = true;
+      btn.textContent = "Loading...";
+      setStatus("");
+
+      try {
+        const orderRes = await fetch("/api/create-order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ productId }),
+        });
+
+        if (!orderRes.ok) throw new Error("Could not start checkout. Please try again.");
+        const order = await orderRes.json();
+
+        const options = {
+          key: order.keyId,
+          amount: order.amount,
+          currency: "INR",
+          name: "Wiz Designs",
+          description: productName,
+          order_id: order.orderId,
+          handler: function () {
+            setStatus(
+              "Payment successful! Check your email in a minute for the download link."
+            );
+          },
+          modal: {
+            ondismiss: function () {
+              btn.disabled = false;
+              btn.textContent = "Buy Now";
+            },
+          },
+          theme: { color: "#00C9A7" },
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.on("payment.failed", function () {
+          setStatus("Payment failed. Please try again.");
+          btn.disabled = false;
+          btn.textContent = "Buy Now";
+        });
+        rzp.open();
+
+        btn.disabled = false;
+        btn.textContent = "Buy Now";
+      } catch (err) {
+        setStatus(err.message || "Something went wrong. Please try again.");
+        btn.disabled = false;
+        btn.textContent = "Buy Now";
+      }
+    });
+  });
+
+  function setStatus(msg) {
+    document.getElementById("status-message").textContent = msg;
+  }
+</script>
+
 </body>
 </html>
