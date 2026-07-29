@@ -7,6 +7,8 @@ import Razorpay from "razorpay";
 const PRODUCTS = {
   "zero-to-trader": { name: "From Zero to Trader", amount: 23900 },
   "screener-guide": { name: "NSE Stock Screener Guide", amount: 24900 },
+  "chart-setups-bible": { name: "Chart Setups Bible", amount: 8900 },
+  "price-action-strategies": { name: "Price Action Strategies", amount: 7900 },
 };
 
 export default async function handler(req, res) {
