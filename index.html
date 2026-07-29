@@ -126,10 +126,29 @@
           name: "Wiz Designs",
           description: productName,
           order_id: order.orderId,
-          handler: function () {
-            setStatus(
-              "Payment successful! Check your email in a minute for the download link."
-            );
+          handler: async function (response) {
+            setStatus("Payment received — verifying...");
+            try {
+              const verifyRes = await fetch("/api/verify-payment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_signature: response.razorpay_signature,
+                }),
+              });
+
+              if (!verifyRes.ok) throw new Error("Could not verify payment.");
+              const result = await verifyRes.json();
+
+              showDownloadLink(result.productName, result.downloadUrl);
+            } catch (err) {
+              setStatus(
+                "Payment succeeded but we couldn't fetch your download link automatically. " +
+                "Please DM us your payment ID (" + response.razorpay_payment_id + ") on Instagram and we'll send it right away."
+              );
+            }
           },
           modal: {
             ondismiss: function () {
@@ -160,6 +179,17 @@
 
   function setStatus(msg) {
     document.getElementById("status-message").textContent = msg;
+  }
+
+  function showDownloadLink(productName, downloadUrl) {
+    const el = document.getElementById("status-message");
+    el.innerHTML =
+      '<div style="background:#161B22;border:1px solid #00C9A7;border-radius:8px;padding:16px;display:inline-block;">' +
+      '<p style="margin:0 0 10px;color:#E6EDF3;">Your <strong>' + productName + '</strong> is ready!</p>' +
+      '<a href="' + downloadUrl + '" target="_blank" rel="noopener" ' +
+      'style="background:#00C9A7;color:#0D1117;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:bold;">Download Now</a>' +
+      '<p style="margin:10px 0 0;font-size:12px;color:#8B949E;">Save this link — if you lose it, DM your payment ID on Instagram and we\'ll resend it.</p>' +
+      '</div>';
   }
 </script>
 
