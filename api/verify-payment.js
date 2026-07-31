@@ -8,7 +8,7 @@ import Razorpay from "razorpay";
 const DRIVE_LINKS = {
   "zero-to-trader": "https://drive.google.com/file/d/1WUH-JyctTKCeYb7d5OA5NIgyymOKeBHJ/view?usp=sharing",
   "screener-guide": "https://drive.google.com/file/d/1bCGHwBVjoOmcaCyIO5xd6bthgoT_7KH6/view?usp=sharing",
-  "chart-setups-bible": "https://drive.google.com/file/d/1fJD-0DeBXaWZsQrmT8MB_RMNotEqJJfJ/view?usp=drive_link",
+  "chart-setups-bible": "https://drive.google.com/drive/folders/1EsqJa6mxVbJ4f3QZl6uyzD7vbxFGnYxB?usp=drive_link",
   "price-action-strategies": "https://drive.google.com/file/d/1ZGTOkevnGxMnDw8JH41OXJkJ9QB9F7pM/view?usp=sharing",
 };
 
@@ -20,6 +20,12 @@ const PRODUCT_NAMES = {
 };
 
 function driveDirectDownloadUrl(shareUrl) {
+  // Folder links (multiple files) can't be auto-converted to a direct
+  // download — just send the customer to the folder itself.
+  if (shareUrl.includes("/drive/folders/")) {
+    return shareUrl;
+  }
+  // Single-file links get converted to a direct-download URL.
   const match = shareUrl.match(/\/d\/([^/]+)/);
   const fileId = match ? match[1] : null;
   return fileId ? `https://drive.google.com/uc?export=download&id=${fileId}` : shareUrl;
