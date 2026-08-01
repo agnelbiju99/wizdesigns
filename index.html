@@ -36,8 +36,9 @@
   .card-images img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: none;
+    cursor: zoom-in;
   }
   .card-images img.active { display: block; }
   .carousel-dots {
@@ -100,6 +101,60 @@
     border-radius: 4px;
     margin-bottom: 8px;
   }
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .lightbox-overlay.open { display: flex; }
+  .lightbox-content {
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+  }
+  .lightbox-content img {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 32px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(22,27,34,0.8);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .lightbox-arrow.prev { left: -8px; }
+  .lightbox-arrow.next { right: -8px; }
+  @media (max-width: 640px) {
+    .lightbox-arrow.prev { left: 4px; }
+    .lightbox-arrow.next { right: 4px; }
+  }
   button.buy {
     background: #00C9A7;
     color: #0D1117;
@@ -142,20 +197,41 @@
 <div class="grid">
 
   <div class="card">
-    <div class="card-images" data-carousel="zero-to-trader">
-      <img src="images/zero-to-trader-1.jpg" class="active" alt="From Zero to Trader cover" />
-      <img src="images/zero-to-trader-2.jpg" alt="From Zero to Trader flat lay" />
-      <img src="images/zero-to-trader-3.jpg" alt="From Zero to Trader bundle" />
-      <button class="carousel-arrow prev" onclick="moveCarousel('zero-to-trader', -1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveCarousel('zero-to-trader', 1)">›</button>
+    <div class="card-images" data-carousel="combo-all-4">
+      <img src="images/combo-all-4-1.jpg" class="active" alt="Complete Bundle pricing breakdown" />
+      <img src="images/combo-all-4-2.jpg" alt="From Zero to Trader bundle" />
+      <img src="images/combo-all-4-3.jpg" alt="NSE Screener Guide bundle" />
+      <img src="images/combo-all-4-4.jpg" alt="Chart Setups Bible cover" />
+      <img src="images/combo-all-4-5.jpg" alt="Price Action Strategies cover" />
+      <button class="carousel-arrow prev" onclick="moveCarousel('combo-all-4', -1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveCarousel('combo-all-4', 1)">›</button>
+      <div class="carousel-dots">
+        <span class="active"></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <span class="savings-badge">SAVE ₹278</span>
+    <h2>Complete Bundle — All 4 Products</h2>
+    <p class="desc">Everything: From Zero to Trader, NSE Stock Screener Guide, Chart Setups Bible, and Price Action Strategies.</p>
+    <div class="price"><span class="strike">₹877</span>₹599</div>
+    <button class="buy" data-product="combo-all-4" data-name="Complete Bundle (All 4 Products)" data-amount="59900">Buy Now</button>
+  </div>
+
+  <div class="card">
+    <div class="card-images" data-carousel="combo-zero-screener">
+      <img src="images/combo-zero-screener-1.jpg" class="active" alt="Zero to Trader + Screener Guide combo pricing" />
+      <img src="images/combo-zero-screener-2.jpg" alt="NSE Screener Guide bundle" />
+      <img src="images/combo-zero-screener-3.jpg" alt="From Zero to Trader bundle" />
+      <button class="carousel-arrow prev" onclick="moveCarousel('combo-zero-screener', -1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveCarousel('combo-zero-screener', 1)">›</button>
       <div class="carousel-dots">
         <span class="active"></span><span></span><span></span>
       </div>
     </div>
-    <h2>From Zero to Trader</h2>
-    <p class="desc">9-chapter, 78-page eBook covering the fundamentals of intraday trading on NSE — plus a bonus Trading Journal.</p>
-    <div class="price">₹239</div>
-    <button class="buy" data-product="zero-to-trader" data-name="From Zero to Trader" data-amount="23900">Buy Now</button>
+    <span class="savings-badge">SAVE ₹150</span>
+    <h2>From Zero to Trader + Screener Guide</h2>
+    <p class="desc">The complete beginner-to-trader eBook paired with the NSE Stock Screener Guide.</p>
+    <div class="price"><span class="strike">₹589</span>₹439</div>
+    <button class="buy" data-product="combo-zero-screener" data-name="From Zero to Trader + NSE Screener Guide" data-amount="43900">Buy Now</button>
   </div>
 
   <div class="card">
@@ -173,6 +249,41 @@
     <p class="desc">30-page PDF: 4-pillar screening framework, five free tools, position sizing, pre-trade checklist, and a nightly routine cheat sheet.</p>
     <div class="price">₹249</div>
     <button class="buy" data-product="screener-guide" data-name="NSE Stock Screener Guide" data-amount="24900">Buy Now</button>
+  </div>
+
+  <div class="card">
+    <div class="card-images" data-carousel="zero-to-trader">
+      <img src="images/zero-to-trader-1.jpg" class="active" alt="From Zero to Trader cover" />
+      <img src="images/zero-to-trader-2.jpg" alt="From Zero to Trader flat lay" />
+      <img src="images/zero-to-trader-3.jpg" alt="From Zero to Trader bundle" />
+      <button class="carousel-arrow prev" onclick="moveCarousel('zero-to-trader', -1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveCarousel('zero-to-trader', 1)">›</button>
+      <div class="carousel-dots">
+        <span class="active"></span><span></span><span></span>
+      </div>
+    </div>
+    <h2>From Zero to Trader</h2>
+    <p class="desc">9-chapter, 78-page eBook covering the fundamentals of intraday trading on NSE — plus a bonus Trading Journal.</p>
+    <div class="price">₹239</div>
+    <button class="buy" data-product="zero-to-trader" data-name="From Zero to Trader" data-amount="23900">Buy Now</button>
+  </div>
+
+  <div class="card">
+    <div class="card-images" data-carousel="combo-price-chart">
+      <img src="images/combo-price-chart-1.jpg" class="active" alt="Price Action + Chart Setups combo pricing" />
+      <img src="images/combo-price-chart-2.jpg" alt="Price Action Strategies cover" />
+      <img src="images/combo-price-chart-3.jpg" alt="Chart Setups Bible cover" />
+      <button class="carousel-arrow prev" onclick="moveCarousel('combo-price-chart', -1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveCarousel('combo-price-chart', 1)">›</button>
+      <div class="carousel-dots">
+        <span class="active"></span><span></span><span></span>
+      </div>
+    </div>
+    <span class="savings-badge">SAVE ₹29</span>
+    <h2>Price Action Strategies + Chart Setups Bible</h2>
+    <p class="desc">13 price action strategies paired with the full chart pattern reference guide.</p>
+    <div class="price"><span class="strike">₹168</span>₹139</div>
+    <button class="buy" data-product="combo-price-chart" data-name="Price Action Strategies + Chart Setups Bible" data-amount="13900">Buy Now</button>
   </div>
 
   <div class="card">
@@ -208,60 +319,16 @@
     <div class="price">₹79</div>
     <button class="buy" data-product="price-action-strategies" data-name="Price Action Strategies" data-amount="7900">Buy Now</button>
   </div>
-  <div class="card">
-    <div class="card-images" data-carousel="combo-all-4">
-      <img src="images/combo-all-4-1.jpg" class="active" alt="Complete Bundle pricing breakdown" />
-      <img src="images/combo-all-4-2.jpg" alt="From Zero to Trader bundle" />
-      <img src="images/combo-all-4-3.jpg" alt="NSE Screener Guide bundle" />
-      <img src="images/combo-all-4-4.jpg" alt="Chart Setups Bible cover" />
-      <img src="images/combo-all-4-5.jpg" alt="Price Action Strategies cover" />
-      <button class="carousel-arrow prev" onclick="moveCarousel('combo-all-4', -1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveCarousel('combo-all-4', 1)">›</button>
-      <div class="carousel-dots">
-        <span class="active"></span><span></span><span></span><span></span><span></span>
-      </div>
-    </div>
-    <span class="savings-badge">SAVE ₹278</span>
-    <h2>Complete Bundle — All 4 Products</h2>
-    <p class="desc">Everything: From Zero to Trader, NSE Stock Screener Guide, Chart Setups Bible, and Price Action Strategies.</p>
-    <div class="price"><span class="strike">₹877</span>₹599</div>
-    <button class="buy" data-product="combo-all-4" data-name="Complete Bundle (All 4 Products)" data-amount="59900">Buy Now</button>
-  </div>
-  <div class="card">
-    <div class="card-images" data-carousel="combo-zero-screener">
-      <img src="images/combo-zero-screener-1.jpg" class="active" alt="Zero to Trader + Screener Guide combo pricing" />
-      <img src="images/combo-zero-screener-2.jpg" alt="NSE Screener Guide bundle" />
-      <img src="images/combo-zero-screener-3.jpg" alt="From Zero to Trader bundle" />
-      <button class="carousel-arrow prev" onclick="moveCarousel('combo-zero-screener', -1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveCarousel('combo-zero-screener', 1)">›</button>
-      <div class="carousel-dots">
-        <span class="active"></span><span></span><span></span>
-      </div>
-    </div>
-    <span class="savings-badge">SAVE ₹150</span>
-    <h2>From Zero to Trader + Screener Guide</h2>
-    <p class="desc">The complete beginner-to-trader eBook paired with the NSE Stock Screener Guide.</p>
-    <div class="price"><span class="strike">₹589</span>₹439</div>
-    <button class="buy" data-product="combo-zero-screener" data-name="From Zero to Trader + NSE Screener Guide" data-amount="43900">Buy Now</button>
-  </div>
-  <div class="card">
-    <div class="card-images" data-carousel="combo-price-chart">
-      <img src="images/combo-price-chart-1.jpg" class="active" alt="Price Action + Chart Setups combo pricing" />
-      <img src="images/combo-price-chart-2.jpg" alt="Price Action Strategies cover" />
-      <img src="images/combo-price-chart-3.jpg" alt="Chart Setups Bible cover" />
-      <button class="carousel-arrow prev" onclick="moveCarousel('combo-price-chart', -1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveCarousel('combo-price-chart', 1)">›</button>
-      <div class="carousel-dots">
-        <span class="active"></span><span></span><span></span>
-      </div>
-    </div>
-    <span class="savings-badge">SAVE ₹29</span>
-    <h2>Price Action Strategies + Chart Setups Bible</h2>
-    <p class="desc">13 price action strategies paired with the full chart pattern reference guide.</p>
-    <div class="price"><span class="strike">₹168</span>₹139</div>
-    <button class="buy" data-product="combo-price-chart" data-name="Price Action Strategies + Chart Setups Bible" data-amount="13900">Buy Now</button>
-  </div>
 
+</div>
+
+<div class="lightbox-overlay" id="lightbox-overlay" onclick="if(event.target===this) closeLightbox()">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <button class="lightbox-arrow prev" onclick="moveLightbox(-1)">‹</button>
+    <img id="lightbox-img" src="" alt="Product preview" />
+    <button class="lightbox-arrow next" onclick="moveLightbox(1)">›</button>
+  </div>
 </div>
 
 <p class="disclaimer">
@@ -364,6 +431,48 @@
     imgs[newIndex].classList.add("active");
     dots[newIndex].classList.add("active");
   }
+
+  // Lightbox: click any product image to view it maximized
+  let lightboxState = { productId: null, index: 0 };
+
+  document.querySelectorAll(".card-images img").forEach((img) => {
+    img.addEventListener("click", () => {
+      const container = img.closest(".card-images");
+      const productId = container.dataset.carousel;
+      const imgs = Array.from(container.querySelectorAll("img"));
+      openLightbox(productId, imgs.indexOf(img));
+    });
+  });
+
+  function openLightbox(productId, index) {
+    lightboxState = { productId, index };
+    renderLightbox();
+    document.getElementById("lightbox-overlay").classList.add("open");
+  }
+
+  function renderLightbox() {
+    const container = document.querySelector('[data-carousel="' + lightboxState.productId + '"]');
+    const imgs = Array.from(container.querySelectorAll("img"));
+    document.getElementById("lightbox-img").src = imgs[lightboxState.index].src;
+  }
+
+  function moveLightbox(direction) {
+    const container = document.querySelector('[data-carousel="' + lightboxState.productId + '"]');
+    const imgs = Array.from(container.querySelectorAll("img"));
+    lightboxState.index = (lightboxState.index + direction + imgs.length) % imgs.length;
+    renderLightbox();
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox-overlay").classList.remove("open");
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (!document.getElementById("lightbox-overlay").classList.contains("open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") moveLightbox(-1);
+    if (e.key === "ArrowRight") moveLightbox(1);
+  });
 
   function setStatus(msg) {
     document.getElementById("status-message").textContent = msg;
