@@ -161,6 +161,52 @@
     .lightbox-arrow.prev { left: 4px; }
     .lightbox-arrow.next { right: 4px; }
   }
+  .success-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .success-overlay.open { display: flex; }
+  .success-box {
+    background: #161B22;
+    border: 1px solid #00C9A7;
+    border-radius: 12px;
+    padding: 28px 24px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+  }
+  .success-box h3 { color: #00C9A7; margin: 0 0 6px; font-size: 20px; }
+  .success-box p.sub { color: #8B949E; font-size: 14px; margin: 0 0 20px; }
+  .success-box a.download-btn {
+    display: block;
+    background: #00C9A7;
+    color: #0D1117;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  .success-box .close-note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #6E7681;
+  }
+  .success-box button.dismiss {
+    margin-top: 16px;
+    background: none;
+    border: 1px solid #30363D;
+    color: #8B949E;
+    padding: 8px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
   button.buy {
     background: #00C9A7;
     color: #0D1117;
@@ -337,6 +383,16 @@
   </div>
 </div>
 
+<div class="success-overlay" id="success-overlay">
+  <div class="success-box">
+    <h3>Payment Successful! ✅</h3>
+    <p class="sub" id="success-product-name"></p>
+    <div id="success-download-links"></div>
+    <p class="close-note">Save these links — if you lose them, DM your payment ID on Instagram and we'll resend.</p>
+    <button class="dismiss" onclick="closeSuccessModal()">Close</button>
+  </div>
+</div>
+
 <p class="disclaimer">
   📄 Digital PDF · Instant Download · No Physical Copy<br/>
   Educational content only. Not investment advice. Trading in securities markets is subject to market risk.
@@ -485,24 +541,32 @@
   }
 
   function showDownloadLink(productName, files) {
-    const el = document.getElementById("status-message");
-    const buttons = files
+    document.getElementById("success-product-name").textContent = productName + " is ready!";
+
+    const container = document.getElementById("success-download-links");
+    container.innerHTML = files
       .map(
         (f) =>
-          '<a href="' + f.url + '" target="_blank" rel="noopener" ' +
-          'style="display:block;background:#00C9A7;color:#0D1117;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:bold;margin:6px 0;">' +
-          "Download: " + f.label +
-          "</a>"
+          '<a href="' + f.url + '" target="_blank" rel="noopener" class="download-btn">Download: ' + f.label + "</a>"
       )
       .join("");
-    el.innerHTML =
-      '<div style="background:#161B22;border:1px solid #00C9A7;border-radius:8px;padding:16px;display:inline-block;text-align:left;">' +
-      '<p style="margin:0 0 10px;color:#E6EDF3;text-align:center;">Your <strong>' + productName + '</strong> is ready!</p>' +
-      buttons +
-      '<p style="margin:10px 0 0;font-size:12px;color:#8B949E;text-align:center;">Save these links — if you lose them, DM your payment ID on Instagram and we\'ll resend.</p>' +
-      '</div>';
+
+    document.getElementById("success-overlay").classList.add("open");
+
+    // For a single-file product, also try auto-opening the download in a
+    // new tab right away so the customer doesn't even need to tap the button.
+    // (Browsers may still block this if too much time has passed since the
+    // click — the visible button in the modal is the reliable fallback.)
+    if (files.length === 1) {
+      window.open(files[0].url, "_blank", "noopener");
+    }
+  }
+
+  function closeSuccessModal() {
+    document.getElementById("success-overlay").classList.remove("open");
   }
 </script>
+
 
 </body>
 </html>
