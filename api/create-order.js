@@ -9,6 +9,9 @@ const PRODUCTS = {
   "screener-guide": { name: "NSE Stock Screener Guide", amount: 24900 },
   "chart-setups-bible": { name: "Chart Setups Bible", amount: 8900 },
   "price-action-strategies": { name: "Price Action Strategies", amount: 7900 },
+  "combo-all-4": { name: "Complete Bundle (All 4 Products)", amount: 59900 },
+  "combo-zero-screener": { name: "From Zero to Trader + NSE Screener Guide", amount: 43900 },
+  "combo-price-chart": { name: "Price Action Strategies + Chart Setups Bible", amount: 13900 },
 };
 
 export default async function handler(req, res) {
