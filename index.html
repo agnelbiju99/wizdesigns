@@ -24,17 +24,82 @@
     max-width: 900px;
     margin: 0 auto;
   }
+  .card-images {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background: #0D1117;
+  }
+  .card-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+  .card-images img.active { display: block; }
+  .carousel-dots {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+  .carousel-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+  }
+  .carousel-dots span.active { background: #00C9A7; }
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(13,17,23,0.6);
+    color: #fff;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .carousel-arrow.prev { left: 8px; }
+  .carousel-arrow.next { right: 8px; }
   .card {
     background: #161B22;
     border: 1px solid #30363D;
     border-radius: 12px;
-    padding: 24px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
   }
   .card h2 { margin: 0 0 8px; font-size: 20px; }
   .card p.desc { color: #8B949E; font-size: 14px; flex-grow: 1; margin-bottom: 16px; }
   .price { font-size: 24px; font-weight: bold; color: #FFB347; margin-bottom: 16px; }
+  .price .strike {
+    font-size: 16px;
+    color: #6E7681;
+    text-decoration: line-through;
+    font-weight: normal;
+    margin-right: 8px;
+  }
+  .savings-badge {
+    display: inline-block;
+    background: #FF4C4C;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
   button.buy {
     background: #00C9A7;
     color: #0D1117;
@@ -77,6 +142,16 @@
 <div class="grid">
 
   <div class="card">
+    <div class="card-images" data-carousel="zero-to-trader">
+      <img src="images/zero-to-trader-1.jpg" class="active" alt="From Zero to Trader cover" />
+      <img src="images/zero-to-trader-2.jpg" alt="From Zero to Trader flat lay" />
+      <img src="images/zero-to-trader-3.jpg" alt="From Zero to Trader bundle" />
+      <button class="carousel-arrow prev" onclick="moveCarousel('zero-to-trader', -1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveCarousel('zero-to-trader', 1)">›</button>
+      <div class="carousel-dots">
+        <span class="active"></span><span></span><span></span>
+      </div>
+    </div>
     <h2>From Zero to Trader</h2>
     <p class="desc">9-chapter, 78-page eBook covering the fundamentals of intraday trading on NSE — plus a bonus Trading Journal.</p>
     <div class="price">₹239</div>
@@ -84,6 +159,16 @@
   </div>
 
   <div class="card">
+    <div class="card-images" data-carousel="screener-guide">
+      <img src="images/screener-guide-1.jpg" class="active" alt="NSE Stock Screener Guide cover" />
+      <img src="images/screener-guide-2.jpg" alt="NSE Stock Screener Guide bundle" />
+      <img src="images/screener-guide-3.jpg" alt="NSE Stock Screener Guide close-up" />
+      <button class="carousel-arrow prev" onclick="moveCarousel('screener-guide', -1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveCarousel('screener-guide', 1)">›</button>
+      <div class="carousel-dots">
+        <span class="active"></span><span></span><span></span>
+      </div>
+    </div>
     <h2>NSE Stock Screener Guide</h2>
     <p class="desc">30-page PDF: 4-pillar screening framework, five free tools, position sizing, pre-trade checklist, and a nightly routine cheat sheet.</p>
     <div class="price">₹249</div>
@@ -91,6 +176,16 @@
   </div>
 
   <div class="card">
+    <div class="card-images" data-carousel="chart-setups-bible">
+      <img src="images/chart-setups-bible-1.jpg" class="active" alt="Chart Setups Bible cover" />
+      <img src="images/chart-setups-bible-2.jpg" alt="Chart Setups Bible foundations" />
+      <img src="images/chart-setups-bible-3.jpg" alt="Chart Setups Bible pattern example" />
+      <button class="carousel-arrow prev" onclick="moveCarousel('chart-setups-bible', -1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveCarousel('chart-setups-bible', 1)">›</button>
+      <div class="carousel-dots">
+        <span class="active"></span><span></span><span></span>
+      </div>
+    </div>
     <h2>Chart Setups Bible</h2>
     <p class="desc">A visual reference of chart patterns and setups — entry, stop-loss, and target rules for each, built for quick lookup while scanning charts.</p>
     <div class="price">₹89</div>
@@ -98,10 +193,73 @@
   </div>
 
   <div class="card">
+    <div class="card-images" data-carousel="price-action-strategies">
+      <img src="images/price-action-strategies-1.jpg" class="active" alt="Price Action Strategies cover" />
+      <img src="images/price-action-strategies-2.jpg" alt="Price Action Strategies trade plan" />
+      <img src="images/price-action-strategies-3.jpg" alt="Price Action Strategies setups" />
+      <button class="carousel-arrow prev" onclick="moveCarousel('price-action-strategies', -1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveCarousel('price-action-strategies', 1)">›</button>
+      <div class="carousel-dots">
+        <span class="active"></span><span></span><span></span>
+      </div>
+    </div>
     <h2>Price Action Strategies</h2>
     <p class="desc">Core price action concepts and strategies for reading market structure and timing entries without relying on lagging indicators.</p>
     <div class="price">₹79</div>
     <button class="buy" data-product="price-action-strategies" data-name="Price Action Strategies" data-amount="7900">Buy Now</button>
+  </div>
+  <div class="card">
+    <div class="card-images" data-carousel="combo-all-4">
+      <img src="images/combo-all-4-1.jpg" class="active" alt="Complete Bundle pricing breakdown" />
+      <img src="images/combo-all-4-2.jpg" alt="From Zero to Trader bundle" />
+      <img src="images/combo-all-4-3.jpg" alt="NSE Screener Guide bundle" />
+      <img src="images/combo-all-4-4.jpg" alt="Chart Setups Bible cover" />
+      <img src="images/combo-all-4-5.jpg" alt="Price Action Strategies cover" />
+      <button class="carousel-arrow prev" onclick="moveCarousel('combo-all-4', -1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveCarousel('combo-all-4', 1)">›</button>
+      <div class="carousel-dots">
+        <span class="active"></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <span class="savings-badge">SAVE ₹278</span>
+    <h2>Complete Bundle — All 4 Products</h2>
+    <p class="desc">Everything: From Zero to Trader, NSE Stock Screener Guide, Chart Setups Bible, and Price Action Strategies.</p>
+    <div class="price"><span class="strike">₹877</span>₹599</div>
+    <button class="buy" data-product="combo-all-4" data-name="Complete Bundle (All 4 Products)" data-amount="59900">Buy Now</button>
+  </div>
+  <div class="card">
+    <div class="card-images" data-carousel="combo-zero-screener">
+      <img src="images/combo-zero-screener-1.jpg" class="active" alt="Zero to Trader + Screener Guide combo pricing" />
+      <img src="images/combo-zero-screener-2.jpg" alt="NSE Screener Guide bundle" />
+      <img src="images/combo-zero-screener-3.jpg" alt="From Zero to Trader bundle" />
+      <button class="carousel-arrow prev" onclick="moveCarousel('combo-zero-screener', -1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveCarousel('combo-zero-screener', 1)">›</button>
+      <div class="carousel-dots">
+        <span class="active"></span><span></span><span></span>
+      </div>
+    </div>
+    <span class="savings-badge">SAVE ₹150</span>
+    <h2>From Zero to Trader + Screener Guide</h2>
+    <p class="desc">The complete beginner-to-trader eBook paired with the NSE Stock Screener Guide.</p>
+    <div class="price"><span class="strike">₹589</span>₹439</div>
+    <button class="buy" data-product="combo-zero-screener" data-name="From Zero to Trader + NSE Screener Guide" data-amount="43900">Buy Now</button>
+  </div>
+  <div class="card">
+    <div class="card-images" data-carousel="combo-price-chart">
+      <img src="images/combo-price-chart-1.jpg" class="active" alt="Price Action + Chart Setups combo pricing" />
+      <img src="images/combo-price-chart-2.jpg" alt="Price Action Strategies cover" />
+      <img src="images/combo-price-chart-3.jpg" alt="Chart Setups Bible cover" />
+      <button class="carousel-arrow prev" onclick="moveCarousel('combo-price-chart', -1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveCarousel('combo-price-chart', 1)">›</button>
+      <div class="carousel-dots">
+        <span class="active"></span><span></span><span></span>
+      </div>
+    </div>
+    <span class="savings-badge">SAVE ₹29</span>
+    <h2>Price Action Strategies + Chart Setups Bible</h2>
+    <p class="desc">13 price action strategies paired with the full chart pattern reference guide.</p>
+    <div class="price"><span class="strike">₹168</span>₹139</div>
+    <button class="buy" data-product="combo-price-chart" data-name="Price Action Strategies + Chart Setups Bible" data-amount="13900">Buy Now</button>
   </div>
 
 </div>
@@ -156,7 +314,7 @@
               if (!verifyRes.ok) throw new Error("Could not verify payment.");
               const result = await verifyRes.json();
 
-              showDownloadLink(result.productName, result.downloadUrl);
+              showDownloadLink(result.productName, result.files);
             } catch (err) {
               setStatus(
                 "Payment succeeded but we couldn't fetch your download link automatically. " +
@@ -191,18 +349,42 @@
     });
   });
 
+  function moveCarousel(productId, direction) {
+    const container = document.querySelector('[data-carousel="' + productId + '"]');
+    const imgs = container.querySelectorAll("img");
+    const dots = container.querySelectorAll(".carousel-dots span");
+    let activeIndex = 0;
+    imgs.forEach((img, i) => { if (img.classList.contains("active")) activeIndex = i; });
+
+    imgs[activeIndex].classList.remove("active");
+    dots[activeIndex].classList.remove("active");
+
+    let newIndex = (activeIndex + direction + imgs.length) % imgs.length;
+
+    imgs[newIndex].classList.add("active");
+    dots[newIndex].classList.add("active");
+  }
+
   function setStatus(msg) {
     document.getElementById("status-message").textContent = msg;
   }
 
-  function showDownloadLink(productName, downloadUrl) {
+  function showDownloadLink(productName, files) {
     const el = document.getElementById("status-message");
+    const buttons = files
+      .map(
+        (f) =>
+          '<a href="' + f.url + '" target="_blank" rel="noopener" ' +
+          'style="display:block;background:#00C9A7;color:#0D1117;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:bold;margin:6px 0;">' +
+          "Download: " + f.label +
+          "</a>"
+      )
+      .join("");
     el.innerHTML =
-      '<div style="background:#161B22;border:1px solid #00C9A7;border-radius:8px;padding:16px;display:inline-block;">' +
-      '<p style="margin:0 0 10px;color:#E6EDF3;">Your <strong>' + productName + '</strong> is ready!</p>' +
-      '<a href="' + downloadUrl + '" target="_blank" rel="noopener" ' +
-      'style="background:#00C9A7;color:#0D1117;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:bold;">Download Now</a>' +
-      '<p style="margin:10px 0 0;font-size:12px;color:#8B949E;">Save this link — if you lose it, DM your payment ID on Instagram and we\'ll resend it.</p>' +
+      '<div style="background:#161B22;border:1px solid #00C9A7;border-radius:8px;padding:16px;display:inline-block;text-align:left;">' +
+      '<p style="margin:0 0 10px;color:#E6EDF3;text-align:center;">Your <strong>' + productName + '</strong> is ready!</p>' +
+      buttons +
+      '<p style="margin:10px 0 0;font-size:12px;color:#8B949E;text-align:center;">Save these links — if you lose them, DM your payment ID on Instagram and we\'ll resend.</p>' +
       '</div>';
   }
 </script>
