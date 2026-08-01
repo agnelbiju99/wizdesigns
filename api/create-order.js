@@ -6,7 +6,7 @@ import Razorpay from "razorpay";
 // Prices are in paise (₹1 = 100 paise). Update here if prices change.
 const PRODUCTS = {
   "zero-to-trader": { name: "From Zero to Trader", amount: 23900 },
-  "screener-guide": { name: "NSE Stock Screener Guide", amount: 24900 },
+  "screener-guide": { name: "NSE Stock Screener Guide", amount: 35000 },
   "chart-setups-bible": { name: "Chart Setups Bible", amount: 8900 },
   "price-action-strategies": { name: "Price Action Strategies", amount: 7900 },
   "combo-all-4": { name: "Complete Bundle (All 4 Products)", amount: 59900 },
