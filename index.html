@@ -391,6 +391,24 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     <button class="buy" data-product="price-action-strategies" data-name="Price Action Strategies" data-amount="14900">Buy Now</button>
   </div>
 
+  <div class="card">
+    <div class="card-images" data-carousel="product-journey">
+      <img src="images/product-journey-1.jpg" class="active" alt="What Is A Digital Product cover" />
+      <img src="images/product-journey-2.jpg" alt="What's inside at a glance" />
+      <img src="images/product-journey-3.jpg" alt="22 pages every idea illustrated" />
+      <button class="carousel-arrow prev" onclick="moveCarousel('product-journey', -1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveCarousel('product-journey', 1)">›</button>
+      <div class="carousel-dots">
+        <span class="active"></span><span></span><span></span>
+      </div>
+    </div>
+    <span class="savings-badge">SAVE 64%</span>
+    <h2>What Is A Digital Product?</h2>
+    <p class="desc">Part 1 of a 6-part series: the real story of building a first digital product from zero coding background, plus the Transformation Framework to score your own idea.</p>
+    <div class="price"><span class="strike">₹249</span>₹89</div>
+    <button class="buy" data-product="product-journey" data-name="What Is A Digital Product?" data-amount="8900">Buy Now</button>
+  </div>
+
 </div>
 
 <div class="lightbox-overlay" id="lightbox-overlay" onclick="if(event.target===this) closeLightbox()">
@@ -596,6 +614,26 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   function closeSuccessModal() {
     document.getElementById("success-overlay").classList.remove("open");
   }
+
+  // Direct product links: ?product=<id> scrolls to that card and
+  // auto-opens checkout, so a social media link can send someone
+  // straight into paying for one specific product.
+  (function handleDirectProductLink() {
+    const params = new URLSearchParams(window.location.search);
+    const targetProduct = params.get("product");
+    if (!targetProduct) return;
+
+    const targetBtn = document.querySelector('.buy[data-product="' + targetProduct + '"]');
+    if (!targetBtn) return;
+
+    targetBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    // Small delay lets the scroll settle and keeps this click tied closely
+    // enough to page load that most browsers won't block the checkout popup.
+    setTimeout(() => {
+      targetBtn.click();
+    }, 600);
+  })();
 </script>
 
 
