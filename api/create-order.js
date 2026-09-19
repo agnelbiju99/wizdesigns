@@ -1,9 +1,5 @@
-// Creates a Razorpay order when a customer clicks "Buy Now".
-// Called from index.html via fetch("/api/create-order", { method: "POST", body: { productId } })
-
 import Razorpay from "razorpay";
 
-// Prices are in paise (₹1 = 100 paise). Update here if prices change.
 const PRODUCTS = {
   "zero-to-trader": { name: "From Zero to Trader", amount: 28900 },
   "screener-guide": { name: "NSE Stock Screener Guide", amount: 39900 },
@@ -12,6 +8,7 @@ const PRODUCTS = {
   "combo-all-4": { name: "Complete Bundle (All 4 Products)", amount: 74900 },
   "combo-zero-screener": { name: "From Zero to Trader + NSE Screener Guide", amount: 54900 },
   "combo-price-chart": { name: "Price Action Strategies + Chart Setups Bible", amount: 17900 },
+  "product-journey": { name: "What Is A Digital Product?", amount: 8900 },
 };
 
 export default async function handler(req, res) {
@@ -35,7 +32,6 @@ export default async function handler(req, res) {
     const order = await instance.orders.create({
       amount: product.amount,
       currency: "INR",
-      // notes.product is how the webhook later knows which PDF to deliver
       notes: { product: productId },
     });
 
