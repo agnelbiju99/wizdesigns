@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Complete Trading Bundle — Wiz Designs</title>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #0D1117;
+    color: #E6EDF3;
+    padding: 24px 20px 60px;
+  }
+  .back-link { display: inline-block; color: #8B949E; text-decoration: none; font-size: 14px; margin-bottom: 24px; }
+  .back-link:hover { color: #00C9A7; }
+  .product-page { max-width: 760px; margin: 0 auto; }
+  .badge-row { display: flex; justify-content: center; margin-bottom: 16px; }
+  .part-badge { border: 1px solid #30363D; color: #8B949E; font-size: 11px; letter-spacing: 1px; padding: 5px 14px; border-radius: 20px; }
+
+  .card-images {
+    position: relative; width: 100%; border-radius: 12px; overflow: hidden;
+    margin-bottom: 20px; background: #161B22; border: 1px solid #30363D;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card-images img {
+    width: auto; height: auto; max-width: 100%; max-height: 560px;
+    object-fit: contain; display: none; cursor: zoom-in;
+  }
+  .card-images img.active { display: block; }
+  .carousel-dots { position: absolute; bottom: 10px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+  .carousel-dots span { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; }
+  .carousel-dots span.active { background: #00C9A7; }
+  .carousel-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(13,17,23,0.6); color: #fff; border: none;
+    width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px;
+  }
+  .carousel-arrow.prev { left: 12px; }
+  .carousel-arrow.next { right: 12px; }
+
+  h1 { font-size: 30px; margin: 0 0 6px; line-height: 1.25; }
+  h1 .accent { color: #00C9A7; }
+  .subtitle { color: #8B949E; font-size: 15px; margin: 0 0 20px; line-height: 1.6; }
+
+  #status-message { text-align: center; color: #00C9A7; font-size: 14px; min-height: 20px; margin-bottom: 10px; }
+
+  .price-block { display: flex; align-items: center; gap: 12px; margin: 20px 0; }
+  .price-block .now { font-size: 32px; font-weight: bold; color: #FFB347; }
+
+  button.buy {
+    width: 100%; background: #00C9A7; color: #0D1117; border: none; padding: 16px;
+    border-radius: 8px; font-weight: bold; font-size: 17px; cursor: pointer;
+    min-height: 52px; margin: 10px 0 6px;
+  }
+  button.buy:disabled { opacity: 0.6; cursor: not-allowed; }
+  .instant-note { text-align: center; color: #8B949E; font-size: 12.5px; margin-bottom: 28px; }
+
+  .desc-section { margin-top: 32px; }
+  .desc-section h2 {
+    font-size: 19px; color: #E6EDF3; margin: 24px 0 12px; padding-bottom: 10px; border-bottom: 1px solid #30363D;
+  }
+  .desc-section h2:first-child { margin-top: 0; }
+  .desc-section h3 {
+    font-size: 15.5px; color: #00C9A7; margin: 18px 0 8px;
+  }
+  .desc-section p { font-size: 14.5px; line-height: 1.8; color: #C9D1D9; margin: 0 0 14px; }
+  .desc-section ul { margin: 0 0 16px; padding-left: 0; list-style: none; }
+  .desc-section ul li {
+    font-size: 14.5px; line-height: 1.7; padding-left: 24px; position: relative; margin-bottom: 10px; color: #C9D1D9;
+  }
+  .desc-section ul li:before { content: "✓"; color: #00C9A7; position: absolute; left: 0; font-weight: bold; }
+  .chapter-item {
+    background: #161B22; border: 1px solid #30363D; border-radius: 8px;
+    padding: 12px 16px; margin-bottom: 10px;
+  }
+  .chapter-item .num { color: #00C9A7; font-weight: bold; font-size: 13px; }
+  .chapter-item .title { font-weight: bold; font-size: 14.5px; margin: 2px 0 4px; }
+  .chapter-item .body { font-size: 13px; color: #8B949E; line-height: 1.6; }
+
+  .lightbox-overlay {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 20px;
+  }
+  .lightbox-overlay.open { display: flex; }
+  .lightbox-content { position: relative; max-width: 600px; width: 100%; }
+  .lightbox-content img { width: auto; height: auto; max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; display: block; margin: 0 auto; }
+  .lightbox-close { position: absolute; top: -40px; right: 0; background: none; border: none; color: #fff; font-size: 32px; cursor: pointer; line-height: 1; }
+  .lightbox-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(22,27,34,0.8); color: #fff; border: none;
+    width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 20px;
+  }
+  .lightbox-arrow.prev { left: -8px; }
+  .lightbox-arrow.next { right: -8px; }
+  @media (max-width: 640px) {
+    .lightbox-arrow.prev { left: 4px; }
+    .lightbox-arrow.next { right: 4px; }
+  }
+
+  .success-overlay {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; padding: 20px;
+  }
+  .success-overlay.open { display: flex; }
+  .success-box { background: #161B22; border: 1px solid #00C9A7; border-radius: 12px; padding: 28px 24px; max-width: 420px; width: 100%; text-align: center; }
+  .success-box h3 { color: #00C9A7; margin: 0 0 6px; font-size: 20px; }
+  .success-box p.sub { color: #8B949E; font-size: 14px; margin: 0 0 20px; }
+  .success-box a.download-btn {
+    display: block; background: #00C9A7; color: #0D1117; padding: 12px 20px;
+    border-radius: 8px; text-decoration: none; font-weight: bold; margin: 10px 0;
+  }
+  .success-box .close-note { margin-top: 16px; font-size: 12px; color: #6E7681; }
+  .success-box button.dismiss {
+    margin-top: 16px; background: none; border: 1px solid #30363D; color: #8B949E;
+    padding: 8px 20px; border-radius: 6px; cursor: pointer;
+  }
+
+  .disclaimer { max-width: 760px; margin: 40px auto 0; font-size: 12px; color: #6E7681; text-align: center; line-height: 1.5; }
+
+  .other-products { margin-top: 44px; }
+  .other-products h2 {
+    font-size: 19px; margin: 0 0 16px; padding-bottom: 10px; border-bottom: 1px solid #30363D;
+  }
+  .op-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+  }
+  .op-card {
+    display: block;
+    background: #161B22; border: 1px solid #30363D; border-radius: 10px;
+    overflow: hidden; text-decoration: none; color: inherit;
+  }
+  .op-card.featured { border-color: #00C9A7; }
+  .op-card .op-thumb {
+    width: 100%; height: 150px; background: #0D1117;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .op-card .op-thumb img { width: 100%; height: 100%; object-fit: contain; }
+  .op-card .op-body { padding: 12px 14px; }
+  .op-card .op-name { font-weight: bold; font-size: 14px; margin-bottom: 4px; color: #E6EDF3; line-height: 1.3; }
+  .op-card .op-sub { font-size: 11.5px; color: #8B949E; line-height: 1.5; margin-bottom: 8px; }
+  .op-card .op-price { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .op-card .op-price .strike { font-size: 11.5px; color: #6E7681; text-decoration: line-through; }
+  .op-card .op-price .now { font-weight: bold; color: #FFB347; font-size: 16px; }
+  .op-card .op-badge {
+    display: inline-block;
+    background: #FF4C4C; color: #fff; font-size: 9.5px; font-weight: bold;
+    padding: 2px 7px; border-radius: 4px; margin-bottom: 6px;
+  }
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3457495557772098');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+</head>
+<body>
+
+<div class="product-page">
+  <a class="back-link" href="/">← Back to all products</a>
+
+  <div class="badge-row"><span class="part-badge">4 GUIDES · 152 PAGES · DIGITAL DOWNLOAD</span></div>
+
+  <div class="card-images" data-carousel="combo-all-4">
+    <img src="images/combo-all-4-cover-v3.jpg" class="active" alt="Complete Bundle pricing breakdown" />
+    <img src="images/combo-all-4-2.jpg" alt="From Zero to Trader bundle" />
+    <img src="images/combo-all-4-3.jpg" alt="NSE Screener Guide bundle" />
+    <img src="images/combo-all-4-4.jpg" alt="Chart Setups Bible cover" />
+    <img src="images/combo-all-4-5.jpg" alt="Price Action Strategies cover" />
+    <button class="carousel-arrow prev" onclick="moveCarousel('combo-all-4', -1)">‹</button>
+    <button class="carousel-arrow next" onclick="moveCarousel('combo-all-4', 1)">›</button>
+    <div class="carousel-dots">
+      <span class="active"></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <h1>The Complete <span class="accent">Trading Bundle</span></h1>
+  <p class="subtitle">Everything a beginner trader needs — in one complete bundle.</p>
+
+  <div id="status-message"></div>
+
+  <div class="price-block">
+    <span class="strike" style="font-size:18px;color:#6E7681;text-decoration:line-through;">₹986</span>
+    <span class="now">₹749</span>
+    <span class="savings-badge" style="background:#FF4C4C;color:#fff;font-size:12px;font-weight:bold;padding:3px 10px;border-radius:4px;">SAVE ₹237</span>
+  </div>
+
+  <button class="buy" id="buy-btn" data-product="combo-all-4" data-name="Complete Bundle (All 4 Products)" data-amount="74900">Buy Now — Instant Download</button>
+  <p class="instant-note">📄 4 PDF Guides + Free Bonuses · Instant Download · Pay via UPI</p>
+
+  <div class="desc-section">
+    <h2>Description</h2>
+    <p>Stop piecing together random YouTube videos and conflicting free PDFs. This bundle gives you the complete path — from understanding the stock market to reading charts, screening stocks, and managing risk like a real trader.</p>
+
+    <h2>🎁 What's Included (4 Guides + Bonuses)</h2>
+    <ul>
+      <li>"From Zero to Trader — The Complete Guide" (78-page PDF eBook)</li>
+      <li>"The NSE Stock Screener Guide" (30-page PDF)</li>
+      <li>"The Chart Setups Bible" (28-page PDF)</li>
+      <li>"Price Action Strategies" (16-page PDF)</li>
+      <li>FREE Bonus: Interactive Trading Journal (HTML file — works in any browser)</li>
+      <li>FREE Bonus: Breakout Scanner access (web-based stock scanner tool)</li>
+    </ul>
+
+    <h2>📚 From Zero to Trader — 9 Chapters</h2>
+    <p>Fundamental Analysis (PE, ROE, revenue growth) • Technical Analysis (FA vs TA, honest limitations) • Reading a Stock Chart (candlesticks, S&R, volume, VWAP/EMA) • 5 Candlestick Patterns That Actually Work • 11 Technical Indicators Explained Simply + 5-Gate Checklist • 8 Common Trading Mistakes • Risk Management & Position Sizing • How to Place a Trade (MIS vs CNC) • Trading Psychology</p>
+
+    <h2>📊 The NSE Stock Screener Guide</h2>
+    <p>5-step stock screening system, sector momentum + scoring model, nightly & morning routine checklist, Screener.in/TradingView/NSE tools — plus free Breakout Scanner access included.</p>
+
+    <h2>📖 The Chart Setups Bible</h2>
+    <p>19 candlestick + chart patterns (Hammer, Engulfing, Doji, Morning Star, Double Bottom, and more) — each with reliability rating, entry, stop-loss, and target rules.</p>
+
+    <h2>🎯 Price Action Strategies</h2>
+    <p>13 complete trading setups — breakouts, pullbacks, VWAP bounces, and more — with exact entry, stop-loss, and target for every setup, plus the common mistake to avoid on each.</p>
+
+    <h2>🎁 Free Bonus — Interactive Trading Journal (HTML)</h2>
+    <ul>
+      <li>Log every trade with entry, exit, reason and emotion</li>
+      <li>Auto-calculates P&L, brokerage and taxes</li>
+      <li>Visual equity curve chart</li>
+      <li>Dark mode design</li>
+      <li>Works offline, no app or subscription needed</li>
+      <li>CSV export for weekly review</li>
+    </ul>
+
+    <h2>✅ Who This Is For</h2>
+    <ul>
+      <li>Complete beginners who want to understand the stock market from scratch</li>
+      <li>Aspiring intraday and swing traders on NSE</li>
+      <li>Anyone who has tried trading but keeps losing money</li>
+      <li>Investors who want to add technical + price action analysis to their strategy</li>
+    </ul>
+
+    <h2>📥 How Delivery Works</h2>
+    <p>This is a digital product — instant access after purchase:</p>
+    <ul>
+      <li>Four PDF files (152 pages combined across all 4 guides)</li>
+      <li>One HTML file (interactive trading journal)</li>
+      <li>Breakout Scanner tool access</li>
+    </ul>
+    <p>No shipping. No waiting. Download immediately after payment.</p>
+  </div>
+
+  <div class="other-products">
+    <h2>Other Products</h2>
+    <div class="op-grid">
+
+      <a class="op-card featured" href="/?product=combo-zero-screener">
+        <div class="op-thumb"><img src="images/combo-zero-screener-cover-v3.jpg" alt="Zero to Trader + Screener Guide combo" /></div>
+        <div class="op-body">
+          <span class="op-badge">POPULAR</span>
+          <div class="op-name">From Zero to Trader + Screener Guide</div>
+          <div class="op-sub">Beginner guide paired with the NSE Stock Screener Guide</div>
+          <div class="op-price"><span class="strike">₹688</span><span class="now">₹549</span></div>
+        </div>
+      </a>
+
+      <a class="op-card" href="/?product=screener-guide">
+        <div class="op-thumb"><img src="images/screener-guide-1.jpg" alt="NSE Stock Screener Guide" /></div>
+        <div class="op-body">
+          <div class="op-name">NSE Stock Screener Guide</div>
+          <div class="op-sub">4-pillar screening framework + free Breakout Scanner</div>
+          <div class="op-price"><span class="now">₹399</span></div>
+        </div>
+      </a>
+
+      <a class="op-card" href="/zero-to-trader.html">
+        <div class="op-thumb"><img src="images/zero-to-trader-1.jpg" alt="From Zero to Trader" /></div>
+        <div class="op-body">
+          <div class="op-name">From Zero to Trader</div>
+          <div class="op-sub">9-chapter beginner-to-trader roadmap, 78 pages</div>
+          <div class="op-price"><span class="now">₹289</span></div>
+        </div>
+      </a>
+
+      <a class="op-card" href="/?product=combo-price-chart">
+        <div class="op-thumb"><img src="images/combo-price-chart-cover-v3.jpg" alt="Price Action + Chart Setups combo" /></div>
+        <div class="op-body">
+          <div class="op-name">Price Action Strategies + Chart Setups Bible</div>
+          <div class="op-sub">13 price action setups + 19 chart patterns</div>
+          <div class="op-price"><span class="strike">₹298</span><span class="now">₹179</span></div>
+        </div>
+      </a>
+
+      <a class="op-card" href="/?product=chart-setups-bible">
+        <div class="op-thumb"><img src="images/chart-setups-bible-cover-v3.jpg" alt="Chart Setups Bible" /></div>
+        <div class="op-body">
+          <div class="op-name">Chart Setups Bible</div>
+          <div class="op-sub">19 candlestick + chart patterns with entry/SL/target rules</div>
+          <div class="op-price"><span class="now">₹149</span></div>
+        </div>
+      </a>
+
+      <a class="op-card" href="/?product=price-action-strategies">
+        <div class="op-thumb"><img src="images/price-action-strategies-cover-v3.jpg" alt="Price Action Strategies" /></div>
+        <div class="op-body">
+          <div class="op-name">Price Action Strategies</div>
+          <div class="op-sub">13 complete setups for reading market structure</div>
+          <div class="op-price"><span class="now">₹149</span></div>
+        </div>
+      </a>
+
+      <a class="op-card" href="/product-journey.html">
+        <div class="op-thumb"><img src="images/product-journey-1.jpg" alt="What Is A Digital Product" /></div>
+        <div class="op-body">
+          <div class="op-name">What Is A Digital Product?</div>
+          <div class="op-sub">Part 1 of 6 — build your own digital product from scratch</div>
+          <div class="op-price"><span class="strike">₹249</span><span class="now" style="color:#3FB950;">FREE</span></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+<div class="lightbox-overlay" id="lightbox-overlay" onclick="if(event.target===this) closeLightbox()">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <button class="lightbox-arrow prev" onclick="moveLightbox(-1)">‹</button>
+    <img id="lightbox-img" src="" alt="Product preview" />
+    <button class="lightbox-arrow next" onclick="moveLightbox(1)">›</button>
+  </div>
+</div>
+
+<div class="success-overlay" id="success-overlay">
+  <div class="success-box">
+    <h3>Payment Successful! ✅</h3>
+    <p class="sub" id="success-product-name"></p>
+    <div id="success-download-links"></div>
+    <p class="close-note">Save these links — if you lose them, DM your payment ID on Instagram and we'll resend.</p>
+    <button class="dismiss" onclick="closeSuccessModal()">Close</button>
+  </div>
+</div>
+
+<p class="disclaimer">
+  📄 Digital PDF · Instant Download · No Physical Copy<br/>
+  Educational content only. Not investment advice. Trading in securities markets is subject to market risk.
+  Wiz Designs is not a SEBI-registered investment advisor.
+</p>
+
+<script>
+  let currentRzp = null;
+
+  function openCheckoutSafely(rzp) {
+    currentRzp = rzp;
+    // Push a history entry before opening so that a back-button press
+    // pops this state (firing popstate) instead of navigating away —
+    // the customer stays on this page with the checkout simply closed.
+    history.pushState({ wizCheckoutOpen: true }, "", location.href);
+    rzp.open();
+  }
+
+  window.addEventListener("popstate", function () {
+    if (currentRzp) {
+      try { currentRzp.close(); } catch (e) {}
+    }
+  });
+
+  function startCheckout(btn) {
+    const productId = btn.dataset.product;
+    const productName = btn.dataset.name;
+
+    btn.disabled = true;
+    const originalText = btn.textContent;
+    btn.textContent = "Loading...";
+    setStatus("");
+
+    fetch("/api/create-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ productId }),
+    })
+      .then((orderRes) => {
+        if (!orderRes.ok) throw new Error("Could not start checkout. Please try again.");
+        return orderRes.json();
+      })
+      .then((order) => {
+        const options = {
+          key: order.keyId,
+          amount: order.amount,
+          currency: "INR",
+          name: "Wiz Designs",
+          description: productName,
+          order_id: order.orderId,
+          handler: async function (response) {
+            setStatus("Payment received — verifying...");
+            try {
+              const verifyRes = await fetch("/api/verify-payment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_signature: response.razorpay_signature,
+                }),
+              });
+
+              if (!verifyRes.ok) throw new Error("Could not verify payment.");
+              const result = await verifyRes.json();
+
+              if (typeof fbq === "function") {
+                fbq("track", "Purchase", {
+                  value: parseInt(btn.dataset.amount, 10) / 100,
+                  currency: "INR",
+                  content_name: productName,
+                  content_ids: [productId],
+                  content_type: "product",
+                });
+              }
+
+              showDownloadLink(result.productName, result.files);
+            } catch (err) {
+              setStatus(
+                "Payment succeeded but we couldn't fetch your download link automatically. " +
+                "Please DM us your payment ID (" + response.razorpay_payment_id + ") on Instagram and we'll send it right away."
+              );
+            }
+          },
+          modal: {
+            ondismiss: function () {
+              btn.disabled = false;
+              btn.textContent = originalText;
+              currentRzp = null;
+            },
+          },
+          theme: { color: "#00C9A7" },
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.on("payment.failed", function () {
+          setStatus("Payment failed. Please try again.");
+          btn.disabled = false;
+          btn.textContent = originalText;
+          currentRzp = null;
+        });
+
+        openCheckoutSafely(rzp);
+        btn.disabled = false;
+        btn.textContent = originalText;
+      })
+      .catch((err) => {
+        setStatus(err.message || "Something went wrong. Please try again.");
+        btn.disabled = false;
+        btn.textContent = originalText;
+      });
+  }
+
+  document.getElementById("buy-btn").addEventListener("click", function () {
+    startCheckout(this);
+  });
+
+  // Direct link behavior: auto-open checkout shortly after the page loads,
+  // so a shared link takes the customer straight into paying.
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("buy-btn").click();
+    }, 600);
+  });
+
+  function moveCarousel(productId, direction) {
+    const container = document.querySelector('[data-carousel="' + productId + '"]');
+    const imgs = container.querySelectorAll("img");
+    const dots = container.querySelectorAll(".carousel-dots span");
+    let activeIndex = 0;
+    imgs.forEach((img, i) => { if (img.classList.contains("active")) activeIndex = i; });
+
+    imgs[activeIndex].classList.remove("active");
+    dots[activeIndex].classList.remove("active");
+
+    let newIndex = (activeIndex + direction + imgs.length) % imgs.length;
+
+    imgs[newIndex].classList.add("active");
+    dots[newIndex].classList.add("active");
+  }
+
+  let lightboxState = { productId: null, index: 0 };
+
+  document.querySelectorAll(".card-images img").forEach((img) => {
+    img.addEventListener("click", () => {
+      const container = img.closest(".card-images");
+      const productId = container.dataset.carousel;
+      const imgs = Array.from(container.querySelectorAll("img"));
+      openLightbox(productId, imgs.indexOf(img));
+    });
+  });
+
+  function openLightbox(productId, index) {
+    lightboxState = { productId, index };
+    renderLightbox();
+    document.getElementById("lightbox-overlay").classList.add("open");
+  }
+
+  function renderLightbox() {
+    const container = document.querySelector('[data-carousel="' + lightboxState.productId + '"]');
+    const imgs = Array.from(container.querySelectorAll("img"));
+    document.getElementById("lightbox-img").src = imgs[lightboxState.index].src;
+  }
+
+  function moveLightbox(direction) {
+    const container = document.querySelector('[data-carousel="' + lightboxState.productId + '"]');
+    const imgs = Array.from(container.querySelectorAll("img"));
+    lightboxState.index = (lightboxState.index + direction + imgs.length) % imgs.length;
+    renderLightbox();
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox-overlay").classList.remove("open");
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (!document.getElementById("lightbox-overlay").classList.contains("open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") moveLightbox(-1);
+    if (e.key === "ArrowRight") moveLightbox(1);
+  });
+
+  function setStatus(msg) {
+    document.getElementById("status-message").textContent = msg;
+  }
+
+  function showDownloadLink(productName, files) {
+    document.getElementById("success-product-name").textContent = productName + " is ready!";
+
+    const container = document.getElementById("success-download-links");
+    container.innerHTML = files
+      .map(
+        (f) =>
+          '<a href="' + f.url + '" target="_blank" rel="noopener" class="download-btn">Download: ' + f.label + "</a>"
+      )
+      .join("");
+
+    document.getElementById("success-overlay").classList.add("open");
+
+    if (files.length === 1) {
+      window.open(files[0].url, "_blank", "noopener");
+    }
+  }
+
+  function closeSuccessModal() {
+    document.getElementById("success-overlay").classList.remove("open");
+  }
+</script>
+
+</body>
+</html>
