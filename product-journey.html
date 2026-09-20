@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>What Is A Digital Product? — Wiz Designs</title>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
   * { box-sizing: border-box; }
   body {
@@ -148,19 +147,47 @@
     margin: 10px 0 6px;
   }
   button.buy:disabled { opacity: 0.6; cursor: not-allowed; }
+  a.download-now-btn {
+    display: block;
+    width: 100%;
+    background: #00C9A7;
+    color: #0D1117;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    min-height: 52px;
+    margin: 10px 0 6px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 20px;
+    box-sizing: border-box;
+  }
+  a.subscribe-btn {
+    background: #FF0000;
+  }
+  a.unlock-btn {
+    background: #FFB347;
+  }
+  .gate-note {
+    text-align: center;
+    color: #8B949E;
+    font-size: 13px;
+    margin: 4px 0 16px;
+  }
+  #confirming-msg {
+    text-align: center;
+    color: #8B949E;
+    font-size: 13.5px;
+    margin: 10px 0;
+  }
   .instant-note {
     text-align: center;
     color: #8B949E;
     font-size: 12.5px;
     margin-bottom: 28px;
-  }
-
-  #status-message {
-    text-align: center;
-    color: #00C9A7;
-    font-size: 14px;
-    min-height: 20px;
-    margin-bottom: 10px;
   }
 
   .desc-section { margin-top: 32px; }
@@ -240,29 +267,6 @@
     .lightbox-arrow.next { right: 4px; }
   }
 
-  .success-overlay {
-    display: none;
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.85); z-index: 2000;
-    align-items: center; justify-content: center; padding: 20px;
-  }
-  .success-overlay.open { display: flex; }
-  .success-box {
-    background: #161B22; border: 1px solid #00C9A7; border-radius: 12px;
-    padding: 28px 24px; max-width: 420px; width: 100%; text-align: center;
-  }
-  .success-box h3 { color: #00C9A7; margin: 0 0 6px; font-size: 20px; }
-  .success-box p.sub { color: #8B949E; font-size: 14px; margin: 0 0 20px; }
-  .success-box a.download-btn {
-    display: block; background: #00C9A7; color: #0D1117; padding: 12px 20px;
-    border-radius: 8px; text-decoration: none; font-weight: bold; margin: 10px 0;
-  }
-  .success-box .close-note { margin-top: 16px; font-size: 12px; color: #6E7681; }
-  .success-box button.dismiss {
-    margin-top: 16px; background: none; border: 1px solid #30363D;
-    color: #8B949E; padding: 8px 20px; border-radius: 6px; cursor: pointer;
-  }
-
   .disclaimer {
     max-width: 760px;
     margin: 40px auto 0;
@@ -313,16 +317,20 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   <h1>What Is A <span class="accent">Digital Product?</span></h1>
   <p class="subtitle">And how I made my first one — gave it away for free — before I ever sold anything.</p>
 
-  <div id="status-message"></div>
-
   <div class="price-block">
-    <span class="strike">₹249</span>
-    <span class="now">₹89</span>
-    <span class="savings-badge">SAVE 64%</span>
+    <span class="strike">₹249 value</span>
+    <span class="now">FREE</span>
   </div>
 
-  <button class="buy" data-product="product-journey" data-name="What Is A Digital Product?" data-amount="8900">Buy Now — Instant Download</button>
-  <p class="instant-note">📄 Digital PDF · Instant Download · Pay via UPI</p>
+  <a class="download-now-btn subscribe-btn" id="subscribe-btn" href="https://www.youtube.com/@agnelbiju5464/videos" target="_blank" rel="noopener">🔔 Subscribe on YouTube to Unlock</a>
+  <p class="gate-note" id="gate-note">This guide is free for subscribers — subscribe, then come back here to unlock your download.</p>
+
+  <p id="confirming-msg" style="display:none;">Confirming...</p>
+
+  <a class="download-now-btn unlock-btn" id="unlock-btn" style="display:none;">I've Subscribed — Unlock Download</a>
+
+  <a class="download-now-btn" id="free-download-btn" style="display:none;" href="https://drive.google.com/uc?export=download&id=1ZPNMTz7gwHV4HU3ID5-bUoerLGnjr0BR" target="_blank" rel="noopener">Download Now — Free</a>
+  <p class="instant-note" id="instant-note" style="display:none;">📄 Digital PDF · Instant Download</p>
 
   <div class="desc-section">
     <h2>Description</h2>
@@ -353,110 +361,12 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   </div>
 </div>
 
-<div class="success-overlay" id="success-overlay">
-  <div class="success-box">
-    <h3>Payment Successful! ✅</h3>
-    <p class="sub" id="success-product-name"></p>
-    <div id="success-download-links"></div>
-    <p class="close-note">Save these links — if you lose them, DM your payment ID on Instagram and we'll resend.</p>
-    <button class="dismiss" onclick="closeSuccessModal()">Close</button>
-  </div>
-</div>
-
 <p class="disclaimer">
   📄 Digital PDF · Instant Download · No Physical Copy<br/>
   Educational content only. This is my own experience, shared as an example — not a promise of what building your own digital product will do for you.
 </p>
 
 <script>
-  document.querySelectorAll(".buy").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const productId = btn.dataset.product;
-      const productName = btn.dataset.name;
-
-      btn.disabled = true;
-      const originalText = btn.textContent;
-      btn.textContent = "Loading...";
-      setStatus("");
-
-      try {
-        const orderRes = await fetch("/api/create-order", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ productId }),
-        });
-
-        if (!orderRes.ok) throw new Error("Could not start checkout. Please try again.");
-        const order = await orderRes.json();
-
-        const options = {
-          key: order.keyId,
-          amount: order.amount,
-          currency: "INR",
-          name: "Wiz Designs",
-          description: productName,
-          order_id: order.orderId,
-          handler: async function (response) {
-            setStatus("Payment received — verifying...");
-            try {
-              const verifyRes = await fetch("/api/verify-payment", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  razorpay_payment_id: response.razorpay_payment_id,
-                  razorpay_order_id: response.razorpay_order_id,
-                  razorpay_signature: response.razorpay_signature,
-                }),
-              });
-
-              if (!verifyRes.ok) throw new Error("Could not verify payment.");
-              const result = await verifyRes.json();
-
-              if (typeof fbq === "function") {
-                fbq("track", "Purchase", {
-                  value: parseInt(btn.dataset.amount, 10) / 100,
-                  currency: "INR",
-                  content_name: productName,
-                  content_ids: [productId],
-                  content_type: "product",
-                });
-              }
-
-              showDownloadLink(result.productName, result.files);
-            } catch (err) {
-              setStatus(
-                "Payment succeeded but we couldn't fetch your download link automatically. " +
-                "Please DM us your payment ID (" + response.razorpay_payment_id + ") on Instagram and we'll send it right away."
-              );
-            }
-          },
-          modal: {
-            ondismiss: function () {
-              btn.disabled = false;
-              btn.textContent = originalText;
-            },
-          },
-          theme: { color: "#00C9A7" },
-        };
-
-        const rzp = new Razorpay(options);
-        rzp.on("payment.failed", function () {
-          setStatus("Payment failed. Please try again.");
-          btn.disabled = false;
-          btn.textContent = originalText;
-        });
-        rzp.open();
-
-        btn.disabled = false;
-        btn.textContent = originalText;
-      } catch (err) {
-        setStatus(err.message || "Something went wrong. Please try again.");
-        btn.disabled = false;
-        btn.textContent = originalText;
-      }
-    });
-  });
-
   function moveCarousel(productId, direction) {
     const container = document.querySelector('[data-carousel="' + productId + '"]');
     const imgs = container.querySelectorAll("img");
@@ -514,31 +424,44 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     if (e.key === "ArrowRight") moveLightbox(1);
   });
 
-  function setStatus(msg) {
-    document.getElementById("status-message").textContent = msg;
-  }
-
-  function showDownloadLink(productName, files) {
-    document.getElementById("success-product-name").textContent = productName + " is ready!";
-
-    const container = document.getElementById("success-download-links");
-    container.innerHTML = files
-      .map(
-        (f) =>
-          '<a href="' + f.url + '" target="_blank" rel="noopener" class="download-btn">Download: ' + f.label + "</a>"
-      )
-      .join("");
-
-    document.getElementById("success-overlay").classList.add("open");
-
-    if (files.length === 1) {
-      window.open(files[0].url, "_blank", "noopener");
+  // Subscribe gate: honor-system flow. Clicking "Subscribe" opens the
+  // channel and reveals a confirm step after a short delay; only after
+  // confirming does the real download button appear.
+  document.getElementById("subscribe-btn").addEventListener("click", () => {
+    if (typeof fbq === "function") {
+      fbq("track", "Lead", {
+        content_name: "YouTube Subscribe Click — What Is A Digital Product?",
+        content_ids: ["product-journey"],
+        content_type: "product",
+      });
     }
-  }
+    document.getElementById("subscribe-btn").style.display = "none";
+    document.getElementById("gate-note").style.display = "none";
+    document.getElementById("confirming-msg").style.display = "block";
 
-  function closeSuccessModal() {
-    document.getElementById("success-overlay").classList.remove("open");
-  }
+    setTimeout(() => {
+      document.getElementById("confirming-msg").style.display = "none";
+      document.getElementById("unlock-btn").style.display = "block";
+    }, 4000);
+  });
+
+  document.getElementById("unlock-btn").addEventListener("click", () => {
+    document.getElementById("unlock-btn").style.display = "none";
+    document.getElementById("free-download-btn").style.display = "block";
+    document.getElementById("instant-note").style.display = "block";
+  });
+
+  // Track the free download as a Lead conversion for ad optimization
+  // (this is a genuine lead-magnet download, not a Purchase).
+  document.getElementById("free-download-btn").addEventListener("click", () => {
+    if (typeof fbq === "function") {
+      fbq("track", "Lead", {
+        content_name: "What Is A Digital Product?",
+        content_ids: ["product-journey"],
+        content_type: "product",
+      });
+    }
+  });
 </script>
 
 </body>
