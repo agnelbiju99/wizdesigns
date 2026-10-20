@@ -103,8 +103,21 @@
   details.book .inner { padding: 0 16px 6px; }
   details.book .inner .ticks li { font-size: 14px; margin-bottom: 7px; }
 
-  .samples-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
-  .samples-grid img { width: 100%; height: auto; border-radius: 8px; border: 1px solid #30363D; cursor: zoom-in; display: block; }
+  .peek-link { display: block; text-align: center; font-size: 14px; font-weight: bold; text-decoration: none; margin: 4px 0 0; padding: 8px; }
+  .peek-track {
+    display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; padding-bottom: 6px; scrollbar-width: none;
+  }
+  .peek-track::-webkit-scrollbar { display: none; }
+  .peek { flex: 0 0 86%; max-width: 420px; margin: 0; scroll-snap-align: center; }
+  .peek img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid #30363D; cursor: zoom-in; background: #0D1117; }
+  .peek figcaption { font-size: 13px; color: #8B949E; margin-top: 8px; line-height: 1.45; }
+  .peek figcaption strong { display: block; color: #00C9A7; font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px; }
+  .peek-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 10px; color: #8B949E; font-size: 13px; }
+  .peek-btn { width: 38px; height: 38px; border-radius: 50%; border: 1px solid #30363D; background: #161B22; color: #E6EDF3; font-size: 20px; cursor: pointer; }
+  .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; border-radius: 50%; border: none; background: rgba(22,27,34,0.85); color: #fff; font-size: 22px; cursor: pointer; }
+  .lightbox-nav.prev { left: 8px; }
+  .lightbox-nav.next { right: 8px; }
 
   .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
   .reviews-grid img { width: 100%; height: auto; border-radius: 8px; border: 1px solid #30363D; cursor: zoom-in; display: block; }
@@ -163,7 +176,7 @@
     align-items: center; justify-content: center; padding: 20px;
   }
   .lightbox-overlay.open { display: flex; }
-  .lightbox-overlay img { max-width: 100%; max-height: 85vh; border-radius: 8px; }
+  .lightbox-overlay img { max-width: 100%; max-height: 88vh; border-radius: 8px; }
   .lightbox-close { position: absolute; top: 12px; right: 16px; background: none; border: none; color: #fff; font-size: 34px; cursor: pointer; }
 
   .success-overlay {
@@ -248,6 +261,7 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     <a class="wa-btn js-wa" href="#" data-msg="Hi! I'm on the Complete Trading Bundle page and have a question before buying.">💬 Have a question? Ask on WhatsApp</a>
     <p class="wa-hint js-wa-hint">Usually replies within a few hours</p>
   </div>
+  <a class="peek-link" href="#samples">👀 See real pages from inside the guides ↓</a>
 
   <ul class="quick-list">
     <li><strong>4 PDF guides, 152 pages</strong> — from basics to 13 ready-to-use trade setups</li>
@@ -267,6 +281,55 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
       <div class="fact"><div class="k">Market</div><div class="v">Indian stocks (NSE)</div></div>
       <div class="fact"><div class="k">Delivery</div><div class="v">Instant download after payment</div></div>
       <div class="fact"><div class="k">Access</div><div class="v">Yours forever — no subscription</div></div>
+    </div>
+  </section>
+
+  <!-- ===== LOOK INSIDE: real pages from each guide ===== -->
+  <section id="samples">
+    <h2>👀 Look inside — real pages</h2>
+    <p style="font-size:13px;color:#8B949E;margin-top:-4px;">Swipe to see pages from all 4 guides. Tap any page to zoom in.</p>
+    <div class="peek-track" id="peek-track">
+      <figure class="peek">
+        <img src="images/sample-zero-to-trader-contents.jpg" alt="From Zero to Trader table of contents" loading="lazy" width="909" />
+        <figcaption><strong>From Zero to Trader</strong>All 9 chapters, from basics to psychology</figcaption>
+      </figure>
+      <figure class="peek">
+        <img src="images/sample-zero-to-trader-hammer.jpg" alt="Hammer candlestick pattern page with a TCS chart" loading="lazy" width="909" />
+        <figcaption><strong>From Zero to Trader</strong>Patterns shown on real NSE charts (TCS)</figcaption>
+      </figure>
+      <figure class="peek">
+        <img src="images/sample-zero-to-trader-position-size.jpg" alt="Position size and risk-reward page with a rupee worked example" loading="lazy" width="909" />
+        <figcaption><strong>From Zero to Trader</strong>Position sizing worked out in rupees</figcaption>
+      </figure>
+      <figure class="peek">
+        <img src="images/sample-screener-nightly-routine.jpg" alt="Nightly screening routine page" loading="lazy" width="909" />
+        <figcaption><strong>NSE Stock Screener Guide</strong>A 15-minute evening routine, step by step</figcaption>
+      </figure>
+      <figure class="peek">
+        <img src="images/sample-screener-titan-trade-plan.jpg" alt="TITAN breakout to trade plan walkthrough page" loading="lazy" width="909" />
+        <figcaption><strong>NSE Stock Screener Guide</strong>From scanner signal to a full trade plan</figcaption>
+      </figure>
+      <figure class="peek">
+        <img src="images/sample-chart-setups-contents.jpg" alt="Chart Setups Bible contents page" loading="lazy" width="909" />
+        <figcaption><strong>Chart Setups Bible</strong>All 19 patterns covered</figcaption>
+      </figure>
+      <figure class="peek">
+        <img src="images/sample-chart-setups-bull-flag.jpg" alt="Bull Flag pattern page with entry, stop-loss and target" loading="lazy" width="909" />
+        <figcaption><strong>Chart Setups Bible</strong>Every pattern: entry, stop-loss and target</figcaption>
+      </figure>
+      <figure class="peek">
+        <img src="images/sample-price-action-contents.jpg" alt="Price Action Strategies contents page" loading="lazy" width="909" />
+        <figcaption><strong>Price Action Strategies</strong>All 13 trading setups</figcaption>
+      </figure>
+      <figure class="peek">
+        <img src="images/sample-price-action-breakout.jpg" alt="Breakout Trading setup page" loading="lazy" width="909" />
+        <figcaption><strong>Price Action Strategies</strong>Step-by-step setup with a worked example</figcaption>
+      </figure>
+    </div>
+    <div class="peek-nav">
+      <button type="button" class="peek-btn" data-dir="-1" aria-label="Previous page">‹</button>
+      <span id="peek-count">1 / 9</span>
+      <button type="button" class="peek-btn" data-dir="1" aria-label="Next page">›</button>
     </div>
   </section>
 
@@ -386,20 +449,6 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
         </ul>
       </div>
     </details>
-  </section>
-
-  <!-- ===== SAMPLE PAGES =====
-       Showing real inside pages is the single best way to answer "what's inside?".
-       Export 4–6 inside pages from the PDFs as JPGs (about 900px wide), upload them to /images,
-       put them below, then DELETE the word `hidden` from the <section> tag. -->
-  <section id="samples" hidden>
-    <h2>👀 Look inside — real pages</h2>
-    <div class="samples-grid">
-      <img src="images/sample-page-1.jpg" alt="Sample page from From Zero to Trader" loading="lazy" />
-      <img src="images/sample-page-2.jpg" alt="Sample page from The Chart Setups Bible" loading="lazy" />
-      <img src="images/sample-page-3.jpg" alt="Sample page from Price Action Strategies" loading="lazy" />
-      <img src="images/sample-page-4.jpg" alt="Sample page from The NSE Stock Screener Guide" loading="lazy" />
-    </div>
   </section>
 
   <!-- ===== WHO IT'S FOR ===== -->
@@ -522,7 +571,9 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
 
 <div class="lightbox-overlay" id="lightbox-overlay" onclick="if(event.target===this) closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+  <button class="lightbox-nav prev" onclick="stepLightbox(-1)" aria-label="Previous">‹</button>
   <img id="lightbox-img" src="" alt="Preview" />
+  <button class="lightbox-nav next" onclick="stepLightbox(1)" aria-label="Next">›</button>
 </div>
 
 <div class="success-overlay" id="success-overlay">
@@ -720,12 +771,52 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   }
 
   // ---------- Lightbox for sample pages / reviews ----------
-  document.querySelectorAll(".samples-grid img, .reviews-grid img").forEach((img) => {
-    img.addEventListener("click", () => {
-      document.getElementById("lightbox-img").src = img.src;
-      document.getElementById("lightbox-overlay").classList.add("open");
+  // ---------- Look-inside carousel + zoom ----------
+  const peekTrack = document.getElementById("peek-track");
+  const peekImgs = Array.from(peekTrack.querySelectorAll("img"));
+  const peekCount = document.getElementById("peek-count");
+  let lightboxIndex = 0;
+
+  function currentPeek() {
+    const mid = peekTrack.scrollLeft + peekTrack.clientWidth / 2;
+    let best = 0, bestDist = Infinity;
+    peekTrack.querySelectorAll(".peek").forEach((el, i) => {
+      const d = Math.abs(el.offsetLeft - peekTrack.offsetLeft + el.offsetWidth / 2 - mid);
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+    return best;
+  }
+
+  peekTrack.addEventListener("scroll", () => {
+    peekCount.textContent = (currentPeek() + 1) + " / " + peekImgs.length;
+  }, { passive: true });
+
+  document.querySelectorAll(".peek-btn").forEach((b) => {
+    b.addEventListener("click", () => {
+      const i = Math.min(peekImgs.length - 1, Math.max(0, currentPeek() + parseInt(b.dataset.dir, 10)));
+      const el = peekTrack.querySelectorAll(".peek")[i];
+      peekTrack.scrollTo({ left: el.offsetLeft - peekTrack.offsetLeft - (peekTrack.clientWidth - el.offsetWidth) / 2, behavior: "smooth" });
     });
   });
+
+  function showLightbox(i) {
+    lightboxIndex = (i + peekImgs.length) % peekImgs.length;
+    const img = document.getElementById("lightbox-img");
+    img.src = peekImgs[lightboxIndex].src;
+    img.alt = peekImgs[lightboxIndex].alt;
+    document.getElementById("lightbox-overlay").classList.add("open");
+  }
+  function stepLightbox(d) { showLightbox(lightboxIndex + d); }
+
+  peekImgs.forEach((img, i) => {
+    img.addEventListener("click", () => showLightbox(i));
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!document.getElementById("lightbox-overlay").classList.contains("open")) return;
+    if (e.key === "ArrowLeft") stepLightbox(-1);
+    if (e.key === "ArrowRight") stepLightbox(1);
+  });
+
   function closeLightbox() {
     document.getElementById("lightbox-overlay").classList.remove("open");
   }
