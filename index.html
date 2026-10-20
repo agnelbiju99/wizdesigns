@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Wiz Designs — Trading Guides & Tools</title>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<title>Wiz Designs — Stock Market Guides for Beginners (NSE)</title>
+<meta name="description" content="Beginner-friendly stock market PDF guides in simple English. Instant download, pay by UPI." />
+<script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
 <style>
   * { box-sizing: border-box; }
   body {
@@ -243,6 +244,13 @@
     text-align: center;
     line-height: 1.5;
   }
+  .fact-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 14px; }
+  .fact-strip span { border: 1px solid #30363D; background: #161B22; color: #C9D1D9; font-size: 12px; padding: 5px 10px; border-radius: 20px; white-space: nowrap; }
+  a.details-link { display: block; text-align: center; color: #00C9A7; font-size: 14px; margin-top: 10px; text-decoration: none; }
+  .card.highlight { border-color: #00C9A7; box-shadow: 0 0 0 2px rgba(0,201,167,0.35); }
+  .best-badge { display: inline-block; background: #00C9A7; color: #0D1117; font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 4px; margin: 0 6px 8px 0; }
+  .wa-btn { display: block; max-width: 420px; margin: 18px auto 0; border: 1px solid #25D366; color: #25D366; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 15px; text-decoration: none; text-align: center; }
+  .pay-note { text-align: center; color: #8B949E; font-size: 12px; margin: 8px 0 0; }
   #status-message {
     max-width: 900px;
     margin: 0 auto 20px;
@@ -276,7 +284,14 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
 
 <header>
   <h1>Wiz Designs</h1>
-  <p>Trading guides & tools for beginner NSE traders</p>
+  <p>Stock market guides for beginner NSE traders</p>
+  <div class="fact-strip">
+    <span>🗣️ Simple English</span>
+    <span>🌱 Beginner friendly</span>
+    <span>⚡ Instant PDF download</span>
+    <span>💳 Pay by UPI</span>
+  </div>
+  <a class="wa-btn js-wa" href="#" data-msg="Hi! I'm on the Wiz Designs website and have a question about the guides.">💬 Not sure which guide to pick? Ask on WhatsApp</a>
 </header>
 
 <div id="status-message"></div>
@@ -285,7 +300,7 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
 
   <div class="card">
     <div class="card-images" data-carousel="combo-all-4">
-      <img src="images/combo-all-4-cover-v4.jpg" class="active" alt="Complete Trading Bundle — all 4 book covers" />
+      <img src="images/combo-all-4-cover-v4-small.jpg" class="active" alt="Complete Trading Bundle — all 4 book covers" />
       <img src="images/combo-all-4-cover-v3.jpg" alt="Complete Bundle pricing breakdown" />
       <img src="images/combo-all-4-2.jpg" alt="From Zero to Trader bundle" />
       <img src="images/combo-all-4-3.jpg" alt="NSE Screener Guide bundle" />
@@ -297,11 +312,12 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
         <span class="active"></span><span></span><span></span><span></span><span></span><span></span>
       </div>
     </div>
-    <span class="savings-badge">SAVE ₹237</span>
+    <div><span class="best-badge">BEST VALUE</span><span class="savings-badge">SAVE ₹237</span></div>
     <h2>Complete Bundle — All 4 Products</h2>
     <p class="desc">Everything: From Zero to Trader, NSE Stock Screener Guide, Chart Setups Bible, and Price Action Strategies.</p>
     <div class="price"><span class="strike">₹986</span>₹749</div>
     <button class="buy" data-product="combo-all-4" data-name="Complete Bundle (All 4 Products)" data-amount="74900">Buy Now</button>
+    <a class="details-link" href="/combo-all-4.html">See what's inside →</a>
   </div>
 
   <div class="card">
@@ -354,6 +370,7 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     <p class="desc">9-chapter, 78-page eBook covering the fundamentals of intraday trading on NSE — plus a bonus Trading Journal.</p>
     <div class="price">₹289</div>
     <button class="buy" data-product="zero-to-trader" data-name="From Zero to Trader" data-amount="28900">Buy Now</button>
+    <a class="details-link" href="/zero-to-trader.html">See what's inside →</a>
   </div>
 
   <div class="card">
@@ -442,26 +459,60 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     <h3>Payment Successful! ✅</h3>
     <p class="sub" id="success-product-name"></p>
     <div id="success-download-links"></div>
-    <p class="close-note">Save these links — if you lose them, DM your payment ID on Instagram and we'll resend.</p>
+    <p class="close-note">Tap each button to download. Save the files to your phone now.</p>
+    <a class="wa-btn js-wa" id="success-wa" href="#" data-msg="" style="margin-top:12px;">💬 Also send me the files on WhatsApp</a>
     <button class="dismiss" onclick="closeSuccessModal()">Close</button>
   </div>
 </div>
 
 <p class="disclaimer">
+  🔒 Secure payment by Razorpay · UPI · GPay · PhonePe · Cards<br/>
   📄 Digital PDF · Instant Download · No Physical Copy<br/>
   Educational content only. Not investment advice. Trading in securities markets is subject to market risk.
   Wiz Designs is not a SEBI-registered investment advisor.
 </p>
 
 <script>
+  // ============ SETTINGS — EDIT THIS ============
+  // Your WhatsApp Business number with country code, digits only. Example: "919876543210"
+  // While this is empty, all WhatsApp buttons stay hidden.
+  const WHATSAPP_NUMBER = "918301070364";
+  // ===============================================
+
+  function waLink(msg) {
+    return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg);
+  }
+
+  document.querySelectorAll(".js-wa").forEach((el) => {
+    if (!WHATSAPP_NUMBER) { el.style.display = "none"; return; }
+    el.href = waLink(el.dataset.msg || "Hi!");
+    el.target = "_blank";
+    el.rel = "noopener";
+    el.addEventListener("click", () => {
+      if (typeof fbq === "function") fbq("track", "Contact");
+    });
+  });
+
   document.querySelectorAll(".buy").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const productId = btn.dataset.product;
       const productName = btn.dataset.name;
       const amount = btn.dataset.amount;
 
+      if (typeof fbq === "function") {
+        fbq("track", "InitiateCheckout", {
+          content_ids: [productId], content_name: productName, content_type: "product",
+          value: parseInt(amount, 10) / 100, currency: "INR", num_items: 1
+        });
+      }
+
+      if (typeof Razorpay === "undefined") {
+        setStatus("Payment page is still loading — please tap the button again in a second.");
+        return;
+      }
+
       btn.disabled = true;
-      btn.textContent = "Loading...";
+      btn.textContent = "Opening secure checkout...";
       setStatus("");
 
       try {
@@ -482,6 +533,8 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
           description: productName,
           order_id: order.orderId,
           handler: async function (response) {
+            currentRzp = null;
+            clearCheckoutHistory();
             setStatus("Payment received — verifying...");
             try {
               const verifyRes = await fetch("/api/verify-payment", {
@@ -506,14 +559,17 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
                   content_name: productName,
                   content_ids: [productId],
                   content_type: "product",
-                });
+                }, { eventID: response.razorpay_payment_id });
               }
 
-              showDownloadLink(result.productName, result.files);
+              setStatus("");
+              showDownloadLink(result.productName, result.files, response.razorpay_payment_id);
             } catch (err) {
               setStatus(
                 "Payment succeeded but we couldn't fetch your download link automatically. " +
-                "Please DM us your payment ID (" + response.razorpay_payment_id + ") on Instagram and we'll send it right away."
+                (WHATSAPP_NUMBER
+                  ? "Please WhatsApp us your payment ID (" + response.razorpay_payment_id + ") and we'll send it right away."
+                  : "Please DM us your payment ID (" + response.razorpay_payment_id + ") on Instagram @agnel_biju and we'll send it right away.")
               );
             }
           },
@@ -521,6 +577,7 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
             ondismiss: function () {
               btn.disabled = false;
               btn.textContent = "Buy Now";
+              if (currentRzp) { currentRzp = null; clearCheckoutHistory(); }
             },
           },
           theme: { color: "#00C9A7" },
@@ -528,11 +585,11 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
 
         const rzp = new Razorpay(options);
         rzp.on("payment.failed", function () {
-          setStatus("Payment failed. Please try again.");
+          setStatus("Payment didn't go through. No money was taken — please try again, or try a different UPI app.");
           btn.disabled = false;
           btn.textContent = "Buy Now";
         });
-        rzp.open();
+        openCheckoutSafely(rzp);
 
         btn.disabled = false;
         btn.textContent = "Buy Now";
@@ -542,6 +599,27 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
         btn.textContent = "Buy Now";
       }
     });
+  });
+
+  // Phone back button closes the checkout instead of leaving the page.
+  let currentRzp = null;
+
+  function openCheckoutSafely(rzp) {
+    currentRzp = rzp;
+    history.pushState({ wizCheckoutOpen: true }, "", location.href);
+    rzp.open();
+  }
+
+  function clearCheckoutHistory() {
+    if (history.state && history.state.wizCheckoutOpen) history.back();
+  }
+
+  window.addEventListener("popstate", function () {
+    if (currentRzp) {
+      const rzp = currentRzp;
+      currentRzp = null;
+      try { rzp.close(); } catch (e) {}
+    }
   });
 
   function moveCarousel(productId, direction) {
@@ -604,9 +682,10 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
 
   function setStatus(msg) {
     document.getElementById("status-message").textContent = msg;
+    if (msg) document.getElementById("status-message").scrollIntoView({ block: "center" });
   }
 
-  function showDownloadLink(productName, files) {
+  function showDownloadLink(productName, files, paymentId) {
     document.getElementById("success-product-name").textContent = productName + " is ready!";
 
     const container = document.getElementById("success-download-links");
@@ -616,6 +695,11 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
           '<a href="' + f.url + '" target="_blank" rel="noopener" class="download-btn">Download: ' + f.label + "</a>"
       )
       .join("");
+
+    if (WHATSAPP_NUMBER) {
+      document.getElementById("success-wa").href =
+        waLink("Hi! I just bought " + productName + ". Payment ID: " + paymentId + ". Please send me the files here too.");
+    }
 
     document.getElementById("success-overlay").classList.add("open");
 
@@ -632,9 +716,10 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     document.getElementById("success-overlay").classList.remove("open");
   }
 
-  // Direct product links: ?product=<id> scrolls to that card and
-  // auto-opens checkout, so a social media link can send someone
-  // straight into paying for one specific product.
+  // Direct product links: ?product=<id> scrolls to that card and highlights it.
+  // Checkout no longer opens by itself (that sent visitors into a payment popup
+  // before they had seen the product). Add &buy=1 to a link if you really want
+  // it to open checkout straight away, e.g. /?product=combo-all-4&buy=1
   (function handleDirectProductLink() {
     const params = new URLSearchParams(window.location.search);
     const targetProduct = params.get("product");
@@ -643,13 +728,20 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     const targetBtn = document.querySelector('.buy[data-product="' + targetProduct + '"]');
     if (!targetBtn) return;
 
-    targetBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+    const card = targetBtn.closest(".card");
+    card.classList.add("highlight");
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
 
-    // Small delay lets the scroll settle and keeps this click tied closely
-    // enough to page load that most browsers won't block the checkout popup.
-    setTimeout(() => {
-      targetBtn.click();
-    }, 600);
+    if (typeof fbq === "function") {
+      fbq("track", "ViewContent", {
+        content_ids: [targetProduct], content_name: targetBtn.dataset.name, content_type: "product",
+        value: parseInt(targetBtn.dataset.amount, 10) / 100, currency: "INR"
+      });
+    }
+
+    if (params.get("buy") === "1") {
+      window.addEventListener("load", () => setTimeout(() => targetBtn.click(), 600));
+    }
   })();
 </script>
 
