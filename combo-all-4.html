@@ -352,6 +352,23 @@
   .wa-mini { width: 50px; height: 50px; border-radius: 12px; border: 1px solid rgba(37,211,102,0.55); color: var(--wa); background: rgba(37,211,102,0.06);
              display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 22px; flex-shrink: 0; }
 
+  /* ---------- Recent purchase pop-up ---------- */
+  .buy-toast {
+    position: fixed; left: 12px; bottom: 16px; z-index: 950; max-width: 300px;
+    display: flex; align-items: center; gap: 11px; padding: 11px 34px 11px 12px; border-radius: 14px;
+    background: rgba(14, 19, 27, 0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--line-2); box-shadow: 0 16px 40px -12px rgba(0,0,0,0.8);
+    transform: translateY(20px); opacity: 0; pointer-events: none; transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+  .buy-toast.show { transform: none; opacity: 1; pointer-events: auto; }
+  body.sticky-on .buy-toast { bottom: 84px; }
+  .buy-toast .bt-ico { width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+                       background: linear-gradient(135deg, rgba(0,201,167,0.25), rgba(0,201,167,0.06)); border: 1px solid rgba(0,201,167,0.35); color: var(--teal); font-size: 18px; }
+  .buy-toast .bt-t { font-size: 13.5px; font-weight: 600; line-height: 1.35; }
+  .buy-toast .bt-m { font-size: 11.5px; color: var(--muted); margin-top: 2px; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+  .buy-toast .bt-m .icon { color: var(--green); }
+  .buy-toast .bt-x { position: absolute; top: 6px; right: 6px; width: 24px; height: 24px; border: none; background: none; color: var(--muted); font-size: 18px; cursor: pointer; line-height: 1; }
+
   /* ---------- Overlays ---------- */
   .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
   .lightbox-overlay.open { display: flex; }
@@ -838,6 +855,13 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   <a class="wa-mini js-wa" href="#" data-msg="Hi! I'm on the Complete Trading Bundle page and have a question." aria-label="Ask on WhatsApp"><svg class="icon"><use href="#i-chat"/></svg></a>
 </div>
 
+<!-- Recent purchase pop-up: filled from real Razorpay orders by /api/recent-orders -->
+<div class="buy-toast" id="buy-toast" role="status" aria-live="polite">
+  <span class="bt-ico"><svg class="icon"><use href="#i-check-circle"/></svg></span>
+  <span><span class="bt-t">Someone bought the Complete Bundle</span><span class="bt-m"><svg class="icon"><use href="#i-shield"/></svg><span id="bt-when"></span>&nbsp;·&nbsp;Verified order</span></span>
+  <button class="bt-x" id="bt-close" aria-label="Close">&times;</button>
+</div>
+
 <div class="lightbox-overlay" id="lightbox-overlay" onclick="if(event.target===this) closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
   <button class="lightbox-nav prev" onclick="stepLightbox(-1)" aria-label="Previous">‹</button>
@@ -1054,7 +1078,9 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     new IntersectionObserver((entries) => {
       const e = entries[0];
       // show only after the main buy box has scrolled up past the top
-      stickyBar.classList.toggle("show", !e.isIntersecting && e.boundingClientRect.top < 0);
+      const on = !e.isIntersecting && e.boundingClientRect.top < 0;
+      stickyBar.classList.toggle("show", on);
+      document.body.classList.toggle("sticky-on", on);
     }).observe(buyBox);
   }
 
@@ -1139,6 +1165,52 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     marquee.addEventListener("touchend", () => { resumeTimer = setTimeout(() => marquee.classList.remove("paused"), 2500); }, { passive: true });
   }
   if (!reduceMotion) document.querySelectorAll(".marquee").forEach(setupMarquee);
+
+  // ---------- Recent purchase pop-up (real orders only) ----------
+  (function () {
+    const toast = document.getElementById("buy-toast");
+    const when = document.getElementById("bt-when");
+    const FIRST_DELAY = 15000, GAP = 35000, SHOW_FOR = 6000, MAX_SHOWN = 3;
+    let dismissed = false;
+    try { dismissed = sessionStorage.getItem("wizToastClosed") === "1"; } catch (e) {}
+    if (dismissed) return;
+
+    function ago(ts) {
+      const s = Math.max(60, Math.floor(Date.now() / 1000) - ts);
+      const m = Math.floor(s / 60), h = Math.floor(m / 60), d = Math.floor(h / 24);
+      if (d >= 1) return d === 1 ? "1 day ago" : d + " days ago";
+      if (h >= 1) return h === 1 ? "1 hour ago" : h + " hours ago";
+      return m === 1 ? "1 minute ago" : m + " minutes ago";
+    }
+
+    // Don't pop up over the checkout, a zoomed image or the download screen.
+    function busy() {
+      return currentRzp || document.querySelector(".lightbox-overlay.open, .success-overlay.open");
+    }
+
+    document.getElementById("bt-close").addEventListener("click", () => {
+      toast.classList.remove("show");
+      dismissed = true;
+      try { sessionStorage.setItem("wizToastClosed", "1"); } catch (e) {}
+    });
+
+    setTimeout(() => {
+      fetch("/api/recent-orders")
+        .then((r) => (r.ok ? r.json() : { purchases: [] }))
+        .then((data) => {
+          const list = (data.purchases || []).slice(0, MAX_SHOWN);
+          list.forEach((ts, i) => {
+            setTimeout(() => {
+              if (dismissed || busy()) return;
+              when.textContent = ago(ts);
+              toast.classList.add("show");
+              setTimeout(() => toast.classList.remove("show"), SHOW_FOR);
+            }, i * GAP);
+          });
+        })
+        .catch(() => {});
+    }, FIRST_DELAY);
+  })();
 
   // ---------- Instagram reels: load Instagram's player only when the section is near ----------
   (function () {
