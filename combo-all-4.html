@@ -4,201 +4,371 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Complete Trading Bundle — 4 Stock Market Guides for Beginners | Wiz Designs</title>
-<meta name="description" content="4 beginner-friendly stock market PDF guides (152 pages) + free Trading Journal and Breakout Scanner. ₹749 instead of ₹986. Instant download, pay by UPI." />
+<meta name="description" content="4 beginner-friendly stock market PDF guides (152 pages) + free Trading Journal and Breakout Scanner. ₹749 instead of ₹986. 100+ sold in 2 weeks. Instant download, pay by UPI." />
+<meta name="theme-color" content="#07090D" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090D'/%3E%3Cpath d='M12 18l8 28 8-20 8 20 8-28' fill='none' stroke='%2300C9A7' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='52' cy='18' r='4' fill='%23E8C46A'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
 <link rel="preload" as="image" href="images/combo-all-4-cover-v4.webp" type="image/webp" />
 <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
 <style>
+  :root {
+    --bg: #07090D;
+    --bg-2: #0C1017;
+    --surface: rgba(255, 255, 255, 0.035);
+    --surface-2: rgba(255, 255, 255, 0.06);
+    --line: rgba(255, 255, 255, 0.08);
+    --line-2: rgba(255, 255, 255, 0.14);
+    --text: #EEF2F6;
+    --text-2: #B9C2CD;
+    --muted: #7F8A97;
+    --teal: #00C9A7;
+    --teal-2: #00E5BF;
+    --gold: #E8C46A;
+    --gold-2: #C9963B;
+    --red: #FF6B6B;
+    --green: #3FD68F;
+    --wa: #25D366;
+    --gold-grad: linear-gradient(135deg, #F7DE9A 0%, #E8C46A 40%, #C9963B 100%);
+    --teal-grad: linear-gradient(135deg, #00E5BF 0%, #00C9A7 55%, #00A88C 100%);
+    --font-display: "Sora", "Inter", system-ui, sans-serif;
+    --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-quote: "Fraunces", Georgia, "Times New Roman", serif;
+    --radius: 16px;
+  }
+
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #0D1117;
-    color: #E6EDF3;
+    font-family: var(--font-body);
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(0, 201, 167, 0.12), transparent 60%),
+      radial-gradient(700px 420px at -10% 8%, rgba(232, 196, 106, 0.08), transparent 60%),
+      var(--bg);
+    background-repeat: no-repeat;
+    color: var(--text);
     padding: 16px 16px 110px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
-  a { color: #00C9A7; }
-  .back-link { display: inline-block; color: #8B949E; text-decoration: none; font-size: 14px; margin-bottom: 14px; }
-  .back-link:hover { color: #00C9A7; }
-  .product-page { max-width: 760px; margin: 0 auto; }
+  a { color: var(--teal); }
+  img { max-width: 100%; }
+  .page { max-width: 760px; margin: 0 auto; }
+
+  .icon { width: 1em; height: 1em; display: inline-block; vertical-align: -0.14em; flex-shrink: 0;
+          fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---------- Top bar ---------- */
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .back-link { color: var(--muted); text-decoration: none; font-size: 14px; display: inline-flex; gap: 6px; align-items: center; }
+  .back-link:hover { color: var(--teal); }
+  .brand { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0.4px; color: var(--text-2); }
+  .brand b { color: var(--teal); }
 
   /* ---------- Hero ---------- */
-  .fact-strip {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-bottom: 14px;
+  .proof-pill {
+    display: flex; width: fit-content; margin: 0 auto 14px; align-items: center; gap: 8px;
+    padding: 7px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600; color: #F7DE9A;
+    background: linear-gradient(var(--bg-2), var(--bg-2)) padding-box, var(--gold-grad) border-box;
+    border: 1px solid transparent; box-shadow: 0 0 24px rgba(232, 196, 106, 0.15);
   }
-  .fact-strip span {
-    border: 1px solid #30363D; background: #161B22; color: #C9D1D9;
-    font-size: 12px; padding: 5px 10px; border-radius: 20px; white-space: nowrap;
+  .proof-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(63, 214, 143, 0.7); animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(63,214,143,0.6); } 70% { box-shadow: 0 0 0 8px rgba(63,214,143,0); } 100% { box-shadow: 0 0 0 0 rgba(63,214,143,0); } }
+
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-bottom: 16px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--text-2); font-size: 12px; white-space: nowrap;
+  }
+  .chip .icon { color: var(--teal); font-size: 13px; }
+
+  .hero-wrap { position: relative; margin-bottom: 20px; }
+  .hero-wrap:before {
+    content: ""; position: absolute; inset: 10% 6% -6%; background: radial-gradient(closest-side, rgba(0, 201, 167, 0.35), transparent);
+    filter: blur(30px); z-index: 0;
   }
   .hero-img {
-    width: 100%; height: auto; aspect-ratio: 16 / 9; display: block;
-    border-radius: 12px; border: 1px solid #30363D; background: #161B22; margin-bottom: 18px;
+    position: relative; z-index: 1; width: 100%; height: auto; aspect-ratio: 16 / 9; display: block;
+    border-radius: 18px; border: 1px solid var(--line-2); background: var(--bg-2);
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
   }
-  h1 { font-size: 27px; margin: 0 0 8px; line-height: 1.25; }
-  h1 .accent { color: #00C9A7; }
-  .subtitle { color: #C9D1D9; font-size: 15px; margin: 0 0 8px; line-height: 1.6; }
 
-  .quick-list { list-style: none; padding: 0; margin: 22px 0 0; }
-  .quick-list li { position: relative; padding-left: 24px; margin-bottom: 7px; font-size: 14.5px; line-height: 1.5; color: #C9D1D9; }
-  .quick-list li:before { content: "✓"; position: absolute; left: 0; color: #00C9A7; font-weight: bold; }
+  h1 {
+    font-family: var(--font-display); font-weight: 800; font-size: 29px; line-height: 1.2;
+    letter-spacing: -0.6px; margin: 0 0 10px;
+  }
+  .grad-teal { background: var(--teal-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .grad-gold { background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .subtitle { color: var(--text-2); font-size: 15px; margin: 0 0 8px; line-height: 1.65; }
 
-  #status-message { text-align: center; color: #00C9A7; font-size: 14px; min-height: 20px; margin-bottom: 6px; }
+  #status-message { text-align: center; color: var(--teal); font-size: 14px; min-height: 20px; margin-bottom: 6px; }
 
-  .buy-box { background: #161B22; border: 1px solid #00C9A7; border-radius: 12px; padding: 16px; margin: 6px 0 10px; }
-  .price-block { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
-  .price-block .strike { font-size: 18px; color: #6E7681; text-decoration: line-through; }
-  .price-block .now { font-size: 32px; font-weight: bold; color: #FFB347; }
-  .savings-badge { background: #FF4C4C; color: #fff; font-size: 12px; font-weight: bold; padding: 3px 10px; border-radius: 4px; }
-  .price-note { font-size: 13px; color: #8B949E; margin: 0 0 6px; }
+  /* ---------- Buy box ---------- */
+  .buy-box {
+    position: relative; border-radius: 20px; padding: 18px 16px 16px; margin: 4px 0 10px;
+    background: linear-gradient(180deg, rgba(18, 24, 33, 0.95), rgba(10, 14, 20, 0.95)) padding-box,
+                linear-gradient(135deg, rgba(232,196,106,0.7), rgba(0,201,167,0.5) 50%, rgba(232,196,106,0.25)) border-box;
+    border: 1px solid transparent;
+    box-shadow: 0 20px 50px -25px rgba(0, 201, 167, 0.35);
+  }
+  .price-block { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
+  .price-block .strike { font-size: 18px; color: var(--muted); text-decoration: line-through; }
+  .price-block .now { font-family: var(--font-display); font-size: 38px; font-weight: 800; letter-spacing: -1px; }
+  .save-badge {
+    align-self: center; font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    color: #1A1204; background: var(--gold-grad);
+  }
+  .price-note { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
 
   button.buy {
-    width: 100%; background: #00C9A7; color: #0D1117; border: none; padding: 16px;
-    border-radius: 8px; font-weight: bold; font-size: 17px; cursor: pointer;
-    min-height: 54px; margin: 8px 0 8px;
+    position: relative; overflow: hidden; width: 100%; border: none; cursor: pointer;
+    background: var(--teal-grad); color: #04130F; padding: 16px; border-radius: 12px;
+    font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: 0.2px;
+    min-height: 56px; margin: 10px 0 10px;
+    box-shadow: 0 10px 30px -10px rgba(0, 201, 167, 0.7), inset 0 1px 0 rgba(255,255,255,0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
+  button.buy:hover { transform: translateY(-1px); box-shadow: 0 14px 34px -10px rgba(0, 201, 167, 0.85), inset 0 1px 0 rgba(255,255,255,0.35); }
+  button.buy:active { transform: translateY(1px); }
+  button.buy:after {
+    content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.45), transparent);
+    transform: skewX(-20deg); animation: shine 3.8s ease-in-out infinite;
+  }
+  @keyframes shine { 0%, 60% { left: -60%; } 100% { left: 130%; } }
   button.buy:disabled { opacity: 0.6; cursor: not-allowed; }
-  .pay-methods { text-align: center; color: #8B949E; font-size: 12.5px; margin: 0; line-height: 1.6; }
+
+  .pay-methods { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 10px; color: var(--muted); font-size: 12.5px; margin: 0; text-align: center; line-height: 1.6; }
+  .pay-methods .icon { color: var(--teal); }
 
   .wa-btn {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    width: 100%; border: 1px solid #25D366; color: #25D366; background: transparent;
-    padding: 12px; border-radius: 8px; font-weight: bold; font-size: 15px; text-decoration: none; margin-top: 10px;
+    display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+    border: 1px solid rgba(37, 211, 102, 0.55); color: var(--wa); background: rgba(37, 211, 102, 0.06);
+    padding: 12px; border-radius: 12px; font-weight: 600; font-size: 15px; text-decoration: none; margin-top: 12px;
+    transition: background 0.15s ease;
   }
-  .wa-btn:hover { background: rgba(37, 211, 102, 0.08); }
-  .wa-hint { text-align: center; color: #8B949E; font-size: 12px; margin: 6px 0 0; }
+  .wa-btn:hover { background: rgba(37, 211, 102, 0.12); }
+  .wa-hint { text-align: center; color: var(--muted); font-size: 12px; margin: 6px 0 0; }
+  .peek-link { display: flex; justify-content: center; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; text-decoration: none; padding: 8px; }
+
+  /* ---------- Stats strip ---------- */
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 18px; }
+  .stat {
+    border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); padding: 14px 12px; text-align: center;
+  }
+  .stat .num { font-family: var(--font-display); font-weight: 800; font-size: 24px; letter-spacing: -0.5px; }
+  .stat .lbl { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  @media (min-width: 640px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+
+  .quick-list { list-style: none; padding: 0; margin: 20px 0 0; }
+  .quick-list li { display: flex; gap: 10px; margin-bottom: 9px; font-size: 14.5px; line-height: 1.55; color: var(--text-2); }
+  .quick-list li .icon { color: var(--teal); margin-top: 3px; font-size: 16px; }
+  .quick-list strong { color: var(--text); }
 
   /* ---------- Sections ---------- */
-  section { margin-top: 36px; }
-  section h2 {
-    font-size: 20px; color: #E6EDF3; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid #30363D;
-  }
-  section p { font-size: 14.5px; line-height: 1.75; color: #C9D1D9; margin: 0 0 14px; }
-  .ticks { margin: 0 0 16px; padding-left: 0; list-style: none; }
-  .ticks li { font-size: 14.5px; line-height: 1.65; padding-left: 24px; position: relative; margin-bottom: 9px; color: #C9D1D9; }
-  .ticks li:before { content: "✓"; color: #00C9A7; position: absolute; left: 0; font-weight: bold; }
-  .crosses li:before { content: "✕"; color: #FF7B72; }
+  section { margin-top: 44px; }
+  .eyebrow { font-size: 11.5px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 600; color: var(--gold); margin: 0 0 6px; }
+  section h2 { font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -0.3px; line-height: 1.25; margin: 0 0 14px; }
+  section p { font-size: 14.5px; line-height: 1.75; color: var(--text-2); margin: 0 0 14px; }
+  .sub-note { font-size: 13px !important; color: var(--muted) !important; margin-top: -6px !important; }
+
+  .card { border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); }
 
   .facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .fact { background: #161B22; border: 1px solid #30363D; border-radius: 10px; padding: 12px 14px; }
-  .fact .k { font-size: 11.5px; color: #8B949E; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
-  .fact .v { font-size: 14.5px; font-weight: bold; line-height: 1.4; }
+  .fact { padding: 13px 14px; }
+  .fact .k { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 5px; }
+  .fact .k .icon { color: var(--teal); font-size: 13px; }
+  .fact .v { font-size: 14.5px; font-weight: 600; line-height: 1.4; }
 
-  .value-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  .value-table td { padding: 10px 4px; border-bottom: 1px solid #21262D; color: #C9D1D9; vertical-align: top; }
-  .value-table td:last-child { text-align: right; white-space: nowrap; }
-  .value-table .free { color: #3FB950; font-weight: bold; }
-  .value-table tr.total td { color: #8B949E; }
-  .value-table tr.total td:last-child { text-decoration: line-through; }
-  .value-table tr.pay td { font-size: 17px; font-weight: bold; color: #FFB347; border-bottom: none; }
+  .ticks { margin: 0 0 16px; padding-left: 0; list-style: none; }
+  .ticks li { display: flex; gap: 10px; font-size: 14.5px; line-height: 1.6; margin-bottom: 9px; color: var(--text-2); }
+  .ticks li .icon { color: var(--teal); margin-top: 4px; }
+  .ticks.crosses li .icon { color: var(--red); }
+  .ticks strong { color: var(--text); }
 
-  details.book { background: #161B22; border: 1px solid #30363D; border-radius: 10px; margin-bottom: 10px; }
-  details.book summary {
-    cursor: pointer; list-style: none; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px;
-  }
-  details.book summary::-webkit-details-marker { display: none; }
-  details.book summary .t { font-weight: bold; font-size: 15px; }
-  details.book summary .m { display: block; font-weight: normal; font-size: 12.5px; color: #8B949E; margin-top: 3px; }
-  details.book summary:after { content: "+"; color: #00C9A7; font-size: 22px; line-height: 1; }
-  details.book[open] summary:after { content: "–"; }
-  details.book .inner { padding: 0 16px 6px; }
-  details.book .inner .ticks li { font-size: 14px; margin-bottom: 7px; }
-
-  .peek-link { display: block; text-align: center; font-size: 14px; font-weight: bold; text-decoration: none; margin: 4px 0 0; padding: 8px; }
-  .peek-track {
-    display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch; padding-bottom: 6px; scrollbar-width: none;
-  }
+  /* ---------- Look inside ---------- */
+  .peek-track { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 6px; scrollbar-width: none; }
   .peek-track::-webkit-scrollbar { display: none; }
   .peek { flex: 0 0 86%; max-width: 420px; margin: 0; scroll-snap-align: center; }
-  .peek img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid #30363D; cursor: zoom-in; background: #0D1117; }
-  .peek figcaption { font-size: 13px; color: #8B949E; margin-top: 8px; line-height: 1.45; }
-  .peek figcaption strong { display: block; color: #00C9A7; font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px; }
-  .peek-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 10px; color: #8B949E; font-size: 13px; }
-  .peek-btn { width: 38px; height: 38px; border-radius: 50%; border: 1px solid #30363D; background: #161B22; color: #E6EDF3; font-size: 20px; cursor: pointer; }
-  .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; border-radius: 50%; border: none; background: rgba(22,27,34,0.85); color: #fff; font-size: 22px; cursor: pointer; }
-  .lightbox-nav.prev { left: 8px; }
-  .lightbox-nav.next { right: 8px; }
+  .peek img { width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--line-2); cursor: zoom-in; background: var(--bg-2); box-shadow: 0 16px 40px -24px rgba(0,0,0,0.9); }
+  .peek figcaption { font-size: 13px; color: var(--muted); margin-top: 9px; line-height: 1.45; }
+  .peek figcaption strong { display: block; color: var(--teal); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .peek-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 12px; color: var(--muted); font-size: 13px; }
+  .round-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--surface-2); color: var(--text); font-size: 18px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
 
-  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-  .reviews-grid img { width: 100%; height: auto; border-radius: 8px; border: 1px solid #30363D; cursor: zoom-in; display: block; }
+  /* ---------- Value stack ---------- */
+  .value { padding: 6px 16px; }
+  .vrow { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--text-2); }
+  .vrow .l { display: flex; gap: 10px; }
+  .vrow .l .icon { color: var(--teal); margin-top: 3px; font-size: 16px; }
+  .vrow small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .vrow .r { white-space: nowrap; font-weight: 600; color: var(--text); }
+  .vrow .free { color: var(--green); font-weight: 700; }
+  .vrow.total { color: var(--muted); }
+  .vrow.total .r { text-decoration: line-through; color: var(--muted); font-weight: 400; }
+  .vrow.pay { border-bottom: none; font-family: var(--font-display); font-size: 18px; font-weight: 700; }
+  .vrow.pay .r { font-size: 22px; }
 
-  .review { background: #161B22; border: 1px solid #30363D; border-radius: 10px; padding: 14px 16px; }
-    .review .quote { font-size: 14.5px; line-height: 1.6; color: #E6EDF3; margin: 0 0 8px; }
-  .review .who { font-size: 12.5px; color: #8B949E; margin: 0; }
+  /* ---------- Marquees (reviews + payments) ---------- */
+  .marquee {
+    position: relative; overflow: hidden; margin: 0 -16px; padding: 6px 0 10px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee-track { display: flex; gap: 14px; width: max-content; animation: marquee-ltr var(--dur, 45s) linear infinite; }
+  .marquee.paused .marquee-track, .marquee:hover .marquee-track { animation-play-state: paused; }
+  @keyframes marquee-ltr { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  .marquee.rtl .marquee-track { animation-name: marquee-rtl; }
+  @keyframes marquee-rtl { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  .author { display: flex; gap: 14px; align-items: center; background: #161B22; border: 1px solid #30363D; border-radius: 12px; padding: 14px; }
-  .author img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
-  .author p { margin: 0; font-size: 14px; }
+  .review {
+    width: 290px; flex-shrink: 0; padding: 18px 18px 16px; border-radius: 18px; position: relative;
+    background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px;
+  }
+  .review:before {
+    content: "\201C"; position: absolute; top: 2px; right: 16px; font-family: var(--font-quote); font-size: 64px; line-height: 1;
+    background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; opacity: 0.5;
+  }
+  .review .quote {
+    font-family: var(--font-quote); font-style: italic; font-weight: 400; font-size: 16px; line-height: 1.55;
+    color: #F1ECE0; margin: 0;
+    display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .reviewer { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+  .avatar { width: 46px; height: 46px; flex-shrink: 0; position: relative; filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5)); }
+  .avatar svg { width: 100%; height: 100%; display: block; }
+  .avatar .ini {
+    position: absolute; right: -3px; bottom: -3px; width: 19px; height: 19px; border-radius: 50%;
+    background: var(--bg); border: 1px solid var(--line-2); color: var(--text); font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; font-family: var(--font-display);
+  }
+  .reviewer .name { font-family: var(--font-display); font-weight: 600; font-size: 14.5px; }
+  .reviewer .meta { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+  .reviewer .meta .icon { color: var(--green); }
 
-  details.faq { border-bottom: 1px solid #21262D; }
-  details.faq summary { cursor: pointer; padding: 14px 0; font-weight: bold; font-size: 15px; list-style: none; position: relative; padding-right: 26px; }
+  .proof-card { flex-shrink: 0; height: 300px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line-2); background: #fff; cursor: zoom-in; box-shadow: 0 16px 40px -20px rgba(0,0,0,0.9); }
+  .proof-card img { height: 100%; width: auto; display: block; }
+  .proof-note { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px !important; color: var(--muted) !important; text-align: center; margin: 8px 0 0 !important; }
+
+  /* ---------- What's inside ---------- */
+  details.book { margin-bottom: 10px; overflow: hidden; }
+  details.book summary { cursor: pointer; list-style: none; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+  details.book summary::-webkit-details-marker { display: none; }
+  .book-ico { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+              background: linear-gradient(135deg, rgba(0,201,167,0.18), rgba(0,201,167,0.05)); border: 1px solid rgba(0,201,167,0.25); color: var(--teal); font-size: 18px; }
+  .book-ico.gold { background: linear-gradient(135deg, rgba(232,196,106,0.2), rgba(232,196,106,0.05)); border-color: rgba(232,196,106,0.3); color: var(--gold); }
+  details.book summary .t { display: block; font-family: var(--font-display); font-weight: 600; font-size: 15px; }
+  details.book summary .m { display: block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  details.book summary .chev { margin-left: auto; color: var(--muted); transition: transform 0.2s ease; }
+  details.book[open] summary .chev { transform: rotate(180deg); color: var(--teal); }
+  details.book .inner { padding: 0 16px 6px 66px; }
+  details.book .inner .ticks li { font-size: 14px; margin-bottom: 7px; }
+
+  /* ---------- Author ---------- */
+  .author { padding: 0; overflow: hidden; }
+  .author-photo { position: relative; }
+  .author-photo img { width: 100%; height: 340px; object-fit: cover; object-position: 50% 18%; display: block; }
+  .author-photo:after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(7,9,13,0.95)); }
+  .author-name { position: absolute; left: 18px; bottom: 14px; z-index: 1; }
+  .author-name .n { font-family: var(--font-display); font-weight: 800; font-size: 24px; letter-spacing: -0.4px; }
+  .author-name .h { font-size: 13px; color: var(--text-2); }
+  .author-body { padding: 16px 18px 18px; }
+  .author-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .author-stats span { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; padding: 7px 11px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); }
+  .author-stats .icon { color: var(--gold); }
+  .author-body p { margin-bottom: 14px; }
+  .ig-btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; font-size: 14px; color: var(--text);
+            padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--surface-2); }
+  .ig-btn .icon { color: #F77737; }
+  @media (min-width: 640px) {
+    .author { display: grid; grid-template-columns: 260px 1fr; }
+    .author-photo img { height: 100%; min-height: 360px; }
+  }
+
+  /* ---------- FAQ ---------- */
+  details.faq { border-bottom: 1px solid var(--line); }
+  details.faq summary { cursor: pointer; padding: 15px 0; font-weight: 600; font-size: 15px; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
   details.faq summary::-webkit-details-marker { display: none; }
-  details.faq summary:after { content: "+"; position: absolute; right: 0; top: 12px; color: #00C9A7; font-size: 20px; }
-  details.faq[open] summary:after { content: "–"; }
+  details.faq summary .icon { color: var(--teal); transition: transform 0.2s ease; margin-top: 3px; }
+  details.faq[open] summary .icon { transform: rotate(45deg); }
   details.faq p { margin: 0 0 14px; }
 
-  .final-cta { text-align: center; background: #161B22; border: 1px solid #30363D; border-radius: 12px; padding: 22px 16px; }
-  .final-cta h2 { border: none; padding: 0; margin-bottom: 6px; }
-
-  /* ---------- Sticky buy bar (mobile) ---------- */
-  .sticky-bar {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 900;
-    background: rgba(13, 17, 23, 0.97); border-top: 1px solid #30363D;
-    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-    display: flex; align-items: center; gap: 12px;
-    transform: translateY(110%); transition: transform 0.25s ease;
-  }
-  .sticky-bar.show { transform: translateY(0); }
-  .sticky-bar .sp { line-height: 1.2; }
-  .sticky-bar .sp .now { font-size: 20px; font-weight: bold; color: #FFB347; }
-  .sticky-bar .sp .strike { font-size: 12px; color: #6E7681; text-decoration: line-through; display: block; }
-  .sticky-bar button.buy { margin: 0; flex: 1; min-height: 48px; padding: 12px; font-size: 16px; }
-  .sticky-bar .wa-mini {
-    width: 48px; height: 48px; border-radius: 8px; border: 1px solid #25D366; color: #25D366;
-    display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 22px; flex-shrink: 0;
-  }
+  /* ---------- Final CTA ---------- */
+  .final-cta { text-align: center; padding: 26px 18px; border-radius: 22px; position: relative; overflow: hidden;
+               background: radial-gradient(500px 220px at 50% -20%, rgba(0,201,167,0.2), transparent), var(--bg-2); border: 1px solid var(--line-2); }
+  .final-cta h2 { margin-bottom: 6px; }
+  .final-cta .fp { font-size: 15px; color: var(--text-2); margin-bottom: 6px; }
+  .final-cta .fp s { color: var(--muted); }
+  .final-cta .fp b { font-family: var(--font-display); font-size: 24px; }
 
   /* ---------- Other products ---------- */
   .op-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
-  .op-card { display: block; background: #161B22; border: 1px solid #30363D; border-radius: 10px; overflow: hidden; text-decoration: none; color: inherit; }
-  .op-card .op-thumb { width: 100%; height: 140px; background: #0D1117; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .op-card { display: block; overflow: hidden; text-decoration: none; color: inherit; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .op-card:hover { border-color: var(--line-2); transform: translateY(-2px); }
+  .op-card .op-thumb { width: 100%; height: 140px; background: var(--bg-2); display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .op-card .op-thumb img { width: 100%; height: 100%; object-fit: contain; }
   .op-card .op-body { padding: 12px 14px; }
-  .op-card .op-name { font-weight: bold; font-size: 14px; margin-bottom: 4px; color: #E6EDF3; line-height: 1.3; }
-  .op-card .op-sub { font-size: 11.5px; color: #8B949E; line-height: 1.5; margin-bottom: 8px; }
+  .op-card .op-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; line-height: 1.3; }
+  .op-card .op-sub { font-size: 11.5px; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
   .op-card .op-price { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-  .op-card .op-price .strike { font-size: 11.5px; color: #6E7681; text-decoration: line-through; }
-  .op-card .op-price .now { font-weight: bold; color: #FFB347; font-size: 16px; }
+  .op-card .op-price .strike { font-size: 11.5px; color: var(--muted); text-decoration: line-through; }
+  .op-card .op-price .now { font-weight: 700; color: var(--gold); font-size: 16px; }
+
+  .disclaimer { max-width: 760px; margin: 44px auto 0; font-size: 12px; color: #5E6875; text-align: center; line-height: 1.6; }
+
+  /* ---------- Sticky buy bar ---------- */
+  .sticky-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 900;
+    background: rgba(7, 9, 13, 0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line-2);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    display: flex; align-items: center; gap: 12px;
+    transform: translateY(110%); transition: transform 0.3s ease;
+  }
+  .sticky-bar.show { transform: translateY(0); }
+  .sticky-bar .sp { line-height: 1.15; }
+  .sticky-bar .sp .now { font-family: var(--font-display); font-size: 21px; font-weight: 800; }
+  .sticky-bar .sp .strike { font-size: 12px; color: var(--muted); text-decoration: line-through; display: block; }
+  .sticky-bar button.buy { margin: 0; flex: 1; min-height: 50px; padding: 12px; font-size: 16px; }
+  .wa-mini { width: 50px; height: 50px; border-radius: 12px; border: 1px solid rgba(37,211,102,0.55); color: var(--wa); background: rgba(37,211,102,0.06);
+             display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 22px; flex-shrink: 0; }
 
   /* ---------- Overlays ---------- */
-  .lightbox-overlay {
-    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000;
-    align-items: center; justify-content: center; padding: 20px;
-  }
+  .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
   .lightbox-overlay.open { display: flex; }
-  .lightbox-overlay img { max-width: 100%; max-height: 88vh; border-radius: 8px; }
-  .lightbox-close { position: absolute; top: 12px; right: 16px; background: none; border: none; color: #fff; font-size: 34px; cursor: pointer; }
+  .lightbox-overlay img { max-width: 100%; max-height: 88vh; border-radius: 10px; }
+  .lightbox-close { position: absolute; top: 10px; right: 14px; background: none; border: none; color: #fff; font-size: 34px; cursor: pointer; }
+  .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-2); background: rgba(12,16,23,0.85); color: #fff; font-size: 20px; cursor: pointer; }
+  .lightbox-nav.prev { left: 8px; }
+  .lightbox-nav.next { right: 8px; }
 
-  .success-overlay {
-    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000;
-    align-items: center; justify-content: center; padding: 20px;
-  }
+  .success-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
   .success-overlay.open { display: flex; }
-  .success-box { background: #161B22; border: 1px solid #00C9A7; border-radius: 12px; padding: 26px 22px; max-width: 420px; width: 100%; text-align: center; max-height: 90vh; overflow-y: auto; }
-  .success-box h3 { color: #00C9A7; margin: 0 0 6px; font-size: 20px; }
-  .success-box p.sub { color: #8B949E; font-size: 14px; margin: 0 0 18px; }
-  .success-box a.download-btn {
-    display: block; background: #00C9A7; color: #0D1117; padding: 12px 20px;
-    border-radius: 8px; text-decoration: none; font-weight: bold; margin: 10px 0;
-  }
-  .success-box .close-note { margin-top: 14px; font-size: 12.5px; color: #8B949E; line-height: 1.5; }
-  .success-box button.dismiss { margin-top: 14px; background: none; border: 1px solid #30363D; color: #8B949E; padding: 8px 20px; border-radius: 6px; cursor: pointer; }
+  .success-box { background: var(--bg-2); border: 1px solid var(--teal); border-radius: 18px; padding: 26px 22px; max-width: 420px; width: 100%; text-align: center; max-height: 90vh; overflow-y: auto; }
+  .success-box h3 { font-family: var(--font-display); color: var(--teal); margin: 0 0 6px; font-size: 21px; }
+  .success-box p.sub { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
+  .success-box a.download-btn { display: block; background: var(--teal-grad); color: #04130F; padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; margin: 10px 0; }
+  .success-box .close-note { margin-top: 14px; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+  .success-box button.dismiss { margin-top: 14px; background: none; border: 1px solid var(--line-2); color: var(--muted); padding: 8px 20px; border-radius: 8px; cursor: pointer; }
 
-  .disclaimer { max-width: 760px; margin: 40px auto 0; font-size: 12px; color: #6E7681; text-align: center; line-height: 1.6; }
+  /* ---------- Scroll reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
 
   @media (min-width: 700px) {
-    body { padding-top: 28px; }
-    h1 { font-size: 32px; }
+    body { padding-top: 26px; }
+    h1 { font-size: 36px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    button.buy:after, .proof-pill .dot { animation: none; }
+    .marquee { overflow-x: auto; }
+    .marquee-track { animation: none; }
   }
 </style>
 
@@ -227,24 +397,86 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
 </head>
 <body>
 
-<div class="product-page">
-  <a class="back-link" href="/">← All products</a>
+<!-- Icon set (Lucide-style line icons) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-lang" viewBox="0 0 24 24"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></symbol>
+  <symbol id="i-candle" viewBox="0 0 24 24"><path d="M9 5v4M9 15v4M15 3v6M15 15v6"/><rect x="7" y="9" width="4" height="6" rx="1"/><rect x="13" y="9" width="4" height="6" rx="1"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+  <symbol id="i-journal" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h8M8 11h6"/></symbol>
+  <symbol id="i-radar" viewBox="0 0 24 24"><path d="M19.07 4.93A10 10 0 1 0 22 12"/><path d="M16.24 7.76A6 6 0 1 0 18 12"/><path d="m12 12 7-7"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+  <symbol id="i-infinity" viewBox="0 0 24 24"><path d="M12 12c-2-2.7-4-4-6-4a4 4 0 0 0 0 8c2 0 4-1.3 6-4Zm0 0c2 2.7 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.3-6 4Z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8L20 10.7l-6.1 1.9L12 18.5l-1.9-5.9L4 10.7l6.1-1.9Z"/></symbol>
+</svg>
 
-  <!-- ===== HERO: answer "what is it / what language / how do I get it" in 3 seconds ===== -->
-  <div class="fact-strip">
-    <span>🗣️ Simple English</span>
-    <span>🌱 Beginner friendly</span>
-    <span>📱 Easy to read on phone</span>
-    <span>⚡ Instant PDF download</span>
+<!-- 3D-style head avatar, coloured per reviewer via --h (hue) -->
+<template id="avatar-tpl">
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <defs>
+      <radialGradient id="bgG" cx="35%" cy="28%" r="80%"><stop offset="0" style="stop-color: hsl(var(--h) 85% 62%)"/><stop offset="0.6" style="stop-color: hsl(var(--h) 70% 38%)"/><stop offset="1" style="stop-color: hsl(var(--h) 75% 18%)"/></radialGradient>
+      <radialGradient id="headG" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.45" style="stop-color: hsl(var(--h) 40% 88%)"/><stop offset="1" style="stop-color: hsl(var(--h) 35% 62%)"/></radialGradient>
+      <linearGradient id="bodyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color: hsl(var(--h) 35% 90%)"/><stop offset="1" style="stop-color: hsl(var(--h) 35% 58%)"/></linearGradient>
+      <clipPath id="cl"><circle cx="32" cy="32" r="30"/></clipPath>
+    </defs>
+    <circle cx="32" cy="32" r="30" fill="url(#bgG)"/>
+    <g clip-path="url(#cl)">
+      <path d="M10 66c0-14 9.8-22 22-22s22 8 22 22Z" fill="url(#bodyG)"/>
+      <circle cx="32" cy="26" r="11" fill="url(#headG)"/>
+      <ellipse cx="27.5" cy="21" rx="4" ry="2.6" fill="#fff" opacity="0.65"/>
+    </g>
+    <ellipse cx="22" cy="14" rx="11" ry="5" fill="#fff" opacity="0.16"/>
+    <circle cx="32" cy="32" r="29.5" fill="none" stroke="#fff" stroke-opacity="0.22"/>
+  </svg>
+</template>
+
+<div class="page">
+  <div class="topbar">
+    <a class="back-link" href="/"><svg class="icon"><use href="#i-left"/></svg>All products</a>
+    <span class="brand"><b>Wiz</b> Designs</span>
   </div>
 
-  <picture>
-    <source srcset="images/combo-all-4-cover-v4.webp" type="image/webp" />
-    <img class="hero-img" src="images/combo-all-4-cover-v4-small.jpg" width="1200" height="675"
-         alt="The Complete Trading Bundle — From Zero to Trader, NSE Stock Screener Guide, Chart Setups Bible, Price Action Strategies" />
-  </picture>
+  <!-- ===== HERO ===== -->
+  <div class="proof-pill"><span class="dot"></span>100+ bundles sold in the last 2 weeks</div>
 
-  <h1>Learn to Trade the Indian Stock Market <span class="accent">From Zero</span> — 4 Guides in 1 Bundle</h1>
+  <div class="chips">
+    <span class="chip"><svg class="icon"><use href="#i-lang"/></svg>Simple English</span>
+    <span class="chip"><svg class="icon"><use href="#i-cap"/></svg>Beginner friendly</span>
+    <span class="chip"><svg class="icon"><use href="#i-phone"/></svg>Easy to read on phone</span>
+    <span class="chip"><svg class="icon"><use href="#i-zap"/></svg>Instant PDF download</span>
+  </div>
+
+  <div class="hero-wrap">
+    <picture>
+      <source srcset="images/combo-all-4-cover-v4.webp" type="image/webp" />
+      <img class="hero-img" src="images/combo-all-4-cover-v4-small.jpg" width="1200" height="675"
+           alt="The Complete Trading Bundle — From Zero to Trader, NSE Stock Screener Guide, Chart Setups Bible, Price Action Strategies" />
+    </picture>
+  </div>
+
+  <h1>Learn to Trade the Indian Stock Market <span class="grad-teal">From Zero</span> — 4 Guides in 1 Bundle</h1>
   <p class="subtitle">Stop jumping between random YouTube videos and free PDFs. Follow one clear path: understand the market → read charts → find stocks → take trades with a stop-loss.</p>
 
   <div id="status-message"></div>
@@ -252,327 +484,307 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   <div class="buy-box" id="buy-box">
     <div class="price-block">
       <span class="strike">₹986</span>
-      <span class="now">₹749</span>
-      <span class="savings-badge">SAVE ₹237</span>
+      <span class="now grad-gold">₹749</span>
+      <span class="save-badge">SAVE ₹237</span>
     </div>
     <p class="price-note">One-time payment · All 4 guides + 2 free bonuses · Yours to keep</p>
     <button class="buy" id="buy-btn" data-product="combo-all-4" data-name="Complete Bundle (All 4 Products)" data-amount="74900">Get All 4 Guides — ₹749</button>
-    <p class="pay-methods">🔒 Secure payment by Razorpay · UPI · GPay · PhonePe · Paytm · Cards<br/>Download links appear on screen right after payment</p>
-    <a class="wa-btn js-wa" href="#" data-msg="Hi! I'm on the Complete Trading Bundle page and have a question before buying.">💬 Have a question? Ask on WhatsApp</a>
+    <p class="pay-methods"><span><svg class="icon"><use href="#i-lock"/></svg> Secure payment by Razorpay</span><span>UPI · GPay · PhonePe · Paytm · Cards</span><span>Download links appear on screen right after payment</span></p>
+    <a class="wa-btn js-wa" href="#" data-msg="Hi! I'm on the Complete Trading Bundle page and have a question before buying."><svg class="icon"><use href="#i-chat"/></svg>Have a question? Ask on WhatsApp</a>
     <p class="wa-hint js-wa-hint">Usually replies within a few hours</p>
   </div>
-  <a class="peek-link" href="#samples">👀 See real pages from inside the guides ↓</a>
+  <a class="peek-link" href="#samples"><svg class="icon"><use href="#i-eye"/></svg>See real pages from inside the guides</a>
 
-  <ul class="quick-list">
-    <li><strong>4 PDF guides, 152 pages</strong> — from basics to 13 ready-to-use trade setups</li>
-    <li><strong>19 chart patterns</strong> with exact entry, stop-loss and target rules</li>
-    <li><strong>Step-by-step NSE stock screening</strong> routine you can do every evening</li>
-    <li><strong>FREE:</strong> Trading Journal (auto P&amp;L, brokerage &amp; tax) + Breakout Scanner access</li>
+  <div class="stats reveal">
+    <div class="stat card"><div class="num grad-gold"><span class="count" data-to="100">100</span>+</div><div class="lbl">bundles sold in 2 weeks</div></div>
+    <div class="stat card"><div class="num grad-teal"><span class="count" data-to="10000" data-format="in">10,000</span>+</div><div class="lbl">Instagram followers</div></div>
+    <div class="stat card"><div class="num"><span class="count" data-to="152">152</span></div><div class="lbl">pages across 4 guides</div></div>
+    <div class="stat card"><div class="num"><span class="count" data-to="32">32</span></div><div class="lbl">patterns &amp; setups with entry/SL/target</div></div>
+  </div>
+
+  <ul class="quick-list reveal">
+    <li><svg class="icon"><use href="#i-check-circle"/></svg><span><strong>4 PDF guides, 152 pages</strong> — from basics to 13 ready-to-use trade setups</span></li>
+    <li><svg class="icon"><use href="#i-check-circle"/></svg><span><strong>19 chart patterns</strong> with exact entry, stop-loss and target rules</span></li>
+    <li><svg class="icon"><use href="#i-check-circle"/></svg><span><strong>Step-by-step NSE stock screening</strong> routine you can do every evening</span></li>
+    <li><svg class="icon"><use href="#i-check-circle"/></svg><span><strong>FREE:</strong> Trading Journal (auto P&amp;L, brokerage &amp; tax) + Breakout Scanner access</span></li>
   </ul>
 
-
-  <!-- ===== QUICK FACTS: the questions people ask on WhatsApp ===== -->
-  <section>
-    <h2>Before you buy — quick answers</h2>
+  <!-- ===== QUICK FACTS ===== -->
+  <section class="reveal">
+    <p class="eyebrow">Before you buy</p>
+    <h2>Quick answers</h2>
     <div class="facts-grid">
-      <div class="fact"><div class="k">Language</div><div class="v">Simple English</div></div>
-      <div class="fact"><div class="k">Level</div><div class="v">Complete beginner → confident trader</div></div>
-      <div class="fact"><div class="k">Format</div><div class="v">PDF — opens on any phone or laptop</div></div>
-      <div class="fact"><div class="k">Market</div><div class="v">Indian stocks (NSE)</div></div>
-      <div class="fact"><div class="k">Delivery</div><div class="v">Instant download after payment</div></div>
-      <div class="fact"><div class="k">Access</div><div class="v">Yours forever — no subscription</div></div>
+      <div class="fact card"><div class="k"><svg class="icon"><use href="#i-lang"/></svg>Language</div><div class="v">Simple English</div></div>
+      <div class="fact card"><div class="k"><svg class="icon"><use href="#i-cap"/></svg>Level</div><div class="v">Complete beginner → confident trader</div></div>
+      <div class="fact card"><div class="k"><svg class="icon"><use href="#i-phone"/></svg>Format</div><div class="v">PDF — opens on any phone or laptop</div></div>
+      <div class="fact card"><div class="k"><svg class="icon"><use href="#i-globe"/></svg>Market</div><div class="v">Indian stocks (NSE)</div></div>
+      <div class="fact card"><div class="k"><svg class="icon"><use href="#i-download"/></svg>Delivery</div><div class="v">Instant download after payment</div></div>
+      <div class="fact card"><div class="k"><svg class="icon"><use href="#i-infinity"/></svg>Access</div><div class="v">Yours forever — no subscription</div></div>
     </div>
   </section>
 
-  <!-- ===== LOOK INSIDE: real pages from each guide ===== -->
-  <section id="samples">
-    <h2>👀 Look inside — real pages</h2>
-    <p style="font-size:13px;color:#8B949E;margin-top:-4px;">Swipe to see pages from all 4 guides. Tap any page to zoom in.</p>
+  <!-- ===== LOOK INSIDE ===== -->
+  <section id="samples" class="reveal">
+    <p class="eyebrow">Look inside</p>
+    <h2>Real pages from all 4 guides</h2>
+    <p class="sub-note">Swipe to browse. Tap any page to zoom in.</p>
     <div class="peek-track" id="peek-track">
-      <figure class="peek">
-        <img src="images/sample-zero-to-trader-contents.jpg" alt="From Zero to Trader table of contents" loading="lazy" width="909" />
-        <figcaption><strong>From Zero to Trader</strong>All 9 chapters, from basics to psychology</figcaption>
-      </figure>
-      <figure class="peek">
-        <img src="images/sample-zero-to-trader-hammer.jpg" alt="Hammer candlestick pattern page with a TCS chart" loading="lazy" width="909" />
-        <figcaption><strong>From Zero to Trader</strong>Patterns shown on real NSE charts (TCS)</figcaption>
-      </figure>
-      <figure class="peek">
-        <img src="images/sample-zero-to-trader-position-size.jpg" alt="Position size and risk-reward page with a rupee worked example" loading="lazy" width="909" />
-        <figcaption><strong>From Zero to Trader</strong>Position sizing worked out in rupees</figcaption>
-      </figure>
-      <figure class="peek">
-        <img src="images/sample-screener-nightly-routine.jpg" alt="Nightly screening routine page" loading="lazy" width="909" />
-        <figcaption><strong>NSE Stock Screener Guide</strong>A 15-minute evening routine, step by step</figcaption>
-      </figure>
-      <figure class="peek">
-        <img src="images/sample-screener-titan-trade-plan.jpg" alt="TITAN breakout to trade plan walkthrough page" loading="lazy" width="909" />
-        <figcaption><strong>NSE Stock Screener Guide</strong>From scanner signal to a full trade plan</figcaption>
-      </figure>
-      <figure class="peek">
-        <img src="images/sample-chart-setups-contents.jpg" alt="Chart Setups Bible contents page" loading="lazy" width="909" />
-        <figcaption><strong>Chart Setups Bible</strong>All 19 patterns covered</figcaption>
-      </figure>
-      <figure class="peek">
-        <img src="images/sample-chart-setups-bull-flag.jpg" alt="Bull Flag pattern page with entry, stop-loss and target" loading="lazy" width="909" />
-        <figcaption><strong>Chart Setups Bible</strong>Every pattern: entry, stop-loss and target</figcaption>
-      </figure>
-      <figure class="peek">
-        <img src="images/sample-price-action-contents.jpg" alt="Price Action Strategies contents page" loading="lazy" width="909" />
-        <figcaption><strong>Price Action Strategies</strong>All 13 trading setups</figcaption>
-      </figure>
-      <figure class="peek">
-        <img src="images/sample-price-action-breakout.jpg" alt="Breakout Trading setup page" loading="lazy" width="909" />
-        <figcaption><strong>Price Action Strategies</strong>Step-by-step setup with a worked example</figcaption>
-      </figure>
+      <figure class="peek"><img src="images/sample-zero-to-trader-contents.jpg" alt="From Zero to Trader table of contents" loading="lazy" width="909" /><figcaption><strong>From Zero to Trader</strong>All 9 chapters, from basics to psychology</figcaption></figure>
+      <figure class="peek"><img src="images/sample-zero-to-trader-hammer.jpg" alt="Hammer candlestick pattern page with a TCS chart" loading="lazy" width="909" /><figcaption><strong>From Zero to Trader</strong>Patterns shown on real NSE charts (TCS)</figcaption></figure>
+      <figure class="peek"><img src="images/sample-zero-to-trader-position-size.jpg" alt="Position size and risk-reward page with a rupee worked example" loading="lazy" width="909" /><figcaption><strong>From Zero to Trader</strong>Position sizing worked out in rupees</figcaption></figure>
+      <figure class="peek"><img src="images/sample-screener-nightly-routine.jpg" alt="Nightly screening routine page" loading="lazy" width="909" /><figcaption><strong>NSE Stock Screener Guide</strong>A 15-minute evening routine, step by step</figcaption></figure>
+      <figure class="peek"><img src="images/sample-screener-titan-trade-plan.jpg" alt="TITAN breakout to trade plan walkthrough page" loading="lazy" width="909" /><figcaption><strong>NSE Stock Screener Guide</strong>From scanner signal to a full trade plan</figcaption></figure>
+      <figure class="peek"><img src="images/sample-chart-setups-contents.jpg" alt="Chart Setups Bible contents page" loading="lazy" width="909" /><figcaption><strong>Chart Setups Bible</strong>All 19 patterns covered</figcaption></figure>
+      <figure class="peek"><img src="images/sample-chart-setups-bull-flag.jpg" alt="Bull Flag pattern page with entry, stop-loss and target" loading="lazy" width="909" /><figcaption><strong>Chart Setups Bible</strong>Every pattern: entry, stop-loss and target</figcaption></figure>
+      <figure class="peek"><img src="images/sample-price-action-contents.jpg" alt="Price Action Strategies contents page" loading="lazy" width="909" /><figcaption><strong>Price Action Strategies</strong>All 13 trading setups</figcaption></figure>
+      <figure class="peek"><img src="images/sample-price-action-breakout.jpg" alt="Breakout Trading setup page" loading="lazy" width="909" /><figcaption><strong>Price Action Strategies</strong>Step-by-step setup with a worked example</figcaption></figure>
     </div>
     <div class="peek-nav">
-      <button type="button" class="peek-btn" data-dir="-1" aria-label="Previous page">‹</button>
+      <button type="button" class="round-btn peek-btn" data-dir="-1" aria-label="Previous page"><svg class="icon"><use href="#i-left"/></svg></button>
       <span id="peek-count">1 / 9</span>
-      <button type="button" class="peek-btn" data-dir="1" aria-label="Next page">›</button>
+      <button type="button" class="round-btn peek-btn" data-dir="1" aria-label="Next page"><svg class="icon"><use href="#i-right"/></svg></button>
     </div>
   </section>
 
   <!-- ===== VALUE STACK ===== -->
-  <section>
-    <h2>🎁 Everything you get</h2>
-    <table class="value-table">
-      <tr><td>📘 From Zero to Trader — The Complete Guide <br/><small style="color:#8B949E">78 pages · 9 chapters</small></td><td>₹289</td></tr>
-      <tr><td>📊 The NSE Stock Screener Guide <br/><small style="color:#8B949E">30 pages</small></td><td>₹399</td></tr>
-      <tr><td>📖 The Chart Setups Bible <br/><small style="color:#8B949E">28 pages · 19 patterns</small></td><td>₹149</td></tr>
-      <tr><td>🎯 Price Action Strategies <br/><small style="color:#8B949E">16 pages · 13 setups</small></td><td>₹149</td></tr>
-      <tr><td>🧾 BONUS: Interactive Trading Journal</td><td class="free">FREE</td></tr>
-      <tr><td>📡 BONUS: Breakout Scanner access</td><td class="free">FREE</td></tr>
-      <tr class="total"><td>Total if bought separately</td><td>₹986</td></tr>
-      <tr class="pay"><td>You pay today</td><td>₹749</td></tr>
-    </table>
+  <section class="reveal">
+    <p class="eyebrow">The bundle</p>
+    <h2>Everything you get</h2>
+    <div class="value card">
+      <div class="vrow"><span class="l"><svg class="icon"><use href="#i-book"/></svg><span>From Zero to Trader — The Complete Guide<small>78 pages · 9 chapters</small></span></span><span class="r">₹289</span></div>
+      <div class="vrow"><span class="l"><svg class="icon"><use href="#i-search"/></svg><span>The NSE Stock Screener Guide<small>30 pages</small></span></span><span class="r">₹399</span></div>
+      <div class="vrow"><span class="l"><svg class="icon"><use href="#i-candle"/></svg><span>The Chart Setups Bible<small>28 pages · 19 patterns</small></span></span><span class="r">₹149</span></div>
+      <div class="vrow"><span class="l"><svg class="icon"><use href="#i-target"/></svg><span>Price Action Strategies<small>16 pages · 13 setups</small></span></span><span class="r">₹149</span></div>
+      <div class="vrow"><span class="l"><svg class="icon"><use href="#i-journal"/></svg><span>BONUS: Interactive Trading Journal</span></span><span class="r free">FREE</span></div>
+      <div class="vrow"><span class="l"><svg class="icon"><use href="#i-radar"/></svg><span>BONUS: Breakout Scanner access</span></span><span class="r free">FREE</span></div>
+      <div class="vrow total"><span class="l">Total if bought separately</span><span class="r">₹986</span></div>
+      <div class="vrow pay"><span class="l">You pay today</span><span class="r grad-gold">₹749</span></div>
+    </div>
   </section>
 
-  <!-- ===== BUYER REVIEWS =====
-       Real reviews from bundle buyers. To add more, copy one <div class="review">…</div> block. -->
-  <section id="reviews">
-    <h2>💬 What buyers say</h2>
-    <div class="reviews-grid">
-      <div class="review">
-        <p class="quote">"Really useful bundle for anyone who wants to start learning about trading! The eBooks explain concepts in a beginner friendly way and make it easier to understand the basics without feeling overwhelmed. Definitely worth checking out if you're new to the trading world. Highly recommended!"</p>
-        <p class="who">— Athul · Complete Bundle buyer</p>
-      </div>
-      <div class="review">
-        <p class="quote">"As a beginner, I found this trading eBook bundle extremely helpful. Everything is explained in a simple and understandable way, making it easier to build a strong foundation in trading. Instead of jumping between different resources, having everything organized in one bundle is a huge advantage. Great value for anyone serious about learning!"</p>
-        <p class="who">— Sebastian · Complete Bundle buyer</p>
-      </div>
-      <div class="review">
-        <p class="quote">"This is a well organized and valuable resource for anyone looking to learn about trading, especially beginners. The combo bundle brings together useful information in one place and makes the learning process much more structured. I really appreciate how it helps simplify concepts that can otherwise seem complicated when you're just starting out. A worthwhile purchase for aspiring traders who want to improve their knowledge and understanding of the markets."</p>
-        <p class="who">— Johan · Complete Bundle buyer</p>
-      </div>
-      <div class="review">
-        <p class="quote">"Absolutely worth it! 🔥 This trading eBook combo bundle is packed with useful information, especially for people who are just getting started. I love the idea of having multiple learning resources together instead of searching all over the internet for scattered information. It's a great starting point for anyone who wants to take trading education seriously. Keep up the great work!"</p>
-        <p class="who">— Shahzad · Complete Bundle buyer</p>
-      </div>
-      <div class="review">
-        <p class="quote">"I'm glad I purchased this bundle. It's genuinely useful, particularly if you're a beginner and don't know where to start with trading. The eBooks give you a more structured way to learn and help make the whole process less confusing. I would definitely recommend it to someone who wants to build their trading knowledge step by step."</p>
-        <p class="who">— Naveen · Complete Bundle buyer</p>
-      </div>
-      <div class="review">
-        <p class="quote">"A great combo bundle for anyone interested in learning trading from the ground up. The biggest advantage is having multiple eBooks in one place, which makes learning more convenient and organized. It's especially helpful for beginners who want to understand the fundamentals before moving forward. Overall, a useful investment in your financial education and a purchase I'd recommend to aspiring traders!"</p>
-        <p class="who">— Ann Tharakan · Complete Bundle buyer</p>
+  <!-- ===== BUYER REVIEWS (auto-scrolling) =====
+       Each review is a shortened excerpt of the buyer's own words.
+       To add one, copy a <div class="review" data-hue="…">…</div> block (any hue number 0–360). -->
+  <section id="reviews" class="reveal">
+    <p class="eyebrow">Reviews</p>
+    <h2>What buyers say</h2>
+    <div class="marquee" id="reviews-marquee" style="--dur: 48s;">
+      <div class="marquee-track">
+        <div class="review" data-hue="168">
+          <p class="quote">Really useful bundle for anyone who wants to start learning about trading! The eBooks explain concepts in a beginner friendly way. Highly recommended!</p>
+          <div class="reviewer"><span class="avatar" data-initial="A"></span><span><span class="name">Athul</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>Complete Bundle buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="42">
+          <p class="quote">As a beginner, I found this trading eBook bundle extremely helpful. Everything is explained in a simple and understandable way.</p>
+          <div class="reviewer"><span class="avatar" data-initial="S"></span><span><span class="name">Sebastian</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>Complete Bundle buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="210">
+          <p class="quote">A well organized and valuable resource, especially for beginners. It makes the learning process much more structured.</p>
+          <div class="reviewer"><span class="avatar" data-initial="J"></span><span><span class="name">Johan</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>Complete Bundle buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="12">
+          <p class="quote">Absolutely worth it! 🔥 This combo bundle is packed with useful information, especially for people who are just getting started.</p>
+          <div class="reviewer"><span class="avatar" data-initial="S"></span><span><span class="name">Shahzad</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>Complete Bundle buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="268">
+          <p class="quote">I'm glad I purchased this bundle. It's genuinely useful, particularly if you're a beginner and don't know where to start with trading.</p>
+          <div class="reviewer"><span class="avatar" data-initial="N"></span><span><span class="name">Naveen</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>Complete Bundle buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="330">
+          <p class="quote">A great combo bundle for anyone interested in learning trading from the ground up. A purchase I'd recommend to aspiring traders!</p>
+          <div class="reviewer"><span class="avatar" data-initial="A"></span><span><span class="name">Ann Tharakan</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>Complete Bundle buyer</span></span></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== WHAT'S INSIDE (tap to expand) ===== -->
-  <section>
-    <h2>📚 What's inside each guide</h2>
-    <p style="font-size:13px;color:#8B949E;margin-top:-4px;">Tap a guide to see its contents.</p>
+  <!-- ===== PAYMENT PROOF (auto-scrolling) =====
+       To add screenshots: blur transaction IDs and buyer details first, upload to images/proof/,
+       then add the file names to PAYMENT_PROOFS in the script at the bottom of this page. -->
+  <section id="payments" class="reveal">
+    <p class="eyebrow">Real orders</p>
+    <h2><span class="grad-gold">100+ bundles sold</span> in 2 weeks</h2>
+    <p class="sub-note">Recent ₹749 payments from buyers. Tap any screenshot to zoom in.</p>
+    <div class="marquee rtl" id="proof-marquee" style="--dur: 40s;">
+      <div class="marquee-track" id="proof-track"></div>
+    </div>
+    <p class="proof-note"><svg class="icon"><use href="#i-shield"/></svg>Transaction IDs and buyer details blurred for privacy</p>
+  </section>
 
-    <details class="book" open>
-      <summary><span><span class="t">📘 From Zero to Trader</span><span class="m">78 pages · 9 chapters · start here</span></span></summary>
+  <!-- ===== WHAT'S INSIDE ===== -->
+  <section class="reveal">
+    <p class="eyebrow">Contents</p>
+    <h2>What's inside each guide</h2>
+    <p class="sub-note">Tap a guide to see its contents.</p>
+
+    <details class="book card" open>
+      <summary><span class="book-ico"><svg class="icon"><use href="#i-book"/></svg></span><span><span class="t">From Zero to Trader</span><span class="m">78 pages · 9 chapters · start here</span></span><svg class="icon chev"><use href="#i-chev"/></svg></summary>
       <div class="inner">
         <ul class="ticks">
-          <li><strong>Fundamental Analysis</strong> — PE, ROE, revenue growth explained simply</li>
-          <li><strong>Technical Analysis</strong> — FA vs TA, and its honest limitations</li>
-          <li><strong>Reading a Stock Chart</strong> — candlesticks, support &amp; resistance, volume, VWAP/EMA</li>
-          <li><strong>5 Candlestick Patterns</strong> that actually work</li>
-          <li><strong>11 Technical Indicators</strong> explained simply + a 5-Gate Checklist</li>
-          <li><strong>8 Common Trading Mistakes</strong> and how to avoid them</li>
-          <li><strong>Risk Management &amp; Position Sizing</strong></li>
-          <li><strong>How to Place a Trade</strong> — MIS vs CNC</li>
-          <li><strong>Trading Psychology</strong></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><strong>Fundamental Analysis</strong> — PE, ROE, revenue growth explained simply</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><strong>Technical Analysis</strong> — FA vs TA, and its honest limitations</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><strong>Reading a Stock Chart</strong> — candlesticks, support &amp; resistance, volume, VWAP/EMA</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><strong>5 Candlestick Patterns</strong> that actually work</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><strong>11 Technical Indicators</strong> explained simply + a 5-Gate Checklist</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><strong>8 Common Trading Mistakes</strong> and how to avoid them</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><strong>Risk Management &amp; Position Sizing</strong></span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><strong>How to Place a Trade</strong> — MIS vs CNC</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><strong>Trading Psychology</strong></span></li>
         </ul>
       </div>
     </details>
 
-    <details class="book">
-      <summary><span><span class="t">📊 The NSE Stock Screener Guide</span><span class="m">30 pages · find stocks before they move</span></span></summary>
+    <details class="book card">
+      <summary><span class="book-ico"><svg class="icon"><use href="#i-search"/></svg></span><span><span class="t">The NSE Stock Screener Guide</span><span class="m">30 pages · find stocks before they move</span></span><svg class="icon chev"><use href="#i-chev"/></svg></summary>
       <div class="inner">
         <ul class="ticks">
-          <li>5-step stock screening system</li>
-          <li>Sector momentum + scoring model</li>
-          <li>Nightly &amp; morning routine checklist</li>
-          <li>How to use Screener.in, TradingView and NSE tools</li>
-          <li>Includes free Breakout Scanner access</li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>5-step stock screening system</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Sector momentum + scoring model</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Nightly &amp; morning routine checklist</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>How to use Screener.in, TradingView and NSE tools</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Includes free Breakout Scanner access</span></li>
         </ul>
       </div>
     </details>
 
-    <details class="book">
-      <summary><span><span class="t">📖 The Chart Setups Bible</span><span class="m">28 pages · 19 patterns</span></span></summary>
+    <details class="book card">
+      <summary><span class="book-ico"><svg class="icon"><use href="#i-candle"/></svg></span><span><span class="t">The Chart Setups Bible</span><span class="m">28 pages · 19 patterns</span></span><svg class="icon chev"><use href="#i-chev"/></svg></summary>
       <div class="inner">
         <ul class="ticks">
-          <li>19 candlestick + chart patterns — Hammer, Engulfing, Doji, Morning Star, Double Bottom and more</li>
-          <li>A reliability rating for every pattern</li>
-          <li>Exact entry, stop-loss and target rules for each</li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>19 candlestick + chart patterns — Hammer, Engulfing, Doji, Morning Star, Double Bottom and more</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>A reliability rating for every pattern</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Exact entry, stop-loss and target rules for each</span></li>
         </ul>
       </div>
     </details>
 
-    <details class="book">
-      <summary><span><span class="t">🎯 Price Action Strategies</span><span class="m">16 pages · 13 setups</span></span></summary>
+    <details class="book card">
+      <summary><span class="book-ico"><svg class="icon"><use href="#i-target"/></svg></span><span><span class="t">Price Action Strategies</span><span class="m">16 pages · 13 setups</span></span><svg class="icon chev"><use href="#i-chev"/></svg></summary>
       <div class="inner">
         <ul class="ticks">
-          <li>13 complete trading setups — breakouts, pullbacks, VWAP bounces and more</li>
-          <li>Exact entry, stop-loss and target for every setup</li>
-          <li>The common mistake to avoid on each setup</li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>13 complete trading setups — breakouts, pullbacks, VWAP bounces and more</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Exact entry, stop-loss and target for every setup</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>The common mistake to avoid on each setup</span></li>
         </ul>
       </div>
     </details>
 
-    <details class="book">
-      <summary><span><span class="t">🎁 Free Bonus: Interactive Trading Journal</span><span class="m">HTML file · works in any browser</span></span></summary>
+    <details class="book card">
+      <summary><span class="book-ico gold"><svg class="icon"><use href="#i-gift"/></svg></span><span><span class="t">Free Bonus: Interactive Trading Journal</span><span class="m">HTML file · works in any browser</span></span><svg class="icon chev"><use href="#i-chev"/></svg></summary>
       <div class="inner">
         <ul class="ticks">
-          <li>Log every trade with entry, exit, reason and emotion</li>
-          <li>Auto-calculates P&amp;L, brokerage and taxes</li>
-          <li>Visual equity curve chart</li>
-          <li>Works offline — no app or subscription needed</li>
-          <li>CSV export for your weekly review</li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Log every trade with entry, exit, reason and emotion</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Auto-calculates P&amp;L, brokerage and taxes</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Visual equity curve chart</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>Works offline — no app or subscription needed</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>CSV export for your weekly review</span></li>
         </ul>
       </div>
     </details>
   </section>
 
   <!-- ===== WHO IT'S FOR ===== -->
-  <section>
-    <h2>✅ This is for you if…</h2>
+  <section class="reveal">
+    <p class="eyebrow">Is it right for you?</p>
+    <h2>This is for you if…</h2>
     <ul class="ticks">
-      <li>You're a complete beginner and want to understand the stock market from scratch</li>
-      <li>You want to start intraday or swing trading on NSE</li>
-      <li>You've tried trading but keep losing money and don't know why</li>
-      <li>You invest already and want to add chart reading and price action</li>
+      <li><svg class="icon"><use href="#i-check-circle"/></svg><span>You're a complete beginner and want to understand the stock market from scratch</span></li>
+      <li><svg class="icon"><use href="#i-check-circle"/></svg><span>You want to start intraday or swing trading on NSE</span></li>
+      <li><svg class="icon"><use href="#i-check-circle"/></svg><span>You've tried trading but keep losing money and don't know why</span></li>
+      <li><svg class="icon"><use href="#i-check-circle"/></svg><span>You invest already and want to add chart reading and price action</span></li>
     </ul>
-    <h2 style="margin-top:22px;">❌ This is NOT for you if…</h2>
+    <h2 style="margin-top:24px;">This is NOT for you if…</h2>
     <ul class="ticks crosses">
-      <li>You want daily stock tips or "sure-shot" calls — this teaches you to decide for yourself</li>
-      <li>You expect guaranteed profits — no honest guide can promise that</li>
+      <li><svg class="icon"><use href="#i-x"/></svg><span>You want daily stock tips or "sure-shot" calls — this teaches you to decide for yourself</span></li>
+      <li><svg class="icon"><use href="#i-x"/></svg><span>You expect guaranteed profits — no honest guide can promise that</span></li>
     </ul>
   </section>
 
   <!-- ===== AUTHOR ===== -->
-  <section>
-    <h2>👋 Who made this</h2>
-    <div class="author">
-      <!-- Optional: add your photo as images/author.jpg and remove the comment markers below -->
-      <!-- <img src="images/author.jpg" alt="Agnel Biju" /> -->
-      <p>Hi, I'm <strong>Agnel Biju</strong> (<a href="https://instagram.com/agnel_biju" target="_blank" rel="noopener">@agnel_biju</a>). I wrote these guides to be the clear, no-nonsense starting point I wish I'd had when I started trading — plain language, real Indian market examples, and a stop-loss on every setup.</p>
+  <section class="reveal">
+    <p class="eyebrow">Your guide</p>
+    <h2>Meet the author</h2>
+    <div class="author card">
+      <div class="author-photo">
+        <picture>
+          <source srcset="images/author-agnel.webp" type="image/webp" />
+          <img src="images/author-agnel.jpg" alt="Agnel Biju, author of the Complete Trading Bundle" loading="lazy" width="640" height="800" />
+        </picture>
+        <div class="author-name"><div class="n">Agnel Biju</div><div class="h">@agnel_biju</div></div>
+      </div>
+      <div class="author-body">
+        <div class="author-stats">
+          <span><svg class="icon"><use href="#i-users"/></svg>10,000+ Instagram followers</span>
+          <span><svg class="icon"><use href="#i-trend"/></svg>100+ bundles sold in 2 weeks</span>
+        </div>
+        <p>Hi, I'm Agnel. I wrote these guides to be the clear, no-nonsense starting point I wish I'd had when I started trading — plain language, real Indian market examples, and a stop-loss on every setup.</p>
+        <a class="ig-btn" href="https://instagram.com/agnel_biju" target="_blank" rel="noopener"><svg class="icon"><use href="#i-insta"/></svg>Follow @agnel_biju on Instagram</a>
+      </div>
     </div>
   </section>
 
   <!-- ===== FAQ ===== -->
-  <section>
-    <h2>❓ Frequently asked questions</h2>
-
-    <details class="faq">
-      <summary>What language are the guides in?</summary>
-      <p>Simple, easy English — written for beginners, with no heavy jargon. Every term is explained when it first appears.</p>
-    </details>
-    <details class="faq">
-      <summary>I know nothing about the stock market. Is this too advanced?</summary>
-      <p>No. Start with <em>From Zero to Trader</em> — it begins at the very basics. The other three guides then build on it step by step.</p>
-    </details>
-    <details class="faq">
-      <summary>How do I get the guides after paying?</summary>
-      <p>As soon as payment succeeds, download buttons for every file appear on this page. Tap each one to save the PDFs to your phone or laptop. If anything goes wrong, message us your payment ID on WhatsApp and we'll send the files right away.</p>
-    </details>
-    <details class="faq">
-      <summary>Can I read them on my phone?</summary>
-      <p>Yes. They're standard PDFs — they open in any phone's PDF viewer, Google Drive, or a browser. The Trading Journal opens in any browser.</p>
-    </details>
-    <details class="faq">
-      <summary>How can I pay?</summary>
-      <p>UPI (GPay, PhonePe, Paytm, any UPI app), debit/credit card, or net banking — all through Razorpay's secure checkout.</p>
-    </details>
-    <details class="faq">
-      <summary>Is this a tips or advisory service?</summary>
-      <p>No. This is educational material that teaches you how to analyse and pick trades yourself. We don't give buy/sell calls.</p>
-    </details>
-    <details class="faq">
-      <summary>Is it a one-time payment?</summary>
-      <p>Yes. Pay ₹749 once and the guides are yours to keep forever. No subscription.</p>
-    </details>
-    <details class="faq">
-      <summary>I have another question.</summary>
-      <p>Message us on WhatsApp using the green button — we're happy to help before you buy.</p>
-    </details>
+  <section class="reveal">
+    <p class="eyebrow">FAQ</p>
+    <h2>Frequently asked questions</h2>
+    <details class="faq"><summary>What language are the guides in?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Simple, easy English — written for beginners, with no heavy jargon. Every term is explained when it first appears.</p></details>
+    <details class="faq"><summary>I know nothing about the stock market. Is this too advanced?<svg class="icon"><use href="#i-plus"/></svg></summary><p>No. Start with <em>From Zero to Trader</em> — it begins at the very basics. The other three guides then build on it step by step.</p></details>
+    <details class="faq"><summary>How do I get the guides after paying?<svg class="icon"><use href="#i-plus"/></svg></summary><p>As soon as payment succeeds, download buttons for every file appear on this page. Tap each one to save the PDFs to your phone or laptop. If anything goes wrong, message us your payment ID on WhatsApp and we'll send the files right away.</p></details>
+    <details class="faq"><summary>Can I read them on my phone?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes. They're standard PDFs — they open in any phone's PDF viewer, Google Drive, or a browser. The Trading Journal opens in any browser.</p></details>
+    <details class="faq"><summary>How can I pay?<svg class="icon"><use href="#i-plus"/></svg></summary><p>UPI (GPay, PhonePe, Paytm, any UPI app), debit/credit card, or net banking — all through Razorpay's secure checkout.</p></details>
+    <details class="faq"><summary>Is this a tips or advisory service?<svg class="icon"><use href="#i-plus"/></svg></summary><p>No. This is educational material that teaches you how to analyse and pick trades yourself. We don't give buy/sell calls.</p></details>
+    <details class="faq"><summary>Is it a one-time payment?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes. Pay ₹749 once and the guides are yours to keep forever. No subscription.</p></details>
+    <details class="faq"><summary>I have another question.<svg class="icon"><use href="#i-plus"/></svg></summary><p>Message us on WhatsApp using the green button — we're happy to help before you buy.</p></details>
   </section>
 
   <!-- ===== FINAL CTA ===== -->
-  <section class="final-cta">
+  <section class="final-cta reveal">
+    <p class="eyebrow">Join 100+ buyers</p>
     <h2>Start learning today</h2>
-    <p style="margin-bottom:8px;">4 guides + 2 free bonuses · <span style="text-decoration:line-through;color:#6E7681;">₹986</span> <strong style="color:#FFB347;font-size:20px;">₹749</strong></p>
+    <p class="fp">4 guides + 2 free bonuses · <s>₹986</s> <b class="grad-gold">₹749</b></p>
     <button class="buy js-buy-proxy">Get All 4 Guides — ₹749</button>
-    <p class="pay-methods">Pay by UPI · GPay · PhonePe · Cards · Instant download</p>
-    <a class="wa-btn js-wa" href="#" data-msg="Hi! I have a question about the Complete Trading Bundle.">💬 Ask a question on WhatsApp</a>
+    <p class="pay-methods"><span><svg class="icon"><use href="#i-lock"/></svg> Pay by UPI · GPay · PhonePe · Cards</span><span>Instant download</span></p>
+    <a class="wa-btn js-wa" href="#" data-msg="Hi! I have a question about the Complete Trading Bundle."><svg class="icon"><use href="#i-chat"/></svg>Ask a question on WhatsApp</a>
   </section>
 
-  <!-- ===== SMALLER OPTIONS (kept short so ad visitors stay focused on the bundle) ===== -->
-  <section>
+  <!-- ===== SMALLER OPTIONS ===== -->
+  <section class="reveal">
+    <p class="eyebrow">Other options</p>
     <h2>Want to start smaller?</h2>
     <div class="op-grid">
-      <a class="op-card" href="/?product=combo-zero-screener">
+      <a class="op-card card" href="/?product=combo-zero-screener">
         <div class="op-thumb"><img src="images/combo-zero-screener-cover-v3.jpg" alt="Zero to Trader + Screener Guide combo" loading="lazy" /></div>
-        <div class="op-body">
-          <div class="op-name">From Zero to Trader + Screener Guide</div>
-          <div class="op-sub">The 2 most popular guides</div>
-          <div class="op-price"><span class="strike">₹688</span><span class="now">₹549</span></div>
-        </div>
+        <div class="op-body"><div class="op-name">From Zero to Trader + Screener Guide</div><div class="op-sub">The 2 most popular guides</div><div class="op-price"><span class="strike">₹688</span><span class="now">₹549</span></div></div>
       </a>
-      <a class="op-card" href="/zero-to-trader.html">
-        <div class="op-thumb"><img src="images/zero-to-trader-1.jpg" alt="From Zero to Trader" loading="lazy" /></div>
-        <div class="op-body">
-          <div class="op-name">From Zero to Trader</div>
-          <div class="op-sub">9-chapter beginner roadmap, 78 pages</div>
-          <div class="op-price"><span class="now">₹289</span></div>
-        </div>
+      <a class="op-card card" href="/zero-to-trader.html">
+        <div class="op-thumb"><img src="images/zero-to-trader-2.jpg" alt="From Zero to Trader" loading="lazy" /></div>
+        <div class="op-body"><div class="op-name">From Zero to Trader</div><div class="op-sub">9-chapter beginner roadmap, 78 pages</div><div class="op-price"><span class="now">₹289</span></div></div>
       </a>
-      <a class="op-card" href="/?product=combo-price-chart">
+      <a class="op-card card" href="/?product=combo-price-chart">
         <div class="op-thumb"><img src="images/combo-price-chart-cover-v3.jpg" alt="Price Action + Chart Setups combo" loading="lazy" /></div>
-        <div class="op-body">
-          <div class="op-name">Price Action + Chart Setups Bible</div>
-          <div class="op-sub">13 setups + 19 chart patterns</div>
-          <div class="op-price"><span class="strike">₹298</span><span class="now">₹179</span></div>
-        </div>
+        <div class="op-body"><div class="op-name">Price Action + Chart Setups Bible</div><div class="op-sub">13 setups + 19 chart patterns</div><div class="op-price"><span class="strike">₹298</span><span class="now">₹179</span></div></div>
       </a>
     </div>
   </section>
 </div>
 
 <p class="disclaimer">
-  📄 Digital PDF · Instant Download · No Physical Copy<br/>
+  Digital PDF · Instant Download · No Physical Copy<br/>
   Educational content only. Not investment advice. Trading in securities markets is subject to market risk.
   Wiz Designs is not a SEBI-registered investment advisor.
 </p>
 
 <!-- Sticky buy bar: appears once the main Buy button scrolls off screen -->
 <div class="sticky-bar" id="sticky-bar">
-  <div class="sp"><span class="strike">₹986</span><span class="now">₹749</span></div>
+  <div class="sp"><span class="strike">₹986</span><span class="now grad-gold">₹749</span></div>
   <button class="buy js-buy-proxy">Get All 4 Guides</button>
-  <a class="wa-mini js-wa" href="#" data-msg="Hi! I'm on the Complete Trading Bundle page and have a question." aria-label="Ask on WhatsApp">💬</a>
+  <a class="wa-mini js-wa" href="#" data-msg="Hi! I'm on the Complete Trading Bundle page and have a question." aria-label="Ask on WhatsApp"><svg class="icon"><use href="#i-chat"/></svg></a>
 </div>
 
 <div class="lightbox-overlay" id="lightbox-overlay" onclick="if(event.target===this) closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
   <button class="lightbox-nav prev" onclick="stepLightbox(-1)" aria-label="Previous">‹</button>
-  <img id="lightbox-img" src="" alt="Preview" />
+  <img id="lightbox-img" alt="Preview" />
   <button class="lightbox-nav next" onclick="stepLightbox(1)" aria-label="Next">›</button>
 </div>
 
@@ -582,7 +794,7 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     <p class="sub" id="success-product-name"></p>
     <div id="success-download-links"></div>
     <p class="close-note">Tap each button to download. Save the files to your phone now.</p>
-    <a class="wa-btn js-wa" id="success-wa" href="#" data-msg="">💬 Also send me the files on WhatsApp</a>
+    <a class="wa-btn js-wa" id="success-wa" href="#" data-msg=""><svg class="icon"><use href="#i-chat"/></svg>Also send me the files on WhatsApp</a>
     <button class="dismiss" onclick="closeSuccessModal()">Close</button>
   </div>
 </div>
@@ -592,6 +804,15 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   // Your WhatsApp Business number with country code, digits only. Example: "919876543210"
   // While this is empty, all WhatsApp buttons stay hidden.
   const WHATSAPP_NUMBER = "918301070364";
+
+  // Payment screenshots shown in the "100+ bundles sold" strip.
+  // Blur transaction IDs and buyer details first, upload to images/proof/, then add the file name here.
+  const PAYMENT_PROOFS = [
+    "images/proof/payment-1.jpg",
+    "images/proof/payment-2.jpg",
+    "images/proof/payment-3.jpg",
+    "images/proof/payment-4.jpg",
+  ];
   // ===============================================
 
   function waLink(msg) {
@@ -752,9 +973,7 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     b.addEventListener("click", () => mainBuyBtn.click());
   });
 
-  // Checkout used to open automatically on page load, which pushed ad visitors
-  // straight into a payment popup before they saw the product. Now it only
-  // auto-opens for links that explicitly ask for it: combo-all-4.html?buy=1
+  // Checkout only opens by itself for links that ask for it: combo-all-4.html?buy=1
   if (new URLSearchParams(location.search).get("buy") === "1") {
     window.addEventListener("load", () => setTimeout(() => mainBuyBtn.click(), 600));
   }
@@ -770,12 +989,90 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     }).observe(buyBox);
   }
 
-  // ---------- Lightbox for sample pages / reviews ----------
-  // ---------- Look-inside carousel + zoom ----------
+  // ---------- Scroll reveal + count-up ----------
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function countUp(el) {
+    const to = parseInt(el.dataset.to, 10);
+    const fmt = (n) => el.dataset.format === "in" ? n.toLocaleString("en-IN") : String(n);
+    if (reduceMotion) { el.textContent = fmt(to); return; }
+    const start = performance.now(), dur = 1400;
+    (function tick(now) {
+      const p = Math.min(1, (now - start) / dur);
+      el.textContent = fmt(Math.round(to * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(tick);
+    })(start);
+  }
+
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("in");
+        e.target.querySelectorAll(".count").forEach(countUp);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+  } else {
+    document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+  }
+
+  // ---------- 3D avatars ----------
+  const avatarTpl = document.getElementById("avatar-tpl");
+  document.querySelectorAll(".review").forEach((card, n) => {
+    const av = card.querySelector(".avatar");
+    const svg = avatarTpl.content.firstElementChild.cloneNode(true);
+    // give each avatar's gradients unique ids so colours don't clash
+    svg.querySelectorAll("[id]").forEach((node) => {
+      const id = node.id, uid = id + "-" + n;
+      node.id = uid;
+      svg.querySelectorAll("[fill='url(#" + id + ")'], [clip-path='url(#" + id + ")']").forEach((ref) => {
+        if (ref.getAttribute("fill") === "url(#" + id + ")") ref.setAttribute("fill", "url(#" + uid + ")");
+        if (ref.getAttribute("clip-path") === "url(#" + id + ")") ref.setAttribute("clip-path", "url(#" + uid + ")");
+      });
+    });
+    av.style.setProperty("--h", card.dataset.hue || "168");
+    av.appendChild(svg);
+    const ini = document.createElement("span");
+    ini.className = "ini";
+    ini.textContent = av.dataset.initial || "";
+    av.appendChild(ini);
+  });
+
+  // ---------- Payment proof strip ----------
+  const proofTrack = document.getElementById("proof-track");
+  PAYMENT_PROOFS.forEach((src, i) => {
+    const card = document.createElement("div");
+    card.className = "proof-card";
+    card.innerHTML = '<img src="' + src + '" alt="₹749 payment screenshot ' + (i + 1) + '" loading="lazy" />';
+    card.addEventListener("click", () => openGallery(PAYMENT_PROOFS, i));
+    proofTrack.appendChild(card);
+  });
+
+  // ---------- Auto-scrolling marquees ----------
+  // The track's content is duplicated so the loop is seamless. Touch/hover pauses it.
+  function setupMarquee(marquee) {
+    const track = marquee.querySelector(".marquee-track");
+    Array.from(track.children).forEach((child) => {
+      const clone = child.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
+    });
+    // clones of proof cards need their own zoom handlers
+    track.querySelectorAll(".proof-card[aria-hidden]").forEach((c, i) => {
+      c.addEventListener("click", () => openGallery(PAYMENT_PROOFS, i % PAYMENT_PROOFS.length));
+    });
+    let resumeTimer;
+    marquee.addEventListener("touchstart", () => { clearTimeout(resumeTimer); marquee.classList.add("paused"); }, { passive: true });
+    marquee.addEventListener("touchend", () => { resumeTimer = setTimeout(() => marquee.classList.remove("paused"), 2500); }, { passive: true });
+  }
+  if (!reduceMotion) document.querySelectorAll(".marquee").forEach(setupMarquee);
+
+  // ---------- Look-inside carousel ----------
   const peekTrack = document.getElementById("peek-track");
   const peekImgs = Array.from(peekTrack.querySelectorAll("img"));
   const peekCount = document.getElementById("peek-count");
-  let lightboxIndex = 0;
 
   function currentPeek() {
     const mid = peekTrack.scrollLeft + peekTrack.clientWidth / 2;
@@ -799,28 +1096,27 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     });
   });
 
-  function showLightbox(i) {
-    lightboxIndex = (i + peekImgs.length) % peekImgs.length;
-    const img = document.getElementById("lightbox-img");
-    img.src = peekImgs[lightboxIndex].src;
-    img.alt = peekImgs[lightboxIndex].alt;
+  // ---------- Lightbox (shared by sample pages and payment screenshots) ----------
+  let gallery = [], lightboxIndex = 0;
+
+  function openGallery(srcs, i) {
+    gallery = srcs;
+    lightboxIndex = (i + gallery.length) % gallery.length;
+    document.getElementById("lightbox-img").src = gallery[lightboxIndex];
     document.getElementById("lightbox-overlay").classList.add("open");
   }
-  function stepLightbox(d) { showLightbox(lightboxIndex + d); }
+  function stepLightbox(d) { openGallery(gallery, lightboxIndex + d); }
+  function closeLightbox() { document.getElementById("lightbox-overlay").classList.remove("open"); }
 
-  peekImgs.forEach((img, i) => {
-    img.addEventListener("click", () => showLightbox(i));
-  });
+  const peekSrcs = peekImgs.map((img) => img.getAttribute("src"));
+  peekImgs.forEach((img, i) => img.addEventListener("click", () => openGallery(peekSrcs, i)));
+
   document.addEventListener("keydown", (e) => {
     if (!document.getElementById("lightbox-overlay").classList.contains("open")) return;
+    if (e.key === "Escape") closeLightbox();
     if (e.key === "ArrowLeft") stepLightbox(-1);
     if (e.key === "ArrowRight") stepLightbox(1);
   });
-
-  function closeLightbox() {
-    document.getElementById("lightbox-overlay").classList.remove("open");
-  }
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
 
   function setStatus(msg) {
     document.getElementById("status-message").textContent = msg;
