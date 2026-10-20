@@ -251,6 +251,7 @@
 
   .proof-card { flex-shrink: 0; height: 300px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line-2); background: #fff; cursor: zoom-in; box-shadow: 0 16px 40px -20px rgba(0,0,0,0.9); }
   .proof-card img { height: 100%; width: auto; display: block; }
+  .proof-card.wide { height: 260px; }
   .proof-note { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px !important; color: var(--muted) !important; text-align: center; margin: 8px 0 0 !important; }
 
   /* ---------- What's inside ---------- */
@@ -287,6 +288,21 @@
     .author { display: grid; grid-template-columns: 260px 1fr; }
     .author-photo img { height: 100%; min-height: 360px; }
   }
+
+  .author-links { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* ---------- Reels ---------- */
+  .reel-track { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; scrollbar-width: none; }
+  .reel-track::-webkit-scrollbar { display: none; }
+  .reel { flex: 0 0 300px; scroll-snap-align: center; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .reel-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .reel-title { font-family: var(--font-display); font-weight: 600; font-size: 14px; line-height: 1.3; }
+  .reel-views { display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0; font-size: 11.5px; font-weight: 700; color: #1A1204; background: var(--gold-grad); padding: 4px 9px; border-radius: 999px; }
+  .reel-frame { border-radius: 12px; overflow: hidden; background: var(--bg-2); min-height: 200px; }
+  .reel-frame .instagram-media { margin: 0 !important; min-width: 0 !important; width: 100% !important; max-width: 100% !important; border: none !important; border-radius: 12px !important; }
+  .reel-fallback { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 200px; padding: 20px; text-align: center; text-decoration: none; color: var(--text-2); font-size: 14px; font-weight: 600; }
+  .reel-fallback .icon { color: #F77737; font-size: 18px; }
+  .reel-link { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 600; text-decoration: none; margin-top: auto; }
 
   /* ---------- FAQ ---------- */
   details.faq { border-bottom: 1px solid var(--line); }
@@ -523,6 +539,19 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     </div>
   </section>
 
+  <!-- ===== PAYMENT PROOF (auto-scrolling) =====
+       To add screenshots: blur transaction IDs and buyer details first, upload to images/proof/,
+       then add the file names to PAYMENT_PROOFS in the script at the bottom of this page. -->
+  <section id="payments" class="reveal">
+    <p class="eyebrow">Real orders</p>
+    <h2><span class="grad-gold">100+ bundles sold</span> in 2 weeks</h2>
+    <p class="sub-note">Recent bundle payments from buyers, plus orders from our Razorpay dashboard. Tap any screenshot to zoom in.</p>
+    <div class="marquee rtl" id="proof-marquee">
+      <div class="marquee-track" id="proof-track"></div>
+    </div>
+    <p class="proof-note"><svg class="icon"><use href="#i-shield"/></svg>Transaction IDs and buyer details blurred for privacy</p>
+  </section>
+
   <!-- ===== LOOK INSIDE ===== -->
   <section id="samples" class="reveal">
     <p class="eyebrow">Look inside</p>
@@ -596,19 +625,6 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- ===== PAYMENT PROOF (auto-scrolling) =====
-       To add screenshots: blur transaction IDs and buyer details first, upload to images/proof/,
-       then add the file names to PAYMENT_PROOFS in the script at the bottom of this page. -->
-  <section id="payments" class="reveal">
-    <p class="eyebrow">Real orders</p>
-    <h2><span class="grad-gold">100+ bundles sold</span> in 2 weeks</h2>
-    <p class="sub-note">Recent ₹749 payments from buyers. Tap any screenshot to zoom in.</p>
-    <div class="marquee rtl" id="proof-marquee" style="--dur: 40s;">
-      <div class="marquee-track" id="proof-track"></div>
-    </div>
-    <p class="proof-note"><svg class="icon"><use href="#i-shield"/></svg>Transaction IDs and buyer details blurred for privacy</p>
   </section>
 
   <!-- ===== WHAT'S INSIDE ===== -->
@@ -718,7 +734,48 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
           <span><svg class="icon"><use href="#i-trend"/></svg>100+ bundles sold in 2 weeks</span>
         </div>
         <p>Hi, I'm Agnel. I wrote these guides to be the clear, no-nonsense starting point I wish I'd had when I started trading — plain language, real Indian market examples, and a stop-loss on every setup.</p>
-        <a class="ig-btn" href="https://instagram.com/agnel_biju" target="_blank" rel="noopener"><svg class="icon"><use href="#i-insta"/></svg>Follow @agnel_biju on Instagram</a>
+        <div class="author-links">
+          <a class="ig-btn" href="https://instagram.com/agnel_biju" target="_blank" rel="noopener"><svg class="icon"><use href="#i-insta"/></svg>Follow @agnel_biju</a>
+          <a class="ig-btn" href="#reels"><svg class="icon"><use href="#i-eye"/></svg>Watch my reels</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INSTAGRAM REELS =====
+       Instagram's player loads only when this section is scrolled into view.
+       To add a reel, copy one <div class="reel card">…</div> block and change the reel ID, title and views. -->
+  <section id="reels" class="reveal">
+    <p class="eyebrow">Free lessons</p>
+    <h2>My most-watched reels</h2>
+    <p class="sub-note">A taste of how I teach — the bundle goes much deeper. Swipe to see more.</p>
+    <div class="reel-track">
+      <div class="reel card">
+        <div class="reel-head"><span class="reel-title">Candlestick Patterns: Hammer</span><span class="reel-views"><svg class="icon"><use href="#i-eye"/></svg>161K views</span></div>
+        <div class="reel-frame">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DaCcp-3JDPO/" data-instgrm-version="14">
+            <a class="reel-fallback" href="https://www.instagram.com/reel/DaCcp-3JDPO/" target="_blank" rel="noopener"><svg class="icon"><use href="#i-insta"/></svg>Watch "Candlestick Patterns: Hammer" on Instagram</a>
+          </blockquote>
+        </div>
+        <a class="reel-link" href="https://www.instagram.com/reel/DaCcp-3JDPO/" target="_blank" rel="noopener">Watch on Instagram <svg class="icon"><use href="#i-right"/></svg></a>
+      </div>
+      <div class="reel card">
+        <div class="reel-head"><span class="reel-title">Chart Patterns</span><span class="reel-views"><svg class="icon"><use href="#i-eye"/></svg>16K views</span></div>
+        <div class="reel-frame">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DZ9bEkNJr-a/" data-instgrm-version="14">
+            <a class="reel-fallback" href="https://www.instagram.com/reel/DZ9bEkNJr-a/" target="_blank" rel="noopener"><svg class="icon"><use href="#i-insta"/></svg>Watch "Chart Patterns" on Instagram</a>
+          </blockquote>
+        </div>
+        <a class="reel-link" href="https://www.instagram.com/reel/DZ9bEkNJr-a/" target="_blank" rel="noopener">Watch on Instagram <svg class="icon"><use href="#i-right"/></svg></a>
+      </div>
+      <div class="reel card">
+        <div class="reel-head"><span class="reel-title">Common Beginner Mistakes</span><span class="reel-views"><svg class="icon"><use href="#i-eye"/></svg>11K views</span></div>
+        <div class="reel-frame">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DZz-URgpcyg/" data-instgrm-version="14">
+            <a class="reel-fallback" href="https://www.instagram.com/reel/DZz-URgpcyg/" target="_blank" rel="noopener"><svg class="icon"><use href="#i-insta"/></svg>Watch "Common Beginner Mistakes" on Instagram</a>
+          </blockquote>
+        </div>
+        <a class="reel-link" href="https://www.instagram.com/reel/DZz-URgpcyg/" target="_blank" rel="noopener">Watch on Instagram <svg class="icon"><use href="#i-right"/></svg></a>
       </div>
     </div>
   </section>
@@ -812,6 +869,18 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     "images/proof/payment-2.jpg",
     "images/proof/payment-3.jpg",
     "images/proof/payment-4.jpg",
+    "images/proof/razorpay-1.jpg",
+    "images/proof/payment-5.jpg",
+    "images/proof/payment-6.jpg",
+    "images/proof/payment-7.jpg",
+    "images/proof/payment-8.jpg",
+    "images/proof/payment-9.jpg",
+    "images/proof/razorpay-2.jpg",
+    "images/proof/payment-10.jpg",
+    "images/proof/payment-11.jpg",
+    "images/proof/payment-12.jpg",
+    "images/proof/payment-13.jpg",
+    "images/proof/payment-14.jpg",
   ];
   // ===============================================
 
@@ -1044,11 +1113,13 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   const proofTrack = document.getElementById("proof-track");
   PAYMENT_PROOFS.forEach((src, i) => {
     const card = document.createElement("div");
-    card.className = "proof-card";
+    card.className = "proof-card" + (src.indexOf("razorpay") !== -1 ? " wide" : "");
     card.innerHTML = '<img src="' + src + '" alt="₹749 payment screenshot ' + (i + 1) + '" loading="lazy" />';
     card.addEventListener("click", () => openGallery(PAYMENT_PROOFS, i));
     proofTrack.appendChild(card);
   });
+  // keep the scroll speed steady however many screenshots there are
+  document.getElementById("proof-marquee").style.setProperty("--dur", Math.max(30, PAYMENT_PROOFS.length * 4.5) + "s");
 
   // ---------- Auto-scrolling marquees ----------
   // The track's content is duplicated so the loop is seamless. Touch/hover pauses it.
@@ -1068,6 +1139,29 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     marquee.addEventListener("touchend", () => { resumeTimer = setTimeout(() => marquee.classList.remove("paused"), 2500); }, { passive: true });
   }
   if (!reduceMotion) document.querySelectorAll(".marquee").forEach(setupMarquee);
+
+  // ---------- Instagram reels: load Instagram's player only when the section is near ----------
+  (function () {
+    const reels = document.getElementById("reels");
+    let loaded = false;
+    function loadInstagram() {
+      if (loaded) return;
+      loaded = true;
+      const sc = document.createElement("script");
+      sc.async = true;
+      sc.src = "https://www.instagram.com/embed.js";
+      sc.onload = () => { if (window.instgrm) window.instgrm.Embeds.process(); };
+      document.body.appendChild(sc);
+    }
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) { loadInstagram(); io.disconnect(); }
+      }, { rootMargin: "600px 0px" });
+      io.observe(reels);
+    } else {
+      loadInstagram();
+    }
+  })();
 
   // ---------- Look-inside carousel ----------
   const peekTrack = document.getElementById("peek-track");
