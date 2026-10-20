@@ -1170,7 +1170,8 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   (function () {
     const toast = document.getElementById("buy-toast");
     const when = document.getElementById("bt-when");
-    const FIRST_DELAY = 15000, GAP = 35000, SHOW_FOR = 6000, MAX_SHOWN = 3;
+    // Each pop-up stays 6 seconds, then a 3-second pause before the next one.
+    const FIRST_DELAY = 2000, SHOW_FOR = 6000, PAUSE = 3000, GAP = SHOW_FOR + PAUSE, MAX_SHOWN = 6;
     let dismissed = false;
     try { dismissed = sessionStorage.getItem("wizToastClosed") === "1"; } catch (e) {}
     if (dismissed) return;
@@ -1194,22 +1195,23 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
       try { sessionStorage.setItem("wizToastClosed", "1"); } catch (e) {}
     });
 
-    setTimeout(() => {
-      fetch("/api/recent-orders")
-        .then((r) => (r.ok ? r.json() : { purchases: [] }))
-        .then((data) => {
-          const list = (data.purchases || []).slice(0, MAX_SHOWN);
-          list.forEach((ts, i) => {
-            setTimeout(() => {
-              if (dismissed || busy()) return;
-              when.textContent = ago(ts);
-              toast.classList.add("show");
-              setTimeout(() => toast.classList.remove("show"), SHOW_FOR);
-            }, i * GAP);
-          });
-        })
-        .catch(() => {});
-    }, FIRST_DELAY);
+    // Fetch right away so the first pop-up can appear exactly FIRST_DELAY after the page opens.
+    const pageStart = Date.now();
+    fetch("/api/recent-orders")
+      .then((r) => (r.ok ? r.json() : { purchases: [] }))
+      .then((data) => {
+        const list = (data.purchases || []).slice(0, MAX_SHOWN);
+        const waited = Date.now() - pageStart;
+        list.forEach((ts, i) => {
+          setTimeout(() => {
+            if (dismissed || busy()) return;
+            when.textContent = ago(ts);
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), SHOW_FOR);
+          }, Math.max(0, FIRST_DELAY - waited) + i * GAP);
+        });
+      })
+      .catch(() => {});
   })();
 
   // ---------- Instagram reels: load Instagram's player only when the section is near ----------
