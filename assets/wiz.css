@@ -211,7 +211,7 @@
   @keyframes marquee-rtl { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   .review {
-    width: 290px; flex-shrink: 0; padding: 18px 18px 16px; border-radius: 18px; position: relative;
+    width: 318px; flex-shrink: 0; padding: 18px 18px 16px; border-radius: 18px; position: relative;
     background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
     border: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px;
   }
