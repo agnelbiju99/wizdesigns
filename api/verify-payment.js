@@ -6,6 +6,9 @@ const SCREENER_GUIDE = "https://drive.google.com/file/d/1bCGHwBVjoOmcaCyIO5xd6bt
 const CHART_SETUPS_BIBLE = "https://drive.google.com/drive/folders/1EsqJa6mxVbJ4f3QZl6uyzD7vbxFGnYxB?usp=drive_link";
 const PRICE_ACTION_STRATEGIES = "https://drive.google.com/file/d/1ZGTOkevnGxMnDw8JH41OXJkJ9QB9F7pM/view?usp=sharing";
 const PRODUCT_JOURNEY = "https://drive.google.com/file/d/1ZPNMTz7gwHV4HU3ID5-bUoerLGnjr0BR/view?usp=sharing";
+// AI Money Coach Planner: Google Drive folder holding
+// finance_productivity_planner.html + README.txt (share: "Anyone with the link").
+const MONEY_PLANNER = "https://drive.google.com/drive/folders/1ZWEOXSbZQ6lVgjLlLZ_xgkUHIBJY1Mh5?usp=sharing";
 
 const PRODUCT_NAMES = {
   "zero-to-trader": "From Zero to Trader",
@@ -13,22 +16,26 @@ const PRODUCT_NAMES = {
   "chart-setups-bible": "Chart Setups Bible",
   "price-action-strategies": "Price Action Strategies",
   "combo-all-4": "Complete Bundle (All 4 Products)",
+  "combo-all-4-planner": "Complete Bundle + AI Money Coach Planner",
   "combo-zero-screener": "From Zero to Trader + NSE Screener Guide",
   "combo-price-chart": "Price Action Strategies + Chart Setups Bible",
   "product-journey": "What Is A Digital Product?",
 };
+
+const BUNDLE_FILES = [
+  { label: "From Zero to Trader", url: ZERO_TO_TRADER },
+  { label: "NSE Stock Screener Guide", url: SCREENER_GUIDE },
+  { label: "Chart Setups Bible", url: CHART_SETUPS_BIBLE },
+  { label: "Price Action Strategies", url: PRICE_ACTION_STRATEGIES },
+];
 
 const PRODUCT_FILES = {
   "zero-to-trader": [{ label: "From Zero to Trader", url: ZERO_TO_TRADER }],
   "screener-guide": [{ label: "NSE Stock Screener Guide", url: SCREENER_GUIDE }],
   "chart-setups-bible": [{ label: "Chart Setups Bible", url: CHART_SETUPS_BIBLE }],
   "price-action-strategies": [{ label: "Price Action Strategies", url: PRICE_ACTION_STRATEGIES }],
-  "combo-all-4": [
-    { label: "From Zero to Trader", url: ZERO_TO_TRADER },
-    { label: "NSE Stock Screener Guide", url: SCREENER_GUIDE },
-    { label: "Chart Setups Bible", url: CHART_SETUPS_BIBLE },
-    { label: "Price Action Strategies", url: PRICE_ACTION_STRATEGIES },
-  ],
+  "combo-all-4": BUNDLE_FILES,
+  "combo-all-4-planner": [...BUNDLE_FILES, { label: "AI Money Coach Planner", url: MONEY_PLANNER }],
   "combo-zero-screener": [
     { label: "From Zero to Trader", url: ZERO_TO_TRADER },
     { label: "NSE Stock Screener Guide", url: SCREENER_GUIDE },
