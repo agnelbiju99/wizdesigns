@@ -4,262 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Wiz Designs — Stock Market Guides for Beginners (NSE)</title>
-<meta name="description" content="Beginner-friendly stock market PDF guides in simple English. Instant download, pay by UPI." />
+<meta name="description" content="Beginner-friendly stock market PDF guides in simple English: From Zero to Trader, NSE Screener Guide, Chart Setups Bible and Price Action Strategies. Instant download, pay by UPI." />
+<meta name="theme-color" content="#07090D" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090D'/%3E%3Cpath d='M12 18l8 28 8-20 8 20 8-28' fill='none' stroke='%2300C9A7' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='52' cy='18' r='4' fill='%23E8C46A'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/wiz.css" />
+<link rel="preload" as="image" href="images/combo-all-4-cover-v4.webp" />
 <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
-<style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #0D1117;
-    color: #E6EDF3;
-    padding: 40px 20px;
-  }
-  header { text-align: center; margin-bottom: 40px; }
-  header h1 { color: #00C9A7; margin-bottom: 4px; }
-  header p { color: #8B949E; margin: 0; }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .card-images {
-    position: relative;
-    width: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 16px;
-    background: #0D1117;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .card-images img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 500px;
-    object-fit: contain;
-    display: none;
-    cursor: zoom-in;
-  }
-  .card-images img.active { display: block; }
-  .carousel-dots {
-    position: absolute;
-    bottom: 8px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-  }
-  .carousel-dots span {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.4);
-    cursor: pointer;
-  }
-  .carousel-dots span.active { background: #00C9A7; }
-  .carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(13,17,23,0.6);
-    color: #fff;
-    border: none;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  .carousel-arrow.prev { left: 8px; }
-  .carousel-arrow.next { right: 8px; }
-  .card {
-    background: #161B22;
-    border: 1px solid #30363D;
-    border-radius: 12px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-  }
-  .card h2 { margin: 0 0 8px; font-size: 20px; }
-  .card p.desc { color: #8B949E; font-size: 14px; flex-grow: 1; margin-bottom: 16px; }
-  .price { font-size: 24px; font-weight: bold; color: #FFB347; margin-bottom: 16px; }
-  .price .strike {
-    font-size: 16px;
-    color: #6E7681;
-    text-decoration: line-through;
-    font-weight: normal;
-    margin-right: 8px;
-  }
-  .savings-badge {
-    display: inline-block;
-    background: #FF4C4C;
-    color: #fff;
-    font-size: 11px;
-    font-weight: bold;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-bottom: 8px;
-  }
-  .lightbox-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.9);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-  .lightbox-overlay.open { display: flex; }
-  .lightbox-content {
-    position: relative;
-    max-width: 600px;
-    width: 100%;
-  }
-  .lightbox-content img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 80vh;
-    object-fit: contain;
-    border-radius: 8px;
-    display: block;
-    margin: 0 auto;
-  }
-  .lightbox-close {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 32px;
-    cursor: pointer;
-    line-height: 1;
-  }
-  .lightbox-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(22,27,34,0.8);
-    color: #fff;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 20px;
-  }
-  .lightbox-arrow.prev { left: -8px; }
-  .lightbox-arrow.next { right: -8px; }
-  @media (max-width: 640px) {
-    .lightbox-arrow.prev { left: 4px; }
-    .lightbox-arrow.next { right: 4px; }
-  }
-  .success-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-  .success-overlay.open { display: flex; }
-  .success-box {
-    background: #161B22;
-    border: 1px solid #00C9A7;
-    border-radius: 12px;
-    padding: 28px 24px;
-    max-width: 420px;
-    width: 100%;
-    text-align: center;
-  }
-  .success-box h3 { color: #00C9A7; margin: 0 0 6px; font-size: 20px; }
-  .success-box p.sub { color: #8B949E; font-size: 14px; margin: 0 0 20px; }
-  .success-box a.download-btn {
-    display: block;
-    background: #00C9A7;
-    color: #0D1117;
-    padding: 12px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    margin: 10px 0;
-  }
-  .success-box .close-note {
-    margin-top: 16px;
-    font-size: 12px;
-    color: #6E7681;
-  }
-  .success-box button.dismiss {
-    margin-top: 16px;
-    background: none;
-    border: 1px solid #30363D;
-    color: #8B949E;
-    padding: 8px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  button.buy {
-    background: #00C9A7;
-    color: #0D1117;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-    min-height: 44px;
-  }
-  button.buy:disabled { opacity: 0.6; cursor: not-allowed; }
-  a.buy-link {
-    display: block;
-    background: #00C9A7;
-    color: #0D1117;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-    min-height: 44px;
-    text-align: center;
-    text-decoration: none;
-    line-height: 20px;
-    box-sizing: border-box;
-  }
-  .disclaimer {
-    max-width: 900px;
-    margin: 40px auto 0;
-    font-size: 12px;
-    color: #6E7681;
-    text-align: center;
-    line-height: 1.5;
-  }
-  .fact-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 14px; }
-  .fact-strip span { border: 1px solid #30363D; background: #161B22; color: #C9D1D9; font-size: 12px; padding: 5px 10px; border-radius: 20px; white-space: nowrap; }
-  a.details-link { display: block; text-align: center; color: #00C9A7; font-size: 14px; margin-top: 10px; text-decoration: none; }
-  .card.highlight { border-color: #00C9A7; box-shadow: 0 0 0 2px rgba(0,201,167,0.35); }
-  .best-badge { display: inline-block; background: #00C9A7; color: #0D1117; font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 4px; margin: 0 6px 8px 0; }
-  .wa-btn { display: block; max-width: 420px; margin: 18px auto 0; border: 1px solid #25D366; color: #25D366; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 15px; text-decoration: none; text-align: center; }
-  .pay-note { text-align: center; color: #8B949E; font-size: 12px; margin: 8px 0 0; }
-  #status-message {
-    max-width: 900px;
-    margin: 0 auto 20px;
-    text-align: center;
-    color: #00C9A7;
-    font-size: 14px;
-    min-height: 20px;
-  }
-</style>
 
 <!-- Meta Pixel Code -->
 <script>
@@ -282,176 +35,248 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
 </head>
 <body>
 
-<header>
-  <h1>Wiz Designs</h1>
-  <p>Stock market guides for beginner NSE traders</p>
-  <div class="fact-strip">
-    <span>🗣️ Simple English</span>
-    <span>🌱 Beginner friendly</span>
-    <span>⚡ Instant PDF download</span>
-    <span>💳 Pay by UPI</span>
+<!-- Icon set (Lucide-style line icons) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-lang" viewBox="0 0 24 24"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></symbol>
+  <symbol id="i-candle" viewBox="0 0 24 24"><path d="M9 5v4M9 15v4M15 3v6M15 15v6"/><rect x="7" y="9" width="4" height="6" rx="1"/><rect x="13" y="9" width="4" height="6" rx="1"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+  <symbol id="i-journal" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h8M8 11h6"/></symbol>
+  <symbol id="i-radar" viewBox="0 0 24 24"><path d="M19.07 4.93A10 10 0 1 0 22 12"/><path d="M16.24 7.76A6 6 0 1 0 18 12"/><path d="m12 12 7-7"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+  <symbol id="i-infinity" viewBox="0 0 24 24"><path d="M12 12c-2-2.7-4-4-6-4a4 4 0 0 0 0 8c2 0 4-1.3 6-4Zm0 0c2 2.7 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.3-6 4Z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8L20 10.7l-6.1 1.9L12 18.5l-1.9-5.9L4 10.7l6.1-1.9Z"/></symbol>
+</svg>
+<div class="page">
+  <div class="topbar">
+    <span class="brand"><b>Wiz</b> Designs</span>
+    <a class="ig-top" href="https://instagram.com/agnel_biju" target="_blank" rel="noopener"><svg class="icon"><use href="#i-insta"/></svg>@agnel_biju</a>
   </div>
-  <a class="wa-btn js-wa" href="#" data-msg="Hi! I'm on the Wiz Designs website and have a question about the guides.">💬 Not sure which guide to pick? Ask on WhatsApp</a>
-</header>
 
-<div id="status-message"></div>
+  <!-- ===== HERO ===== -->
+  <div class="home-hero">
+    <div class="proof-pill"><span class="dot"></span>100+ bundles sold in the last 2 weeks</div>
+    <h1>Learn to trade the Indian stock market <span class="grad-teal">step by step</span></h1>
+    <p class="subtitle">Clear, beginner-friendly PDF guides — from your very first chart to complete trading setups with entry, stop-loss and target.</p>
+    <div class="chips">
+      <span class="chip"><svg class="icon"><use href="#i-lang"/></svg>Simple English</span>
+      <span class="chip"><svg class="icon"><use href="#i-cap"/></svg>Beginner friendly</span>
+      <span class="chip"><svg class="icon"><use href="#i-zap"/></svg>Instant PDF download</span>
+      <span class="chip"><svg class="icon"><use href="#i-lock"/></svg>Pay by UPI</span>
+    </div>
+  </div>
 
-<div class="grid">
+  <div id="status-message"></div>
 
-  <div class="card">
-    <div class="card-images" data-carousel="combo-all-4">
-      <img src="images/combo-all-4-cover-v4-small.jpg" class="active" alt="Complete Trading Bundle — all 4 book covers" />
-      <img src="images/combo-all-4-cover-v3.jpg" alt="Complete Bundle pricing breakdown" />
-      <img src="images/combo-all-4-2.jpg" alt="From Zero to Trader bundle" />
-      <img src="images/combo-all-4-3.jpg" alt="NSE Screener Guide bundle" />
-      <img src="images/combo-all-4-4.jpg" alt="Chart Setups Bible cover" />
-      <img src="images/combo-all-4-5.jpg" alt="Price Action Strategies cover" />
-      <button class="carousel-arrow prev" onclick="moveCarousel('combo-all-4', -1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveCarousel('combo-all-4', 1)">›</button>
-      <div class="carousel-dots">
-        <span class="active"></span><span></span><span></span><span></span><span></span><span></span>
+  <!-- ===== FEATURED: COMPLETE BUNDLE ===== -->
+  <div class="feature reveal" id="buy-box" data-card="combo-all-4">
+    <picture>
+      <source srcset="images/combo-all-4-cover-v4.webp" type="image/webp" />
+      <img class="f-img" src="images/combo-all-4-cover-v4-small.jpg" width="1200" height="675" alt="The Complete Trading Bundle — all 4 guides" />
+    </picture>
+    <div class="f-body">
+      <div class="badges"><span class="badge-teal">BEST VALUE</span><span class="save-badge">SAVE ₹237</span></div>
+      <h2>The Complete Trading Bundle</h2>
+      <p class="subtitle" style="margin:0;">All 4 guides + 2 free bonuses — the full path from zero to trading with a plan.</p>
+      <ul class="f-list">
+        <li><svg class="icon"><use href="#i-check-circle"/></svg>From Zero to Trader</li>
+        <li><svg class="icon"><use href="#i-check-circle"/></svg>NSE Screener Guide</li>
+        <li><svg class="icon"><use href="#i-check-circle"/></svg>Chart Setups Bible</li>
+        <li><svg class="icon"><use href="#i-check-circle"/></svg>Price Action Strategies</li>
+        <li><svg class="icon"><use href="#i-gift"/></svg>Trading Journal</li>
+        <li><svg class="icon"><use href="#i-gift"/></svg>Breakout Scanner</li>
+      </ul>
+      <div class="price-block"><span class="strike">₹986</span><span class="now grad-gold">₹749</span></div>
+      <button class="buy" id="buy-btn" data-product="combo-all-4" data-name="Complete Bundle (All 4 Products)" data-amount="74900">Get All 4 Guides — ₹749</button>
+      <a class="btn-outline" href="/combo-all-4.html"><svg class="icon"><use href="#i-eye"/></svg>See what's inside the bundle</a>
+    </div>
+  </div>
+
+  <div class="stats reveal">
+    <div class="stat card"><div class="num grad-gold"><span class="count" data-to="100">100</span>+</div><div class="lbl">bundles sold in 2 weeks</div></div>
+    <div class="stat card"><div class="num grad-teal"><span class="count" data-to="10000" data-format="in">10,000</span>+</div><div class="lbl">Instagram followers</div></div>
+    <div class="stat card"><div class="num"><span class="count" data-to="152">152</span></div><div class="lbl">pages across 4 guides</div></div>
+    <div class="stat card"><div class="num"><span class="count" data-to="32">32</span></div><div class="lbl">patterns &amp; setups with entry/SL/target</div></div>
+  </div>
+  <a class="peek-link" href="/combo-all-4.html#payments"><svg class="icon"><use href="#i-receipt"/></svg>See real orders from buyers</a>
+
+  <!-- ===== SINGLE GUIDES ===== -->
+  <section class="reveal" id="guides">
+    <p class="eyebrow">The guides</p>
+    <h2>Buy a single guide</h2>
+    <div class="guide-grid">
+      <div class="gcard card" data-card="zero-to-trader">
+        <a class="g-img" href="/zero-to-trader.html"><img src="images/zero-to-trader-2.jpg" alt="From Zero to Trader" loading="lazy" /></a>
+        <div class="g-body">
+          <span class="g-meta">Start here · 78 pages</span>
+          <h3>From Zero to Trader</h3>
+          <p class="g-desc">The complete beginner's roadmap: fundamentals, charts, 5 candlestick patterns, 11 indicators, risk and psychology. Free Trading Journal.</p>
+          <div class="g-price"><span class="now grad-gold">₹289</span></div>
+          <div class="g-actions"><button class="buy" data-product="zero-to-trader" data-name="From Zero to Trader" data-amount="28900">Buy ₹289</button><a class="btn-outline" href="/zero-to-trader.html">See inside <svg class="icon"><use href="#i-right"/></svg></a></div>
+          
+        </div>
+      </div>
+      <div class="gcard card" data-card="screener-guide">
+        <a class="g-img" href="/screener-guide.html"><img src="images/screener-guide-1.jpg" alt="NSE Stock Screener Guide" loading="lazy" /></a>
+        <div class="g-body">
+          <span class="g-meta">30 pages · free tools</span>
+          <h3>NSE Stock Screener Guide</h3>
+          <p class="g-desc">Find the right stocks every evening: a filter framework, a 15-minute nightly routine and a real scanner walkthrough. Free Breakout Scanner.</p>
+          <div class="g-price"><span class="now grad-gold">₹399</span></div>
+          <div class="g-actions"><button class="buy" data-product="screener-guide" data-name="NSE Stock Screener Guide" data-amount="39900">Buy ₹399</button><a class="btn-outline" href="/screener-guide.html">See inside <svg class="icon"><use href="#i-right"/></svg></a></div>
+          
+        </div>
+      </div>
+      <div class="gcard card" data-card="chart-setups-bible">
+        <a class="g-img" href="/chart-setups-bible.html"><img src="images/chart-setups-bible-cover-clean.jpg" alt="Chart Setups Bible" loading="lazy" /></a>
+        <div class="g-body">
+          <span class="g-meta">19 patterns · 28 pages</span>
+          <h3>Chart Setups Bible</h3>
+          <p class="g-desc">Every pattern a beginner needs, with a reliability rating and exact entry, stop-loss and target rules.</p>
+          <div class="g-price"><span class="now grad-gold">₹149</span></div>
+          <div class="g-actions"><button class="buy" data-product="chart-setups-bible" data-name="Chart Setups Bible" data-amount="14900">Buy ₹149</button><a class="btn-outline" href="/chart-setups-bible.html">See inside <svg class="icon"><use href="#i-right"/></svg></a></div>
+          
+        </div>
+      </div>
+      <div class="gcard card" data-card="price-action-strategies">
+        <a class="g-img" href="/price-action-strategies.html"><img src="images/price-action-strategies-cover-clean.jpg" alt="Price Action Strategies" loading="lazy" /></a>
+        <div class="g-body">
+          <span class="g-meta">13 setups · 16 pages</span>
+          <h3>Price Action Strategies</h3>
+          <p class="g-desc">Breakouts, pullbacks, ORB, VWAP bounces and more — each with a worked example and the common mistake to avoid.</p>
+          <div class="g-price"><span class="now grad-gold">₹149</span></div>
+          <div class="g-actions"><button class="buy" data-product="price-action-strategies" data-name="Price Action Strategies" data-amount="14900">Buy ₹149</button><a class="btn-outline" href="/price-action-strategies.html">See inside <svg class="icon"><use href="#i-right"/></svg></a></div>
+          
+        </div>
       </div>
     </div>
-    <div><span class="best-badge">BEST VALUE</span><span class="savings-badge">SAVE ₹237</span></div>
-    <h2>Complete Bundle — All 4 Products</h2>
-    <p class="desc">Everything: From Zero to Trader, NSE Stock Screener Guide, Chart Setups Bible, and Price Action Strategies.</p>
-    <div class="price"><span class="strike">₹986</span>₹749</div>
-    <button class="buy" data-product="combo-all-4" data-name="Complete Bundle (All 4 Products)" data-amount="74900">Buy Now</button>
-    <a class="details-link" href="/combo-all-4.html">See what's inside →</a>
-  </div>
+  </section>
 
-  <div class="card">
-    <div class="card-images" data-carousel="combo-zero-screener">
-      <img src="images/combo-zero-screener-cover-v3.jpg" class="active" alt="Zero to Trader + Screener Guide combo pricing" />
-      <img src="images/combo-zero-screener-2.jpg" alt="NSE Screener Guide bundle" />
-      <img src="images/combo-zero-screener-3.jpg" alt="From Zero to Trader bundle" />
-      <button class="carousel-arrow prev" onclick="moveCarousel('combo-zero-screener', -1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveCarousel('combo-zero-screener', 1)">›</button>
-      <div class="carousel-dots">
-        <span class="active"></span><span></span><span></span>
+  <!-- ===== COMBOS ===== -->
+  <section class="reveal" id="combos">
+    <p class="eyebrow">Save with a pair</p>
+    <h2>Combo deals</h2>
+    <div class="guide-grid">
+      <div class="gcard card" data-card="combo-zero-screener">
+        <div class="g-img"><img src="images/combo-zero-screener-cover-v3.jpg" alt="From Zero to Trader + Screener Guide" loading="lazy" /></div>
+        <div class="g-body">
+          <span class="g-meta">Save ₹139</span>
+          <h3>From Zero to Trader + Screener Guide</h3>
+          <p class="g-desc">Learn the basics, then find the right stocks to apply them to.</p>
+          <div class="g-price"><span class="strike">₹688</span><span class="now grad-gold">₹549</span></div>
+          <div class="g-actions" style="grid-template-columns:1fr"><button class="buy" data-product="combo-zero-screener" data-name="From Zero to Trader + NSE Screener Guide" data-amount="54900">Buy ₹549</button></div>
+          <div class="g-links"><a href="/zero-to-trader.html">From Zero to Trader →</a><a href="/screener-guide.html">Screener Guide →</a></div>
+        </div>
+      </div>
+      <div class="gcard card" data-card="combo-price-chart">
+        <div class="g-img"><img src="images/combo-price-chart-clean.jpg" alt="Chart Setups Bible + Price Action Strategies" loading="lazy" /></div>
+        <div class="g-body">
+          <span class="g-meta">Save ₹119</span>
+          <h3>Chart Setups Bible + Price Action Strategies</h3>
+          <p class="g-desc">Patterns tell you what you're seeing; setups tell you how to trade it.</p>
+          <div class="g-price"><span class="strike">₹298</span><span class="now grad-gold">₹179</span></div>
+          <div class="g-actions" style="grid-template-columns:1fr"><button class="buy" data-product="combo-price-chart" data-name="Price Action Strategies + Chart Setups Bible" data-amount="17900">Buy ₹179</button></div>
+          <div class="g-links"><a href="/chart-setups-bible.html">Chart Setups Bible →</a><a href="/price-action-strategies.html">Price Action Strategies →</a></div>
+        </div>
       </div>
     </div>
-    <span class="savings-badge">SAVE ₹139</span>
-    <h2>From Zero to Trader + Screener Guide</h2>
-    <p class="desc">The complete beginner-to-trader eBook paired with the NSE Stock Screener Guide.</p>
-    <div class="price"><span class="strike">₹688</span>₹549</div>
-    <button class="buy" data-product="combo-zero-screener" data-name="From Zero to Trader + NSE Screener Guide" data-amount="54900">Buy Now</button>
-  </div>
+  </section>
 
-  <div class="card">
-    <div class="card-images" data-carousel="screener-guide">
-      <img src="images/screener-guide-1.jpg" class="active" alt="NSE Stock Screener Guide cover" />
-      <img src="images/screener-guide-2.jpg" alt="NSE Stock Screener Guide bundle" />
-      <img src="images/screener-guide-3.jpg" alt="NSE Stock Screener Guide close-up" />
-      <button class="carousel-arrow prev" onclick="moveCarousel('screener-guide', -1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveCarousel('screener-guide', 1)">›</button>
-      <div class="carousel-dots">
-        <span class="active"></span><span></span><span></span>
+  <!-- ===== HELP ===== -->
+  <section class="reveal">
+    <div class="help-card card">
+      <h3>Not sure which guide to pick?</h3>
+      <p>Tell me where you are in your trading journey and I'll point you to the right one.</p>
+      <a class="wa-btn js-wa" href="#" data-msg="Hi! I'm on the Wiz Designs website and not sure which guide to pick."><svg class="icon"><use href="#i-chat"/></svg>Ask on WhatsApp</a>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="eyebrow">Your guide</p>
+    <h2>Who wrote this</h2>
+    <div class="card" style="padding:0;">
+      <div class="author-mini">
+        <picture>
+          <source srcset="images/author-agnel.webp" type="image/webp" />
+          <img src="images/author-agnel.jpg" alt="Agnel Biju" loading="lazy" width="640" height="800" />
+        </picture>
+        <div>
+          <div class="n">Agnel Biju</div>
+          <div class="h">@agnel_biju</div>
+          <div class="author-stats">
+            <span><svg class="icon"><use href="#i-users"/></svg>10,000+ Instagram followers</span>
+            <span><svg class="icon"><use href="#i-trend"/></svg>100+ bundles sold in 2 weeks</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 0 16px 16px;">
+        <p class="author-mini-text">I wrote these guides to be the clear, no-nonsense starting point I wish I'd had when I started trading — plain language, real Indian market examples, and a stop-loss on every setup.</p>
+        <a class="ig-btn" href="https://instagram.com/agnel_biju" target="_blank" rel="noopener"><svg class="icon"><use href="#i-insta"/></svg>Follow @agnel_biju on Instagram</a>
       </div>
     </div>
-    <h2>NSE Stock Screener Guide</h2>
-    <p class="desc">30-page PDF: 4-pillar screening framework, five free tools, position sizing, pre-trade checklist, and a nightly routine cheat sheet.</p>
-    <div class="price">₹399</div>
-    <button class="buy" data-product="screener-guide" data-name="NSE Stock Screener Guide" data-amount="39900">Buy Now</button>
-  </div>
+  </section>
 
-  <div class="card">
-    <div class="card-images" data-carousel="zero-to-trader">
-      <img src="images/zero-to-trader-1.jpg" class="active" alt="From Zero to Trader cover" />
-      <img src="images/zero-to-trader-2.jpg" alt="From Zero to Trader flat lay" />
-      <img src="images/zero-to-trader-3.jpg" alt="From Zero to Trader bundle" />
-      <button class="carousel-arrow prev" onclick="moveCarousel('zero-to-trader', -1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveCarousel('zero-to-trader', 1)">›</button>
-      <div class="carousel-dots">
-        <span class="active"></span><span></span><span></span>
-      </div>
-    </div>
-    <h2>From Zero to Trader</h2>
-    <p class="desc">9-chapter, 78-page eBook covering the fundamentals of intraday trading on NSE — plus a bonus Trading Journal.</p>
-    <div class="price">₹289</div>
-    <button class="buy" data-product="zero-to-trader" data-name="From Zero to Trader" data-amount="28900">Buy Now</button>
-    <a class="details-link" href="/zero-to-trader.html">See what's inside →</a>
-  </div>
+  <!-- ===== FREE ===== -->
+  <section class="reveal">
+    <p class="eyebrow">Free</p>
+    <h2>Building your own digital product?</h2>
+    <a class="free-card card" href="/product-journey.html">
+      <img src="images/product-journey-1.jpg" alt="What Is A Digital Product?" loading="lazy" />
+      <span>
+        <span class="badge-free">FREE</span>
+        <div class="ft">What Is A Digital Product?</div>
+        <div class="fd">Part 1 of a 6-part series: the real story of building a first digital product from zero coding background.</div>
+      </span>
+    </a>
+  </section>
+</div>
+<p class="disclaimer">
+  Digital PDF · Instant Download · No Physical Copy<br/>
+  Educational content only. Not investment advice. Trading in securities markets is subject to market risk.
+  Wiz Designs is not a SEBI-registered investment advisor.
+</p>
 
-  <div class="card">
-    <div class="card-images" data-carousel="combo-price-chart">
-      <img src="images/combo-price-chart-cover-v3.jpg" class="active" alt="Price Action + Chart Setups combo pricing" />
-      <img src="images/combo-price-chart-2.jpg" alt="Price Action Strategies cover" />
-      <img src="images/combo-price-chart-3.jpg" alt="Chart Setups Bible cover" />
-      <button class="carousel-arrow prev" onclick="moveCarousel('combo-price-chart', -1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveCarousel('combo-price-chart', 1)">›</button>
-      <div class="carousel-dots">
-        <span class="active"></span><span></span><span></span>
-      </div>
-    </div>
-    <span class="savings-badge">SAVE ₹119</span>
-    <h2>Price Action Strategies + Chart Setups Bible</h2>
-    <p class="desc">13 price action strategies paired with the full chart pattern reference guide.</p>
-    <div class="price"><span class="strike">₹298</span>₹179</div>
-    <button class="buy" data-product="combo-price-chart" data-name="Price Action Strategies + Chart Setups Bible" data-amount="17900">Buy Now</button>
-  </div>
+<!-- Sticky buy bar: appears once the main Buy button scrolls off screen -->
+<div class="sticky-bar" id="sticky-bar">
+  <div class="sp"><span class="strike">₹986</span><span class="now grad-gold">₹749</span></div>
+  <button class="buy js-buy-proxy">Get All 4 Guides</button>
+  <a class="wa-mini js-wa" href="#" data-msg="Hi! I&#x27;m on the Wiz Designs website and have a question." aria-label="Ask on WhatsApp"><svg class="icon"><use href="#i-chat"/></svg></a>
+</div>
 
-  <div class="card">
-    <div class="card-images" data-carousel="chart-setups-bible">
-      <img src="images/chart-setups-bible-cover-v3.jpg" class="active" alt="Chart Setups Bible cover" />
-      <img src="images/chart-setups-bible-2.jpg" alt="Chart Setups Bible foundations" />
-      <img src="images/chart-setups-bible-3.jpg" alt="Chart Setups Bible pattern example" />
-      <button class="carousel-arrow prev" onclick="moveCarousel('chart-setups-bible', -1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveCarousel('chart-setups-bible', 1)">›</button>
-      <div class="carousel-dots">
-        <span class="active"></span><span></span><span></span>
-      </div>
-    </div>
-    <h2>Chart Setups Bible</h2>
-    <p class="desc">A visual reference of chart patterns and setups — entry, stop-loss, and target rules for each, built for quick lookup while scanning charts.</p>
-    <div class="price">₹149</div>
-    <button class="buy" data-product="chart-setups-bible" data-name="Chart Setups Bible" data-amount="14900">Buy Now</button>
-  </div>
-
-  <div class="card">
-    <div class="card-images" data-carousel="price-action-strategies">
-      <img src="images/price-action-strategies-cover-v3.jpg" class="active" alt="Price Action Strategies cover" />
-      <img src="images/price-action-strategies-2.jpg" alt="Price Action Strategies trade plan" />
-      <img src="images/price-action-strategies-3.jpg" alt="Price Action Strategies setups" />
-      <button class="carousel-arrow prev" onclick="moveCarousel('price-action-strategies', -1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveCarousel('price-action-strategies', 1)">›</button>
-      <div class="carousel-dots">
-        <span class="active"></span><span></span><span></span>
-      </div>
-    </div>
-    <h2>Price Action Strategies</h2>
-    <p class="desc">Core price action concepts and strategies for reading market structure and timing entries without relying on lagging indicators.</p>
-    <div class="price">₹149</div>
-    <button class="buy" data-product="price-action-strategies" data-name="Price Action Strategies" data-amount="14900">Buy Now</button>
-  </div>
-
-  <div class="card">
-    <div class="card-images" data-carousel="product-journey">
-      <img src="images/product-journey-1.jpg" class="active" alt="What Is A Digital Product cover" />
-      <img src="images/product-journey-2.jpg" alt="What's inside at a glance" />
-      <img src="images/product-journey-3.jpg" alt="22 pages every idea illustrated" />
-      <button class="carousel-arrow prev" onclick="moveCarousel('product-journey', -1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveCarousel('product-journey', 1)">›</button>
-      <div class="carousel-dots">
-        <span class="active"></span><span></span><span></span>
-      </div>
-    </div>
-    <span class="savings-badge" style="background:#3FB950;">FREE</span>
-    <h2>What Is A Digital Product?</h2>
-    <p class="desc">Part 1 of a 6-part series: the real story of building a first digital product from zero coding background, plus the Transformation Framework to score your own idea.</p>
-    <div class="price"><span class="strike">₹249</span>FREE</div>
-    <a class="buy-link" href="/product-journey.html">Get It Free</a>
-  </div>
-
+<!-- Recent purchase pop-up: filled from real Razorpay orders by /api/recent-orders -->
+<div class="buy-toast" id="buy-toast" role="status" aria-live="polite">
+  <span class="bt-ico"><svg class="icon"><use href="#i-check-circle"/></svg></span>
+  <span><span class="bt-t">Someone bought the Complete Bundle</span><span class="bt-m"><svg class="icon"><use href="#i-shield"/></svg><span id="bt-when"></span>&nbsp;·&nbsp;Verified order</span></span>
+  <button class="bt-x" id="bt-close" aria-label="Close">&times;</button>
 </div>
 
 <div class="lightbox-overlay" id="lightbox-overlay" onclick="if(event.target===this) closeLightbox()">
-  <div class="lightbox-content">
-    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-    <button class="lightbox-arrow prev" onclick="moveLightbox(-1)">‹</button>
-    <img id="lightbox-img" src="" alt="Product preview" />
-    <button class="lightbox-arrow next" onclick="moveLightbox(1)">›</button>
-  </div>
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+  <button class="lightbox-nav prev" onclick="stepLightbox(-1)" aria-label="Previous">‹</button>
+  <img id="lightbox-img" alt="Preview" />
+  <button class="lightbox-nav next" onclick="stepLightbox(1)" aria-label="Next">›</button>
 </div>
 
 <div class="success-overlay" id="success-overlay">
@@ -460,276 +285,26 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     <p class="sub" id="success-product-name"></p>
     <div id="success-download-links"></div>
     <p class="close-note">Tap each button to download. Save the files to your phone now.</p>
-    <a class="wa-btn js-wa" id="success-wa" href="#" data-msg="" style="margin-top:12px;">💬 Also send me the files on WhatsApp</a>
+    <a class="wa-btn js-wa" id="success-wa" href="#" data-msg=""><svg class="icon"><use href="#i-chat"/></svg>Also send me the files on WhatsApp</a>
     <button class="dismiss" onclick="closeSuccessModal()">Close</button>
   </div>
 </div>
 
-<p class="disclaimer">
-  🔒 Secure payment by Razorpay · UPI · GPay · PhonePe · Cards<br/>
-  📄 Digital PDF · Instant Download · No Physical Copy<br/>
-  Educational content only. Not investment advice. Trading in securities markets is subject to market risk.
-  Wiz Designs is not a SEBI-registered investment advisor.
-</p>
+<script src="assets/wiz.js"></script>
 
 <script>
-  // ============ SETTINGS — EDIT THIS ============
-  // Your WhatsApp Business number with country code, digits only. Example: "919876543210"
-  // While this is empty, all WhatsApp buttons stay hidden.
-  const WHATSAPP_NUMBER = "918301070364";
-  // ===============================================
-
-  function waLink(msg) {
-    return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg);
-  }
-
-  document.querySelectorAll(".js-wa").forEach((el) => {
-    if (!WHATSAPP_NUMBER) { el.style.display = "none"; return; }
-    el.href = waLink(el.dataset.msg || "Hi!");
-    el.target = "_blank";
-    el.rel = "noopener";
-    el.addEventListener("click", () => {
-      if (typeof fbq === "function") fbq("track", "Contact");
-    });
-  });
-
-  document.querySelectorAll(".buy").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const productId = btn.dataset.product;
-      const productName = btn.dataset.name;
-      const amount = btn.dataset.amount;
-
-      if (typeof fbq === "function") {
-        fbq("track", "InitiateCheckout", {
-          content_ids: [productId], content_name: productName, content_type: "product",
-          value: parseInt(amount, 10) / 100, currency: "INR", num_items: 1
-        });
-      }
-
-      if (typeof Razorpay === "undefined") {
-        setStatus("Payment page is still loading — please tap the button again in a second.");
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = "Opening secure checkout...";
-      setStatus("");
-
-      try {
-        const orderRes = await fetch("/api/create-order", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ productId }),
-        });
-
-        if (!orderRes.ok) throw new Error("Could not start checkout. Please try again.");
-        const order = await orderRes.json();
-
-        const options = {
-          key: order.keyId,
-          amount: order.amount,
-          currency: "INR",
-          name: "Wiz Designs",
-          description: productName,
-          order_id: order.orderId,
-          handler: async function (response) {
-            currentRzp = null;
-            clearCheckoutHistory();
-            setStatus("Payment received — verifying...");
-            try {
-              const verifyRes = await fetch("/api/verify-payment", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  razorpay_payment_id: response.razorpay_payment_id,
-                  razorpay_order_id: response.razorpay_order_id,
-                  razorpay_signature: response.razorpay_signature,
-                }),
-              });
-
-              if (!verifyRes.ok) throw new Error("Could not verify payment.");
-              const result = await verifyRes.json();
-
-              // Meta Pixel: track this as a Purchase conversion so ad
-              // delivery can optimize toward people who actually buy.
-              if (typeof fbq === "function") {
-                fbq("track", "Purchase", {
-                  value: parseInt(amount, 10) / 100,
-                  currency: "INR",
-                  content_name: productName,
-                  content_ids: [productId],
-                  content_type: "product",
-                }, { eventID: response.razorpay_payment_id });
-              }
-
-              setStatus("");
-              showDownloadLink(result.productName, result.files, response.razorpay_payment_id);
-            } catch (err) {
-              setStatus(
-                "Payment succeeded but we couldn't fetch your download link automatically. " +
-                (WHATSAPP_NUMBER
-                  ? "Please WhatsApp us your payment ID (" + response.razorpay_payment_id + ") and we'll send it right away."
-                  : "Please DM us your payment ID (" + response.razorpay_payment_id + ") on Instagram @agnel_biju and we'll send it right away.")
-              );
-            }
-          },
-          modal: {
-            ondismiss: function () {
-              btn.disabled = false;
-              btn.textContent = "Buy Now";
-              if (currentRzp) { currentRzp = null; clearCheckoutHistory(); }
-            },
-          },
-          theme: { color: "#00C9A7" },
-        };
-
-        const rzp = new Razorpay(options);
-        rzp.on("payment.failed", function () {
-          setStatus("Payment didn't go through. No money was taken — please try again, or try a different UPI app.");
-          btn.disabled = false;
-          btn.textContent = "Buy Now";
-        });
-        openCheckoutSafely(rzp);
-
-        btn.disabled = false;
-        btn.textContent = "Buy Now";
-      } catch (err) {
-        setStatus(err.message || "Something went wrong. Please try again.");
-        btn.disabled = false;
-        btn.textContent = "Buy Now";
-      }
-    });
-  });
-
-  // Phone back button closes the checkout instead of leaving the page.
-  let currentRzp = null;
-
-  function openCheckoutSafely(rzp) {
-    currentRzp = rzp;
-    history.pushState({ wizCheckoutOpen: true }, "", location.href);
-    rzp.open();
-  }
-
-  function clearCheckoutHistory() {
-    if (history.state && history.state.wizCheckoutOpen) history.back();
-  }
-
-  window.addEventListener("popstate", function () {
-    if (currentRzp) {
-      const rzp = currentRzp;
-      currentRzp = null;
-      try { rzp.close(); } catch (e) {}
-    }
-  });
-
-  function moveCarousel(productId, direction) {
-    const container = document.querySelector('[data-carousel="' + productId + '"]');
-    const imgs = container.querySelectorAll("img");
-    const dots = container.querySelectorAll(".carousel-dots span");
-    let activeIndex = 0;
-    imgs.forEach((img, i) => { if (img.classList.contains("active")) activeIndex = i; });
-
-    imgs[activeIndex].classList.remove("active");
-    dots[activeIndex].classList.remove("active");
-
-    let newIndex = (activeIndex + direction + imgs.length) % imgs.length;
-
-    imgs[newIndex].classList.add("active");
-    dots[newIndex].classList.add("active");
-  }
-
-  // Lightbox: click any product image to view it maximized
-  let lightboxState = { productId: null, index: 0 };
-
-  document.querySelectorAll(".card-images img").forEach((img) => {
-    img.addEventListener("click", () => {
-      const container = img.closest(".card-images");
-      const productId = container.dataset.carousel;
-      const imgs = Array.from(container.querySelectorAll("img"));
-      openLightbox(productId, imgs.indexOf(img));
-    });
-  });
-
-  function openLightbox(productId, index) {
-    lightboxState = { productId, index };
-    renderLightbox();
-    document.getElementById("lightbox-overlay").classList.add("open");
-  }
-
-  function renderLightbox() {
-    const container = document.querySelector('[data-carousel="' + lightboxState.productId + '"]');
-    const imgs = Array.from(container.querySelectorAll("img"));
-    document.getElementById("lightbox-img").src = imgs[lightboxState.index].src;
-  }
-
-  function moveLightbox(direction) {
-    const container = document.querySelector('[data-carousel="' + lightboxState.productId + '"]');
-    const imgs = Array.from(container.querySelectorAll("img"));
-    lightboxState.index = (lightboxState.index + direction + imgs.length) % imgs.length;
-    renderLightbox();
-  }
-
-  function closeLightbox() {
-    document.getElementById("lightbox-overlay").classList.remove("open");
-  }
-
-  document.addEventListener("keydown", (e) => {
-    if (!document.getElementById("lightbox-overlay").classList.contains("open")) return;
-    if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowLeft") moveLightbox(-1);
-    if (e.key === "ArrowRight") moveLightbox(1);
-  });
-
-  function setStatus(msg) {
-    document.getElementById("status-message").textContent = msg;
-    if (msg) document.getElementById("status-message").scrollIntoView({ block: "center" });
-  }
-
-  function showDownloadLink(productName, files, paymentId) {
-    document.getElementById("success-product-name").textContent = productName + " is ready!";
-
-    const container = document.getElementById("success-download-links");
-    container.innerHTML = files
-      .map(
-        (f) =>
-          '<a href="' + f.url + '" target="_blank" rel="noopener" class="download-btn">Download: ' + f.label + "</a>"
-      )
-      .join("");
-
-    if (WHATSAPP_NUMBER) {
-      document.getElementById("success-wa").href =
-        waLink("Hi! I just bought " + productName + ". Payment ID: " + paymentId + ". Please send me the files here too.");
-    }
-
-    document.getElementById("success-overlay").classList.add("open");
-
-    // For a single-file product, also try auto-opening the download in a
-    // new tab right away so the customer doesn't even need to tap the button.
-    // (Browsers may still block this if too much time has passed since the
-    // click — the visible button in the modal is the reliable fallback.)
-    if (files.length === 1) {
-      window.open(files[0].url, "_blank", "noopener");
-    }
-  }
-
-  function closeSuccessModal() {
-    document.getElementById("success-overlay").classList.remove("open");
-  }
-
-  // Direct product links: ?product=<id> scrolls to that card and highlights it.
-  // Checkout no longer opens by itself (that sent visitors into a payment popup
-  // before they had seen the product). Add &buy=1 to a link if you really want
-  // it to open checkout straight away, e.g. /?product=combo-all-4&buy=1
+  // Direct product links: /?product=<id> scrolls to that product and highlights it.
+  // Add &buy=1 to open its checkout straight away, e.g. /?product=chart-setups-bible&buy=1
   (function handleDirectProductLink() {
     const params = new URLSearchParams(window.location.search);
     const targetProduct = params.get("product");
     if (!targetProduct) return;
 
-    const targetBtn = document.querySelector('.buy[data-product="' + targetProduct + '"]');
-    if (!targetBtn) return;
+    const card = document.querySelector('[data-card="' + targetProduct + '"]');
+    const targetBtn = document.querySelector('button[data-product="' + targetProduct + '"]');
+    if (!card || !targetBtn) return;
 
-    const card = targetBtn.closest(".card");
-    card.classList.add("highlight");
+    card.classList.add("highlight", "in");
     card.scrollIntoView({ behavior: "smooth", block: "center" });
 
     if (typeof fbq === "function") {
@@ -744,7 +319,6 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     }
   })();
 </script>
-
 
 </body>
 </html>
