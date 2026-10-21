@@ -369,6 +369,29 @@
   .buy-toast .bt-m .icon { color: var(--green); }
   .buy-toast .bt-x { position: absolute; top: 6px; right: 6px; width: 24px; height: 24px; border: none; background: none; color: var(--muted); font-size: 18px; cursor: pointer; line-height: 1; }
 
+  /* ---------- Bundle add-on (AI Money Coach Planner) ---------- */
+  .addon { display: flex; gap: 11px; align-items: flex-start; padding: 12px; margin: 12px 0 0; border-radius: 14px; cursor: pointer; position: relative;
+           border: 1px dashed rgba(232,196,106,0.6); background: rgba(232,196,106,0.05); transition: background 0.2s ease, border-color 0.2s ease; }
+  .addon.on { border-style: solid; border-color: var(--gold); background: rgba(232,196,106,0.12); box-shadow: 0 8px 24px -14px rgba(232,196,106,0.6); }
+  .addon:focus-within { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .addon input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .addon .tick { width: 22px; height: 22px; border-radius: 7px; border: 2px solid var(--gold); flex-shrink: 0; margin-top: 2px;
+                 display: flex; align-items: center; justify-content: center; color: #1A1204; font-size: 14px; transition: background 0.2s ease; }
+  .addon .tick .icon { opacity: 0; stroke-width: 3; }
+  .addon.on .tick { background: var(--gold-grad); }
+  .addon.on .tick .icon { opacity: 1; }
+  .addon-thumb { position: relative; flex-shrink: 0; cursor: zoom-in; border-radius: 10px; }
+  .addon-thumb img { width: 84px; height: 84px; object-fit: cover; border-radius: 10px; display: block; border: 1px solid var(--line-2); background: #fff; }
+  .addon-thumb .zoom { position: absolute; right: -5px; bottom: -5px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+                       background: var(--bg-2); border: 1px solid var(--gold); color: var(--gold); font-size: 12px; }
+  .addon-body { display: block; min-width: 0; }
+  .addon-top { display: block; font-size: 10.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+  .addon-title { display: block; font-family: var(--font-display); font-weight: 700; font-size: 14.5px; line-height: 1.35; margin: 3px 0 4px; }
+  .addon-text { display: block; font-size: 12.5px; color: var(--text-2); line-height: 1.5; }
+  .addon-price { display: block; font-size: 11.5px; color: var(--muted); margin-top: 5px; }
+  .addon-links { display: flex; justify-content: center; gap: 16px; font-size: 12.5px; margin: 8px 0 2px; }
+  .addon-links a { text-decoration: none; font-weight: 600; }
+
   /* ---------- Overlays ---------- */
   .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
   .lightbox-overlay.open { display: flex; }
@@ -521,6 +544,19 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
       <span class="save-badge">SAVE ₹237</span>
     </div>
     <p class="price-note">One-time payment · All 4 guides + 2 free bonuses · Yours to keep</p>
+    <!-- ===== ADD-ON: AI Money Coach Planner (unticked by default) ===== -->
+    <label class="addon" id="addon">
+      <input type="checkbox" id="addon-check" />
+      <span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>
+      <span class="addon-thumb" id="addon-thumb" role="button" tabindex="0" aria-label="See the planner"><img src="images/planner-thumb.jpg" alt="AI Money Coach Planner" width="84" height="84" /><span class="zoom"><svg class="icon"><use href="#i-search"/></svg></span></span>
+      <span class="addon-body">
+        <span class="addon-top">Add-on · only with the bundle</span>
+        <span class="addon-title">Add the AI Money Coach Planner for <b class="grad-gold">₹249</b></span>
+        <span class="addon-text">Budget tracker, savings goals, 50/30/20 payday split and an offline AI coach — plan how much you can safely invest each month.</span>
+        <span class="addon-price">Sold for ₹1,300+ on Etsy · this price is only for bundle buyers</span>
+      </span>
+    </label>
+    <div class="addon-links"><a href="#" id="addon-preview">See the planner</a><a href="https://www.etsy.com/in-en/listing/4515275977/ai-money-coach-planner-budget-tracker" target="_blank" rel="noopener">Compare on Etsy ↗</a></div>
     <button class="buy" id="buy-btn" data-product="combo-all-4" data-name="Complete Bundle (All 4 Products)" data-amount="74900">Get All 4 Guides — ₹749</button>
     <p class="pay-methods"><span><svg class="icon"><use href="#i-lock"/></svg> Secure payment by Razorpay</span><span>UPI · GPay · PhonePe · Paytm · Cards</span><span>Download links appear on screen right after payment</span></p>
     <a class="wa-btn js-wa" href="#" data-msg="Hi! I'm on the Complete Trading Bundle page and have a question before buying."><svg class="icon"><use href="#i-chat"/></svg>Have a question? Ask on WhatsApp</a>
@@ -1169,6 +1205,45 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     marquee.addEventListener("touchend", () => { resumeTimer = setTimeout(() => marquee.classList.remove("paused"), 2500); }, { passive: true });
   }
   if (!reduceMotion) document.querySelectorAll(".marquee").forEach(setupMarquee);
+
+  // ---------- Bundle add-on: AI Money Coach Planner ----------
+  (function () {
+    const check = document.getElementById("addon-check");
+    const btn = document.getElementById("buy-btn");
+    if (!check || !btn) return;
+    const BASE = { product: "combo-all-4", name: "Complete Bundle (All 4 Products)", amount: 74900, label: "Get All 4 Guides — ₹749", short: "Get All 4 Guides", price: "₹749" };
+    const PLUS = { product: "combo-all-4-planner", name: "Complete Bundle + AI Money Coach Planner", amount: 99800, label: "Get Bundle + Planner — ₹998", short: "Get Bundle + Planner", price: "₹998" };
+    const PLANNER_IMGS = ["images/planner-daily.jpg", "images/planner-insights.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg"];
+
+    function apply() {
+      const o = check.checked ? PLUS : BASE;
+      document.getElementById("addon").classList.toggle("on", check.checked);
+      btn.dataset.product = o.product;
+      btn.dataset.name = o.name;
+      btn.dataset.amount = o.amount;
+      btn.textContent = o.label;
+      document.querySelectorAll(".js-buy-proxy").forEach((b) => {
+        b.textContent = b.closest(".sticky-bar") ? o.short : o.label;
+      });
+      document.querySelectorAll(".sticky-bar .now").forEach((el) => { el.textContent = o.price; });
+    }
+    check.addEventListener("change", () => {
+      apply();
+      if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddPlannerAddon", { value: 249, currency: "INR" });
+    });
+    apply();
+
+    // The picture and "See the planner" open the preview instead of ticking the box.
+    function preview(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openGallery(PLANNER_IMGS, 0);
+    }
+    document.getElementById("addon-preview").addEventListener("click", preview);
+    const thumb = document.getElementById("addon-thumb");
+    thumb.addEventListener("click", preview);
+    thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
+  })();
 
   // ---------- Recent purchase pop-up (real orders only) ----------
   (function () {
