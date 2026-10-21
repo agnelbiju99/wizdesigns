@@ -73,6 +73,26 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
   <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8L20 10.7l-6.1 1.9L12 18.5l-1.9-5.9L4 10.7l6.1-1.9Z"/></symbol>
 </svg>
+
+<!-- 3D-style head avatar, coloured per reviewer via --h (hue) -->
+<template id="avatar-tpl">
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <defs>
+      <radialGradient id="bgG" cx="35%" cy="28%" r="80%"><stop offset="0" style="stop-color: hsl(var(--h) 85% 62%)"/><stop offset="0.6" style="stop-color: hsl(var(--h) 70% 38%)"/><stop offset="1" style="stop-color: hsl(var(--h) 75% 18%)"/></radialGradient>
+      <radialGradient id="headG" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.45" style="stop-color: hsl(var(--h) 40% 88%)"/><stop offset="1" style="stop-color: hsl(var(--h) 35% 62%)"/></radialGradient>
+      <linearGradient id="bodyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color: hsl(var(--h) 35% 90%)"/><stop offset="1" style="stop-color: hsl(var(--h) 35% 58%)"/></linearGradient>
+      <clipPath id="cl"><circle cx="32" cy="32" r="30"/></clipPath>
+    </defs>
+    <circle cx="32" cy="32" r="30" fill="url(#bgG)"/>
+    <g clip-path="url(#cl)">
+      <path d="M10 66c0-14 9.8-22 22-22s22 8 22 22Z" fill="url(#bodyG)"/>
+      <circle cx="32" cy="26" r="11" fill="url(#headG)"/>
+      <ellipse cx="27.5" cy="21" rx="4" ry="2.6" fill="#fff" opacity="0.65"/>
+    </g>
+    <ellipse cx="22" cy="14" rx="11" ry="5" fill="#fff" opacity="0.16"/>
+    <circle cx="32" cy="32" r="29.5" fill="none" stroke="#fff" stroke-opacity="0.22"/>
+  </svg>
+</template>
 <div class="page">
   <div class="topbar">
     <a class="back-link" href="/"><svg class="icon"><use href="#i-left"/></svg>All guides</a>
@@ -130,6 +150,37 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
       <button type="button" class="round-btn peek-btn" data-dir="-1" aria-label="Previous page"><svg class="icon"><use href="#i-left"/></svg></button>
       <span id="peek-count">1 / 4</span>
       <button type="button" class="round-btn peek-btn" data-dir="1" aria-label="Next page"><svg class="icon"><use href="#i-right"/></svg></button>
+    </div>
+  </section>
+
+  <!-- ===== BUYER REVIEWS (auto-scrolling) =====
+       Each review is a shortened excerpt of the buyer's own words. -->
+  <section id="reviews" class="reveal">
+    <p class="eyebrow">Reviews</p>
+    <h2>What readers say</h2>
+    <div class="marquee" style="--dur: 42s;">
+      <div class="marquee-track">
+        <div class="review" data-hue="168">
+          <p class="quote">One of the best trading guides I've come across as a beginner! Definitely a valuable resource for anyone starting their trading journey.</p>
+          <div class="reviewer"><span class="avatar" data-initial="J"></span><span><span class="name">Jithin</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>From Zero to Trader buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="42">
+          <p class="quote">It makes learning trading more structured and helps build a better understanding of the fundamentals. Highly recommended!</p>
+          <div class="reviewer"><span class="avatar" data-initial="A"></span><span><span class="name">Amal</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>From Zero to Trader buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="330">
+          <p class="quote">Really worth the purchase! A great resource for anyone serious about learning the basics of trading.</p>
+          <div class="reviewer"><span class="avatar" data-initial="S"></span><span><span class="name">Saniya</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>From Zero to Trader buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="268">
+          <p class="quote">I especially like that it covers both technical knowledge and the psychological side of trading, which is just as important.</p>
+          <div class="reviewer"><span class="avatar" data-initial="K"></span><span><span class="name">Kalyani</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>From Zero to Trader buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="200">
+          <p class="quote">An excellent eBook for anyone starting from scratch in trading! I'm glad I purchased it!</p>
+          <div class="reviewer"><span class="avatar" data-initial="E"></span><span><span class="name">Elsa Jose</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>From Zero to Trader buyer</span></span></div>
+        </div>
+      </div>
     </div>
   </section>
 
