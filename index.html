@@ -69,6 +69,26 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
   <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8L20 10.7l-6.1 1.9L12 18.5l-1.9-5.9L4 10.7l6.1-1.9Z"/></symbol>
 </svg>
+
+<!-- 3D-style head avatar, coloured per reviewer via --h (hue) -->
+<template id="avatar-tpl">
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <defs>
+      <radialGradient id="bgG" cx="35%" cy="28%" r="80%"><stop offset="0" style="stop-color: hsl(var(--h) 85% 62%)"/><stop offset="0.6" style="stop-color: hsl(var(--h) 70% 38%)"/><stop offset="1" style="stop-color: hsl(var(--h) 75% 18%)"/></radialGradient>
+      <radialGradient id="headG" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.45" style="stop-color: hsl(var(--h) 40% 88%)"/><stop offset="1" style="stop-color: hsl(var(--h) 35% 62%)"/></radialGradient>
+      <linearGradient id="bodyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color: hsl(var(--h) 35% 90%)"/><stop offset="1" style="stop-color: hsl(var(--h) 35% 58%)"/></linearGradient>
+      <clipPath id="cl"><circle cx="32" cy="32" r="30"/></clipPath>
+    </defs>
+    <circle cx="32" cy="32" r="30" fill="url(#bgG)"/>
+    <g clip-path="url(#cl)">
+      <path d="M10 66c0-14 9.8-22 22-22s22 8 22 22Z" fill="url(#bodyG)"/>
+      <circle cx="32" cy="26" r="11" fill="url(#headG)"/>
+      <ellipse cx="27.5" cy="21" rx="4" ry="2.6" fill="#fff" opacity="0.65"/>
+    </g>
+    <ellipse cx="22" cy="14" rx="11" ry="5" fill="#fff" opacity="0.16"/>
+    <circle cx="32" cy="32" r="29.5" fill="none" stroke="#fff" stroke-opacity="0.22"/>
+  </svg>
+</template>
 <div class="page">
   <div class="topbar">
     <span class="brand"><b>Wiz</b> Designs</span>
@@ -109,6 +129,19 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
         <li><svg class="icon"><use href="#i-gift"/></svg>Breakout Scanner</li>
       </ul>
       <div class="price-block"><span class="strike">₹986</span><span class="now grad-gold">₹749</span></div>
+      <!-- ===== ADD-ON: AI Money Coach Planner (unticked by default) ===== -->
+      <label class="addon" id="addon">
+        <input type="checkbox" id="addon-check" />
+        <span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>
+        <span class="addon-thumb" id="addon-thumb" role="button" tabindex="0" aria-label="See the planner"><img src="images/planner-thumb.jpg" alt="AI Money Coach Planner" width="84" height="84" /><span class="zoom"><svg class="icon"><use href="#i-search"/></svg></span></span>
+        <span class="addon-body">
+          <span class="addon-top">Add-on · only with the bundle</span>
+          <span class="addon-title">Add the AI Money Coach Planner for <b class="grad-gold">₹249</b></span>
+          <span class="addon-text">Budget tracker, savings goals, 50/30/20 payday split and an offline AI coach — plan how much you can safely invest each month.</span>
+          <span class="addon-price">Sold for ₹1,300+ on Etsy · this price is only for bundle buyers</span>
+        </span>
+      </label>
+      <div class="addon-links"><a href="#" id="addon-preview">See the planner</a><a href="https://www.etsy.com/in-en/listing/4515275977/ai-money-coach-planner-budget-tracker" target="_blank" rel="noopener">Compare on Etsy ↗</a></div>
       <button class="buy" id="buy-btn" data-product="combo-all-4" data-name="Complete Bundle (All 4 Products)" data-amount="74900">Get All 4 Guides — ₹749</button>
       <a class="btn-outline" href="/combo-all-4.html"><svg class="icon"><use href="#i-eye"/></svg>See what's inside the bundle</a>
     </div>
