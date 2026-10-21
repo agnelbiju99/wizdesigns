@@ -376,3 +376,45 @@ if (peekTrack) {
     })
     .catch(() => {});
 })();
+
+// ---------- 3D avatars on reviews ----------
+(function () {
+  const avatarTpl = document.getElementById("avatar-tpl");
+  if (!avatarTpl) return;
+  document.querySelectorAll(".review").forEach((card, n) => {
+    const av = card.querySelector(".avatar");
+    if (!av) return;
+    const svg = avatarTpl.content.firstElementChild.cloneNode(true);
+    // give each avatar's gradients unique ids so colours don't clash
+    svg.querySelectorAll("[id]").forEach((node) => {
+      const id = node.id, uid = id + "-" + n;
+      node.id = uid;
+      svg.querySelectorAll("[fill='url(#" + id + ")'], [clip-path='url(#" + id + ")']").forEach((ref) => {
+        if (ref.getAttribute("fill") === "url(#" + id + ")") ref.setAttribute("fill", "url(#" + uid + ")");
+        if (ref.getAttribute("clip-path") === "url(#" + id + ")") ref.setAttribute("clip-path", "url(#" + uid + ")");
+      });
+    });
+    av.style.setProperty("--h", card.dataset.hue || "168");
+    av.appendChild(svg);
+    const ini = document.createElement("span");
+    ini.className = "ini";
+    ini.textContent = av.dataset.initial || "";
+    av.appendChild(ini);
+  });
+})();
+
+// ---------- Auto-scrolling marquees ----------
+// The track's content is duplicated so the loop is seamless. Touch/hover pauses it.
+if (!reduceMotion) {
+  document.querySelectorAll(".marquee").forEach((marquee) => {
+    const track = marquee.querySelector(".marquee-track");
+    Array.from(track.children).forEach((child) => {
+      const clone = child.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
+    });
+    let resumeTimer;
+    marquee.addEventListener("touchstart", () => { clearTimeout(resumeTimer); marquee.classList.add("paused"); }, { passive: true });
+    marquee.addEventListener("touchend", () => { resumeTimer = setTimeout(() => marquee.classList.remove("paused"), 2500); }, { passive: true });
+  });
+}
