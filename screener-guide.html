@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The NSE Stock Screener Guide — Find the Right Stocks Every Evening | Wiz Designs</title>
+<meta name="description" content="A practical guide to screening NSE stocks with free tools: a filter framework, a 15-minute nightly routine, position sizing and a real scanner walkthrough. ₹399, instant download." />
+<meta name="theme-color" content="#07090D" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090D'/%3E%3Cpath d='M12 18l8 28 8-20 8 20 8-28' fill='none' stroke='%2300C9A7' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='52' cy='18' r='4' fill='%23E8C46A'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/wiz.css" />
+<link rel="preload" as="image" href="images/screener-guide-1.jpg" />
+<script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3457495557772098');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_ids: ['screener-guide'], content_name: 'NSE Stock Screener Guide',
+  content_type: 'product', value: 399, currency: 'INR'
+});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+</head>
+<body>
+
+<!-- Icon set (Lucide-style line icons) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-lang" viewBox="0 0 24 24"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></symbol>
+  <symbol id="i-candle" viewBox="0 0 24 24"><path d="M9 5v4M9 15v4M15 3v6M15 15v6"/><rect x="7" y="9" width="4" height="6" rx="1"/><rect x="13" y="9" width="4" height="6" rx="1"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+  <symbol id="i-journal" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h8M8 11h6"/></symbol>
+  <symbol id="i-radar" viewBox="0 0 24 24"><path d="M19.07 4.93A10 10 0 1 0 22 12"/><path d="M16.24 7.76A6 6 0 1 0 18 12"/><path d="m12 12 7-7"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+  <symbol id="i-infinity" viewBox="0 0 24 24"><path d="M12 12c-2-2.7-4-4-6-4a4 4 0 0 0 0 8c2 0 4-1.3 6-4Zm0 0c2 2.7 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.3-6 4Z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8L20 10.7l-6.1 1.9L12 18.5l-1.9-5.9L4 10.7l6.1-1.9Z"/></symbol>
+</svg>
+<div class="page">
+  <div class="topbar">
+    <a class="back-link" href="/"><svg class="icon"><use href="#i-left"/></svg>All guides</a>
+    <span class="brand"><b>Wiz</b> Designs</span>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <div class="proof-pill"><span class="dot"></span>Stop scrolling 50 charts — build a real watchlist</div>
+  <div class="chips"><span class="chip"><svg class="icon"><use href="#i-lang"/></svg>Simple English</span><span class="chip"><svg class="icon"><use href="#i-search"/></svg>Uses free tools</span><span class="chip"><svg class="icon"><use href="#i-book"/></svg>30 pages</span><span class="chip"><svg class="icon"><use href="#i-zap"/></svg>Instant PDF download</span></div>
+
+  <div class="cover-wrap">
+    <img class="cover-img zoomable" src="images/screener-guide-1.jpg" alt="NSE Stock Screener Guide cover" />
+  </div>
+
+  <h1>The NSE Stock <span class="grad-teal">Screener Guide</span></h1>
+  <p class="subtitle">How to find the right stocks every evening — using free tools, a repeatable filter framework, and a 15-minute nightly routine. Then walk into every session with a watchlist you actually trust.</p>
+
+  <div id="status-message"></div>
+
+  <div class="buy-box" id="buy-box">
+    <div class="price-block">
+      <span class="now grad-gold">₹399</span>
+      <span class="save-badge">ONE-TIME</span>
+    </div>
+    <p class="price-note">One-time payment · 30-page PDF + free Breakout Scanner access · Yours to keep</p>
+    <button class="buy" id="buy-btn" data-product="screener-guide" data-name="NSE Stock Screener Guide" data-amount="39900">Get the guide — ₹399</button>
+    <p class="pay-methods"><span><svg class="icon"><use href="#i-lock"/></svg> Secure payment by Razorpay</span><span>UPI · GPay · PhonePe · Paytm · Cards</span><span>Download links appear on screen right after payment</span></p>
+    <a class="wa-btn js-wa" href="#" data-msg="Hi! I'm on the NSE Stock Screener Guide page and have a question before buying."><svg class="icon"><use href="#i-chat"/></svg>Have a question? Ask on WhatsApp</a>
+  </div>
+
+  <!-- ===== UPGRADE TO THE BUNDLE ===== -->
+  <div class="upgrade">
+    <div class="u-top"><svg class="icon"><use href="#i-sparkle"/></svg>Best value · Save ₹237</div>
+    <div class="u-title">Get all 4 guides for ₹749 — just ₹350 more</div>
+    <p class="u-text">Add From Zero to Trader, Chart Setups Bible and Price Action Strategies — learn to read the charts your screener finds, and trade them with 32 setups.</p>
+    <a class="btn-gold" href="/combo-all-4.html">See the Complete Bundle <svg class="icon"><use href="#i-right"/></svg></a>
+      <div class="u-alt"><span>Or add <b>From Zero to Trader</b>: both for <b>₹549</b></span><button class="alt-buy" data-product="combo-zero-screener" data-name="From Zero to Trader + NSE Screener Guide" data-amount="54900">Get both — ₹549</button></div>
+  </div>
+  <a class="peek-link" href="#samples"><svg class="icon"><use href="#i-eye"/></svg>See real pages from inside</a>
+
+  <ul class="quick-list reveal"><li><svg class="icon"><use href="#i-check-circle"/></svg><span><strong>The 4 pillars of screening</strong> — and why most screeners fail beginners</span></li><li><svg class="icon"><use href="#i-check-circle"/></svg><span><strong>A filter table</strong> that works on Upstox, TradingView, Chartink or any screener</span></li><li><svg class="icon"><use href="#i-check-circle"/></svg><span><strong>A 15-minute nightly routine</strong> + next-morning checklist</span></li><li><svg class="icon"><use href="#i-check-circle"/></svg><span><strong>Real scanner walkthrough</strong> — from a breakout flag to a full trade plan</span></li><li><svg class="icon"><use href="#i-check-circle"/></svg><span><strong>FREE:</strong> Breakout Scanner access</span></li></ul>
+
+  <!-- ===== LOOK INSIDE ===== -->
+  <section id="samples" class="reveal">
+    <p class="eyebrow">Look inside</p>
+    <h2>Real pages from the guide</h2>
+    <p class="sub-note">Swipe to browse. Tap any page to zoom in.</p>
+    <div class="peek-track" id="peek-track">
+      <figure class="peek"><img src="images/sample-screener-index.jpg" alt="NSE Stock Screener Guide index" loading="lazy" width="909" /><figcaption><strong>NSE Stock Screener Guide</strong>Everything inside, in 4 parts</figcaption></figure>
+      <figure class="peek"><img src="images/sample-screener-nightly-routine.jpg" alt="Nightly screening routine page" loading="lazy" width="909" /><figcaption><strong>NSE Stock Screener Guide</strong>A 15-minute evening routine, step by step</figcaption></figure>
+      <figure class="peek"><img src="images/sample-screener-titan-trade-plan.jpg" alt="TITAN breakout to trade plan walkthrough" loading="lazy" width="909" /><figcaption><strong>NSE Stock Screener Guide</strong>From scanner signal to a full trade plan</figcaption></figure>
+    </div>
+    <div class="peek-nav">
+      <button type="button" class="round-btn peek-btn" data-dir="-1" aria-label="Previous page"><svg class="icon"><use href="#i-left"/></svg></button>
+      <span id="peek-count">1 / 3</span>
+      <button type="button" class="round-btn peek-btn" data-dir="1" aria-label="Next page"><svg class="icon"><use href="#i-right"/></svg></button>
+    </div>
+  </section>
+
+  <!-- ===== CONTENTS ===== -->
+  <section class="reveal">
+    <p class="eyebrow">Contents</p>
+    <h2>Inside the 4 parts</h2>
+    <p class="part-label">Part 1 · Foundations</p>
+    <div class="pattern-chips"><span>The Four Pillars of Screening</span><span>Why Screeners Fail</span></div>
+    <p class="part-label">Part 2 · Framework</p>
+    <div class="pattern-chips"><span>The Filter Table</span><span>Filter Stacking Order</span><span>Applying Filters in Upstox</span><span>Marking Resistance</span><span>Free Tools: Screener.in, TradingView, NSE, Trendlyne/Tickertape</span><span>Sector Momentum Check</span><span>Catalyst Check</span><span>Score &amp; Rank</span><span>5-Gate Pre-Trade Check</span><span>Position Sizing &amp; Risk (3 parts)</span><span>The Nightly Routine</span></div>
+    <p class="part-label">Part 3 · Scanner walkthrough</p>
+    <div class="pattern-chips"><span>Meet BreakoutScan</span><span>Breakout Signals vs Watch Zone</span><span>TITAN: Flag to Trade Plan</span></div>
+    <p class="part-label">Part 4 · Reference</p>
+    <div class="pattern-chips"><span>Next Morning Checklist</span><span>Common Mistakes</span><span>FAQ</span><span>Glossary</span><span>One-Page Reference</span></div>
+
+  </section>
+
+  <!-- ===== FORMAT ===== -->
+  <section class="reveal">
+    <p class="eyebrow">What you get</p>
+    <h2>Format &amp; delivery</h2>
+    <div class="format-grid"><div class="fact card"><div class="k"><svg class="icon"><use href="#i-book"/></svg>Guide</div><div class="v">30-page PDF</div></div><div class="fact card"><div class="k"><svg class="icon"><use href="#i-radar"/></svg>Bonus</div><div class="v">Breakout Scanner access</div></div><div class="fact card"><div class="k"><svg class="icon"><use href="#i-search"/></svg>Tools needed</div><div class="v">Free ones only</div></div><div class="fact card"><div class="k"><svg class="icon"><use href="#i-infinity"/></svg>Access</div><div class="v">Yours forever</div></div></div>
+  </section>
+
+  <!-- ===== WHO IT'S FOR ===== -->
+  <section class="reveal">
+    <p class="eyebrow">Is it right for you?</p>
+    <h2>This is for you if…</h2>
+    <ul class="ticks"><li><svg class="icon"><use href="#i-check-circle"/></svg><span>You don't know which stocks to look at each day</span></li><li><svg class="icon"><use href="#i-check-circle"/></svg><span>You scroll through dozens of charts and end up with nothing</span></li><li><svg class="icon"><use href="#i-check-circle"/></svg><span>You've tried screeners but got noisy, random results</span></li><li><svg class="icon"><use href="#i-check-circle"/></svg><span>You want a short evening routine instead of guessing in the morning</span></li></ul>
+  </section>
+
+
+  <section class="reveal">
+    <p class="eyebrow">Your guide</p>
+    <h2>Who wrote this</h2>
+    <div class="card" style="padding:0;">
+      <div class="author-mini">
+        <picture>
+          <source srcset="images/author-agnel.webp" type="image/webp" />
+          <img src="images/author-agnel.jpg" alt="Agnel Biju" loading="lazy" width="640" height="800" />
+        </picture>
+        <div>
+          <div class="n">Agnel Biju</div>
+          <div class="h">@agnel_biju</div>
+          <div class="author-stats">
+            <span><svg class="icon"><use href="#i-users"/></svg>10,000+ Instagram followers</span>
+            <span><svg class="icon"><use href="#i-trend"/></svg>100+ bundles sold in 2 weeks</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 0 16px 16px;">
+        <p class="author-mini-text">I wrote these guides to be the clear, no-nonsense starting point I wish I'd had when I started trading — plain language, real Indian market examples, and a stop-loss on every setup.</p>
+        <a class="ig-btn" href="https://instagram.com/agnel_biju" target="_blank" rel="noopener"><svg class="icon"><use href="#i-insta"/></svg>Follow @agnel_biju on Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="eyebrow">FAQ</p>
+    <h2>Frequently asked questions</h2>
+    <details class="faq"><summary>Do I need paid tools?<svg class="icon"><use href="#i-plus"/></svg></summary><p>No. The guide uses free tools — Screener.in, TradingView, the NSE website and Trendlyne/Tickertape — and the filters work on Upstox or any screener.</p></details>
+    <details class="faq"><summary>Is the Breakout Scanner included?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes, access to the web-based Breakout Scanner comes free with the guide.</p></details>
+    <details class="faq"><summary>What language is it in?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Simple, easy English — written for beginners, with no heavy jargon. Every term is explained when it first appears.</p></details>
+    <details class="faq"><summary>How do I get it after paying?<svg class="icon"><use href="#i-plus"/></svg></summary><p>As soon as payment succeeds, download buttons appear on this page. Tap to save the files to your phone or laptop. If anything goes wrong, message us your payment ID on WhatsApp and we'll send the files right away.</p></details>
+    <details class="faq"><summary>Can I read it on my phone?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes. It's a standard PDF — it opens in any phone's PDF viewer, Google Drive, or a browser.</p></details>
+    <details class="faq"><summary>How can I pay?<svg class="icon"><use href="#i-plus"/></svg></summary><p>UPI (GPay, PhonePe, Paytm, any UPI app), debit/credit card, or net banking — all through Razorpay's secure checkout.</p></details>
+    <details class="faq"><summary>Is this a tips or advisory service?<svg class="icon"><use href="#i-plus"/></svg></summary><p>No. This is educational material that teaches you how to analyse and pick trades yourself. We don't give buy/sell calls.</p></details>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="final-cta reveal">
+    <p class="eyebrow">Start today</p>
+    <h2>Build a watchlist you trust</h2>
+    <p class="fp">30-page guide + free Breakout Scanner · <b class="grad-gold">₹399</b></p>
+    <button class="buy js-buy-proxy">Get the guide — ₹399</button>
+    <p class="pay-methods"><span><svg class="icon"><use href="#i-lock"/></svg> Pay by UPI · GPay · PhonePe · Cards</span><span>Instant download</span></p>
+    <a class="btn-outline" style="margin-top:12px;" href="/combo-all-4.html"><svg class="icon"><use href="#i-sparkle"/></svg>Or get all 4 guides for ₹749</a>
+  </section>
+
+  <section class="reveal">
+    <p class="eyebrow">More guides</p>
+    <h2>Explore the other guides</h2>
+    <div class="op-grid">
+      <a class="op-card card" href="/combo-all-4.html">
+        <div class="op-thumb"><img src="images/combo-all-4-cover-v4-small.jpg" alt="Complete Bundle — All 4 Guides" loading="lazy" /></div>
+        <div class="op-body"><div class="op-name">Complete Bundle — All 4 Guides</div><div class="op-sub">All 4 guides + Trading Journal + Breakout Scanner</div><div class="op-price"><span class="strike">₹986</span><span class="now">₹749</span></div></div>
+      </a>
+      <a class="op-card card" href="/zero-to-trader.html">
+        <div class="op-thumb"><img src="images/zero-to-trader-2.jpg" alt="From Zero to Trader" loading="lazy" /></div>
+        <div class="op-body"><div class="op-name">From Zero to Trader</div><div class="op-sub">9-chapter beginner roadmap, 78 pages</div><div class="op-price"><span class="now">₹289</span></div></div>
+      </a>
+      <a class="op-card card" href="/chart-setups-bible.html">
+        <div class="op-thumb"><img src="images/chart-setups-bible-cover-clean.jpg" alt="Chart Setups Bible" loading="lazy" /></div>
+        <div class="op-body"><div class="op-name">Chart Setups Bible</div><div class="op-sub">19 patterns with entry/SL/target</div><div class="op-price"><span class="now">₹149</span></div></div>
+      </a>
+      <a class="op-card card" href="/price-action-strategies.html">
+        <div class="op-thumb"><img src="images/price-action-strategies-cover-clean.jpg" alt="Price Action Strategies" loading="lazy" /></div>
+        <div class="op-body"><div class="op-name">Price Action Strategies</div><div class="op-sub">13 complete trading setups</div><div class="op-price"><span class="now">₹149</span></div></div>
+      </a>
+    </div>
+  </section>
+</div>
+
+<p class="disclaimer">
+  Digital PDF · Instant Download · No Physical Copy<br/>
+  Educational content only. Not investment advice. Trading in securities markets is subject to market risk.
+  Wiz Designs is not a SEBI-registered investment advisor.
+</p>
+
+<!-- Sticky buy bar: appears once the main Buy button scrolls off screen -->
+<div class="sticky-bar" id="sticky-bar">
+  <div class="sp"><span class="now grad-gold">₹399</span></div>
+  <button class="buy js-buy-proxy">Get the guide</button>
+  <a class="wa-mini js-wa" href="#" data-msg="Hi! I&#x27;m on the NSE Stock Screener Guide page and have a question." aria-label="Ask on WhatsApp"><svg class="icon"><use href="#i-chat"/></svg></a>
+</div>
+
+<!-- Recent purchase pop-up: filled from real Razorpay orders by /api/recent-orders -->
+<div class="buy-toast" id="buy-toast" role="status" aria-live="polite">
+  <span class="bt-ico"><svg class="icon"><use href="#i-check-circle"/></svg></span>
+  <span><span class="bt-t">Someone bought the Complete Bundle</span><span class="bt-m"><svg class="icon"><use href="#i-shield"/></svg><span id="bt-when"></span>&nbsp;·&nbsp;Verified order</span></span>
+  <button class="bt-x" id="bt-close" aria-label="Close">&times;</button>
+</div>
+
+<div class="lightbox-overlay" id="lightbox-overlay" onclick="if(event.target===this) closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+  <button class="lightbox-nav prev" onclick="stepLightbox(-1)" aria-label="Previous">‹</button>
+  <img id="lightbox-img" alt="Preview" />
+  <button class="lightbox-nav next" onclick="stepLightbox(1)" aria-label="Next">›</button>
+</div>
+
+<div class="success-overlay" id="success-overlay">
+  <div class="success-box">
+    <h3>Payment Successful! ✅</h3>
+    <p class="sub" id="success-product-name"></p>
+    <div id="success-download-links"></div>
+    <p class="close-note">Tap each button to download. Save the files to your phone now.</p>
+    <a class="wa-btn js-wa" id="success-wa" href="#" data-msg=""><svg class="icon"><use href="#i-chat"/></svg>Also send me the files on WhatsApp</a>
+    <button class="dismiss" onclick="closeSuccessModal()">Close</button>
+  </div>
+</div>
+
+<script src="assets/wiz.js"></script>
+
+</body>
+</html>
