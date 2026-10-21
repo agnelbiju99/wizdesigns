@@ -418,3 +418,42 @@ if (!reduceMotion) {
     marquee.addEventListener("touchend", () => { resumeTimer = setTimeout(() => marquee.classList.remove("paused"), 2500); }, { passive: true });
   });
 }
+
+// ---------- Bundle add-on: AI Money Coach Planner ----------
+(function () {
+  const check = document.getElementById("addon-check");
+  const btn = document.getElementById("buy-btn");
+  if (!check || !btn) return;
+  const BASE = { product: "combo-all-4", name: "Complete Bundle (All 4 Products)", amount: 74900, label: "Get All 4 Guides — ₹749", short: "Get All 4 Guides", price: "₹749" };
+  const PLUS = { product: "combo-all-4-planner", name: "Complete Bundle + AI Money Coach Planner", amount: 99800, label: "Get Bundle + Planner — ₹998", short: "Get Bundle + Planner", price: "₹998" };
+  const PLANNER_IMGS = ["images/planner-daily.jpg", "images/planner-insights.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg"];
+
+  function apply() {
+    const o = check.checked ? PLUS : BASE;
+    document.getElementById("addon").classList.toggle("on", check.checked);
+    btn.dataset.product = o.product;
+    btn.dataset.name = o.name;
+    btn.dataset.amount = o.amount;
+    btn.textContent = o.label;
+    document.querySelectorAll(".js-buy-proxy").forEach((b) => {
+      b.textContent = b.closest(".sticky-bar") ? o.short : o.label;
+    });
+    document.querySelectorAll(".sticky-bar .now").forEach((el) => { el.textContent = o.price; });
+  }
+  check.addEventListener("change", () => {
+    apply();
+    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddPlannerAddon", { value: 249, currency: "INR" });
+  });
+  apply();
+
+  // The picture and "See the planner" open the preview instead of ticking the box.
+  function preview(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    openGallery(PLANNER_IMGS, 0);
+  }
+  document.getElementById("addon-preview").addEventListener("click", preview);
+  const thumb = document.getElementById("addon-thumb");
+  thumb.addEventListener("click", preview);
+  thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
+})();
