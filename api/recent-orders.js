@@ -3,7 +3,8 @@ import Razorpay from "razorpay";
 // Recent real Complete Bundle purchases, for the "someone just bought" pop-up.
 // Returns only payment times — never names, phone numbers, emails or payment IDs.
 
-const BUNDLE_AMOUNT = 74900;
+// Complete Bundle on its own (₹749) and with the AI Money Coach Planner (₹998).
+const BUNDLE_AMOUNTS = [74900, 99800];
 const MAX_AGE_DAYS = 30;
 const MAX_RESULTS = 10;
 
@@ -32,7 +33,7 @@ export default async function handler(req, res) {
     const result = await instance.payments.all({ from: since, count: 100 });
 
     const times = (result.items || [])
-      .filter((p) => p.status === "captured" && p.amount === BUNDLE_AMOUNT && !isOwnPayment(p))
+      .filter((p) => p.status === "captured" && BUNDLE_AMOUNTS.includes(p.amount) && !isOwnPayment(p))
       .map((p) => p.created_at)
       .sort((a, b) => b - a)
       .slice(0, MAX_RESULTS);
