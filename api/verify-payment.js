@@ -17,6 +17,7 @@ const PRODUCT_NAMES = {
   "price-action-strategies": "Price Action Strategies",
   "combo-all-4": "Complete Bundle (All 4 Products)",
   "combo-all-4-planner": "Complete Bundle + AI Money Coach Planner",
+  "money-planner": "AI Money Coach Planner",
   "combo-zero-screener": "From Zero to Trader + NSE Screener Guide",
   "combo-price-chart": "Price Action Strategies + Chart Setups Bible",
   "product-journey": "What Is A Digital Product?",
@@ -36,6 +37,7 @@ const PRODUCT_FILES = {
   "price-action-strategies": [{ label: "Price Action Strategies", url: PRICE_ACTION_STRATEGIES }],
   "combo-all-4": BUNDLE_FILES,
   "combo-all-4-planner": [...BUNDLE_FILES, { label: "AI Money Coach Planner", url: MONEY_PLANNER }],
+  "money-planner": [{ label: "AI Money Coach Planner", url: MONEY_PLANNER }],
   "combo-zero-screener": [
     { label: "From Zero to Trader", url: ZERO_TO_TRADER },
     { label: "NSE Stock Screener Guide", url: SCREENER_GUIDE },
