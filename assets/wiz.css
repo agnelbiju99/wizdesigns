@@ -540,3 +540,5 @@ button.alt-buy:disabled { opacity: 0.6; }
 .addon-price { display: block; font-size: 11.5px; color: var(--muted); margin-top: 5px; }
 .addon-links { display: flex; justify-content: center; gap: 16px; font-size: 12.5px; margin: 8px 0 2px; }
 .addon-links a { text-decoration: none; font-weight: 600; }
+button.btn-gold { border: none; cursor: pointer; }
+button.btn-gold:disabled { opacity: 0.6; cursor: not-allowed; }
