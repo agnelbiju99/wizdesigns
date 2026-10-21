@@ -73,6 +73,26 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
   <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8L20 10.7l-6.1 1.9L12 18.5l-1.9-5.9L4 10.7l6.1-1.9Z"/></symbol>
 </svg>
+
+<!-- 3D-style head avatar, coloured per reviewer via --h (hue) -->
+<template id="avatar-tpl">
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <defs>
+      <radialGradient id="bgG" cx="35%" cy="28%" r="80%"><stop offset="0" style="stop-color: hsl(var(--h) 85% 62%)"/><stop offset="0.6" style="stop-color: hsl(var(--h) 70% 38%)"/><stop offset="1" style="stop-color: hsl(var(--h) 75% 18%)"/></radialGradient>
+      <radialGradient id="headG" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.45" style="stop-color: hsl(var(--h) 40% 88%)"/><stop offset="1" style="stop-color: hsl(var(--h) 35% 62%)"/></radialGradient>
+      <linearGradient id="bodyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color: hsl(var(--h) 35% 90%)"/><stop offset="1" style="stop-color: hsl(var(--h) 35% 58%)"/></linearGradient>
+      <clipPath id="cl"><circle cx="32" cy="32" r="30"/></clipPath>
+    </defs>
+    <circle cx="32" cy="32" r="30" fill="url(#bgG)"/>
+    <g clip-path="url(#cl)">
+      <path d="M10 66c0-14 9.8-22 22-22s22 8 22 22Z" fill="url(#bodyG)"/>
+      <circle cx="32" cy="26" r="11" fill="url(#headG)"/>
+      <ellipse cx="27.5" cy="21" rx="4" ry="2.6" fill="#fff" opacity="0.65"/>
+    </g>
+    <ellipse cx="22" cy="14" rx="11" ry="5" fill="#fff" opacity="0.16"/>
+    <circle cx="32" cy="32" r="29.5" fill="none" stroke="#fff" stroke-opacity="0.22"/>
+  </svg>
+</template>
 <div class="page">
   <div class="topbar">
     <a class="back-link" href="/"><svg class="icon"><use href="#i-left"/></svg>All guides</a>
@@ -129,6 +149,37 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
       <button type="button" class="round-btn peek-btn" data-dir="-1" aria-label="Previous page"><svg class="icon"><use href="#i-left"/></svg></button>
       <span id="peek-count">1 / 3</span>
       <button type="button" class="round-btn peek-btn" data-dir="1" aria-label="Next page"><svg class="icon"><use href="#i-right"/></svg></button>
+    </div>
+  </section>
+
+  <!-- ===== BUYER REVIEWS (auto-scrolling) =====
+       Each review is a shortened excerpt of the buyer's own words. -->
+  <section id="reviews" class="reveal">
+    <p class="eyebrow">Reviews</p>
+    <h2>What readers say</h2>
+    <div class="marquee" style="--dur: 42s;">
+      <div class="marquee-track">
+        <div class="review" data-hue="168">
+          <p class="quote">What I loved most about this guide is the clear diagrams that visually explain each price action setup. A very useful resource, especially for beginners.</p>
+          <div class="reviewer"><span class="avatar" data-initial="K"></span><span><span class="name">Krishna</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>Price Action Strategies buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="330">
+          <p class="quote">An excellent guide for beginners learning price action trading! Definitely worth checking out.</p>
+          <div class="reviewer"><span class="avatar" data-initial="A"></span><span><span class="name">Anjana</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>Price Action Strategies buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="42">
+          <p class="quote">The diagrams are the highlight of this eBook for me. This makes learning price action much more practical and less confusing.</p>
+          <div class="reviewer"><span class="avatar" data-initial="A"></span><span><span class="name">Amrutha</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>Price Action Strategies buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="210">
+          <p class="quote">Really impressed with this guide. Great learning material for aspiring traders.</p>
+          <div class="reviewer"><span class="avatar" data-initial="S"></span><span><span class="name">Sudev</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>Price Action Strategies buyer</span></span></div>
+        </div>
+        <div class="review" data-hue="268">
+          <p class="quote">This eBook offers a practical way to learn price action strategies without getting lost in complicated explanations.</p>
+          <div class="reviewer"><span class="avatar" data-initial="M"></span><span><span class="name">Milan</span><span class="meta"><svg class="icon"><use href="#i-check-circle"/></svg>Price Action Strategies buyer</span></span></div>
+        </div>
+      </div>
     </div>
   </section>
 
