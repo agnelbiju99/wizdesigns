@@ -6,6 +6,7 @@ const PRODUCTS = {
   "chart-setups-bible": { name: "Chart Setups Bible", amount: 14900 },
   "price-action-strategies": { name: "Price Action Strategies", amount: 14900 },
   "combo-all-4": { name: "Complete Bundle (All 4 Products)", amount: 74900 },
+  "combo-all-4-planner": { name: "Complete Bundle + AI Money Coach Planner", amount: 99800 },
   "combo-zero-screener": { name: "From Zero to Trader + NSE Screener Guide", amount: 54900 },
   "combo-price-chart": { name: "Price Action Strategies + Chart Setups Bible", amount: 17900 },
   "product-journey": { name: "What Is A Digital Product?", amount: 8900 },
