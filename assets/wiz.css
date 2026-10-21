@@ -513,7 +513,7 @@ button.alt-buy:disabled { opacity: 0.6; }
 
 @media (min-width: 700px) {
   .home-hero h1 { font-size: 40px; }
-  .feature { display: grid; grid-template-columns: 1.1fr 1fr; }
-  .feature .f-img { height: 100%; aspect-ratio: auto; }
-  .feature .f-body { padding: 22px; }
+  /* Keep the full 4-book image on top at every width (side-by-side cropped the outer books). */
+  .feature .f-body { padding: 22px 26px 26px; }
+  .feature .f-list { grid-template-columns: repeat(3, 1fr); }
 }
