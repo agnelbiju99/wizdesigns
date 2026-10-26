@@ -3,8 +3,9 @@ import Razorpay from "razorpay";
 // Recent real Complete Bundle purchases, for the "someone just bought" pop-up.
 // Returns only payment times — never names, phone numbers, emails or payment IDs.
 
-// Complete Bundle on its own (₹749) and with the AI Money Coach Planner (₹998).
-const BUNDLE_AMOUNTS = [74900, 99800];
+// Complete Bundle on its own and with the AI Money Coach Planner add-on.
+// New prices (₹979 / ₹1,228) plus the old ones (₹749 / ₹998) so recent sales before the price change still count.
+const BUNDLE_AMOUNTS = [97900, 122800, 74900, 99800];
 const MAX_AGE_DAYS = 30;
 const MAX_RESULTS = 10;
 
