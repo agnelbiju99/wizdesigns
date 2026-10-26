@@ -392,6 +392,26 @@
   .addon-links { display: flex; justify-content: center; gap: 16px; font-size: 12.5px; margin: 8px 0 2px; }
   .addon-links a { text-decoration: none; font-weight: 600; }
 
+  /* ---------- Closed-checkout help prompt ---------- */
+  .checkout-help { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1500; display: none; justify-content: center; padding: 12px; }
+  .checkout-help.open { display: flex; }
+  .checkout-help .ch-card {
+    width: 100%; max-width: 440px; padding: 18px 18px 14px; border-radius: 18px; position: relative;
+    background: rgba(14, 19, 27, 0.97); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--line-2); box-shadow: 0 -10px 40px -10px rgba(0,0,0,0.8);
+    animation: ch-up 0.3s ease;
+  }
+  @keyframes ch-up { from { transform: translateY(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+  .checkout-help h3 { font-family: var(--font-display); font-size: 17px; margin: 0 28px 6px 0; }
+  .checkout-help p { font-size: 13.5px; color: var(--text-2); line-height: 1.55; margin: 0 0 12px; }
+  .checkout-help .ch-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .checkout-help .ch-wa { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px; border-radius: 12px; text-decoration: none;
+                          font-weight: 700; font-size: 14px; color: #04130F; background: #25D366; }
+  .checkout-help .ch-retry { padding: 12px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--surface-2); color: var(--text);
+                             font-weight: 600; font-size: 14px; cursor: pointer; font-family: var(--font-body); }
+  .checkout-help .ch-x { position: absolute; top: 8px; right: 10px; border: none; background: none; color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; }
+  .checkout-help .ch-note { display: block; text-align: center; font-size: 11.5px; color: var(--muted); margin-top: 10px; }
+
   /* ---------- Overlays ---------- */
   .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
   .lightbox-overlay.open { display: flex; }
@@ -1075,6 +1095,7 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
               btn.disabled = false;
               btn.textContent = originalText;
               if (currentRzp) { currentRzp = null; clearCheckoutHistory(); }
+              showCheckoutHelp(btn);
             },
           },
           theme: { color: "#00C9A7" },
@@ -1096,6 +1117,55 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
         btn.disabled = false;
         btn.textContent = originalText;
       });
+  }
+
+  // ---------- Closed-checkout help prompt ----------
+  // Shown when someone closes the Razorpay window without paying: offers WhatsApp help or a retry.
+  // Appears at most once per page visit so it never nags.
+  let checkoutHelpShown = false;
+  function showCheckoutHelp(btn) {
+    if (checkoutHelpShown) return;
+    checkoutHelpShown = true;
+    const name = btn.dataset.name;
+    const price = "₹" + parseInt(btn.dataset.amount, 10) / 100;
+    let box = document.getElementById("checkout-help");
+    if (!box) {
+      box = document.createElement("div");
+      box.className = "checkout-help";
+      box.id = "checkout-help";
+      box.setAttribute("role", "dialog");
+      box.setAttribute("aria-label", "Need help with your payment?");
+      box.innerHTML =
+        '<div class="ch-card">' +
+          '<button class="ch-x" aria-label="Close">&times;</button>' +
+          "<h3>Didn't go through, or still deciding?</h3>" +
+          "<p>No money was taken. If your UPI app didn't open or you have a question, message me on WhatsApp — I'll help you finish, or you can pay by direct UPI.</p>" +
+          '<div class="ch-actions">' +
+            '<a class="ch-wa" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>' +
+            '<button class="ch-retry">Try again</button>' +
+          "</div>" +
+          '<span class="ch-note">Tap Try again to reopen the secure payment window.</span>' +
+        "</div>";
+      document.body.appendChild(box);
+      box.querySelector(".ch-x").addEventListener("click", () => box.classList.remove("open"));
+    }
+    const wa = box.querySelector(".ch-wa");
+    if (WHATSAPP_NUMBER) {
+      wa.href = waLink("Hi! I was buying " + name + " (" + price + ") on your website but didn't finish. Can you help?");
+      wa.onclick = () => {
+        if (typeof fbq === "function") fbq("track", "Contact", { content_name: name });
+        box.classList.remove("open");
+      };
+    } else {
+      wa.style.display = "none";
+    }
+    box.querySelector(".ch-retry").onclick = () => {
+      box.classList.remove("open");
+      btn.click();
+    };
+    document.getElementById("buy-toast") && document.getElementById("buy-toast").classList.remove("show");
+    box.classList.add("open");
+    if (typeof fbq === "function") fbq("trackCustom", "CheckoutClosed", { content_name: name, value: parseInt(btn.dataset.amount, 10) / 100, currency: "INR" });
   }
 
   const mainBuyBtn = document.getElementById("buy-btn");
@@ -1265,7 +1335,7 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
 
     // Don't pop up over the checkout, a zoomed image or the download screen.
     function busy() {
-      return currentRzp || document.querySelector(".lightbox-overlay.open, .success-overlay.open");
+      return currentRzp || document.querySelector(".lightbox-overlay.open, .success-overlay.open, .checkout-help.open");
     }
 
     document.getElementById("bt-close").addEventListener("click", () => {
