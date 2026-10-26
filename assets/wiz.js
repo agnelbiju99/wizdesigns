@@ -2,6 +2,33 @@
    (combo-all-4.html keeps its own copy of this logic inline.)
    Any <button class="buy" data-product data-name data-amount> starts a Razorpay checkout. */
 
+// ---------- Scheduled price change: 4 Nov 2026, 12:00 AM IST ----------
+// Before this moment the current prices show; from it, every price on the page switches
+// to the new one. The server (api/create-order.js) switches what it charges at the same moment.
+const PRICE_CHANGE_AT = Date.parse("2026-11-03T18:30:00Z");
+const PRICE_TEXT_AFTER = {
+  "979": "1,699", "1,228": "1,948", "1,296": "1,796", "317": "97",
+  "379": "499", "519": "699", "199": "299",
+  "898": "1,198", "398": "598", "179": "479", "169": "369",
+  "600": "1,200", "460": "1,000", "780": "1,400", "329": "1,049"
+};
+const PRICE_AMOUNT_AFTER = { "37900": "49900", "51900": "69900", "19900": "29900", "97900": "169900", "122800": "194800" };
+const newPricesLive = () => Date.now() >= PRICE_CHANGE_AT;
+function newPriceText(t) {
+  return t.replace(/₹([\d,]+)/g, (m, v) => (PRICE_TEXT_AFTER[v] ? "₹" + PRICE_TEXT_AFTER[v] : m));
+}
+if (newPricesLive()) {
+  document.querySelectorAll(".price-countdown").forEach((el) => el.remove());
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  let node;
+  while ((node = walker.nextNode())) {
+    if (node.nodeValue.indexOf("₹") !== -1) node.nodeValue = newPriceText(node.nodeValue);
+  }
+  document.querySelectorAll("[data-amount]").forEach((b) => {
+    if (PRICE_AMOUNT_AFTER[b.dataset.amount]) b.dataset.amount = PRICE_AMOUNT_AFTER[b.dataset.amount];
+  });
+}
+
 // ============ SETTINGS — EDIT THIS ============
 // Your WhatsApp Business number with country code, digits only. Example: "919876543210"
 // While this is empty, all WhatsApp buttons stay hidden.
@@ -476,6 +503,13 @@ if (!reduceMotion) {
   if (!check || !btn) return;
   const BASE = { product: "combo-all-4", name: "Complete Bundle (All 4 Products)", amount: 97900, label: "Get All 4 Guides — ₹979", short: "Get All 4 Guides", price: "₹979" };
   const PLUS = { product: "combo-all-4-planner", name: "Complete Bundle + AI Money Coach Planner", amount: 122800, label: "Get Bundle + Planner — ₹1,228", short: "Get Bundle + Planner", price: "₹1,228" };
+  if (newPricesLive()) {
+    [BASE, PLUS].forEach((o) => {
+      o.amount = +PRICE_AMOUNT_AFTER[o.amount];
+      o.label = newPriceText(o.label);
+      o.price = newPriceText(o.price);
+    });
+  }
   const PLANNER_IMGS = ["images/planner-cover.jpg", "images/planner-ai-coach.jpg", "images/planner-daily.jpg", "images/planner-insights.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-dark-mode.jpg"];
 
   function apply() {
