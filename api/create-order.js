@@ -13,6 +13,18 @@ const PRODUCTS = {
   "product-journey": { name: "What Is A Digital Product?", amount: 8900 },
 };
 
+// Scheduled price change: from 4 Nov 2026, 12:00 AM IST these amounts are charged instead.
+// The website switches the prices it shows at the same moment.
+const PRICE_CHANGE_AT = Date.parse("2026-11-03T18:30:00Z");
+const NEW_AMOUNTS = {
+  "zero-to-trader": 49900,
+  "screener-guide": 69900,
+  "chart-setups-bible": 29900,
+  "price-action-strategies": 29900,
+  "combo-all-4": 169900,
+  "combo-all-4-planner": 194800,
+};
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -25,6 +37,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Invalid product" });
   }
 
+  const amount = Date.now() >= PRICE_CHANGE_AT && NEW_AMOUNTS[productId] ? NEW_AMOUNTS[productId] : product.amount;
+
   const instance = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
     key_secret: process.env.RAZORPAY_KEY_SECRET,
@@ -32,14 +46,14 @@ export default async function handler(req, res) {
 
   try {
     const order = await instance.orders.create({
-      amount: product.amount,
+      amount,
       currency: "INR",
       notes: { product: productId },
     });
 
     return res.status(200).json({
       orderId: order.id,
-      amount: product.amount,
+      amount,
       keyId: process.env.RAZORPAY_KEY_ID,
       productName: product.name,
     });
