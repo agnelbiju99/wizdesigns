@@ -139,6 +139,7 @@ function startCheckout(btn) {
             btn.disabled = false;
             btn.textContent = originalText;
             if (currentRzp) { currentRzp = null; clearCheckoutHistory(); }
+            showCheckoutHelp(btn);
           },
         },
         theme: { color: "#00C9A7" },
@@ -167,6 +168,55 @@ document.querySelectorAll("button[data-product]").forEach((btn) => {
 });
 
 // Extra Buy buttons (final section + sticky bar) all trigger the main one.
+// ---------- Closed-checkout help prompt ----------
+// Shown when someone closes the Razorpay window without paying: offers WhatsApp help or a retry.
+// Appears at most once per page visit so it never nags.
+let checkoutHelpShown = false;
+function showCheckoutHelp(btn) {
+  if (checkoutHelpShown) return;
+  checkoutHelpShown = true;
+  const name = btn.dataset.name;
+  const price = "₹" + parseInt(btn.dataset.amount, 10) / 100;
+  let box = document.getElementById("checkout-help");
+  if (!box) {
+    box = document.createElement("div");
+    box.className = "checkout-help";
+    box.id = "checkout-help";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-label", "Need help with your payment?");
+    box.innerHTML =
+      '<div class="ch-card">' +
+        '<button class="ch-x" aria-label="Close">&times;</button>' +
+        "<h3>Didn't go through, or still deciding?</h3>" +
+        "<p>No money was taken. If your UPI app didn't open or you have a question, message me on WhatsApp — I'll help you finish, or you can pay by direct UPI.</p>" +
+        '<div class="ch-actions">' +
+          '<a class="ch-wa" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>' +
+          '<button class="ch-retry">Try again</button>' +
+        "</div>" +
+        '<span class="ch-note">Tap Try again to reopen the secure payment window.</span>' +
+      "</div>";
+    document.body.appendChild(box);
+    box.querySelector(".ch-x").addEventListener("click", () => box.classList.remove("open"));
+  }
+  const wa = box.querySelector(".ch-wa");
+  if (WHATSAPP_NUMBER) {
+    wa.href = waLink("Hi! I was buying " + name + " (" + price + ") on your website but didn't finish. Can you help?");
+    wa.onclick = () => {
+      if (typeof fbq === "function") fbq("track", "Contact", { content_name: name });
+      box.classList.remove("open");
+    };
+  } else {
+    wa.style.display = "none";
+  }
+  box.querySelector(".ch-retry").onclick = () => {
+    box.classList.remove("open");
+    btn.click();
+  };
+  document.getElementById("buy-toast") && document.getElementById("buy-toast").classList.remove("show");
+  box.classList.add("open");
+  if (typeof fbq === "function") fbq("trackCustom", "CheckoutClosed", { content_name: name, value: parseInt(btn.dataset.amount, 10) / 100, currency: "INR" });
+}
+
 const mainBuyBtn = document.getElementById("buy-btn");
 document.querySelectorAll(".js-buy-proxy").forEach((b) => {
   b.addEventListener("click", () => mainBuyBtn && mainBuyBtn.click());
@@ -349,7 +399,7 @@ if (peekTrack) {
 
   // Don't pop up over the checkout, a zoomed image or the download screen.
   function busy() {
-    return currentRzp || document.querySelector(".lightbox-overlay.open, .success-overlay.open");
+    return currentRzp || document.querySelector(".lightbox-overlay.open, .success-overlay.open, .checkout-help.open");
   }
 
   document.getElementById("bt-close").addEventListener("click", () => {
