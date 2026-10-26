@@ -542,3 +542,23 @@ button.alt-buy:disabled { opacity: 0.6; }
 .addon-links a { text-decoration: none; font-weight: 600; }
 button.btn-gold { border: none; cursor: pointer; }
 button.btn-gold:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ---------- Closed-checkout help prompt ---------- */
+.checkout-help { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1500; display: none; justify-content: center; padding: 12px; }
+.checkout-help.open { display: flex; }
+.checkout-help .ch-card {
+  width: 100%; max-width: 440px; padding: 18px 18px 14px; border-radius: 18px; position: relative;
+  background: rgba(14, 19, 27, 0.97); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--line-2); box-shadow: 0 -10px 40px -10px rgba(0,0,0,0.8);
+  animation: ch-up 0.3s ease;
+}
+@keyframes ch-up { from { transform: translateY(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+.checkout-help h3 { font-family: var(--font-display); font-size: 17px; margin: 0 28px 6px 0; }
+.checkout-help p { font-size: 13.5px; color: var(--text-2); line-height: 1.55; margin: 0 0 12px; }
+.checkout-help .ch-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.checkout-help .ch-wa { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px; border-radius: 12px; text-decoration: none;
+                        font-weight: 700; font-size: 14px; color: #04130F; background: #25D366; }
+.checkout-help .ch-retry { padding: 12px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--surface-2); color: var(--text);
+                           font-weight: 600; font-size: 14px; cursor: pointer; font-family: var(--font-body); }
+.checkout-help .ch-x { position: absolute; top: 8px; right: 10px; border: none; background: none; color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; }
+.checkout-help .ch-note { display: block; text-align: center; font-size: 11.5px; color: var(--muted); margin-top: 10px; }
