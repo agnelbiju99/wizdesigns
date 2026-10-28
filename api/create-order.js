@@ -1,15 +1,15 @@
 import Razorpay from "razorpay";
 
 const PRODUCTS = {
-  "zero-to-trader": { name: "From Zero to Trader", amount: 37900 },
-  "screener-guide": { name: "NSE Stock Screener Guide", amount: 51900 },
-  "chart-setups-bible": { name: "Chart Setups Bible", amount: 19900 },
-  "price-action-strategies": { name: "Price Action Strategies", amount: 19900 },
-  "combo-all-4": { name: "Complete Bundle (All 4 Products)", amount: 97900 },
-  "combo-all-4-planner": { name: "Complete Bundle + AI Money Coach Planner", amount: 122800 },
-  "money-planner": { name: "AI Money Coach Planner", amount: 89900 },
-  "combo-zero-screener": { name: "From Zero to Trader + NSE Screener Guide", amount: 71900 },
-  "combo-price-chart": { name: "Price Action Strategies + Chart Setups Bible", amount: 22900 },
+  "zero-to-trader": { name: "From Zero to Trader", amount: 28900 },
+  "screener-guide": { name: "NSE Stock Screener Guide", amount: 39900 },
+  "chart-setups-bible": { name: "Chart Setups Bible", amount: 14900 },
+  "price-action-strategies": { name: "Price Action Strategies", amount: 14900 },
+  "combo-all-4": { name: "Complete Bundle (All 4 Products)", amount: 74900 },
+  "combo-all-4-planner": { name: "Complete Bundle + AI Money Coach Planner", amount: 99800 },
+  "money-planner": { name: "AI Money Coach Planner", amount: 69900 },
+  "combo-zero-screener": { name: "From Zero to Trader + NSE Screener Guide", amount: 54900 },
+  "combo-price-chart": { name: "Price Action Strategies + Chart Setups Bible", amount: 17900 },
   "product-journey": { name: "What Is A Digital Product?", amount: 8900 },
 };
 
@@ -21,8 +21,8 @@ const NEW_AMOUNTS = {
   "screener-guide": 69900,
   "chart-setups-bible": 29900,
   "price-action-strategies": 29900,
-  "combo-all-4": 169900,
-  "combo-all-4-planner": 194800,
+  "combo-all-4": 127900,
+  "combo-all-4-planner": 152800,
 };
 
 export default async function handler(req, res) {
