@@ -7,12 +7,12 @@
 // to the new one. The server (api/create-order.js) switches what it charges at the same moment.
 const PRICE_CHANGE_AT = Date.parse("2026-11-03T18:30:00Z");
 const PRICE_TEXT_AFTER = {
-  "979": "1,699", "1,228": "1,948", "1,296": "1,796", "317": "97",
-  "379": "499", "519": "699", "199": "299",
-  "898": "1,198", "398": "598", "179": "479", "169": "369",
-  "600": "1,200", "460": "1,000", "780": "1,400", "329": "1,049"
+  "749": "1,279", "998": "1,528", "986": "1,796", "237": "517",
+  "289": "499", "399": "699", "149": "299",
+  "688": "1,198", "298": "598", "139": "649", "119": "419",
+  "460": "780", "350": "580", "600": "980", "299": "829"
 };
-const PRICE_AMOUNT_AFTER = { "37900": "49900", "51900": "69900", "19900": "29900", "97900": "169900", "122800": "194800" };
+const PRICE_AMOUNT_AFTER = { "28900": "49900", "39900": "69900", "14900": "29900", "74900": "127900", "99800": "152800" };
 const newPricesLive = () => Date.now() >= PRICE_CHANGE_AT;
 function newPriceText(t) {
   return t.replace(/₹([\d,]+)/g, (m, v) => (PRICE_TEXT_AFTER[v] ? "₹" + PRICE_TEXT_AFTER[v] : m));
@@ -501,8 +501,8 @@ if (!reduceMotion) {
   const check = document.getElementById("addon-check");
   const btn = document.getElementById("buy-btn");
   if (!check || !btn) return;
-  const BASE = { product: "combo-all-4", name: "Complete Bundle (All 4 Products)", amount: 97900, label: "Get All 4 Guides — ₹979", short: "Get All 4 Guides", price: "₹979" };
-  const PLUS = { product: "combo-all-4-planner", name: "Complete Bundle + AI Money Coach Planner", amount: 122800, label: "Get Bundle + Planner — ₹1,228", short: "Get Bundle + Planner", price: "₹1,228" };
+  const BASE = { product: "combo-all-4", name: "Complete Bundle (All 4 Products)", amount: 74900, label: "Get All 4 Guides — ₹749", short: "Get All 4 Guides", price: "₹749" };
+  const PLUS = { product: "combo-all-4-planner", name: "Complete Bundle + AI Money Coach Planner", amount: 99800, label: "Get Bundle + Planner — ₹998", short: "Get Bundle + Planner", price: "₹998" };
   if (newPricesLive()) {
     [BASE, PLUS].forEach((o) => {
       o.amount = +PRICE_AMOUNT_AFTER[o.amount];
