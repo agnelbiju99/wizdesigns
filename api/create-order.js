@@ -8,6 +8,8 @@ const PRODUCTS = {
   "combo-all-4": { name: "Complete Bundle (All 4 Products)", amount: 74900 },
   "combo-all-4-planner": { name: "Complete Bundle + AI Money Coach Planner", amount: 99800 },
   "money-planner": { name: "AI Money Coach Planner", amount: 69900 },
+  "money-planner-cards": { name: "AI Money Coach Planner + Financial Affirmation Cards", amount: 79800 },
+  "affirmation-cards": { name: "Financial Affirmation Cards", amount: 14900 },
   "combo-zero-screener": { name: "From Zero to Trader + NSE Screener Guide", amount: 54900 },
   "combo-price-chart": { name: "Price Action Strategies + Chart Setups Bible", amount: 17900 },
   "product-journey": { name: "What Is A Digital Product?", amount: 8900 },
