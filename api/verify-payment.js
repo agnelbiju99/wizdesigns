@@ -8,6 +8,8 @@ const PRICE_ACTION_STRATEGIES = "https://drive.google.com/file/d/1ZGTOkevnGxMnDw
 const PRODUCT_JOURNEY = "https://drive.google.com/file/d/1ZPNMTz7gwHV4HU3ID5-bUoerLGnjr0BR/view?usp=sharing";
 // AI Money Coach Planner: Google Drive folder holding
 // finance_productivity_planner.html + README.txt (share: "Anyone with the link").
+// Financial Affirmation Cards PDF, hosted on this site (the file name is hard to guess on purpose).
+const AFFIRMATION_CARDS = "/files/financial-affirmation-cards-0517e912d076.pdf";
 const MONEY_PLANNER = "https://drive.google.com/drive/folders/1ZWEOXSbZQ6lVgjLlLZ_xgkUHIBJY1Mh5?usp=sharing";
 
 const PRODUCT_NAMES = {
@@ -18,6 +20,8 @@ const PRODUCT_NAMES = {
   "combo-all-4": "Complete Bundle (All 4 Products)",
   "combo-all-4-planner": "Complete Bundle + AI Money Coach Planner",
   "money-planner": "AI Money Coach Planner",
+  "money-planner-cards": "AI Money Coach Planner + Financial Affirmation Cards",
+  "affirmation-cards": "Financial Affirmation Cards",
   "combo-zero-screener": "From Zero to Trader + NSE Screener Guide",
   "combo-price-chart": "Price Action Strategies + Chart Setups Bible",
   "product-journey": "What Is A Digital Product?",
@@ -38,6 +42,11 @@ const PRODUCT_FILES = {
   "combo-all-4": BUNDLE_FILES,
   "combo-all-4-planner": [...BUNDLE_FILES, { label: "AI Money Coach Planner", url: MONEY_PLANNER }],
   "money-planner": [{ label: "AI Money Coach Planner", url: MONEY_PLANNER }],
+  "money-planner-cards": [
+    { label: "AI Money Coach Planner", url: MONEY_PLANNER },
+    { label: "Financial Affirmation Cards", url: AFFIRMATION_CARDS },
+  ],
+  "affirmation-cards": [{ label: "Financial Affirmation Cards", url: AFFIRMATION_CARDS }],
   "combo-zero-screener": [
     { label: "From Zero to Trader", url: ZERO_TO_TRADER },
     { label: "NSE Stock Screener Guide", url: SCREENER_GUIDE },
