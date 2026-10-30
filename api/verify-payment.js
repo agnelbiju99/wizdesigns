@@ -9,7 +9,7 @@ const PRODUCT_JOURNEY = "https://drive.google.com/file/d/1ZPNMTz7gwHV4HU3ID5-bUo
 // AI Money Coach Planner: Google Drive folder holding
 // finance_productivity_planner.html + README.txt (share: "Anyone with the link").
 // Financial Affirmation Cards PDF, hosted on this site (the file name is hard to guess on purpose).
-const AFFIRMATION_CARDS = "/files/financial-affirmation-cards-0517e912d076.pdf";
+const AFFIRMATION_CARDS = "/financial-affirmation-cards-0517e912d076.pdf";
 const MONEY_PLANNER = "https://drive.google.com/drive/folders/1ZWEOXSbZQ6lVgjLlLZ_xgkUHIBJY1Mh5?usp=sharing";
 
 const PRODUCT_NAMES = {
