@@ -572,3 +572,27 @@ button.btn-gold:disabled { opacity: 0.6; cursor: not-allowed; }
 .pc-timer span { min-width: 58px; padding: 7px 4px; border-radius: 10px; background: rgba(0,0,0,0.35); border: 1px solid var(--line-2);
                  display: flex; flex-direction: column; align-items: center; font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; }
 .pc-timer b { font-family: var(--font-display); font-size: 21px; color: var(--text); letter-spacing: 0; font-variant-numeric: tabular-nums; }
+
+/* ---------- Footer policy links ---------- */
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; max-width: 760px; margin: 12px auto 0; font-size: 12.5px; }
+.footer-links a { color: var(--muted); text-decoration: none; }
+.footer-links a:hover { color: var(--teal); text-decoration: underline; }
+
+/* ---------- Policy pages ---------- */
+.policy h1 { font-size: 28px; }
+.policy-date { font-size: 12.5px; color: var(--muted); margin: -2px 0 12px; }
+.policy-sec { margin-top: 28px; }
+.policy-sec h2 { font-size: 18px; margin-bottom: 10px; }
+.policy-sec p { margin-bottom: 10px; }
+.policy-sec code { font-size: 13px; background: var(--surface-2); padding: 1px 6px; border-radius: 6px; }
+.policy-steps { margin: 0; padding-left: 20px; color: var(--text-2); font-size: 14.5px; line-height: 1.75; }
+.policy-steps li { margin-bottom: 8px; }
+.policy-contact { margin-top: 32px; padding: 16px 18px; }
+.policy-contact h3 { font-family: var(--font-display); margin: 0 0 6px; font-size: 17px; }
+.policy-contact p { margin: 0; font-size: 14px; color: var(--text-2); line-height: 1.6; }
+.contact-grid { display: grid; gap: 10px; margin-top: 18px; }
+@media (min-width: 620px) { .contact-grid { grid-template-columns: repeat(3, 1fr); } }
+.contact-card { display: flex; align-items: center; gap: 12px; padding: 16px; text-decoration: none; color: var(--text); }
+.contact-card .icon { font-size: 22px; color: var(--teal); }
+.contact-card b { display: block; font-family: var(--font-display); font-size: 15px; }
+.contact-card span { font-size: 13.5px; color: var(--text-2); word-break: break-all; }
