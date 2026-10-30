@@ -22,10 +22,10 @@ if (newPricesLive()) {
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   let node;
   while ((node = walker.nextNode())) {
-    if (node.nodeValue.indexOf("₹") !== -1) node.nodeValue = newPriceText(node.nodeValue);
+    if (node.nodeValue.indexOf("₹") !== -1 && !node.parentElement.closest("[data-price-fixed]")) node.nodeValue = newPriceText(node.nodeValue);
   }
   document.querySelectorAll("[data-amount]").forEach((b) => {
-    if (PRICE_AMOUNT_AFTER[b.dataset.amount]) b.dataset.amount = PRICE_AMOUNT_AFTER[b.dataset.amount];
+    if (PRICE_AMOUNT_AFTER[b.dataset.amount] && !b.closest("[data-price-fixed]")) b.dataset.amount = PRICE_AMOUNT_AFTER[b.dataset.amount];
   });
 }
 
@@ -538,6 +538,45 @@ if (!reduceMotion) {
   }
   document.getElementById("addon-preview").addEventListener("click", preview);
   const thumb = document.getElementById("addon-thumb");
+  thumb.addEventListener("click", preview);
+  thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
+})();
+
+// ---------- Planner add-on: Financial Affirmation Cards ----------
+(function () {
+  const check = document.getElementById("cards-addon-check");
+  const btn = document.getElementById("buy-btn");
+  if (!check || !btn) return;
+  const BASE = { product: "money-planner", name: "AI Money Coach Planner", amount: 69900, label: "Get the planner — ₹699", short: "Get the planner", price: "₹699" };
+  const PLUS = { product: "money-planner-cards", name: "AI Money Coach Planner + Financial Affirmation Cards", amount: 79800, label: "Get Planner + Cards — ₹798", short: "Get Planner + Cards", price: "₹798" };
+  const CARD_IMGS = ["images/cards-cover.jpg", "images/cards-categories.jpg", "images/cards-inside.jpg", "images/cards-how-to.jpg", "images/cards-ritual.jpg"];
+
+  function apply() {
+    const o = check.checked ? PLUS : BASE;
+    document.getElementById("cards-addon").classList.toggle("on", check.checked);
+    btn.dataset.product = o.product;
+    btn.dataset.name = o.name;
+    btn.dataset.amount = o.amount;
+    btn.textContent = o.label;
+    document.querySelectorAll(".js-buy-proxy").forEach((b) => {
+      b.textContent = b.closest(".sticky-bar") ? o.short : o.label;
+    });
+    document.querySelectorAll(".sticky-bar .now").forEach((el) => { el.textContent = o.price; });
+  }
+  check.addEventListener("change", () => {
+    apply();
+    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddCardsAddon", { value: 99, currency: "INR" });
+  });
+  apply();
+
+  // The picture and "See the cards" open the preview instead of ticking the box.
+  function preview(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    openGallery(CARD_IMGS, 0);
+  }
+  document.getElementById("cards-addon-preview").addEventListener("click", preview);
+  const thumb = document.getElementById("cards-addon-thumb");
   thumb.addEventListener("click", preview);
   thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
 })();
