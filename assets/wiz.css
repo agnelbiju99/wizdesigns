@@ -596,3 +596,11 @@ button.btn-gold:disabled { opacity: 0.6; cursor: not-allowed; }
 .contact-card .icon { font-size: 22px; color: var(--teal); }
 .contact-card b { display: block; font-family: var(--font-display); font-size: 15px; }
 .contact-card span { font-size: 13.5px; color: var(--text-2); word-break: break-all; }
+
+/* ---------- Education notice ---------- */
+.edu-note { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 14px; padding: 10px 12px; border-radius: 12px;
+            background: var(--surface); border: 1px solid var(--line); }
+.edu-note .icon { color: var(--teal); font-size: 16px; margin-top: 2px; }
+.edu-note p { margin: 0; font-size: 12px; line-height: 1.55; color: var(--text-2); }
+.edu-note b { color: var(--text); }
+.edu-note a { color: var(--teal); white-space: nowrap; }
