@@ -427,6 +427,14 @@
   .footer-links a { color: var(--muted); text-decoration: none; }
   .footer-links a:hover { color: var(--teal); text-decoration: underline; }
 
+  /* ---------- Education notice ---------- */
+  .edu-note { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 14px; padding: 10px 12px; border-radius: 12px;
+              background: var(--surface); border: 1px solid var(--line); }
+  .edu-note .icon { color: var(--teal); font-size: 16px; margin-top: 2px; }
+  .edu-note p { margin: 0; font-size: 12px; line-height: 1.55; color: var(--text-2); }
+  .edu-note b { color: var(--text); }
+  .edu-note a { color: var(--teal); white-space: nowrap; }
+
   /* ---------- Overlays ---------- */
   .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
   .lightbox-overlay.open { display: flex; }
@@ -549,6 +557,12 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     <span class="brand"><b>Wiz</b> Designs</span>
   </div>
 
+  <!-- ===== Education notice (above the fold, on every product page) ===== -->
+  <div class="edu-note">
+    <svg class="icon"><use href="#i-shield"/></svg>
+    <p><b>Educational eBooks (PDF) only.</b> No stocks, bonds, derivatives, trading accounts or brokerage services are offered — you can't invest or trade through this site. Not investment advice. The author is an educator, not a SEBI-registered adviser. <a href="/disclaimer.html">Full disclaimer</a></p>
+  </div>
+
   <!-- ===== HERO ===== -->
   <div class="proof-pill"><span class="dot"></span>100+ bundles sold in the last 2 weeks</div>
 
@@ -567,8 +581,8 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     </picture>
   </div>
 
-  <h1>Learn to Trade the Indian Stock Market <span class="grad-teal">From Zero</span> — 4 Guides in 1 Bundle</h1>
-  <p class="subtitle">Stop jumping between random YouTube videos and free PDFs. Follow one clear path: understand the market → read charts → find stocks → take trades with a stop-loss.</p>
+  <h1>Learn How the Indian Stock Market Works <span class="grad-teal">From Zero</span> — 4 Educational eBooks</h1>
+  <p class="subtitle">Stop jumping between random YouTube videos and free PDFs. Learn in one clear order: how the market works → reading charts → screening stocks → managing risk with a stop-loss.</p>
 
   <div id="status-message"></div>
 
@@ -626,7 +640,7 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     <h2>Quick answers</h2>
     <div class="facts-grid">
       <div class="fact card"><div class="k"><svg class="icon"><use href="#i-lang"/></svg>Language</div><div class="v">Simple English</div></div>
-      <div class="fact card"><div class="k"><svg class="icon"><use href="#i-cap"/></svg>Level</div><div class="v">Complete beginner → confident trader</div></div>
+      <div class="fact card"><div class="k"><svg class="icon"><use href="#i-cap"/></svg>Level</div><div class="v">Complete beginner friendly</div></div>
       <div class="fact card"><div class="k"><svg class="icon"><use href="#i-phone"/></svg>Format</div><div class="v">PDF — opens on any phone or laptop</div></div>
       <div class="fact card"><div class="k"><svg class="icon"><use href="#i-globe"/></svg>Market</div><div class="v">Indian stocks (NSE)</div></div>
       <div class="fact card"><div class="k"><svg class="icon"><use href="#i-download"/></svg>Delivery</div><div class="v">Instant download after payment</div></div>
@@ -746,7 +760,7 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     </details>
 
     <details class="book card">
-      <summary><span class="book-ico"><svg class="icon"><use href="#i-search"/></svg></span><span><span class="t">The NSE Stock Screener Guide</span><span class="m">30 pages · find stocks before they move</span></span><svg class="icon chev"><use href="#i-chev"/></svg></summary>
+      <summary><span class="book-ico"><svg class="icon"><use href="#i-search"/></svg></span><span><span class="t">The NSE Stock Screener Guide</span><span class="m">30 pages · learn stock screening</span></span><svg class="icon chev"><use href="#i-chev"/></svg></summary>
       <div class="inner">
         <ul class="ticks">
           <li><svg class="icon"><use href="#i-check"/></svg><span>5-step stock screening system</span></li>
@@ -821,7 +835,7 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
           <source srcset="images/author-agnel.webp" type="image/webp" />
           <img src="images/author-agnel.jpg" alt="Agnel Biju, author of the Complete Trading Bundle" loading="lazy" width="640" height="800" />
         </picture>
-        <div class="author-name"><div class="n">Agnel Biju</div><div class="h">@agnel_biju</div></div>
+        <div class="author-name"><div class="n">Agnel Biju</div><div class="h">Educator &amp; author · @agnel_biju</div></div>
       </div>
       <div class="author-body">
         <div class="author-stats">
