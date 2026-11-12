@@ -5,8 +5,8 @@ import Razorpay from "razorpay";
 
 // Complete Bundle on its own and with the AI Money Coach Planner add-on.
 // All prices the bundle has been sold at, so recent sales keep showing after each price change:
-// ₹749 / ₹998, ₹979 / ₹1,228, and ₹1,279 / ₹1,528 (from 4 Nov).
-const BUNDLE_AMOUNTS = [74900, 99800, 97900, 122800, 127900, 152800];
+// ₹749 / ₹998, ₹979 / ₹1,228, ₹1,279 / ₹1,528, and ₹1,328 (bundle + ₹49 planner add-on).
+const BUNDLE_AMOUNTS = [74900, 99800, 97900, 122800, 127900, 152800, 132800];
 const MAX_AGE_DAYS = 30;
 const MAX_RESULTS = 10;
 
