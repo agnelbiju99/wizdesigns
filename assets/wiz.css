@@ -604,3 +604,9 @@ button.btn-gold:disabled { opacity: 0.6; cursor: not-allowed; }
 .edu-note p { margin: 0; font-size: 12px; line-height: 1.55; color: var(--text-2); }
 .edu-note b { color: var(--text); }
 .edu-note a { color: var(--teal); white-space: nowrap; }
+
+/* ---------- Offer countdown (same look as .price-countdown) ---------- */
+.offer-countdown { margin: -2px 0 14px; padding: 12px; border-radius: 14px; text-align: center;
+                   background: linear-gradient(135deg, rgba(255,107,107,0.12), rgba(232,196,106,0.10)); border: 1px solid rgba(255,107,107,0.35); }
+.offer-countdown .pc-text { font-size: 13.5px; line-height: 1.5; color: var(--text-2); margin: 0 0 10px; }
+.offer-countdown .pc-text b { color: var(--text); }
