@@ -6,9 +6,9 @@ const PRODUCTS = {
   "chart-setups-bible": { name: "Chart Setups Bible", amount: 14900 },
   "price-action-strategies": { name: "Price Action Strategies", amount: 14900 },
   "combo-all-4": { name: "Complete Bundle (All 4 Products)", amount: 74900 },
-  "combo-all-4-planner": { name: "Complete Bundle + AI Money Coach Planner", amount: 99800 },
-  "money-planner": { name: "AI Money Coach Planner", amount: 69900 },
-  "money-planner-cards": { name: "AI Money Coach Planner + Financial Affirmation Cards", amount: 79800 },
+  "combo-all-4-planner": { name: "Complete Bundle + AI Money Coach Planner", amount: 79800 },
+  "money-planner": { name: "AI Money Coach Planner", amount: 8800 },
+  "money-planner-cards": { name: "AI Money Coach Planner + Financial Affirmation Cards", amount: 18700 },
   "affirmation-cards": { name: "Financial Affirmation Cards", amount: 14900 },
   "combo-zero-screener": { name: "From Zero to Trader + NSE Screener Guide", amount: 54900 },
   "combo-price-chart": { name: "Price Action Strategies + Chart Setups Bible", amount: 17900 },
@@ -24,7 +24,14 @@ const NEW_AMOUNTS = {
   "chart-setups-bible": 29900,
   "price-action-strategies": 29900,
   "combo-all-4": 127900,
-  "combo-all-4-planner": 152800,
+  "combo-all-4-planner": 132800,
+};
+
+// Scheduled planner price change: from 20 Nov 2026, 12:00 AM IST.
+const PLANNER_CHANGE_AT = Date.parse("2026-11-19T18:30:00Z");
+const PLANNER_NEW_AMOUNTS = {
+  "money-planner": 27800,
+  "money-planner-cards": 37700,
 };
 
 export default async function handler(req, res) {
@@ -39,7 +46,9 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Invalid product" });
   }
 
-  const amount = Date.now() >= PRICE_CHANGE_AT && NEW_AMOUNTS[productId] ? NEW_AMOUNTS[productId] : product.amount;
+  let amount = product.amount;
+  if (Date.now() >= PRICE_CHANGE_AT && NEW_AMOUNTS[productId]) amount = NEW_AMOUNTS[productId];
+  if (Date.now() >= PLANNER_CHANGE_AT && PLANNER_NEW_AMOUNTS[productId]) amount = PLANNER_NEW_AMOUNTS[productId];
 
   const instance = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
