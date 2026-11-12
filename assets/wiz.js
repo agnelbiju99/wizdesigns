@@ -10,9 +10,9 @@ const PRICE_TEXT_AFTER = {
   "749": "1,279", "998": "1,528", "986": "1,796", "237": "517",
   "289": "499", "399": "699", "149": "299",
   "688": "1,198", "298": "598", "139": "649", "119": "419",
-  "460": "780", "350": "580", "600": "980", "299": "829"
+  "460": "780", "350": "580", "600": "980", "299": "829", "798": "1,328"
 };
-const PRICE_AMOUNT_AFTER = { "28900": "49900", "39900": "69900", "14900": "29900", "74900": "127900", "99800": "152800" };
+const PRICE_AMOUNT_AFTER = { "28900": "49900", "39900": "69900", "14900": "29900", "74900": "127900", "99800": "152800", "79800": "132800" };
 const newPricesLive = () => Date.now() >= PRICE_CHANGE_AT;
 function newPriceText(t) {
   return t.replace(/₹([\d,]+)/g, (m, v) => (PRICE_TEXT_AFTER[v] ? "₹" + PRICE_TEXT_AFTER[v] : m));
@@ -27,6 +27,17 @@ if (newPricesLive()) {
   document.querySelectorAll("[data-amount]").forEach((b) => {
     if (PRICE_AMOUNT_AFTER[b.dataset.amount] && !b.closest("[data-price-fixed]")) b.dataset.amount = PRICE_AMOUNT_AFTER[b.dataset.amount];
   });
+}
+
+// ---------- Scheduled planner price change: 20 Nov 2026, 12:00 AM IST ----------
+// Elements marked data-later / data-amount-later switch to the new planner price at that moment.
+// The server (api/create-order.js) changes what it charges at the same time.
+const PLANNER_CHANGE_AT = Date.parse("2026-11-19T18:30:00Z");
+const plannerPriceLive = () => Date.now() >= PLANNER_CHANGE_AT;
+if (plannerPriceLive()) {
+  document.querySelectorAll(".offer-countdown").forEach((el) => el.remove());
+  document.querySelectorAll("[data-later]").forEach((el) => { el.textContent = el.dataset.later; });
+  document.querySelectorAll("[data-amount-later]").forEach((b) => { b.dataset.amount = b.dataset.amountLater; });
 }
 
 // ============ SETTINGS — EDIT THIS ============
@@ -502,7 +513,7 @@ if (!reduceMotion) {
   const btn = document.getElementById("buy-btn");
   if (!check || !btn) return;
   const BASE = { product: "combo-all-4", name: "Complete Bundle (All 4 Products)", amount: 74900, label: "Get All 4 Guides — ₹749", short: "Get All 4 Guides", price: "₹749" };
-  const PLUS = { product: "combo-all-4-planner", name: "Complete Bundle + AI Money Coach Planner", amount: 99800, label: "Get Bundle + Planner — ₹998", short: "Get Bundle + Planner", price: "₹998" };
+  const PLUS = { product: "combo-all-4-planner", name: "Complete Bundle + AI Money Coach Planner", amount: 79800, label: "Get Bundle + Planner — ₹798", short: "Get Bundle + Planner", price: "₹798" };
   if (newPricesLive()) {
     [BASE, PLUS].forEach((o) => {
       o.amount = +PRICE_AMOUNT_AFTER[o.amount];
@@ -526,7 +537,7 @@ if (!reduceMotion) {
   }
   check.addEventListener("change", () => {
     apply();
-    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddPlannerAddon", { value: 249, currency: "INR" });
+    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddPlannerAddon", { value: 49, currency: "INR" });
   });
   apply();
 
@@ -547,8 +558,9 @@ if (!reduceMotion) {
   const check = document.getElementById("cards-addon-check");
   const btn = document.getElementById("buy-btn");
   if (!check || !btn) return;
-  const BASE = { product: "money-planner", name: "AI Money Coach Planner", amount: 69900, label: "Get the planner — ₹699", short: "Get the planner", price: "₹699" };
-  const PLUS = { product: "money-planner-cards", name: "AI Money Coach Planner + Financial Affirmation Cards", amount: 79800, label: "Get Planner + Cards — ₹798", short: "Get Planner + Cards", price: "₹798" };
+  const p = plannerPriceLive() ? 278 : 88;   // planner price: ₹88 until 20 Nov, then ₹278
+  const BASE = { product: "money-planner", name: "AI Money Coach Planner", amount: p * 100, label: "Get the planner — ₹" + p, short: "Get the planner", price: "₹" + p };
+  const PLUS = { product: "money-planner-cards", name: "AI Money Coach Planner + Financial Affirmation Cards", amount: (p + 99) * 100, label: "Get Planner + Cards — ₹" + (p + 99), short: "Get Planner + Cards", price: "₹" + (p + 99) };
   const CARD_IMGS = ["images/cards-cover.jpg", "images/cards-categories.jpg", "images/cards-inside.jpg", "images/cards-how-to.jpg", "images/cards-ritual.jpg"];
 
   function apply() {
@@ -580,3 +592,20 @@ if (!reduceMotion) {
   thumb.addEventListener("click", preview);
   thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
 })();
+
+// ---------- Offer countdowns (any .offer-countdown with data-deadline) ----------
+document.querySelectorAll(".offer-countdown[data-deadline]").forEach((box) => {
+  const end = Date.parse(box.dataset.deadline);
+  const pad = (n) => String(n).padStart(2, "0");
+  function tick() {
+    const ms = end - Date.now();
+    if (ms <= 0) { location.reload(); return; }   // reload so every price switches together
+    const s = Math.floor(ms / 1000);
+    box.querySelector(".pc-d").textContent = Math.floor(s / 86400);
+    box.querySelector(".pc-h").textContent = pad(Math.floor((s % 86400) / 3600));
+    box.querySelector(".pc-m").textContent = pad(Math.floor((s % 3600) / 60));
+    box.querySelector(".pc-s").textContent = pad(s % 60);
+  }
+  tick();
+  setInterval(tick, 1000);
+});
