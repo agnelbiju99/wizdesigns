@@ -7,8 +7,8 @@ import Razorpay from "razorpay";
 
 const PRODUCTS = {
   // All prices the bundle has been sold at, so recent sales keep showing after each price change:
-  // ₹749 / ₹998, ₹979 / ₹1,228, ₹1,279 / ₹1,528, and ₹1,328 (bundle + ₹49 planner add-on).
-  bundle: [74900, 99800, 97900, 122800, 127900, 152800, 132800],
+  // ₹749 / ₹998, ₹979 / ₹1,228, ₹1,279 / ₹1,528, ₹1,328 (bundle + ₹49 planner add-on), ₹974 (planner-buyer offer).
+  bundle: [74900, 99800, 97900, 122800, 127900, 152800, 132800, 97400],
   // Planner on its own and with the affirmation cards: ₹699 / ₹798, ₹88 / ₹187, ₹278 / ₹377 (from 20 Nov).
   planner: [69900, 79800, 8800, 18700, 27800, 37700],
 };
