@@ -613,3 +613,16 @@ button.btn-gold:disabled { opacity: 0.6; cursor: not-allowed; }
 
 /* Pop-up: 24-hour order count */
 .buy-toast .bt-c { display: block; font-size: 12px; font-weight: 700; color: var(--gold); margin-top: 3px; }
+
+/* ---------- Planner-buyer bundle offer ---------- */
+.offer-box { margin: 16px 0 6px; padding: 14px; border-radius: 14px; text-align: left;
+  background: linear-gradient(180deg, rgba(232,196,106,0.12), rgba(232,196,106,0.04)); border: 1px solid var(--gold); }
+.offer-box .ob-top { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; color: var(--gold); }
+.offer-box .ob-title { font-family: var(--font-display); font-weight: 700; font-size: 17px; margin: 4px 0; color: var(--text); }
+.offer-box .ob-title s { color: var(--muted); font-weight: 500; font-size: 14px; margin-left: 4px; }
+.offer-box .ob-text { font-size: 12.5px; color: var(--text-2); line-height: 1.5; margin: 0 0 10px; }
+.offer-box .ob-btn { display: block; text-align: center; background: var(--gold-grad); color: #1A1204; padding: 11px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+.offer-timer { display: flex; justify-content: center; gap: 8px; margin: 6px 0 14px; }
+.offer-timer span { min-width: 64px; padding: 8px 4px; border-radius: 10px; background: rgba(0,0,0,0.35); border: 1px solid var(--line-2);
+  display: flex; flex-direction: column; align-items: center; font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; }
+.offer-timer b { font-family: var(--font-display); font-size: 24px; color: var(--text); font-variant-numeric: tabular-nums; }
