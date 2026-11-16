@@ -18,6 +18,7 @@ const PRODUCT_NAMES = {
   "chart-setups-bible": "Chart Setups Bible",
   "price-action-strategies": "Price Action Strategies",
   "combo-all-4": "Complete Bundle (All 4 Products)",
+  "combo-all-4-offer": "Complete Bundle (All 4 Products)",
   "combo-all-4-planner": "Complete Bundle + AI Money Coach Planner",
   "money-planner": "AI Money Coach Planner",
   "money-planner-cards": "AI Money Coach Planner + Financial Affirmation Cards",
@@ -40,6 +41,7 @@ const PRODUCT_FILES = {
   "chart-setups-bible": [{ label: "Chart Setups Bible", url: CHART_SETUPS_BIBLE }],
   "price-action-strategies": [{ label: "Price Action Strategies", url: PRICE_ACTION_STRATEGIES }],
   "combo-all-4": BUNDLE_FILES,
+  "combo-all-4-offer": BUNDLE_FILES,
   "combo-all-4-planner": [...BUNDLE_FILES, { label: "AI Money Coach Planner", url: MONEY_PLANNER }],
   "money-planner": [{ label: "AI Money Coach Planner", url: MONEY_PLANNER }],
   "money-planner-cards": [
