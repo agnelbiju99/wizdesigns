@@ -448,9 +448,16 @@ if (peekTrack) {
 
   // Fetch right away so the first pop-up can appear exactly FIRST_DELAY after the page opens.
   const pageStart = Date.now();
-  fetch("/api/recent-orders")
+  const product = toast.dataset.product || "bundle";
+  fetch("/api/recent-orders" + (product === "bundle" ? "" : "?product=" + encodeURIComponent(product)))
     .then((r) => (r.ok ? r.json() : { purchases: [] }))
     .then((data) => {
+      // Real number of orders in the last 24 hours, shown once there are enough to mean something.
+      const count = document.getElementById("bt-count");
+      if (count && data.last24h >= 3) {
+        count.textContent = "🔥 " + data.last24h + " orders in the last 24 hours";
+        count.hidden = false;
+      }
       const list = (data.purchases || []).slice(0, MAX_SHOWN);
       const waited = Date.now() - pageStart;
       list.forEach((ts, i) => {
