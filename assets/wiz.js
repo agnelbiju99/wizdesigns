@@ -119,7 +119,7 @@ function startCheckout(btn) {
   fetch("/api/create-order", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ productId }),
+    body: JSON.stringify({ productId, offerPaymentId: btn.dataset.offer || undefined }),
   })
     .then((orderRes) => {
       if (!orderRes.ok) throw new Error("Could not start checkout. Please try again.");
@@ -162,7 +162,7 @@ function startCheckout(btn) {
             }
 
             setStatus("");
-            showDownloadLink(result.productName, result.files, response.razorpay_payment_id);
+            showDownloadLink(result.productName, result.files, response.razorpay_payment_id, productId);
           } catch (err) {
             setStatus(
               "Payment succeeded but we couldn't fetch your download link automatically. " +
@@ -265,7 +265,7 @@ if (mainBuyBtn && new URLSearchParams(location.search).get("buy") === "1") {
   window.addEventListener("load", () => setTimeout(() => mainBuyBtn.click(), 600));
 }
 
-function showDownloadLink(productName, files, paymentId) {
+function showDownloadLink(productName, files, paymentId, productId) {
   document.getElementById("success-product-name").textContent = productName + " is ready!";
 
   const container = document.getElementById("success-download-links");
@@ -279,6 +279,22 @@ function showDownloadLink(productName, files, paymentId) {
   const successWa = document.getElementById("success-wa");
   if (WHATSAPP_NUMBER && successWa) {
     successWa.href = waLink("Hi! I just bought " + productName + ". Payment ID: " + paymentId + ". Please send me the files here too.");
+  }
+
+  // Thank-you offer for planner buyers: the bundle at ₹974 for 48 hours (checked on the server).
+  const old = document.getElementById("offer-box");
+  if (old) old.remove();
+  if (productId === "money-planner" || productId === "money-planner-cards") {
+    const box = document.createElement("div");
+    box.className = "offer-box";
+    box.id = "offer-box";
+    box.innerHTML =
+      '<div class="ob-top">🎁 Thank-you offer · next 48 hours</div>' +
+      '<div class="ob-title">All 4 trading guides for <b>₹974</b> <s>₹1,279</s></div>' +
+      '<p class="ob-text">From Zero to Trader, NSE Screener Guide, Chart Setups Bible and Price Action Strategies — only for planner buyers.</p>' +
+      '<a class="ob-btn" href="/bundle-offer.html?p=' + encodeURIComponent(paymentId) + '" target="_blank" rel="noopener">See the offer →</a>';
+    document.querySelector("#success-overlay .success-box").insertBefore(box, document.querySelector("#success-overlay .close-note").nextSibling);
+    if (typeof fbq === "function") fbq("trackCustom", "OfferShown", { content_name: "Planner buyer bundle offer" });
   }
 
   document.getElementById("success-overlay").classList.add("open");
@@ -616,3 +632,30 @@ document.querySelectorAll(".offer-countdown[data-deadline]").forEach((box) => {
   tick();
   setInterval(tick, 1000);
 });
+
+// ---------- Planner-buyer bundle offer page (bundle-offer.html?p=pay_...) ----------
+(function () {
+  const page = document.getElementById("offer-page");
+  if (!page) return;
+  const pid = new URLSearchParams(location.search).get("p") || "";
+  const show = (id) => { ["offer-checking", "offer-valid", "offer-expired"].forEach((x) => { document.getElementById(x).hidden = x !== id; }); };
+  fetch("/api/offer-status?p=" + encodeURIComponent(pid))
+    .then((r) => r.json())
+    .then((d) => {
+      if (!d.valid) { show("offer-expired"); return; }
+      show("offer-valid");
+      document.querySelectorAll("button[data-product='combo-all-4-offer']").forEach((b) => { b.dataset.offer = pid; });
+      const pad = (n) => String(n).padStart(2, "0");
+      const tick = () => {
+        const ms = d.expiresAt - Date.now();
+        if (ms <= 0) { show("offer-expired"); return; }
+        const s = Math.floor(ms / 1000);
+        document.getElementById("of-h").textContent = pad(Math.floor(s / 3600));
+        document.getElementById("of-m").textContent = pad(Math.floor((s % 3600) / 60));
+        document.getElementById("of-s").textContent = pad(s % 60);
+      };
+      tick();
+      setInterval(tick, 1000);
+    })
+    .catch(() => show("offer-expired"));
+})();
