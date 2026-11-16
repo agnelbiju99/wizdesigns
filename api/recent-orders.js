@@ -1,14 +1,20 @@
 import Razorpay from "razorpay";
 
-// Recent real Complete Bundle purchases, for the "someone just bought" pop-up.
-// Returns only payment times — never names, phone numbers, emails or payment IDs.
+// Recent real purchases, for the "someone just bought" pop-up.
+// Returns only payment times and a 24-hour count — never names, phone numbers, emails or payment IDs.
+//   /api/recent-orders                 → Complete Bundle orders
+//   /api/recent-orders?product=planner → AI Money Coach Planner orders
 
-// Complete Bundle on its own and with the AI Money Coach Planner add-on.
-// All prices the bundle has been sold at, so recent sales keep showing after each price change:
-// ₹749 / ₹998, ₹979 / ₹1,228, ₹1,279 / ₹1,528, and ₹1,328 (bundle + ₹49 planner add-on).
-const BUNDLE_AMOUNTS = [74900, 99800, 97900, 122800, 127900, 152800, 132800];
+const PRODUCTS = {
+  // All prices the bundle has been sold at, so recent sales keep showing after each price change:
+  // ₹749 / ₹998, ₹979 / ₹1,228, ₹1,279 / ₹1,528, and ₹1,328 (bundle + ₹49 planner add-on).
+  bundle: [74900, 99800, 97900, 122800, 127900, 152800, 132800],
+  // Planner on its own and with the affirmation cards: ₹699 / ₹798, ₹88 / ₹187, ₹278 / ₹377 (from 20 Nov).
+  planner: [69900, 79800, 8800, 18700, 27800, 37700],
+};
 const MAX_AGE_DAYS = 30;
 const MAX_RESULTS = 10;
+const MAX_PAGES = 10; // up to 1,000 payments per request
 
 // Your own test payments are left out so they never show as customer orders.
 const EXCLUDE_PHONES = ["8301070364"];
@@ -25,26 +31,38 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  const amounts = PRODUCTS[(req.query && req.query.product) || "bundle"] || PRODUCTS.bundle;
+
   const instance = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
     key_secret: process.env.RAZORPAY_KEY_SECRET,
   });
 
   try {
-    const since = Math.floor(Date.now() / 1000) - MAX_AGE_DAYS * 24 * 60 * 60;
-    const result = await instance.payments.all({ from: since, count: 100 });
+    const now = Math.floor(Date.now() / 1000);
+    const since = now - MAX_AGE_DAYS * 24 * 60 * 60;
 
-    const times = (result.items || [])
-      .filter((p) => p.status === "captured" && BUNDLE_AMOUNTS.includes(p.amount) && !isOwnPayment(p))
+    // Razorpay returns at most 100 payments per call, newest first, so page through them.
+    const items = [];
+    for (let page = 0; page < MAX_PAGES; page++) {
+      const result = await instance.payments.all({ from: since, count: 100, skip: page * 100 });
+      const batch = result.items || [];
+      items.push(...batch);
+      if (batch.length < 100) break;
+    }
+
+    const times = items
+      .filter((p) => p.status === "captured" && amounts.includes(p.amount) && !isOwnPayment(p))
       .map((p) => p.created_at)
-      .sort((a, b) => b - a)
-      .slice(0, MAX_RESULTS);
+      .sort((a, b) => b - a);
+
+    const last24h = times.filter((t) => t >= now - 24 * 60 * 60).length;
 
     // Let Vercel cache this for 5 minutes so visitors don't each call Razorpay.
     res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=600");
-    return res.status(200).json({ purchases: times });
+    return res.status(200).json({ purchases: times.slice(0, MAX_RESULTS), last24h });
   } catch (err) {
     console.error("Recent orders fetch failed:", err);
-    return res.status(500).json({ purchases: [] });
+    return res.status(500).json({ purchases: [], last24h: 0 });
   }
 }
