@@ -13,7 +13,13 @@ const PRODUCTS = {
   "combo-zero-screener": { name: "From Zero to Trader + NSE Screener Guide", amount: 54900 },
   "combo-price-chart": { name: "Price Action Strategies + Chart Setups Bible", amount: 17900 },
   "product-journey": { name: "What Is A Digital Product?", amount: 8900 },
+  // Thank-you offer for planner buyers: only valid with a recent planner payment (checked below).
+  "combo-all-4-offer": { name: "Complete Bundle (Planner buyer offer)", amount: 97400 },
 };
+
+// Planner-buyer offer: the bundle at ₹974 within 48 hours of a paid planner order.
+const OFFER_WINDOW_SECONDS = 48 * 60 * 60;
+const PLANNER_AMOUNTS = [69900, 79800, 8800, 18700, 27800, 37700];
 
 // Scheduled price change: from 4 Nov 2026, 12:00 AM IST these amounts are charged instead.
 // The website switches the prices it shows at the same moment.
@@ -39,7 +45,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { productId } = req.body || {};
+  const { productId, offerPaymentId } = req.body || {};
   const product = PRODUCTS[productId];
 
   if (!product) {
@@ -55,11 +61,25 @@ export default async function handler(req, res) {
     key_secret: process.env.RAZORPAY_KEY_SECRET,
   });
 
+  const notes = { product: productId };
+  if (productId === "combo-all-4-offer") {
+    try {
+      const p = await instance.payments.fetch(String(offerPaymentId || ""));
+      const fresh = Math.floor(Date.now() / 1000) - p.created_at <= OFFER_WINDOW_SECONDS;
+      if (p.status !== "captured" || !PLANNER_AMOUNTS.includes(p.amount) || !fresh) {
+        return res.status(400).json({ error: "This offer has expired or isn't valid for this purchase." });
+      }
+      notes.offer_from = p.id;
+    } catch (e) {
+      return res.status(400).json({ error: "This offer has expired or isn't valid for this purchase." });
+    }
+  }
+
   try {
     const order = await instance.orders.create({
       amount,
       currency: "INR",
-      notes: { product: productId },
+      notes,
     });
 
     return res.status(200).json({
