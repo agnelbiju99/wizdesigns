@@ -610,3 +610,6 @@ button.btn-gold:disabled { opacity: 0.6; cursor: not-allowed; }
                    background: linear-gradient(135deg, rgba(255,107,107,0.12), rgba(232,196,106,0.10)); border: 1px solid rgba(255,107,107,0.35); }
 .offer-countdown .pc-text { font-size: 13.5px; line-height: 1.5; color: var(--text-2); margin: 0 0 10px; }
 .offer-countdown .pc-text b { color: var(--text); }
+
+/* Pop-up: 24-hour order count */
+.buy-toast .bt-c { display: block; font-size: 12px; font-weight: 700; color: var(--gold); margin-top: 3px; }
