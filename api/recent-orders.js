@@ -4,6 +4,7 @@ import Razorpay from "razorpay";
 // Returns only payment times and a 24-hour count — never names, phone numbers, emails or payment IDs.
 //   /api/recent-orders                 → Complete Bundle orders
 //   /api/recent-orders?product=planner → AI Money Coach Planner orders
+//   /api/recent-orders?product=wedding → Wedding Planning Dashboard orders
 
 const PRODUCTS = {
   // All prices the bundle has been sold at, so recent sales keep showing after each price change:
@@ -11,6 +12,8 @@ const PRODUCTS = {
   bundle: [74900, 99800, 97900, 122800, 127900, 152800, 132800, 97400],
   // Planner on its own and with the affirmation cards: ₹699 / ₹798, ₹88 / ₹187, ₹278 / ₹377 (from 20 Nov).
   planner: [69900, 79800, 8800, 18700, 27800, 37700],
+  // Wedding Planning Dashboard on its own (₹174) and with the ₹49 planner add-on (₹223).
+  wedding: [17400, 22300],
 };
 const MAX_AGE_DAYS = 30;
 const MAX_RESULTS = 10;
