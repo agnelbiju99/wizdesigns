@@ -616,6 +616,44 @@ if (!reduceMotion) {
   thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
 })();
 
+// ---------- Wedding planner add-on: AI Money Coach Planner for ₹49 ----------
+(function () {
+  const check = document.getElementById("wedding-addon-check");
+  const btn = document.getElementById("buy-btn");
+  if (!check || !btn) return;
+  const BASE = { product: "wedding-planner", name: "Wedding Planning Dashboard", amount: 17400, label: "Get the wedding planner — ₹174", short: "Get the wedding planner", price: "₹174" };
+  const PLUS = { product: "wedding-planner-money", name: "Wedding Planning Dashboard + AI Money Coach Planner", amount: 22300, label: "Get Wedding + Money Planner — ₹223", short: "Get both — ₹223", price: "₹223" };
+  const IMGS = ["images/planner-cover.jpg", "images/planner-ai-coach.jpg", "images/planner-daily.jpg", "images/planner-goals.jpg", "images/planner-payday.jpg"];
+
+  function apply() {
+    const o = check.checked ? PLUS : BASE;
+    document.getElementById("wedding-addon").classList.toggle("on", check.checked);
+    btn.dataset.product = o.product;
+    btn.dataset.name = o.name;
+    btn.dataset.amount = o.amount;
+    btn.textContent = o.label;
+    document.querySelectorAll(".js-buy-proxy").forEach((b) => {
+      b.textContent = b.closest(".sticky-bar") ? o.short : o.label;
+    });
+    document.querySelectorAll(".sticky-bar .now").forEach((el) => { el.textContent = o.price; });
+  }
+  check.addEventListener("change", () => {
+    apply();
+    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddPlannerAddon", { value: 49, currency: "INR", source: "wedding" });
+  });
+  apply();
+
+  function preview(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    openGallery(IMGS, 0);
+  }
+  document.getElementById("wedding-addon-preview").addEventListener("click", preview);
+  const thumb = document.getElementById("wedding-addon-thumb");
+  thumb.addEventListener("click", preview);
+  thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
+})();
+
 // ---------- Offer countdowns (any .offer-countdown with data-deadline) ----------
 document.querySelectorAll(".offer-countdown[data-deadline]").forEach((box) => {
   const end = Date.parse(box.dataset.deadline);
