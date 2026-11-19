@@ -274,6 +274,25 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     </div>
   </section>
 
+  <!-- ===== WEDDING ===== -->
+  <section class="reveal" id="wedding">
+    <p class="eyebrow">Wedding planning</p>
+    <h2>Plan your Kerala wedding in one place</h2>
+    <div class="guide-grid">
+      <div class="gcard card" data-card="wedding-planner" data-price-fixed>
+        <a class="g-img" href="/wedding-planner.html"><img src="images/wedding-cover.jpg" alt="Wedding Planning Dashboard" loading="lazy" /></a>
+        <div class="g-body">
+          <span class="g-meta">HTML app · Kerala Wedding mode</span>
+          <h3>Wedding Planning Dashboard</h3>
+          <p class="g-desc">18 modules in one dashboard: budget in lakhs, guest list with RSVP, seating, vendors, muhurtham &amp; functions, sadya planner and more.</p>
+          <div class="g-price"><span class="now grad-gold">₹174</span></div>
+          <div class="g-actions"><button class="buy" data-product="wedding-planner" data-name="Wedding Planning Dashboard" data-amount="17400">Buy ₹174</button><a class="btn-outline" href="/wedding-planner.html">See inside <svg class="icon"><use href="#i-right"/></svg></a></div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== HELP ===== -->
   <section class="reveal">
     <div class="help-card card">
@@ -339,9 +358,9 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
 </div>
 
 <!-- Recent purchase pop-up: filled from real Razorpay orders by /api/recent-orders -->
-<div class="buy-toast" id="buy-toast" role="status" aria-live="polite">
+<div class="buy-toast" id="buy-toast" data-product="bundle" role="status" aria-live="polite">
   <span class="bt-ico"><svg class="icon"><use href="#i-check-circle"/></svg></span>
-  <span><span class="bt-t">Someone bought the Complete Bundle</span><span class="bt-m"><svg class="icon"><use href="#i-shield"/></svg><span id="bt-when"></span>&nbsp;·&nbsp;Verified order</span></span>
+  <span><span class="bt-t">Someone bought the Complete Bundle</span><span class="bt-m"><svg class="icon"><use href="#i-shield"/></svg><span id="bt-when"></span>&nbsp;·&nbsp;Verified order</span><span class="bt-c" id="bt-count" hidden></span></span>
   <button class="bt-x" id="bt-close" aria-label="Close">&times;</button>
 </div>
 
