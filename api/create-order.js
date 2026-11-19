@@ -13,6 +13,8 @@ const PRODUCTS = {
   "combo-zero-screener": { name: "From Zero to Trader + NSE Screener Guide", amount: 54900 },
   "combo-price-chart": { name: "Price Action Strategies + Chart Setups Bible", amount: 17900 },
   "product-journey": { name: "What Is A Digital Product?", amount: 8900 },
+  "wedding-planner": { name: "Wedding Planning Dashboard", amount: 17400 },
+  "wedding-planner-money": { name: "Wedding Planning Dashboard + AI Money Coach Planner", amount: 22300 },
   // Thank-you offer for planner buyers: only valid with a recent planner payment (checked below).
   "combo-all-4-offer": { name: "Complete Bundle (Planner buyer offer)", amount: 97400 },
 };
