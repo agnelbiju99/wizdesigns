@@ -29,10 +29,10 @@ if (newPricesLive()) {
   });
 }
 
-// ---------- Scheduled planner price change: 20 Nov 2026, 12:00 AM IST ----------
+// ---------- Scheduled planner price change: 26 Nov 2026, 12:00 AM IST (₹88 extended to 25 Nov on customer request) ----------
 // Elements marked data-later / data-amount-later switch to the new planner price at that moment.
 // The server (api/create-order.js) changes what it charges at the same time.
-const PLANNER_CHANGE_AT = Date.parse("2026-11-19T18:30:00Z");
+const PLANNER_CHANGE_AT = Date.parse("2026-11-25T18:30:00Z");
 const plannerPriceLive = () => Date.now() >= PLANNER_CHANGE_AT;
 if (plannerPriceLive()) {
   document.querySelectorAll(".offer-countdown").forEach((el) => el.remove());
@@ -581,7 +581,7 @@ if (!reduceMotion) {
   const check = document.getElementById("cards-addon-check");
   const btn = document.getElementById("buy-btn");
   if (!check || !btn) return;
-  const p = plannerPriceLive() ? 278 : 88;   // planner price: ₹88 until 20 Nov, then ₹278
+  const p = plannerPriceLive() ? 278 : 88;   // planner price: ₹88 until 25 Nov, then ₹278
   const BASE = { product: "money-planner", name: "AI Money Coach Planner", amount: p * 100, label: "Get the planner — ₹" + p, short: "Get the planner", price: "₹" + p };
   const PLUS = { product: "money-planner-cards", name: "AI Money Coach Planner + Financial Affirmation Cards", amount: (p + 99) * 100, label: "Get Planner + Cards — ₹" + (p + 99), short: "Get Planner + Cards", price: "₹" + (p + 99) };
   const CARD_IMGS = ["images/cards-cover.jpg", "images/cards-categories.jpg", "images/cards-inside.jpg", "images/cards-how-to.jpg", "images/cards-ritual.jpg"];
