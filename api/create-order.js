@@ -35,8 +35,9 @@ const NEW_AMOUNTS = {
   "combo-all-4-planner": 132800,
 };
 
-// Scheduled planner price change: from 20 Nov 2026, 12:00 AM IST.
-const PLANNER_CHANGE_AT = Date.parse("2026-11-19T18:30:00Z");
+// Scheduled planner price change: from 26 Nov 2026, 12:00 AM IST
+// (₹88 extended to the end of 25 Nov on customer request).
+const PLANNER_CHANGE_AT = Date.parse("2026-11-25T18:30:00Z");
 const PLANNER_NEW_AMOUNTS = {
   "money-planner": 27800,
   "money-planner-cards": 37700,
