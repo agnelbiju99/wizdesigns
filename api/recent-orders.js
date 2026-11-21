@@ -1,7 +1,7 @@
 import Razorpay from "razorpay";
 
 // Recent real purchases, for the "someone just bought" pop-up.
-// Returns only payment times and a 24-hour count — never names, phone numbers, emails or payment IDs.
+// Returns only payment times and 24-hour / 7-day counts — never names, phone numbers, emails or payment IDs.
 //   /api/recent-orders                 → Complete Bundle orders
 //   /api/recent-orders?product=planner → AI Money Coach Planner orders
 //   /api/recent-orders?product=wedding → Wedding Planning Dashboard orders
@@ -60,12 +60,13 @@ export default async function handler(req, res) {
       .sort((a, b) => b - a);
 
     const last24h = times.filter((t) => t >= now - 24 * 60 * 60).length;
+    const last7d = times.filter((t) => t >= now - 7 * 24 * 60 * 60).length;
 
     // Let Vercel cache this for 5 minutes so visitors don't each call Razorpay.
     res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=600");
-    return res.status(200).json({ purchases: times.slice(0, MAX_RESULTS), last24h });
+    return res.status(200).json({ purchases: times.slice(0, MAX_RESULTS), last24h, last7d });
   } catch (err) {
     console.error("Recent orders fetch failed:", err);
-    return res.status(500).json({ purchases: [], last24h: 0 });
+    return res.status(500).json({ purchases: [], last24h: 0, last7d: 0 });
   }
 }
