@@ -468,11 +468,16 @@ if (peekTrack) {
   fetch("/api/recent-orders" + (product === "bundle" ? "" : "?product=" + encodeURIComponent(product)))
     .then((r) => (r.ok ? r.json() : { purchases: [] }))
     .then((data) => {
-      // Real number of orders in the last 24 hours, shown once there are enough to mean something.
+      // Real order counts, each shown once there are enough to mean something.
+      // The 7-day count is shown on the planner page only.
       const count = document.getElementById("bt-count");
-      if (count && data.last24h >= 3) {
-        count.textContent = "🔥 " + data.last24h + " orders in the last 24 hours";
-        count.hidden = false;
+      if (count) {
+        const lines = [];
+        if (data.last24h >= 3) lines.push("🔥 " + data.last24h + " orders in the last 24 hours");
+        if (product === "planner" && data.last7d >= 3) lines.push("🔥 " + data.last7d + " orders in the last 7 days");
+        count.textContent = "";
+        lines.forEach((t) => { const s = document.createElement("span"); s.textContent = t; s.style.display = "block"; count.appendChild(s); });
+        count.hidden = lines.length === 0;
       }
       const list = (data.purchases || []).slice(0, MAX_SHOWN);
       const waited = Date.now() - pageStart;
