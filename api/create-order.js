@@ -23,9 +23,10 @@ const PRODUCTS = {
 const OFFER_WINDOW_SECONDS = 48 * 60 * 60;
 const PLANNER_AMOUNTS = [69900, 79800, 8800, 18700, 27800, 37700];
 
-// Scheduled price change: from 4 Nov 2026, 12:00 AM IST these amounts are charged instead.
-// The website switches the prices it shows at the same moment.
-const PRICE_CHANGE_AT = Date.parse("2026-11-03T18:30:00Z");
+// Scheduled price change. The ₹749-bundle prices (the amounts above) are back as a sale until
+// 3 Dec 2026, 11:59 PM IST; from 4 Dec 2026, 12:00 AM IST these amounts are charged instead.
+// (The first switch was on 4 Nov 2026.) The website switches the prices it shows at the same moment.
+const PRICE_CHANGE_AT = Date.parse("2026-12-03T18:30:00Z");
 const NEW_AMOUNTS = {
   "zero-to-trader": 49900,
   "screener-guide": 69900,
