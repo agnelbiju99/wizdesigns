@@ -2,10 +2,11 @@
    (combo-all-4.html keeps its own copy of this logic inline.)
    Any <button class="buy" data-product data-name data-amount> starts a Razorpay checkout. */
 
-// ---------- Scheduled price change: 4 Nov 2026, 12:00 AM IST ----------
-// Before this moment the current prices show; from it, every price on the page switches
+// ---------- Scheduled price change: 4 Dec 2026, 12:00 AM IST ----------
+// The ₹749-bundle prices are back as a sale until 3 Dec, 11:59 PM IST (first switch was 4 Nov).
+// Before this moment those prices show; from it, every price on the page switches
 // to the new one. The server (api/create-order.js) switches what it charges at the same moment.
-const PRICE_CHANGE_AT = Date.parse("2026-11-03T18:30:00Z");
+const PRICE_CHANGE_AT = Date.parse("2026-12-03T18:30:00Z");
 const PRICE_TEXT_AFTER = {
   "749": "1,279", "998": "1,528", "986": "1,796", "237": "517",
   "289": "499", "399": "699", "149": "299",
@@ -38,6 +39,15 @@ if (plannerPriceLive()) {
   document.querySelectorAll(".offer-countdown").forEach((el) => el.remove());
   document.querySelectorAll("[data-later]").forEach((el) => { el.textContent = el.dataset.later; });
   document.querySelectorAll("[data-amount-later]").forEach((b) => { b.dataset.amount = b.dataset.amountLater; });
+}
+
+// ---------- Sale prices inside fixed-price areas (until 4 Dec 2026, 12:00 AM IST) ----------
+// data-sale-text / data-sale-amount show the sale price; data-sale-text-later is used once the planner is ₹278.
+if (!newPricesLive()) {
+  document.querySelectorAll("[data-sale-text]").forEach((el) => {
+    el.textContent = plannerPriceLive() && el.dataset.saleTextLater ? el.dataset.saleTextLater : el.dataset.saleText;
+  });
+  document.querySelectorAll("[data-sale-amount]").forEach((b) => { b.dataset.amount = b.dataset.saleAmount; });
 }
 
 // ============ SETTINGS — EDIT THIS ============
@@ -284,7 +294,8 @@ function showDownloadLink(productName, files, paymentId, productId) {
   // Thank-you offer for planner buyers: the bundle at ₹974 for 48 hours (checked on the server).
   const old = document.getElementById("offer-box");
   if (old) old.remove();
-  if (productId === "money-planner" || productId === "money-planner-cards") {
+  // The ₹974 thank-you offer is paused during the ₹749 sale (the regular bundle is cheaper then).
+  if ((productId === "money-planner" || productId === "money-planner-cards") && newPricesLive()) {
     const box = document.createElement("div");
     box.className = "offer-box";
     box.id = "offer-box";
@@ -684,6 +695,8 @@ document.querySelectorAll(".offer-countdown[data-deadline]").forEach((box) => {
 (function () {
   const page = document.getElementById("offer-page");
   if (!page) return;
+  // During the ₹749 sale the regular bundle is cheaper than this offer, so send buyers there.
+  if (!newPricesLive()) { location.replace("/combo-all-4.html"); return; }
   const pid = new URLSearchParams(location.search).get("p") || "";
   const show = (id) => { ["offer-checking", "offer-valid", "offer-expired"].forEach((x) => { document.getElementById(x).hidden = x !== id; }); };
   fetch("/api/offer-status?p=" + encodeURIComponent(pid))
