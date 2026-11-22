@@ -435,7 +435,8 @@ if (peekTrack) {
 // ---------- Recent purchase pop-up (real orders only, from /api/recent-orders) ----------
 (function () {
   const toast = document.getElementById("buy-toast");
-  if (!toast) return;
+  // No purchase pop-up on the wedding planner page.
+  if (!toast || toast.dataset.product === "wedding") return;
   const when = document.getElementById("bt-when");
   // Each pop-up stays 6 seconds, then a 3-second pause before the next one.
   const FIRST_DELAY = 2000, SHOW_FOR = 6000, PAUSE = 3000, GAP = SHOW_FOR + PAUSE, MAX_SHOWN = 6;
@@ -469,12 +470,15 @@ if (peekTrack) {
     .then((r) => (r.ok ? r.json() : { purchases: [] }))
     .then((data) => {
       // Real order counts, each shown once there are enough to mean something.
-      // The 7-day count is shown on the planner page only.
+      // Planner page: the 7-day count only. Other pages: the 24-hour count.
       const count = document.getElementById("bt-count");
       if (count) {
         const lines = [];
-        if (data.last24h >= 3) lines.push("🔥 " + data.last24h + " orders in the last 24 hours");
-        if (product === "planner" && data.last7d >= 3) lines.push("🔥 " + data.last7d + " orders in the last 7 days");
+        if (product === "planner") {
+          if (data.last7d >= 3) lines.push("🔥 " + data.last7d + " orders in the last 7 days");
+        } else if (data.last24h >= 3) {
+          lines.push("🔥 " + data.last24h + " orders in the last 24 hours");
+        }
         count.textContent = "";
         lines.forEach((t) => { const s = document.createElement("span"); s.textContent = t; s.style.display = "block"; count.appendChild(s); });
         count.hidden = lines.length === 0;
@@ -626,8 +630,8 @@ if (!reduceMotion) {
   const check = document.getElementById("wedding-addon-check");
   const btn = document.getElementById("buy-btn");
   if (!check || !btn) return;
-  const BASE = { product: "wedding-planner", name: "Wedding Planning Dashboard", amount: 17400, label: "Get the wedding planner — ₹174", short: "Get the wedding planner", price: "₹174" };
-  const PLUS = { product: "wedding-planner-money", name: "Wedding Planning Dashboard + AI Money Coach Planner", amount: 22300, label: "Get Wedding + Money Planner — ₹223", short: "Get both — ₹223", price: "₹223" };
+  const BASE = { product: "wedding-planner", name: "Wedding Planning Dashboard", amount: 13400, label: "Get the wedding planner — ₹134", short: "Get the wedding planner", price: "₹134" };
+  const PLUS = { product: "wedding-planner-money", name: "Wedding Planning Dashboard + AI Money Coach Planner", amount: 18300, label: "Get Wedding + Money Planner — ₹183", short: "Get both — ₹183", price: "₹183" };
   const IMGS = ["images/planner-cover.jpg", "images/planner-ai-coach.jpg", "images/planner-daily.jpg", "images/planner-goals.jpg", "images/planner-payday.jpg"];
 
   function apply() {
