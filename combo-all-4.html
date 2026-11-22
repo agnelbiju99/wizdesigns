@@ -589,7 +589,7 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
   <div class="buy-box" id="buy-box">
     <!-- ===== Offer countdown (removed automatically once the new prices start) ===== -->
     <div class="price-countdown" id="price-countdown">
-      <p class="pc-text">⏳ <b>Combo offer price ₹749</b> ends on <b>4 Nov, 12:00 AM IST</b>. After that, <b>₹1,279</b>.</p>
+      <p class="pc-text">⏳ <b>Combo offer price ₹749</b> ends on <b>3 Dec, 11:59 PM IST</b>. After that, <b>₹1,279</b>.</p>
       <div class="pc-timer" aria-live="off">
         <span><b id="pc-d">0</b>days</span><span><b id="pc-h">00</b>hrs</span><span><b id="pc-m">00</b>min</span><span><b id="pc-s">00</b>sec</span>
       </div>
@@ -981,10 +981,11 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
 </div>
 
 <script>
-  // ---------- Scheduled price change: 4 Nov 2026, 12:00 AM IST ----------
-  // Before this moment the current prices show; from it, every price on the page switches
+  // ---------- Scheduled price change: 4 Dec 2026, 12:00 AM IST ----------
+  // The ₹749 combo price is back as a sale until 3 Dec, 11:59 PM IST (first switch was 4 Nov).
+  // Before this moment those prices show; from it, every price on the page switches
   // to the new one. The server (api/create-order.js) switches what it charges at the same moment.
-  const PRICE_CHANGE_AT = Date.parse("2026-11-03T18:30:00Z");
+  const PRICE_CHANGE_AT = Date.parse("2026-12-03T18:30:00Z");
   const PRICE_TEXT_AFTER = {
     "749": "1,279", "998": "1,528", "986": "1,796", "237": "517",
     "289": "499", "399": "699", "149": "299",
