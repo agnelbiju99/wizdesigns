@@ -12,6 +12,8 @@ const PRODUCT_JOURNEY = "https://drive.google.com/file/d/1ZPNMTz7gwHV4HU3ID5-bUo
 const AFFIRMATION_CARDS = "/financial-affirmation-cards-0517e912d076.pdf";
 // Wedding Planning Dashboard: Google Drive folder (share: "Anyone with the link").
 const WEDDING_PLANNER = "https://drive.google.com/drive/folders/1eZ2M4a_Y5du5x7OhKDQASVO0HoRLZLxr?usp=drive_link";
+// 2027 Year Reset app: Google Drive folder (share: "Anyone with the link").
+const YEAR_RESET = "https://drive.google.com/drive/folders/1POBtLWwvBAY1VCNHHdNs7m_XtDuDdzUO?usp=drive_link";
 const MONEY_PLANNER = "https://drive.google.com/drive/folders/1ZWEOXSbZQ6lVgjLlLZ_xgkUHIBJY1Mh5?usp=sharing";
 
 const PRODUCT_NAMES = {
@@ -30,6 +32,8 @@ const PRODUCT_NAMES = {
   "product-journey": "What Is A Digital Product?",
   "wedding-planner": "Wedding Planning Dashboard",
   "wedding-planner-money": "Wedding Planning Dashboard + AI Money Coach Planner",
+  "year-reset": "2027 Year Reset",
+  "year-reset-money": "2027 Year Reset + AI Money Coach Planner",
 };
 
 const BUNDLE_FILES = [
@@ -65,6 +69,11 @@ const PRODUCT_FILES = {
   "wedding-planner": [{ label: "Wedding Planning Dashboard", url: WEDDING_PLANNER }],
   "wedding-planner-money": [
     { label: "Wedding Planning Dashboard", url: WEDDING_PLANNER },
+    { label: "AI Money Coach Planner", url: MONEY_PLANNER },
+  ],
+  "year-reset": [{ label: "2027 Year Reset", url: YEAR_RESET }],
+  "year-reset-money": [
+    { label: "2027 Year Reset", url: YEAR_RESET },
     { label: "AI Money Coach Planner", url: MONEY_PLANNER },
   ],
 };
