@@ -17,6 +17,8 @@ const PRODUCTS = {
   "wedding-planner-money": { name: "Wedding Planning Dashboard + AI Money Coach Planner", amount: 18300 },
   "year-reset": { name: "2027 Year Reset", amount: 8900 },
   "year-reset-money": { name: "2027 Year Reset + AI Money Coach Planner", amount: 13800 },
+  "debt-tracker": { name: "Debt-Free Tracker", amount: 7800 },
+  "debt-tracker-money": { name: "Debt-Free Tracker + AI Money Coach Planner", amount: 12700 },
   // Thank-you offer for planner buyers: only valid with a recent planner payment (checked below).
   "combo-all-4-offer": { name: "Complete Bundle (Planner buyer offer)", amount: 97400 },
 };
