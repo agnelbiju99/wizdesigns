@@ -712,6 +712,44 @@ if (!reduceMotion) {
   thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
 })();
 
+// ---------- Debt-Free Tracker add-on: AI Money Coach Planner for ₹49 ----------
+(function () {
+  const check = document.getElementById("dft-addon-check");
+  const btn = document.getElementById("buy-btn");
+  if (!check || !btn) return;
+  const BASE = { product: "debt-tracker", name: "Debt-Free Tracker", amount: 7800, label: "Get the tracker — ₹78", short: "Get the tracker", price: "₹78" };
+  const PLUS = { product: "debt-tracker-money", name: "Debt-Free Tracker + AI Money Coach Planner", amount: 12700, label: "Get Tracker + Money Planner — ₹127", short: "Get both — ₹127", price: "₹127" };
+  const IMGS = ["images/planner-cover.jpg", "images/planner-ai-coach.jpg", "images/planner-daily.jpg", "images/planner-goals.jpg", "images/planner-payday.jpg"];
+
+  function apply() {
+    const o = check.checked ? PLUS : BASE;
+    document.getElementById("dft-addon").classList.toggle("on", check.checked);
+    btn.dataset.product = o.product;
+    btn.dataset.name = o.name;
+    btn.dataset.amount = o.amount;
+    btn.textContent = o.label;
+    document.querySelectorAll(".js-buy-proxy").forEach((b) => {
+      b.textContent = b.closest(".sticky-bar") ? o.short : o.label;
+    });
+    document.querySelectorAll(".sticky-bar .now").forEach((el) => { el.textContent = o.price; });
+  }
+  check.addEventListener("change", () => {
+    apply();
+    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddPlannerAddon", { value: 49, currency: "INR", source: "debt-tracker" });
+  });
+  apply();
+
+  function preview(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    openGallery(IMGS, 0);
+  }
+  document.getElementById("dft-addon-preview").addEventListener("click", preview);
+  const thumb = document.getElementById("dft-addon-thumb");
+  thumb.addEventListener("click", preview);
+  thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
+})();
+
 // ---------- Offer countdowns (any .offer-countdown with data-deadline) ----------
 document.querySelectorAll(".offer-countdown[data-deadline]").forEach((box) => {
   const end = Date.parse(box.dataset.deadline);
