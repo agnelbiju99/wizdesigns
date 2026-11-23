@@ -15,6 +15,8 @@ const PRODUCTS = {
   "product-journey": { name: "What Is A Digital Product?", amount: 8900 },
   "wedding-planner": { name: "Wedding Planning Dashboard", amount: 13400 },
   "wedding-planner-money": { name: "Wedding Planning Dashboard + AI Money Coach Planner", amount: 18300 },
+  "year-reset": { name: "2027 Year Reset", amount: 8900 },
+  "year-reset-money": { name: "2027 Year Reset + AI Money Coach Planner", amount: 13800 },
   // Thank-you offer for planner buyers: only valid with a recent planner payment (checked below).
   "combo-all-4-offer": { name: "Complete Bundle (Planner buyer offer)", amount: 97400 },
 };
