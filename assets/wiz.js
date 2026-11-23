@@ -564,7 +564,7 @@ if (!reduceMotion) {
       o.price = newPriceText(o.price);
     });
   }
-  const PLANNER_IMGS = ["images/planner-cover.jpg", "images/planner-ai-coach.jpg", "images/planner-daily.jpg", "images/planner-insights.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-dark-mode.jpg"];
+  const PLANNER_IMGS = ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"];
 
   function apply() {
     const o = check.checked ? PLUS : BASE;
@@ -643,7 +643,7 @@ if (!reduceMotion) {
   if (!check || !btn) return;
   const BASE = { product: "wedding-planner", name: "Wedding Planning Dashboard", amount: 13400, label: "Get the wedding planner — ₹134", short: "Get the wedding planner", price: "₹134" };
   const PLUS = { product: "wedding-planner-money", name: "Wedding Planning Dashboard + AI Money Coach Planner", amount: 18300, label: "Get Wedding + Money Planner — ₹183", short: "Get both — ₹183", price: "₹183" };
-  const IMGS = ["images/planner-cover.jpg", "images/planner-ai-coach.jpg", "images/planner-daily.jpg", "images/planner-goals.jpg", "images/planner-payday.jpg"];
+  const IMGS = ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"];
 
   function apply() {
     const o = check.checked ? PLUS : BASE;
@@ -681,7 +681,7 @@ if (!reduceMotion) {
   if (!check || !btn) return;
   const BASE = { product: "year-reset", name: "2027 Year Reset", amount: 8900, label: "Get the Year Reset — ₹89", short: "Get the Year Reset", price: "₹89" };
   const PLUS = { product: "year-reset-money", name: "2027 Year Reset + AI Money Coach Planner", amount: 13800, label: "Get Year Reset + Money Planner — ₹138", short: "Get both — ₹138", price: "₹138" };
-  const IMGS = ["images/planner-cover.jpg", "images/planner-ai-coach.jpg", "images/planner-daily.jpg", "images/planner-goals.jpg", "images/planner-payday.jpg"];
+  const IMGS = ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"];
 
   function apply() {
     const o = check.checked ? PLUS : BASE;
@@ -719,7 +719,7 @@ if (!reduceMotion) {
   if (!check || !btn) return;
   const BASE = { product: "debt-tracker", name: "Debt-Free Tracker", amount: 7800, label: "Get the tracker — ₹78", short: "Get the tracker", price: "₹78" };
   const PLUS = { product: "debt-tracker-money", name: "Debt-Free Tracker + AI Money Coach Planner", amount: 12700, label: "Get Tracker + Money Planner — ₹127", short: "Get both — ₹127", price: "₹127" };
-  const IMGS = ["images/planner-cover.jpg", "images/planner-ai-coach.jpg", "images/planner-daily.jpg", "images/planner-goals.jpg", "images/planner-payday.jpg"];
+  const IMGS = ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"];
 
   function apply() {
     const o = check.checked ? PLUS : BASE;
