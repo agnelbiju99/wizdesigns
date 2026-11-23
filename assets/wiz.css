@@ -530,7 +530,7 @@ button.alt-buy:disabled { opacity: 0.6; }
 .addon.on .tick { background: var(--gold-grad); }
 .addon.on .tick .icon { opacity: 1; }
 .addon-thumb { position: relative; flex-shrink: 0; cursor: zoom-in; border-radius: 10px; }
-.addon-thumb img { width: 84px; height: 84px; object-fit: cover; border-radius: 10px; display: block; border: 1px solid var(--line-2); background: #fff; }
+.addon-thumb img { width: 84px; height: 84px; object-fit: cover; object-position: 82% 50%; border-radius: 10px; display: block; border: 1px solid var(--line-2); background: #fff; }
 .addon-thumb .zoom { position: absolute; right: -5px; bottom: -5px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
                      background: var(--bg-2); border: 1px solid var(--gold); color: var(--gold); font-size: 12px; }
 .addon-body { display: block; min-width: 0; }
