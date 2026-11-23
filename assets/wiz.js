@@ -674,6 +674,44 @@ if (!reduceMotion) {
   thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
 })();
 
+// ---------- Year Reset add-on: AI Money Coach Planner for ₹49 ----------
+(function () {
+  const check = document.getElementById("yr-addon-check");
+  const btn = document.getElementById("buy-btn");
+  if (!check || !btn) return;
+  const BASE = { product: "year-reset", name: "2027 Year Reset", amount: 8900, label: "Get the Year Reset — ₹89", short: "Get the Year Reset", price: "₹89" };
+  const PLUS = { product: "year-reset-money", name: "2027 Year Reset + AI Money Coach Planner", amount: 13800, label: "Get Year Reset + Money Planner — ₹138", short: "Get both — ₹138", price: "₹138" };
+  const IMGS = ["images/planner-cover.jpg", "images/planner-ai-coach.jpg", "images/planner-daily.jpg", "images/planner-goals.jpg", "images/planner-payday.jpg"];
+
+  function apply() {
+    const o = check.checked ? PLUS : BASE;
+    document.getElementById("yr-addon").classList.toggle("on", check.checked);
+    btn.dataset.product = o.product;
+    btn.dataset.name = o.name;
+    btn.dataset.amount = o.amount;
+    btn.textContent = o.label;
+    document.querySelectorAll(".js-buy-proxy").forEach((b) => {
+      b.textContent = b.closest(".sticky-bar") ? o.short : o.label;
+    });
+    document.querySelectorAll(".sticky-bar .now").forEach((el) => { el.textContent = o.price; });
+  }
+  check.addEventListener("change", () => {
+    apply();
+    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddPlannerAddon", { value: 49, currency: "INR", source: "year-reset" });
+  });
+  apply();
+
+  function preview(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    openGallery(IMGS, 0);
+  }
+  document.getElementById("yr-addon-preview").addEventListener("click", preview);
+  const thumb = document.getElementById("yr-addon-thumb");
+  thumb.addEventListener("click", preview);
+  thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
+})();
+
 // ---------- Offer countdowns (any .offer-countdown with data-deadline) ----------
 document.querySelectorAll(".offer-countdown[data-deadline]").forEach((box) => {
   const end = Date.parse(box.dataset.deadline);
