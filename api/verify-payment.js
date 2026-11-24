@@ -17,6 +17,18 @@ const YEAR_RESET = "https://drive.google.com/drive/folders/1POBtLWwvBAY1VCNHHdNs
 // Debt-Free Tracker: the app itself, hosted on this site at a hard-to-guess address (not linked anywhere, not indexed).
 const DEBT_TRACKER = "/debt-free-tracker-app-6c0b6ccc4898.html";
 const MONEY_PLANNER = "https://drive.google.com/drive/folders/1ZWEOXSbZQ6lVgjLlLZ_xgkUHIBJY1Mh5?usp=sharing";
+// Online versions hosted on this site at hard-to-guess addresses (not linked anywhere).
+// Buyers get "Open … online" first, plus the Drive folder to download a copy.
+const MONEY_PLANNER_APP = "/money-planner-app-ff302d7d542a.html";
+const WEDDING_PLANNER_APP = "/wedding-planner-app-51204f2737cf.html";
+const PLANNER_FILES = [
+  { label: "Open AI Money Coach Planner online", url: MONEY_PLANNER_APP },
+  { label: "Download the planner (Drive)", url: MONEY_PLANNER },
+];
+const WEDDING_FILES = [
+  { label: "Open Wedding Planning Dashboard online", url: WEDDING_PLANNER_APP },
+  { label: "Download the wedding planner + guide (Drive)", url: WEDDING_PLANNER },
+];
 
 const PRODUCT_NAMES = {
   "zero-to-trader": "From Zero to Trader",
@@ -54,10 +66,10 @@ const PRODUCT_FILES = {
   "price-action-strategies": [{ label: "Price Action Strategies", url: PRICE_ACTION_STRATEGIES }],
   "combo-all-4": BUNDLE_FILES,
   "combo-all-4-offer": BUNDLE_FILES,
-  "combo-all-4-planner": [...BUNDLE_FILES, { label: "AI Money Coach Planner", url: MONEY_PLANNER }],
-  "money-planner": [{ label: "AI Money Coach Planner", url: MONEY_PLANNER }],
+  "combo-all-4-planner": [...BUNDLE_FILES, ...PLANNER_FILES],
+  "money-planner": PLANNER_FILES,
   "money-planner-cards": [
-    { label: "AI Money Coach Planner", url: MONEY_PLANNER },
+    ...PLANNER_FILES,
     { label: "Financial Affirmation Cards", url: AFFIRMATION_CARDS },
   ],
   "affirmation-cards": [{ label: "Financial Affirmation Cards", url: AFFIRMATION_CARDS }],
@@ -70,20 +82,20 @@ const PRODUCT_FILES = {
     { label: "Chart Setups Bible", url: CHART_SETUPS_BIBLE },
   ],
   "product-journey": [{ label: "What Is A Digital Product?", url: PRODUCT_JOURNEY }],
-  "wedding-planner": [{ label: "Wedding Planning Dashboard", url: WEDDING_PLANNER }],
+  "wedding-planner": WEDDING_FILES,
   "wedding-planner-money": [
-    { label: "Wedding Planning Dashboard", url: WEDDING_PLANNER },
-    { label: "AI Money Coach Planner", url: MONEY_PLANNER },
+    ...WEDDING_FILES,
+    ...PLANNER_FILES,
   ],
   "year-reset": [{ label: "2027 Year Reset", url: YEAR_RESET }],
   "year-reset-money": [
     { label: "2027 Year Reset", url: YEAR_RESET },
-    { label: "AI Money Coach Planner", url: MONEY_PLANNER },
+    ...PLANNER_FILES,
   ],
   "debt-tracker": [{ label: "Open Debt-Free Tracker", url: DEBT_TRACKER }],
   "debt-tracker-money": [
     { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
-    { label: "AI Money Coach Planner", url: MONEY_PLANNER },
+    ...PLANNER_FILES,
   ],
 };
 
