@@ -1020,10 +1020,10 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     });
   }
 
-  // ---------- Scheduled planner price change: 20 Nov 2026, 12:00 AM IST ----------
+  // ---------- Scheduled planner price change: 3 Dec 2026, 12:00 AM IST ----------
   // Elements marked data-later / data-amount-later switch to the new planner price at that moment.
   // The server (api/create-order.js) changes what it charges at the same time.
-  const PLANNER_CHANGE_AT = Date.parse("2026-11-19T18:30:00Z");
+  const PLANNER_CHANGE_AT = Date.parse("2026-12-02T18:30:00Z");
   const plannerPriceLive = () => Date.now() >= PLANNER_CHANGE_AT;
   if (plannerPriceLive()) {
     document.querySelectorAll(".offer-countdown").forEach((el) => el.remove());

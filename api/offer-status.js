@@ -3,7 +3,7 @@ import Razorpay from "razorpay";
 // Tells the bundle-offer page whether a planner payment still qualifies for the ₹974 offer,
 // and until when. Returns only valid/expiry — never names, phone numbers, emails or amounts.
 const OFFER_WINDOW_SECONDS = 48 * 60 * 60;
-const PLANNER_AMOUNTS = [69900, 79800, 8800, 18700, 27800, 37700];
+const PLANNER_AMOUNTS = [69900, 79800, 8800, 18700, 27800, 37700, 13600, 32600];
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {

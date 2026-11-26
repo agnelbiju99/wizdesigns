@@ -9,6 +9,7 @@ const PRODUCTS = {
   "combo-all-4-planner": { name: "Complete Bundle + AI Money Coach Planner", amount: 79800 },
   "money-planner": { name: "AI Money Coach Planner", amount: 8800 },
   "money-planner-cards": { name: "AI Money Coach Planner + Financial Affirmation Cards", amount: 18700 },
+  "money-planner-debt": { name: "AI Money Coach Planner + Debt-Free Tracker", amount: 13600 },
   "affirmation-cards": { name: "Financial Affirmation Cards", amount: 14900 },
   "combo-zero-screener": { name: "From Zero to Trader + NSE Screener Guide", amount: 54900 },
   "combo-price-chart": { name: "Price Action Strategies + Chart Setups Bible", amount: 17900 },
@@ -25,7 +26,7 @@ const PRODUCTS = {
 
 // Planner-buyer offer: the bundle at ₹974 within 48 hours of a paid planner order.
 const OFFER_WINDOW_SECONDS = 48 * 60 * 60;
-const PLANNER_AMOUNTS = [69900, 79800, 8800, 18700, 27800, 37700];
+const PLANNER_AMOUNTS = [69900, 79800, 8800, 18700, 27800, 37700, 13600, 32600];
 
 // Scheduled price change. The ₹749-bundle prices (the amounts above) are back as a sale until
 // 3 Dec 2026, 11:59 PM IST; from 4 Dec 2026, 12:00 AM IST these amounts are charged instead.
@@ -40,12 +41,13 @@ const NEW_AMOUNTS = {
   "combo-all-4-planner": 132800,
 };
 
-// Scheduled planner price change: from 26 Nov 2026, 12:00 AM IST
-// (₹88 extended to the end of 25 Nov on customer request).
-const PLANNER_CHANGE_AT = Date.parse("2026-11-25T18:30:00Z");
+// Scheduled planner price change: from 3 Dec 2026, 12:00 AM IST
+// (₹88 extended by one week, to the end of 2 Dec, on customer request).
+const PLANNER_CHANGE_AT = Date.parse("2026-12-02T18:30:00Z");
 const PLANNER_NEW_AMOUNTS = {
   "money-planner": 27800,
   "money-planner-cards": 37700,
+  "money-planner-debt": 32600,
 };
 
 export default async function handler(req, res) {

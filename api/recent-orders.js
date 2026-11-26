@@ -11,7 +11,8 @@ const PRODUCTS = {
   // ₹749 / ₹998, ₹979 / ₹1,228, ₹1,279 / ₹1,528, ₹1,328 (bundle + ₹49 planner add-on), ₹974 (planner-buyer offer).
   bundle: [74900, 99800, 97900, 122800, 127900, 152800, 132800, 97400],
   // Planner on its own and with the affirmation cards: ₹699 / ₹798, ₹88 / ₹187, ₹278 / ₹377 (from 20 Nov).
-  planner: [69900, 79800, 8800, 18700, 27800, 37700],
+  // With the ₹48 Debt-Free Tracker add-on: ₹136 / ₹326.
+  planner: [69900, 79800, 8800, 18700, 27800, 37700, 13600, 32600],
   // Wedding Planning Dashboard on its own (₹174, now ₹134) and with the ₹49 planner add-on (₹223, now ₹183).
   wedding: [17400, 22300, 13400, 18300],
 };

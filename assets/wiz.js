@@ -30,10 +30,10 @@ if (newPricesLive()) {
   });
 }
 
-// ---------- Scheduled planner price change: 26 Nov 2026, 12:00 AM IST (₹88 extended to 25 Nov on customer request) ----------
+// ---------- Scheduled planner price change: 3 Dec 2026, 12:00 AM IST (₹88 extended by one week, to 2 Dec, on customer request) ----------
 // Elements marked data-later / data-amount-later switch to the new planner price at that moment.
 // The server (api/create-order.js) changes what it charges at the same time.
-const PLANNER_CHANGE_AT = Date.parse("2026-11-25T18:30:00Z");
+const PLANNER_CHANGE_AT = Date.parse("2026-12-02T18:30:00Z");
 const plannerPriceLive = () => Date.now() >= PLANNER_CHANGE_AT;
 if (plannerPriceLive()) {
   document.querySelectorAll(".offer-countdown").forEach((el) => el.remove());
@@ -295,7 +295,7 @@ function showDownloadLink(productName, files, paymentId, productId) {
   const old = document.getElementById("offer-box");
   if (old) old.remove();
   // The ₹974 thank-you offer is paused during the ₹749 sale (the regular bundle is cheaper then).
-  if ((productId === "money-planner" || productId === "money-planner-cards") && newPricesLive()) {
+  if ((productId === "money-planner" || productId === "money-planner-cards" || productId === "money-planner-debt") && newPricesLive()) {
     const box = document.createElement("div");
     box.className = "offer-box";
     box.id = "offer-box";
@@ -596,19 +596,20 @@ if (!reduceMotion) {
   thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
 })();
 
-// ---------- Planner add-on: Financial Affirmation Cards ----------
+// ---------- Planner add-on: Debt-Free Tracker for ₹48 ----------
 (function () {
-  const check = document.getElementById("cards-addon-check");
+  const check = document.getElementById("debt-addon-check");
   const btn = document.getElementById("buy-btn");
   if (!check || !btn) return;
-  const p = plannerPriceLive() ? 278 : 88;   // planner price: ₹88 until 25 Nov, then ₹278
+  const p = plannerPriceLive() ? 278 : 88;   // planner price: ₹88 until 2 Dec, then ₹278
+  const ADD = 48;                            // Debt-Free Tracker price when added to the planner
   const BASE = { product: "money-planner", name: "AI Money Coach Planner", amount: p * 100, label: "Get the planner — ₹" + p, short: "Get the planner", price: "₹" + p };
-  const PLUS = { product: "money-planner-cards", name: "AI Money Coach Planner + Financial Affirmation Cards", amount: (p + 99) * 100, label: "Get Planner + Cards — ₹" + (p + 99), short: "Get Planner + Cards", price: "₹" + (p + 99) };
-  const CARD_IMGS = ["images/cards-cover.jpg", "images/cards-categories.jpg", "images/cards-inside.jpg", "images/cards-how-to.jpg", "images/cards-ritual.jpg"];
+  const PLUS = { product: "money-planner-debt", name: "AI Money Coach Planner + Debt-Free Tracker", amount: (p + ADD) * 100, label: "Get Planner + Debt Tracker — ₹" + (p + ADD), short: "Get Planner + Tracker", price: "₹" + (p + ADD) };
+  const IMGS = ["images/dft-cover.jpg", "images/dft-m-laptop.jpg", "images/dft-m-plan.jpg", "images/dft-m-cards.jpg", "images/dft-m-malayalam.jpg", "images/dft-m-dark.jpg"];
 
   function apply() {
     const o = check.checked ? PLUS : BASE;
-    document.getElementById("cards-addon").classList.toggle("on", check.checked);
+    document.getElementById("debt-addon").classList.toggle("on", check.checked);
     btn.dataset.product = o.product;
     btn.dataset.name = o.name;
     btn.dataset.amount = o.amount;
@@ -620,18 +621,18 @@ if (!reduceMotion) {
   }
   check.addEventListener("change", () => {
     apply();
-    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddCardsAddon", { value: 99, currency: "INR" });
+    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddDebtTrackerAddon", { value: ADD, currency: "INR" });
   });
   apply();
 
-  // The picture and "See the cards" open the preview instead of ticking the box.
+  // The picture and "See the tracker" open the preview instead of ticking the box.
   function preview(e) {
     e.preventDefault();
     e.stopPropagation();
-    openGallery(CARD_IMGS, 0);
+    openGallery(IMGS, 0);
   }
-  document.getElementById("cards-addon-preview").addEventListener("click", preview);
-  const thumb = document.getElementById("cards-addon-thumb");
+  document.getElementById("debt-addon-preview").addEventListener("click", preview);
+  const thumb = document.getElementById("debt-addon-thumb");
   thumb.addEventListener("click", preview);
   thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
 })();

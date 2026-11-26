@@ -40,6 +40,7 @@ const PRODUCT_NAMES = {
   "combo-all-4-planner": "Complete Bundle + AI Money Coach Planner",
   "money-planner": "AI Money Coach Planner",
   "money-planner-cards": "AI Money Coach Planner + Financial Affirmation Cards",
+  "money-planner-debt": "AI Money Coach Planner + Debt-Free Tracker",
   "affirmation-cards": "Financial Affirmation Cards",
   "combo-zero-screener": "From Zero to Trader + NSE Screener Guide",
   "combo-price-chart": "Price Action Strategies + Chart Setups Bible",
@@ -71,6 +72,10 @@ const PRODUCT_FILES = {
   "money-planner-cards": [
     ...PLANNER_FILES,
     { label: "Financial Affirmation Cards", url: AFFIRMATION_CARDS },
+  ],
+  "money-planner-debt": [
+    ...PLANNER_FILES,
+    { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
   ],
   "affirmation-cards": [{ label: "Financial Affirmation Cards", url: AFFIRMATION_CARDS }],
   "combo-zero-screener": [
