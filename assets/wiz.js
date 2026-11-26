@@ -536,7 +536,8 @@ if (peekTrack) {
 
 // ---------- Auto-scrolling marquees ----------
 // The track's content is duplicated so the loop is seamless. Touch/hover pauses it.
-if (!reduceMotion) {
+// Runs even with "reduce motion" on: battery-saver modes switch that on and left the strips stuck.
+{
   document.querySelectorAll(".marquee").forEach((marquee) => {
     const track = marquee.querySelector(".marquee-track");
     Array.from(track.children).forEach((child) => {

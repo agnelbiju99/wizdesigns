@@ -229,7 +229,9 @@
             mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   }
   .marquee-track { display: flex; gap: 14px; width: max-content; animation: marquee-ltr var(--dur, 45s) linear infinite; }
-  .marquee.paused .marquee-track, .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee.paused .marquee-track { animation-play-state: paused; }
+  /* Hover-pause only on real mouse devices: on phones a tap leaves :hover stuck and froze the strip. */
+  @media (hover: hover) { .marquee:hover .marquee-track { animation-play-state: paused; } }
   @keyframes marquee-ltr { from { transform: translateX(-50%); } to { transform: translateX(0); } }
   .marquee.rtl .marquee-track { animation-name: marquee-rtl; }
   @keyframes marquee-rtl { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -477,8 +479,7 @@
     html { scroll-behavior: auto; }
     .reveal { opacity: 1; transform: none; transition: none; }
     button.buy:after, .proof-pill .dot { animation: none; }
-    .marquee { overflow-x: auto; }
-    .marquee-track { animation: none; }
+    /* Marquees keep moving here on purpose: battery-saver modes switch this setting on and froze the strips. */
   }
 </style>
 
@@ -1364,7 +1365,8 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     marquee.addEventListener("touchstart", () => { clearTimeout(resumeTimer); marquee.classList.add("paused"); }, { passive: true });
     marquee.addEventListener("touchend", () => { resumeTimer = setTimeout(() => marquee.classList.remove("paused"), 2500); }, { passive: true });
   }
-  if (!reduceMotion) document.querySelectorAll(".marquee").forEach(setupMarquee);
+  // Runs even with "reduce motion" on: battery-saver modes switch that on and left the strips stuck.
+  document.querySelectorAll(".marquee").forEach(setupMarquee);
 
   // ---------- Bundle add-on: AI Money Coach Planner ----------
   (function () {
