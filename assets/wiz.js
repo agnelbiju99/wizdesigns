@@ -295,7 +295,7 @@ function showDownloadLink(productName, files, paymentId, productId) {
   const old = document.getElementById("offer-box");
   if (old) old.remove();
   // The ₹974 thank-you offer is paused during the ₹749 sale (the regular bundle is cheaper then).
-  if ((productId === "money-planner" || productId === "money-planner-cards" || productId === "money-planner-debt") && newPricesLive()) {
+  if ((productId === "money-planner" || productId === "money-planner-cards" || productId === "money-planner-debt" || productId === "money-planner-yr" || productId === "money-planner-debt-yr") && newPricesLive()) {
     const box = document.createElement("div");
     box.className = "offer-box";
     box.id = "offer-box";
@@ -597,46 +597,60 @@ if (peekTrack) {
   thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
 })();
 
-// ---------- Planner add-on: Debt-Free Tracker for ₹48 ----------
-(function () {
-  const check = document.getElementById("debt-addon-check");
+// ---------- Two ₹48 add-ons on one buy box (planner page, Debt-Free Tracker page) ----------
+// Each add-on is a <label class="addon" id="ID"> with #ID-check, #ID-thumb and #ID-preview.
+// combos maps the ticked add-on keys (joined with "+", in the order listed) to the product sold.
+function setupAddons(cfg) {
   const btn = document.getElementById("buy-btn");
-  if (!check || !btn) return;
-  const p = plannerPriceLive() ? 278 : 88;   // planner price: ₹88 until 2 Dec, then ₹278
-  const ADD = 48;                            // Debt-Free Tracker price when added to the planner
-  const BASE = { product: "money-planner", name: "AI Money Coach Planner", amount: p * 100, label: "Get the planner — ₹" + p, short: "Get the planner", price: "₹" + p };
-  const PLUS = { product: "money-planner-debt", name: "AI Money Coach Planner + Debt-Free Tracker", amount: (p + ADD) * 100, label: "Get Planner + Debt Tracker — ₹" + (p + ADD), short: "Get Planner + Tracker", price: "₹" + (p + ADD) };
-  const IMGS = ["images/dft-cover.jpg", "images/dft-m-laptop.jpg", "images/dft-m-plan.jpg", "images/dft-m-cards.jpg", "images/dft-m-malayalam.jpg", "images/dft-m-dark.jpg"];
+  const checks = cfg.addons.map((a) => document.getElementById(a.id + "-check"));
+  if (!btn || checks.some((c) => !c)) return;
 
   function apply() {
-    const o = check.checked ? PLUS : BASE;
-    document.getElementById("debt-addon").classList.toggle("on", check.checked);
-    btn.dataset.product = o.product;
-    btn.dataset.name = o.name;
-    btn.dataset.amount = o.amount;
-    btn.textContent = o.label;
+    const on = cfg.addons.filter((a, i) => checks[i].checked);
+    const key = on.map((a) => a.key).join("+");
+    const c = cfg.combos[key];
+    const total = cfg.basePrice + on.reduce((s, a) => s + a.price, 0);
+    cfg.addons.forEach((a, i) => document.getElementById(a.id).classList.toggle("on", checks[i].checked));
+    btn.dataset.product = c.product;
+    btn.dataset.name = c.name;
+    btn.dataset.amount = total * 100;
+    btn.textContent = c.label + " — ₹" + total;
     document.querySelectorAll(".js-buy-proxy").forEach((b) => {
-      b.textContent = b.closest(".sticky-bar") ? o.short : o.label;
+      b.textContent = b.closest(".sticky-bar") ? c.short : c.label + " — ₹" + total;
     });
-    document.querySelectorAll(".sticky-bar .now").forEach((el) => { el.textContent = o.price; });
+    document.querySelectorAll(".sticky-bar .now").forEach((el) => { el.textContent = "₹" + total; });
   }
-  check.addEventListener("change", () => {
-    apply();
-    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddDebtTrackerAddon", { value: ADD, currency: "INR" });
+
+  cfg.addons.forEach((a, i) => {
+    checks[i].addEventListener("change", () => {
+      apply();
+      if (checks[i].checked && typeof fbq === "function") fbq("trackCustom", a.event, { value: a.price, currency: "INR", source: cfg.source });
+    });
+    // The picture and the preview link open the gallery instead of ticking the box.
+    const preview = (e) => { e.preventDefault(); e.stopPropagation(); openGallery(a.imgs, 0); };
+    document.getElementById(a.id + "-preview").addEventListener("click", preview);
+    const thumb = document.getElementById(a.id + "-thumb");
+    thumb.addEventListener("click", preview);
+    thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
   });
   apply();
+}
 
-  // The picture and "See the tracker" open the preview instead of ticking the box.
-  function preview(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    openGallery(IMGS, 0);
-  }
-  document.getElementById("debt-addon-preview").addEventListener("click", preview);
-  const thumb = document.getElementById("debt-addon-thumb");
-  thumb.addEventListener("click", preview);
-  thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
-})();
+// Planner page: Debt-Free Tracker ₹48 and 2027 Year Reset ₹48, only with the planner.
+setupAddons({
+  source: "money-planner",
+  basePrice: plannerPriceLive() ? 278 : 88,   // planner price: ₹88 until 2 Dec, then ₹278
+  addons: [
+    { id: "debt-addon", key: "debt", price: 48, event: "AddDebtTrackerAddon", imgs: ["images/dft-cover.jpg", "images/dft-m-laptop.jpg", "images/dft-m-plan.jpg", "images/dft-m-cards.jpg", "images/dft-m-malayalam.jpg", "images/dft-m-dark.jpg"] },
+    { id: "pl-yr-addon", key: "yr", price: 48, event: "AddYearResetAddon", imgs: ["images/yr-cover.jpg", "images/yr-phone-dashboard.jpg", "images/yr-app-goals.jpg", "images/yr-vision-phone.jpg", "images/yr-habits-phone.jpg", "images/yr-malayalam-phone.jpg"] },
+  ],
+  combos: {
+    "":        { product: "money-planner", name: "AI Money Coach Planner", label: "Get the planner", short: "Get the planner" },
+    "debt":    { product: "money-planner-debt", name: "AI Money Coach Planner + Debt-Free Tracker", label: "Get Planner + Debt Tracker", short: "Get Planner + Tracker" },
+    "yr":      { product: "money-planner-yr", name: "AI Money Coach Planner + 2027 Year Reset", label: "Get Planner + Year Reset", short: "Get Planner + Year Reset" },
+    "debt+yr": { product: "money-planner-debt-yr", name: "AI Money Coach Planner + Debt-Free Tracker + 2027 Year Reset", label: "Get all 3", short: "Get all 3" },
+  },
+});
 
 // ---------- Wedding planner add-on: AI Money Coach Planner for ₹49 ----------
 (function () {
@@ -714,43 +728,21 @@ if (peekTrack) {
   thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
 })();
 
-// ---------- Debt-Free Tracker add-on: AI Money Coach Planner for ₹49 ----------
-(function () {
-  const check = document.getElementById("dft-addon-check");
-  const btn = document.getElementById("buy-btn");
-  if (!check || !btn) return;
-  const BASE = { product: "debt-tracker", name: "Debt-Free Tracker", amount: 7800, label: "Get the tracker — ₹78", short: "Get the tracker", price: "₹78" };
-  const PLUS = { product: "debt-tracker-money", name: "Debt-Free Tracker + AI Money Coach Planner", amount: 12700, label: "Get Tracker + Money Planner — ₹127", short: "Get both — ₹127", price: "₹127" };
-  const IMGS = ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"];
-
-  function apply() {
-    const o = check.checked ? PLUS : BASE;
-    document.getElementById("dft-addon").classList.toggle("on", check.checked);
-    btn.dataset.product = o.product;
-    btn.dataset.name = o.name;
-    btn.dataset.amount = o.amount;
-    btn.textContent = o.label;
-    document.querySelectorAll(".js-buy-proxy").forEach((b) => {
-      b.textContent = b.closest(".sticky-bar") ? o.short : o.label;
-    });
-    document.querySelectorAll(".sticky-bar .now").forEach((el) => { el.textContent = o.price; });
-  }
-  check.addEventListener("change", () => {
-    apply();
-    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddPlannerAddon", { value: 49, currency: "INR", source: "debt-tracker" });
-  });
-  apply();
-
-  function preview(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    openGallery(IMGS, 0);
-  }
-  document.getElementById("dft-addon-preview").addEventListener("click", preview);
-  const thumb = document.getElementById("dft-addon-thumb");
-  thumb.addEventListener("click", preview);
-  thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
-})();
+// Debt-Free Tracker page: AI Money Coach Planner ₹48 and 2027 Year Reset ₹48, only with the tracker.
+setupAddons({
+  source: "debt-tracker",
+  basePrice: 78,
+  addons: [
+    { id: "dft-addon", key: "money", price: 48, event: "AddPlannerAddon", imgs: ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"] },
+    { id: "dft-yr-addon", key: "yr", price: 48, event: "AddYearResetAddon", imgs: ["images/yr-cover.jpg", "images/yr-phone-dashboard.jpg", "images/yr-app-goals.jpg", "images/yr-vision-phone.jpg", "images/yr-habits-phone.jpg", "images/yr-malayalam-phone.jpg"] },
+  ],
+  combos: {
+    "":         { product: "debt-tracker", name: "Debt-Free Tracker", label: "Get the tracker", short: "Get the tracker" },
+    "money":    { product: "debt-tracker-money", name: "Debt-Free Tracker + AI Money Coach Planner", label: "Get Tracker + Money Planner", short: "Get both" },
+    "yr":       { product: "debt-tracker-yr", name: "Debt-Free Tracker + 2027 Year Reset", label: "Get Tracker + Year Reset", short: "Get both" },
+    "money+yr": { product: "debt-tracker-money-yr", name: "Debt-Free Tracker + AI Money Coach Planner + 2027 Year Reset", label: "Get all 3", short: "Get all 3" },
+  },
+});
 
 // ---------- Offer countdowns (any .offer-countdown with data-deadline) ----------
 document.querySelectorAll(".offer-countdown[data-deadline]").forEach((box) => {

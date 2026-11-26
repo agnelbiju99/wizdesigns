@@ -10,6 +10,8 @@ const PRODUCTS = {
   "money-planner": { name: "AI Money Coach Planner", amount: 8800 },
   "money-planner-cards": { name: "AI Money Coach Planner + Financial Affirmation Cards", amount: 18700 },
   "money-planner-debt": { name: "AI Money Coach Planner + Debt-Free Tracker", amount: 13600 },
+  "money-planner-yr": { name: "AI Money Coach Planner + 2027 Year Reset", amount: 13600 },
+  "money-planner-debt-yr": { name: "AI Money Coach Planner + Debt-Free Tracker + 2027 Year Reset", amount: 18400 },
   "affirmation-cards": { name: "Financial Affirmation Cards", amount: 14900 },
   "combo-zero-screener": { name: "From Zero to Trader + NSE Screener Guide", amount: 54900 },
   "combo-price-chart": { name: "Price Action Strategies + Chart Setups Bible", amount: 17900 },
@@ -19,14 +21,16 @@ const PRODUCTS = {
   "year-reset": { name: "2027 Year Reset", amount: 8900 },
   "year-reset-money": { name: "2027 Year Reset + AI Money Coach Planner", amount: 13800 },
   "debt-tracker": { name: "Debt-Free Tracker", amount: 7800 },
-  "debt-tracker-money": { name: "Debt-Free Tracker + AI Money Coach Planner", amount: 12700 },
+  "debt-tracker-money": { name: "Debt-Free Tracker + AI Money Coach Planner", amount: 12600 },
+  "debt-tracker-yr": { name: "Debt-Free Tracker + 2027 Year Reset", amount: 12600 },
+  "debt-tracker-money-yr": { name: "Debt-Free Tracker + AI Money Coach Planner + 2027 Year Reset", amount: 17400 },
   // Thank-you offer for planner buyers: only valid with a recent planner payment (checked below).
   "combo-all-4-offer": { name: "Complete Bundle (Planner buyer offer)", amount: 97400 },
 };
 
 // Planner-buyer offer: the bundle at ₹974 within 48 hours of a paid planner order.
 const OFFER_WINDOW_SECONDS = 48 * 60 * 60;
-const PLANNER_AMOUNTS = [69900, 79800, 8800, 18700, 27800, 37700, 13600, 32600];
+const PLANNER_AMOUNTS = [69900, 79800, 8800, 18700, 27800, 37700, 13600, 32600, 18400, 37400];
 
 // Scheduled price change. The ₹749-bundle prices (the amounts above) are back as a sale until
 // 3 Dec 2026, 11:59 PM IST; from 4 Dec 2026, 12:00 AM IST these amounts are charged instead.
@@ -48,6 +52,8 @@ const PLANNER_NEW_AMOUNTS = {
   "money-planner": 27800,
   "money-planner-cards": 37700,
   "money-planner-debt": 32600,
+  "money-planner-yr": 32600,
+  "money-planner-debt-yr": 37400,
 };
 
 export default async function handler(req, res) {

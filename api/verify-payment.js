@@ -41,6 +41,8 @@ const PRODUCT_NAMES = {
   "money-planner": "AI Money Coach Planner",
   "money-planner-cards": "AI Money Coach Planner + Financial Affirmation Cards",
   "money-planner-debt": "AI Money Coach Planner + Debt-Free Tracker",
+  "money-planner-yr": "AI Money Coach Planner + 2027 Year Reset",
+  "money-planner-debt-yr": "AI Money Coach Planner + Debt-Free Tracker + 2027 Year Reset",
   "affirmation-cards": "Financial Affirmation Cards",
   "combo-zero-screener": "From Zero to Trader + NSE Screener Guide",
   "combo-price-chart": "Price Action Strategies + Chart Setups Bible",
@@ -51,6 +53,8 @@ const PRODUCT_NAMES = {
   "year-reset-money": "2027 Year Reset + AI Money Coach Planner",
   "debt-tracker": "Debt-Free Tracker",
   "debt-tracker-money": "Debt-Free Tracker + AI Money Coach Planner",
+  "debt-tracker-yr": "Debt-Free Tracker + 2027 Year Reset",
+  "debt-tracker-money-yr": "Debt-Free Tracker + AI Money Coach Planner + 2027 Year Reset",
 };
 
 const BUNDLE_FILES = [
@@ -77,6 +81,15 @@ const PRODUCT_FILES = {
     ...PLANNER_FILES,
     { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
   ],
+  "money-planner-yr": [
+    ...PLANNER_FILES,
+    { label: "2027 Year Reset", url: YEAR_RESET },
+  ],
+  "money-planner-debt-yr": [
+    ...PLANNER_FILES,
+    { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
+    { label: "2027 Year Reset", url: YEAR_RESET },
+  ],
   "affirmation-cards": [{ label: "Financial Affirmation Cards", url: AFFIRMATION_CARDS }],
   "combo-zero-screener": [
     { label: "From Zero to Trader", url: ZERO_TO_TRADER },
@@ -101,6 +114,15 @@ const PRODUCT_FILES = {
   "debt-tracker-money": [
     { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
     ...PLANNER_FILES,
+  ],
+  "debt-tracker-yr": [
+    { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
+    { label: "2027 Year Reset", url: YEAR_RESET },
+  ],
+  "debt-tracker-money-yr": [
+    { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
+    ...PLANNER_FILES,
+    { label: "2027 Year Reset", url: YEAR_RESET },
   ],
 };
 

@@ -11,8 +11,8 @@ const PRODUCTS = {
   // ₹749 / ₹998, ₹979 / ₹1,228, ₹1,279 / ₹1,528, ₹1,328 (bundle + ₹49 planner add-on), ₹974 (planner-buyer offer).
   bundle: [74900, 99800, 97900, 122800, 127900, 152800, 132800, 97400],
   // Planner on its own and with the affirmation cards: ₹699 / ₹798, ₹88 / ₹187, ₹278 / ₹377 (from 20 Nov).
-  // With the ₹48 Debt-Free Tracker add-on: ₹136 / ₹326.
-  planner: [69900, 79800, 8800, 18700, 27800, 37700, 13600, 32600],
+  // With one ₹48 add-on (Debt-Free Tracker or 2027 Year Reset): ₹136 / ₹326; with both: ₹184 / ₹374.
+  planner: [69900, 79800, 8800, 18700, 27800, 37700, 13600, 32600, 18400, 37400],
   // Wedding Planning Dashboard on its own (₹174, now ₹134) and with the ₹49 planner add-on (₹223, now ₹183).
   wedding: [17400, 22300, 13400, 18300],
 };
@@ -57,6 +57,8 @@ export default async function handler(req, res) {
 
     const times = items
       .filter((p) => p.status === "captured" && amounts.includes(p.amount) && !isOwnPayment(p))
+      // Debt-Free Tracker combos share amounts with others (₹174 = old wedding price), so leave them out.
+      .filter((p) => !String((p.notes && p.notes.product) || "").startsWith("debt-tracker"))
       .map((p) => p.created_at)
       .sort((a, b) => b - a);
 
