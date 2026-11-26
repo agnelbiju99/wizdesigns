@@ -188,6 +188,25 @@ src="https://www.facebook.com/tr?id=3457495557772098&ev=PageView&noscript=1"
     </div>
   </section>
 
+  <!-- ===== PAYMENT PROOF ===== -->
+  <section id="payments" class="reveal">
+    <p class="eyebrow">Real orders</p>
+    <h2><span class="grad-gold">100+ planners sold</span> so far</h2>
+    <p class="sub-note">Recent planner orders from our Razorpay dashboard. Tap any screenshot to zoom in.</p>
+    <div class="marquee rtl" id="proof-marquee" style="--dur:30s">
+      <div class="marquee-track">
+      <div class="proof-card" onclick="openPlannerProof(0)"><img src="images/proof/planner-1.jpg" alt="Razorpay dashboard: captured planner payments" loading="lazy" width="1182" height="926" /></div>
+      <div class="proof-card" onclick="openPlannerProof(1)"><img src="images/proof/planner-2.jpg" alt="Razorpay dashboard: captured planner payments" loading="lazy" width="1400" height="590" /></div>
+      <div class="proof-card wide" onclick="openPlannerProof(2)"><img src="images/proof/planner-3.jpg" alt="Razorpay dashboard: captured planner payments" loading="lazy" width="1400" height="469" /></div>
+      <div class="proof-card" onclick="openPlannerProof(3)"><img src="images/proof/planner-4.jpg" alt="Razorpay dashboard: captured planner payments" loading="lazy" width="1400" height="763" /></div>
+      </div>
+    </div>
+    <p class="proof-note"><svg class="icon"><use href="#i-shield"/></svg>Payment IDs and buyer details blurred for privacy</p>
+    <script>
+      function openPlannerProof(i) { openGallery(["images/proof/planner-1.jpg", "images/proof/planner-2.jpg", "images/proof/planner-3.jpg", "images/proof/planner-4.jpg"], i); }
+    </script>
+  </section>
+
   <!-- ===== CONTENTS ===== -->
   <section class="reveal">
     <p class="eyebrow">Contents</p>
