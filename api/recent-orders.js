@@ -57,8 +57,8 @@ export default async function handler(req, res) {
 
     const times = items
       .filter((p) => p.status === "captured" && amounts.includes(p.amount) && !isOwnPayment(p))
-      // Debt-Free Tracker combos share amounts with others (₹174 = old wedding price), so leave them out.
-      .filter((p) => !String((p.notes && p.notes.product) || "").startsWith("debt-tracker"))
+      // Debt-Free / Job Hunt Tracker combos share amounts with others (₹174 = old wedding price), so leave them out.
+      .filter((p) => !/^(debt|job)-tracker/.test(String((p.notes && p.notes.product) || "")))
       .map((p) => p.created_at)
       .sort((a, b) => b - a);
 

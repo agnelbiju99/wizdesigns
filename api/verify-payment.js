@@ -16,6 +16,8 @@ const WEDDING_PLANNER = "https://drive.google.com/drive/folders/1eZ2M4a_Y5du5x7O
 const YEAR_RESET = "https://drive.google.com/drive/folders/1POBtLWwvBAY1VCNHHdNs7m_XtDuDdzUO?usp=drive_link";
 // Debt-Free Tracker: the app itself, hosted on this site at a hard-to-guess address (not linked anywhere, not indexed).
 const DEBT_TRACKER = "/debt-free-tracker-app-6c0b6ccc4898.html";
+// Job Hunt Tracker: the app itself, hosted on this site at a hard-to-guess address (not linked anywhere, not indexed).
+const JOB_TRACKER = "/job-hunt-tracker-app-d058450e2f9d.html";
 const MONEY_PLANNER = "https://drive.google.com/drive/folders/1ZWEOXSbZQ6lVgjLlLZ_xgkUHIBJY1Mh5?usp=sharing";
 // Online versions hosted on this site at hard-to-guess addresses (not linked anywhere).
 // Buyers get "Open … online" first, plus the Drive folder to download a copy.
@@ -55,6 +57,10 @@ const PRODUCT_NAMES = {
   "debt-tracker-money": "Debt-Free Tracker + AI Money Coach Planner",
   "debt-tracker-yr": "Debt-Free Tracker + 2027 Year Reset",
   "debt-tracker-money-yr": "Debt-Free Tracker + AI Money Coach Planner + 2027 Year Reset",
+  "job-tracker": "Job Hunt Tracker",
+  "job-tracker-money": "Job Hunt Tracker + AI Money Coach Planner",
+  "job-tracker-yr": "Job Hunt Tracker + 2027 Year Reset",
+  "job-tracker-money-yr": "Job Hunt Tracker + AI Money Coach Planner + 2027 Year Reset",
 };
 
 const BUNDLE_FILES = [
@@ -121,6 +127,20 @@ const PRODUCT_FILES = {
   ],
   "debt-tracker-money-yr": [
     { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
+    ...PLANNER_FILES,
+    { label: "2027 Year Reset", url: YEAR_RESET },
+  ],
+  "job-tracker": [{ label: "Open Job Hunt Tracker", url: JOB_TRACKER }],
+  "job-tracker-money": [
+    { label: "Open Job Hunt Tracker", url: JOB_TRACKER },
+    ...PLANNER_FILES,
+  ],
+  "job-tracker-yr": [
+    { label: "Open Job Hunt Tracker", url: JOB_TRACKER },
+    { label: "2027 Year Reset", url: YEAR_RESET },
+  ],
+  "job-tracker-money-yr": [
+    { label: "Open Job Hunt Tracker", url: JOB_TRACKER },
     ...PLANNER_FILES,
     { label: "2027 Year Reset", url: YEAR_RESET },
   ],

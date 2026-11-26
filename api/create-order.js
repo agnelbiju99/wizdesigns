@@ -24,6 +24,10 @@ const PRODUCTS = {
   "debt-tracker-money": { name: "Debt-Free Tracker + AI Money Coach Planner", amount: 12600 },
   "debt-tracker-yr": { name: "Debt-Free Tracker + 2027 Year Reset", amount: 12600 },
   "debt-tracker-money-yr": { name: "Debt-Free Tracker + AI Money Coach Planner + 2027 Year Reset", amount: 17400 },
+  "job-tracker": { name: "Job Hunt Tracker", amount: 4400 },
+  "job-tracker-money": { name: "Job Hunt Tracker + AI Money Coach Planner", amount: 9200 },
+  "job-tracker-yr": { name: "Job Hunt Tracker + 2027 Year Reset", amount: 9200 },
+  "job-tracker-money-yr": { name: "Job Hunt Tracker + AI Money Coach Planner + 2027 Year Reset", amount: 14000 },
   // Thank-you offer for planner buyers: only valid with a recent planner payment (checked below).
   "combo-all-4-offer": { name: "Complete Bundle (Planner buyer offer)", amount: 97400 },
 };

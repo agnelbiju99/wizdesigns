@@ -744,6 +744,22 @@ setupAddons({
   },
 });
 
+// Job Hunt Tracker page: AI Money Coach Planner ₹48 and 2027 Year Reset ₹48, only with the tracker.
+setupAddons({
+  source: "job-tracker",
+  basePrice: 44,
+  addons: [
+    { id: "jht-addon", key: "money", price: 48, event: "AddPlannerAddon", imgs: ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"] },
+    { id: "jht-yr-addon", key: "yr", price: 48, event: "AddYearResetAddon", imgs: ["images/yr-cover.jpg", "images/yr-phone-dashboard.jpg", "images/yr-app-goals.jpg", "images/yr-vision-phone.jpg", "images/yr-habits-phone.jpg", "images/yr-malayalam-phone.jpg"] },
+  ],
+  combos: {
+    "":         { product: "job-tracker", name: "Job Hunt Tracker", label: "Get the tracker", short: "Get the tracker" },
+    "money":    { product: "job-tracker-money", name: "Job Hunt Tracker + AI Money Coach Planner", label: "Get Tracker + Money Planner", short: "Get both" },
+    "yr":       { product: "job-tracker-yr", name: "Job Hunt Tracker + 2027 Year Reset", label: "Get Tracker + Year Reset", short: "Get both" },
+    "money+yr": { product: "job-tracker-money-yr", name: "Job Hunt Tracker + AI Money Coach Planner + 2027 Year Reset", label: "Get all 3", short: "Get all 3" },
+  },
+});
+
 // ---------- Offer countdowns (any .offer-countdown with data-deadline) ----------
 document.querySelectorAll(".offer-countdown[data-deadline]").forEach((box) => {
   const end = Date.parse(box.dataset.deadline);
