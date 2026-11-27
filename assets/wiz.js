@@ -728,12 +728,12 @@ setupAddons({
   thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
 })();
 
-// Debt-Free Tracker page: AI Money Coach Planner ₹48 and 2027 Year Reset ₹48, only with the tracker.
+// Debt-Free Tracker page: AI Money Coach Planner ₹58 and 2027 Year Reset ₹48, only with the tracker.
 setupAddons({
   source: "debt-tracker",
   basePrice: 78,
   addons: [
-    { id: "dft-addon", key: "money", price: 48, event: "AddPlannerAddon", imgs: ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"] },
+    { id: "dft-addon", key: "money", price: 58, event: "AddPlannerAddon", imgs: ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"] },
     { id: "dft-yr-addon", key: "yr", price: 48, event: "AddYearResetAddon", imgs: ["images/yr-cover.jpg", "images/yr-phone-dashboard.jpg", "images/yr-app-goals.jpg", "images/yr-vision-phone.jpg", "images/yr-habits-phone.jpg", "images/yr-malayalam-phone.jpg"] },
   ],
   combos: {
