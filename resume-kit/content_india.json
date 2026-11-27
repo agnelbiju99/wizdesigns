@@ -1,0 +1,108 @@
+{
+  "_readme": "All guidance text for the India build (sold on the Wiz Designs site, not on Etsy). Edit any text here; keep the keys.",
+
+  "layoutBlurbs": {
+    "fresher": "Final-year students and freshers with no full-time job yet",
+    "serviceIT": "Freshers applying to IT service companies and tech roles",
+    "nonIT": "Commerce, arts, science and other non-IT roles",
+    "govt": "Government, PSU and other jobs where the form asks for personal details",
+    "careerBreak": "Coming back to work after a gap"
+  },
+
+  "tips": {
+    "personal": "Use one phone number and an email that looks professional (your name, not a nickname). City is enough; skip your full home address.",
+    "headline": "One line that says what you are and what you're looking for. You can reuse it as your Naukri and LinkedIn headline.",
+    "summary": "2–3 short lines: your degree or current role, your strongest skills, and the kind of job you want. Write it for this job, not for every job.",
+    "education": "Newest first. Add your CGPA, and your 12th and 10th marks if they're good or the job asks for them; many Indian job filters read these.",
+    "skills": "List only what you can talk about in an interview. Put the skills the job post asks for first.",
+    "projects": "Say what you built, what you used, and what it did. Start each bullet with an action word like Built, Designed or Tested.",
+    "internships": "Even a short or unpaid internship counts. Write what you worked on, not just the company name.",
+    "experience": "Newest first. 3–5 bullets each, about what you did and what changed because of it.",
+    "certifications": "Name, who gave it, and the year. Leave out ones that have nothing to do with this job.",
+    "achievements": "Ranks, prizes, scholarships, hackathons, sports or arts at college or state level.",
+    "activities": "Clubs, NSS/NCC, volunteering, college fests, or anything where you organised or led something.",
+    "languages": "List the languages you can speak or write, e.g. English, Malayalam, Hindi.",
+    "courses": "Courses or certificates you did during the break show you kept learning. Add the year.",
+    "breakNote": "One honest line is enough, e.g. 'Took a career break (2023–2025) for family reasons; now returning to full-time work.' No long explanations."
+  },
+
+  "examples": {
+    "headline": [
+      "B.Tech Computer Science fresher | Python, SQL, Power BI | Looking for data analyst roles",
+      "B.Com graduate | Tally, GST, MS Excel | Seeking accounts executive roles in Kochi",
+      "Mechanical engineer (2025) | AutoCAD, SolidWorks | Open to design and production roles"
+    ],
+    "summary": [
+      "B.Tech Computer Science graduate (2025) with hands-on projects in Python and SQL. Built a student attendance dashboard used by my department. Looking for an entry-level data analyst role.",
+      "B.Com graduate with a 3-month internship in accounts, comfortable with Tally, GST returns and MS Excel. Looking for an accounts executive role.",
+      "Software tester with 2 years' experience, returning after a career break (2023–2025) during which I completed an ISTQB Foundation course. Looking for a QA role."
+    ],
+    "projects": [
+      "Built a web app in Python and Flask that tracks student attendance; used by 3 classes in my department.",
+      "Designed a SQL database for a college library with 5,000+ books, and wrote queries for issue and return reports.",
+      "Created a Power BI dashboard showing monthly sales for a local shop, using its billing data in Excel."
+    ],
+    "internships": [
+      "Tested 4 modules of a billing app during a 2-month internship and logged 30+ bugs in Jira.",
+      "Prepared weekly sales reports in Excel for the regional office during a summer internship."
+    ],
+    "experience": [
+      "Handled GST filing and monthly reconciliation for 25 small-business clients.",
+      "Reduced report preparation time from 2 days to half a day by setting up Excel templates."
+    ],
+    "achievements": [
+      "University rank 12 in B.Tech Computer Science (2025)",
+      "Winner, college hackathon (2024), team of 3"
+    ],
+    "activities": [
+      "NSS volunteer: organised a blood donation camp with 120 donors (2024)",
+      "Coordinator, technical fest at my college (2023)"
+    ],
+    "courses": [
+      "Google Data Analytics Certificate, Coursera (2024)",
+      "Advanced Excel, NIELIT (2024)"
+    ]
+  },
+
+  "checklistNotes": {
+    "onePage": "For freshers, one page is enough. Recruiters skim; a second page usually doesn't get read.",
+    "contact": "Phone and email as plain text, so software and people can copy them. No icons.",
+    "headings": "Standard headings like Education, Skills and Projects are what software and recruiters look for.",
+    "photo": "Private companies don't need a photo. Government forms usually have their own photo field.",
+    "bullets": "3–5 bullets per project or job is easy to read. One bullet looks thin; eight is too long.",
+    "dates": "Write all dates the same way, e.g. 'Jun 2024' everywhere.",
+    "fileName": "Name the file with your name, so it's easy to find in a recruiter's inbox."
+  },
+
+  "howToUse": [
+    "Tap New resume and pick the layout closest to your situation.",
+    "Fill in each section in Build. Tap See an example when you're stuck, then change it to your own words.",
+    "Before applying, open Tailor, paste the job post and see which of its words your resume doesn't use. Add only the ones that are true for you, and save a copy for that job.",
+    "Open Check and fix anything marked. Run the copy-paste test on your PDF.",
+    "Open Export, save the PDF and Word file, and back up your data from More once a week."
+  ],
+  "videoUrl": "",
+
+  "govtNote": "Many government forms ask for these in their own fields; add them here only if the notice asks.",
+  "declarationText": "I hereby declare that the information given above is true to the best of my knowledge.",
+
+  "synonyms": [
+    ["js", "javascript"],
+    ["ms excel", "excel", "microsoft excel"],
+    ["powerbi", "power bi"],
+    ["ml", "machine learning"],
+    ["ai", "artificial intelligence"],
+    ["communication", "communication skills"],
+    ["ms office", "microsoft office"],
+    ["node.js", "nodejs"],
+    ["react.js", "reactjs", "react"],
+    ["sql", "mysql", "postgresql"],
+    ["oops", "object oriented programming", "oop"],
+    ["dsa", "data structures and algorithms", "data structures"],
+    ["tally", "tally erp", "tally prime"],
+    ["gst", "goods and services tax"],
+    ["autocad", "auto cad"],
+    ["customer service", "customer support"],
+    ["teamwork", "team player"]
+  ]
+}
