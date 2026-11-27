@@ -18,6 +18,8 @@ const YEAR_RESET = "https://drive.google.com/drive/folders/1POBtLWwvBAY1VCNHHdNs
 const DEBT_TRACKER = "/debt-free-tracker-app-6c0b6ccc4898.html";
 // Job Hunt Tracker: the app itself, hosted on this site at a hard-to-guess address (not linked anywhere, not indexed).
 const JOB_TRACKER = "/job-hunt-tracker-app-d058450e2f9d.html";
+// Offer Check: the app itself, hosted on this site at a hard-to-guess address (not linked anywhere, not indexed).
+const OFFER_CHECK = "/offer-check-app-661c4fb86337.html";
 const MONEY_PLANNER = "https://drive.google.com/drive/folders/1ZWEOXSbZQ6lVgjLlLZ_xgkUHIBJY1Mh5?usp=sharing";
 // Online versions hosted on this site at hard-to-guess addresses (not linked anywhere).
 // Buyers get "Open … online" first, plus the Drive folder to download a copy.
@@ -61,6 +63,14 @@ const PRODUCT_NAMES = {
   "job-tracker-money": "Job Hunt Tracker + AI Money Coach Planner",
   "job-tracker-yr": "Job Hunt Tracker + 2027 Year Reset",
   "job-tracker-money-yr": "Job Hunt Tracker + AI Money Coach Planner + 2027 Year Reset",
+  "job-tracker-offer": "Job Hunt Tracker + Offer Check",
+  "job-tracker-money-offer": "Job Hunt Tracker + AI Money Coach Planner + Offer Check",
+  "job-tracker-yr-offer": "Job Hunt Tracker + 2027 Year Reset + Offer Check",
+  "job-tracker-money-yr-offer": "Job Hunt Tracker + AI Money Coach Planner + 2027 Year Reset + Offer Check",
+  "offer-check": "Offer Check",
+  "offer-check-job": "Offer Check + Job Hunt Tracker",
+  "offer-check-money": "Offer Check + AI Money Coach Planner",
+  "offer-check-job-money": "Offer Check + Job Hunt Tracker + AI Money Coach Planner",
 };
 
 const BUNDLE_FILES = [
@@ -143,6 +153,40 @@ const PRODUCT_FILES = {
     { label: "Open Job Hunt Tracker", url: JOB_TRACKER },
     ...PLANNER_FILES,
     { label: "2027 Year Reset", url: YEAR_RESET },
+  ],
+  "job-tracker-offer": [
+    { label: "Open Job Hunt Tracker", url: JOB_TRACKER },
+    { label: "Open Offer Check", url: OFFER_CHECK },
+  ],
+  "job-tracker-money-offer": [
+    { label: "Open Job Hunt Tracker", url: JOB_TRACKER },
+    ...PLANNER_FILES,
+    { label: "Open Offer Check", url: OFFER_CHECK },
+  ],
+  "job-tracker-yr-offer": [
+    { label: "Open Job Hunt Tracker", url: JOB_TRACKER },
+    { label: "2027 Year Reset", url: YEAR_RESET },
+    { label: "Open Offer Check", url: OFFER_CHECK },
+  ],
+  "job-tracker-money-yr-offer": [
+    { label: "Open Job Hunt Tracker", url: JOB_TRACKER },
+    ...PLANNER_FILES,
+    { label: "2027 Year Reset", url: YEAR_RESET },
+    { label: "Open Offer Check", url: OFFER_CHECK },
+  ],
+  "offer-check": [{ label: "Open Offer Check", url: OFFER_CHECK }],
+  "offer-check-job": [
+    { label: "Open Offer Check", url: OFFER_CHECK },
+    { label: "Open Job Hunt Tracker", url: JOB_TRACKER },
+  ],
+  "offer-check-money": [
+    { label: "Open Offer Check", url: OFFER_CHECK },
+    ...PLANNER_FILES,
+  ],
+  "offer-check-job-money": [
+    { label: "Open Offer Check", url: OFFER_CHECK },
+    { label: "Open Job Hunt Tracker", url: JOB_TRACKER },
+    ...PLANNER_FILES,
   ],
 };
 

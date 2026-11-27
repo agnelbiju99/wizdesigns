@@ -744,19 +744,40 @@ setupAddons({
   },
 });
 
-// Job Hunt Tracker page: AI Money Coach Planner ₹48 and 2027 Year Reset ₹48, only with the tracker.
+// Job Hunt Tracker page: AI Money Coach Planner ₹48, 2027 Year Reset ₹48 and Offer Check ₹39, only with the tracker.
 setupAddons({
   source: "job-tracker",
   basePrice: 44,
   addons: [
     { id: "jht-addon", key: "money", price: 48, event: "AddPlannerAddon", imgs: ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"] },
     { id: "jht-yr-addon", key: "yr", price: 48, event: "AddYearResetAddon", imgs: ["images/yr-cover.jpg", "images/yr-phone-dashboard.jpg", "images/yr-app-goals.jpg", "images/yr-vision-phone.jpg", "images/yr-habits-phone.jpg", "images/yr-malayalam-phone.jpg"] },
+    { id: "jht-oc-addon", key: "offer", price: 39, event: "AddOfferCheckAddon", imgs: ["images/oc-cover.jpg", "images/oc-m-salary.jpg", "images/oc-m-sheet.jpg", "images/oc-m-three.jpg", "images/oc-m-malayalam.jpg"] },
   ],
   combos: {
     "":         { product: "job-tracker", name: "Job Hunt Tracker", label: "Get the tracker", short: "Get the tracker" },
     "money":    { product: "job-tracker-money", name: "Job Hunt Tracker + AI Money Coach Planner", label: "Get Tracker + Money Planner", short: "Get both" },
     "yr":       { product: "job-tracker-yr", name: "Job Hunt Tracker + 2027 Year Reset", label: "Get Tracker + Year Reset", short: "Get both" },
     "money+yr": { product: "job-tracker-money-yr", name: "Job Hunt Tracker + AI Money Coach Planner + 2027 Year Reset", label: "Get all 3", short: "Get all 3" },
+    "offer":          { product: "job-tracker-offer", name: "Job Hunt Tracker + Offer Check", label: "Get Tracker + Offer Check", short: "Get both" },
+    "money+offer":    { product: "job-tracker-money-offer", name: "Job Hunt Tracker + AI Money Coach Planner + Offer Check", label: "Get all 3", short: "Get all 3" },
+    "yr+offer":       { product: "job-tracker-yr-offer", name: "Job Hunt Tracker + 2027 Year Reset + Offer Check", label: "Get all 3", short: "Get all 3" },
+    "money+yr+offer": { product: "job-tracker-money-yr-offer", name: "Job Hunt Tracker + AI Money Coach Planner + 2027 Year Reset + Offer Check", label: "Get all 4", short: "Get all 4" },
+  },
+});
+
+// Offer Check page: Job Hunt Tracker ₹39 and AI Money Coach Planner ₹48, only with Offer Check.
+setupAddons({
+  source: "offer-check",
+  basePrice: 44,
+  addons: [
+    { id: "oc-job-addon", key: "job", price: 39, event: "AddJobTrackerAddon", imgs: ["images/jht-cover-v2.jpg", "images/jht-p-interviews.jpg", "images/jht-m-message.jpg", "images/jht-p-flatlay.jpg", "images/jht-p-laptop.jpg"] },
+    { id: "oc-money-addon", key: "money", price: 48, event: "AddPlannerAddon", imgs: ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"] },
+  ],
+  combos: {
+    "":          { product: "offer-check", name: "Offer Check", label: "Get Offer Check", short: "Get Offer Check" },
+    "job":       { product: "offer-check-job", name: "Offer Check + Job Hunt Tracker", label: "Get Offer Check + Job Tracker", short: "Get both" },
+    "money":     { product: "offer-check-money", name: "Offer Check + AI Money Coach Planner", label: "Get Offer Check + Money Planner", short: "Get both" },
+    "job+money": { product: "offer-check-job-money", name: "Offer Check + Job Hunt Tracker + AI Money Coach Planner", label: "Get all 3", short: "Get all 3" },
   },
 });
 

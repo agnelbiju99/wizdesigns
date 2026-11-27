@@ -28,6 +28,14 @@ const PRODUCTS = {
   "job-tracker-money": { name: "Job Hunt Tracker + AI Money Coach Planner", amount: 9200 },
   "job-tracker-yr": { name: "Job Hunt Tracker + 2027 Year Reset", amount: 9200 },
   "job-tracker-money-yr": { name: "Job Hunt Tracker + AI Money Coach Planner + 2027 Year Reset", amount: 14000 },
+  "job-tracker-offer": { name: "Job Hunt Tracker + Offer Check", amount: 8300 },
+  "job-tracker-money-offer": { name: "Job Hunt Tracker + AI Money Coach Planner + Offer Check", amount: 13100 },
+  "job-tracker-yr-offer": { name: "Job Hunt Tracker + 2027 Year Reset + Offer Check", amount: 13100 },
+  "job-tracker-money-yr-offer": { name: "Job Hunt Tracker + AI Money Coach Planner + 2027 Year Reset + Offer Check", amount: 17900 },
+  "offer-check": { name: "Offer Check", amount: 4400 },
+  "offer-check-job": { name: "Offer Check + Job Hunt Tracker", amount: 8300 },
+  "offer-check-money": { name: "Offer Check + AI Money Coach Planner", amount: 9200 },
+  "offer-check-job-money": { name: "Offer Check + Job Hunt Tracker + AI Money Coach Planner", amount: 13100 },
   // Thank-you offer for planner buyers: only valid with a recent planner payment (checked below).
   "combo-all-4-offer": { name: "Complete Bundle (Planner buyer offer)", amount: 97400 },
 };
