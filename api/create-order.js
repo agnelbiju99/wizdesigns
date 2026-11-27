@@ -40,6 +40,10 @@ const PRODUCTS = {
   "offer-check-job": { name: "Offer Check + Job Hunt Tracker", amount: 8300 },
   "offer-check-money": { name: "Offer Check + AI Money Coach Planner", amount: 9200 },
   "offer-check-job-money": { name: "Offer Check + Job Hunt Tracker + AI Money Coach Planner", amount: 13100 },
+  "meal-planner": { name: "Budget Meal Planner", amount: 4400 },
+  "meal-planner-money": { name: "Budget Meal Planner + AI Money Coach Planner", amount: 10200 },
+  "meal-planner-debt": { name: "Budget Meal Planner + Debt-Free Tracker", amount: 9200 },
+  "meal-planner-money-debt": { name: "Budget Meal Planner + AI Money Coach Planner + Debt-Free Tracker", amount: 15000 },
   // Thank-you offer for planner buyers: only valid with a recent planner payment (checked below).
   "combo-all-4-offer": { name: "Complete Bundle (Planner buyer offer)", amount: 97400 },
 };

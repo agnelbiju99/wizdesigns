@@ -20,6 +20,8 @@ const DEBT_TRACKER = "/debt-free-tracker-app-6c0b6ccc4898.html";
 const JOB_TRACKER = "/job-hunt-tracker-app-d058450e2f9d.html";
 // Offer Check: the app itself, hosted on this site at a hard-to-guess address (not linked anywhere, not indexed).
 const OFFER_CHECK = "/offer-check-app-661c4fb86337.html";
+// Budget Meal Planner: the app itself, hosted on this site at a hard-to-guess address (not linked anywhere, not indexed).
+const MEAL_PLANNER = "/meal-planner-app-11a8f92c6f8b.html";
 const MONEY_PLANNER = "https://drive.google.com/drive/folders/1ZWEOXSbZQ6lVgjLlLZ_xgkUHIBJY1Mh5?usp=sharing";
 // Online versions hosted on this site at hard-to-guess addresses (not linked anywhere).
 // Buyers get "Open … online" first, plus the Drive folder to download a copy.
@@ -75,6 +77,10 @@ const PRODUCT_NAMES = {
   "offer-check-job": "Offer Check + Job Hunt Tracker",
   "offer-check-money": "Offer Check + AI Money Coach Planner",
   "offer-check-job-money": "Offer Check + Job Hunt Tracker + AI Money Coach Planner",
+  "meal-planner": "Budget Meal Planner",
+  "meal-planner-money": "Budget Meal Planner + AI Money Coach Planner",
+  "meal-planner-debt": "Budget Meal Planner + Debt-Free Tracker",
+  "meal-planner-money-debt": "Budget Meal Planner + AI Money Coach Planner + Debt-Free Tracker",
 };
 
 const BUNDLE_FILES = [
@@ -209,6 +215,20 @@ const PRODUCT_FILES = {
     { label: "Open Offer Check", url: OFFER_CHECK },
     { label: "Open Job Hunt Tracker", url: JOB_TRACKER },
     ...PLANNER_FILES,
+  ],
+  "meal-planner": [{ label: "Open Budget Meal Planner", url: MEAL_PLANNER }],
+  "meal-planner-money": [
+    { label: "Open Budget Meal Planner", url: MEAL_PLANNER },
+    ...PLANNER_FILES,
+  ],
+  "meal-planner-debt": [
+    { label: "Open Budget Meal Planner", url: MEAL_PLANNER },
+    { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
+  ],
+  "meal-planner-money-debt": [
+    { label: "Open Budget Meal Planner", url: MEAL_PLANNER },
+    ...PLANNER_FILES,
+    { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
   ],
 };
 

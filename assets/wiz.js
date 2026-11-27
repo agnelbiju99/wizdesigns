@@ -737,6 +737,22 @@ setupAddons({
   },
 });
 
+// Budget Meal Planner page: AI Money Coach Planner ₹58 and Debt-Free Tracker ₹48, only with the meal planner.
+setupAddons({
+  source: "meal-planner",
+  basePrice: 44,
+  addons: [
+    { id: "meal-money-addon", key: "money", price: 58, event: "AddPlannerAddon", imgs: ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"] },
+    { id: "meal-debt-addon", key: "debt", price: 48, event: "AddDebtTrackerAddon", imgs: ["images/dft-cover.jpg", "images/dft-m-laptop.jpg", "images/dft-m-plan.jpg", "images/dft-m-cards.jpg", "images/dft-m-malayalam.jpg", "images/dft-m-dark.jpg"] },
+  ],
+  combos: {
+    "":           { product: "meal-planner", name: "Budget Meal Planner", label: "Get the meal planner", short: "Get the meal planner" },
+    "money":      { product: "meal-planner-money", name: "Budget Meal Planner + AI Money Coach Planner", label: "Get Meal + Money Planner", short: "Get both" },
+    "debt":       { product: "meal-planner-debt", name: "Budget Meal Planner + Debt-Free Tracker", label: "Get Meal Planner + Debt Tracker", short: "Get both" },
+    "money+debt": { product: "meal-planner-money-debt", name: "Budget Meal Planner + AI Money Coach Planner + Debt-Free Tracker", label: "Get all 3", short: "Get all 3" },
+  },
+});
+
 // ---------- Offer countdowns (any .offer-countdown with data-deadline) ----------
 document.querySelectorAll(".offer-countdown[data-deadline]").forEach((box) => {
   const end = Date.parse(box.dataset.deadline);
