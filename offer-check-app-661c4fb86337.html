@@ -948,7 +948,7 @@ const STRINGS = {
     c_mumbai: "Mumbai", c_delhi: "Delhi", c_kolkata: "Kolkata", c_chennai: "Chennai", c_bengaluru: "Bengaluru", c_hyderabad: "Hyderabad", c_pune: "Pune", c_ahmedabad: "Ahmedabad",
     c_kochi: "Kochi", c_thiruvananthapuram: "Thiruvananthapuram", c_kozhikode: "Kozhikode", c_thrissur: "Thrissur", c_coimbatore: "Coimbatore", c_noida: "Noida", c_gurugram: "Gurugram", c_jaipur: "Jaipur", c_indore: "Indore", c_other: "Other city",
     g_metro: "50% HRA cities", g_other: "Other cities",
-    sample1: "Kochi startup", sample2: "Bengaluru IT company", sample3: "Chennai MNC",
+    sample1: "Kochi startup", sample2: "Bengaluru IT company", sample3: "Trivandrum IT firm",
     added: "Offer added", removed: "Offer removed", max3: "You can compare up to 3 offers.",
   },
   ml: {
@@ -1061,7 +1061,7 @@ const STRINGS = {
     c_mumbai: "മുംബൈ", c_delhi: "ഡൽഹി", c_kolkata: "കൊൽക്കത്ത", c_chennai: "ചെന്നൈ", c_bengaluru: "ബെംഗളൂരു", c_hyderabad: "ഹൈദരാബാദ്", c_pune: "പുനെ", c_ahmedabad: "അഹമ്മദാബാദ്",
     c_kochi: "കൊച്ചി", c_thiruvananthapuram: "തിരുവനന്തപുരം", c_kozhikode: "കോഴിക്കോട്", c_thrissur: "തൃശ്ശൂർ", c_coimbatore: "കോയമ്പത്തൂർ", c_noida: "നോയിഡ", c_gurugram: "ഗുരുഗ്രാം", c_jaipur: "ജയ്പൂർ", c_indore: "ഇൻഡോർ", c_other: "മറ്റ് നഗരം",
     g_metro: "50% HRA നഗരങ്ങൾ", g_other: "മറ്റ് നഗരങ്ങൾ",
-    sample1: "കൊച്ചി സ്റ്റാർട്ടപ്പ്", sample2: "ബെംഗളൂരു ഐടി കമ്പനി", sample3: "ചെന്നൈ എംഎൻസി",
+    sample1: "കൊച്ചി സ്റ്റാർട്ടപ്പ്", sample2: "ബെംഗളൂരു ഐടി കമ്പനി", sample3: "തിരുവനന്തപുരം ഐടി",
     added: "ഓഫർ ചേർത്തു", removed: "ഓഫർ മാറ്റി", max3: "3 ഓഫറുകൾ വരെ താരതമ്യം ചെയ്യാം.",
   },
 };
@@ -1439,7 +1439,7 @@ function loadSamples() {
   S.offers = [
     { label: t("sample1"), ctc: "600000", city: "kochi", rent: "9000", travel: "1500", noticeDays: "30" },
     { label: t("sample2"), ctc: "850000", city: "bengaluru", rent: "22000", travel: "3000", variableType: "pct", variable: "10", joiningBonus: "50000", bonusMonths: "12", noticeDays: "90" },
-    { label: t("sample3"), ctc: "750000", city: "chennai", rent: "13000", travel: "2000", noticeDays: "60" },
+    { label: t("sample3"), ctc: "720000", city: "thiruvananthapuram", rent: "10000", travel: "1800", noticeDays: "60" },
   ];
   S.cur = 0; save(); renderForm(); WZ.confetti(80);
 }
