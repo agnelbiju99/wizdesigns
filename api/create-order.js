@@ -8,11 +8,11 @@ const PRODUCTS = {
   "combo-all-4": { name: "Complete Bundle (All 4 Products)", amount: 74900 },
   "combo-all-4-planner": { name: "Complete Bundle + AI Money Coach Planner", amount: 79800 },
   "money-planner": { name: "AI Money Coach Planner", amount: 8800 },
-  "money-planner-cards": { name: "AI Money Coach Planner + Financial Affirmation Cards", amount: 18700 },
+  "money-planner-cards": { name: "AI Money Coach Planner + Financial Affirmation Cards", amount: 13600 },
   "money-planner-debt": { name: "AI Money Coach Planner + Debt-Free Tracker", amount: 13600 },
   "money-planner-yr": { name: "AI Money Coach Planner + 2027 Year Reset", amount: 13600 },
   "money-planner-debt-yr": { name: "AI Money Coach Planner + Debt-Free Tracker + 2027 Year Reset", amount: 18400 },
-  "affirmation-cards": { name: "Financial Affirmation Cards", amount: 14900 },
+  "affirmation-cards": { name: "Financial Affirmation Cards", amount: 8800 },
   "combo-zero-screener": { name: "From Zero to Trader + NSE Screener Guide", amount: 54900 },
   "combo-price-chart": { name: "Price Action Strategies + Chart Setups Bible", amount: 17900 },
   "product-journey": { name: "What Is A Digital Product?", amount: 8900 },
@@ -62,7 +62,7 @@ const NEW_AMOUNTS = {
 const PLANNER_CHANGE_AT = Date.parse("2026-12-02T18:30:00Z");
 const PLANNER_NEW_AMOUNTS = {
   "money-planner": 27800,
-  "money-planner-cards": 37700,
+  "money-planner-cards": 32600,
   "money-planner-debt": 32600,
   "money-planner-yr": 32600,
   "money-planner-debt-yr": 37400,
