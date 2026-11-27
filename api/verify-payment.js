@@ -55,6 +55,8 @@ const PRODUCT_NAMES = {
   "wedding-planner-money": "Wedding Planning Dashboard + AI Money Coach Planner",
   "year-reset": "2027 Year Reset",
   "year-reset-money": "2027 Year Reset + AI Money Coach Planner",
+  "year-reset-debt": "2027 Year Reset + Debt-Free Tracker",
+  "year-reset-money-debt": "2027 Year Reset + AI Money Coach Planner + Debt-Free Tracker",
   "debt-tracker": "Debt-Free Tracker",
   "debt-tracker-money": "Debt-Free Tracker + AI Money Coach Planner",
   "debt-tracker-yr": "Debt-Free Tracker + 2027 Year Reset",
@@ -125,6 +127,15 @@ const PRODUCT_FILES = {
   "year-reset-money": [
     { label: "2027 Year Reset", url: YEAR_RESET },
     ...PLANNER_FILES,
+  ],
+  "year-reset-debt": [
+    { label: "2027 Year Reset", url: YEAR_RESET },
+    { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
+  ],
+  "year-reset-money-debt": [
+    { label: "2027 Year Reset", url: YEAR_RESET },
+    ...PLANNER_FILES,
+    { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
   ],
   "debt-tracker": [{ label: "Open Debt-Free Tracker", url: DEBT_TRACKER }],
   "debt-tracker-money": [

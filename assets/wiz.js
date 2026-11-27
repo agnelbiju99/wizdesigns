@@ -690,43 +690,21 @@ setupAddons({
   thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
 })();
 
-// ---------- Year Reset add-on: AI Money Coach Planner for ₹49 ----------
-(function () {
-  const check = document.getElementById("yr-addon-check");
-  const btn = document.getElementById("buy-btn");
-  if (!check || !btn) return;
-  const BASE = { product: "year-reset", name: "2027 Year Reset", amount: 8900, label: "Get the Year Reset — ₹89", short: "Get the Year Reset", price: "₹89" };
-  const PLUS = { product: "year-reset-money", name: "2027 Year Reset + AI Money Coach Planner", amount: 13800, label: "Get Year Reset + Money Planner — ₹138", short: "Get both — ₹138", price: "₹138" };
-  const IMGS = ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"];
-
-  function apply() {
-    const o = check.checked ? PLUS : BASE;
-    document.getElementById("yr-addon").classList.toggle("on", check.checked);
-    btn.dataset.product = o.product;
-    btn.dataset.name = o.name;
-    btn.dataset.amount = o.amount;
-    btn.textContent = o.label;
-    document.querySelectorAll(".js-buy-proxy").forEach((b) => {
-      b.textContent = b.closest(".sticky-bar") ? o.short : o.label;
-    });
-    document.querySelectorAll(".sticky-bar .now").forEach((el) => { el.textContent = o.price; });
-  }
-  check.addEventListener("change", () => {
-    apply();
-    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddPlannerAddon", { value: 49, currency: "INR", source: "year-reset" });
-  });
-  apply();
-
-  function preview(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    openGallery(IMGS, 0);
-  }
-  document.getElementById("yr-addon-preview").addEventListener("click", preview);
-  const thumb = document.getElementById("yr-addon-thumb");
-  thumb.addEventListener("click", preview);
-  thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
-})();
+// Year Reset page: AI Money Coach Planner ₹58 and Debt-Free Tracker ₹48, only with the Year Reset.
+setupAddons({
+  source: "year-reset",
+  basePrice: 89,
+  addons: [
+    { id: "yr-addon", key: "money", price: 58, event: "AddPlannerAddon", imgs: ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"] },
+    { id: "yr-debt-addon", key: "debt", price: 48, event: "AddDebtTrackerAddon", imgs: ["images/dft-cover.jpg", "images/dft-m-laptop.jpg", "images/dft-m-plan.jpg", "images/dft-m-cards.jpg", "images/dft-m-malayalam.jpg", "images/dft-m-dark.jpg"] },
+  ],
+  combos: {
+    "":           { product: "year-reset", name: "2027 Year Reset", label: "Get the Year Reset", short: "Get the Year Reset" },
+    "money":      { product: "year-reset-money", name: "2027 Year Reset + AI Money Coach Planner", label: "Get Year Reset + Money Planner", short: "Get both" },
+    "debt":       { product: "year-reset-debt", name: "2027 Year Reset + Debt-Free Tracker", label: "Get Year Reset + Debt Tracker", short: "Get both" },
+    "money+debt": { product: "year-reset-money-debt", name: "2027 Year Reset + AI Money Coach Planner + Debt-Free Tracker", label: "Get all 3", short: "Get all 3" },
+  },
+});
 
 // Debt-Free Tracker page: AI Money Coach Planner ₹58 and 2027 Year Reset ₹48, only with the tracker.
 setupAddons({

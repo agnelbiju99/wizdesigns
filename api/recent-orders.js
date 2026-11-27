@@ -5,7 +5,7 @@ import Razorpay from "razorpay";
 //   /api/recent-orders                 → Complete Bundle orders
 //   /api/recent-orders?product=planner → AI Money Coach Planner orders
 //   /api/recent-orders?product=wedding → Wedding Planning Dashboard orders
-//   /api/recent-orders?product=debt    → Debt-Free Tracker orders (on its own or with add-ons)
+//   /api/recent-orders?product=debt    → orders that include the Debt-Free Tracker (on its own, with add-ons, or as an add-on)
 
 const PRODUCTS = {
   // All prices the bundle has been sold at, so recent sales keep showing after each price change:
@@ -19,8 +19,9 @@ const PRODUCTS = {
 };
 // Products counted by the product name saved on each order (exact, whatever the price or add-ons).
 const PRODUCT_NOTES = {
-  // debt-tracker, debt-tracker-money, debt-tracker-yr, debt-tracker-money-yr
-  debt: /^debt-tracker/,
+  // Every order that includes the Debt-Free Tracker: bought on its page (debt-tracker, debt-tracker-money, …)
+  // or as an add-on on another page (money-planner-debt, money-planner-debt-yr, year-reset-debt, year-reset-money-debt).
+  debt: /(^|-)debt(-|$)/,
 };
 const MAX_AGE_DAYS = 30;
 const MAX_RESULTS = 10;
