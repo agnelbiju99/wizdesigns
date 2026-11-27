@@ -44,6 +44,10 @@ const PRODUCTS = {
   "meal-planner-money": { name: "Budget Meal Planner + AI Money Coach Planner", amount: 10200 },
   "meal-planner-debt": { name: "Budget Meal Planner + Debt-Free Tracker", amount: 9200 },
   "meal-planner-money-debt": { name: "Budget Meal Planner + AI Money Coach Planner + Debt-Free Tracker", amount: 15000 },
+  "digital-detox": { name: "Digital Detox 30-Day Challenge", amount: 4400 },
+  "digital-detox-yr": { name: "Digital Detox + 2027 Year Reset", amount: 9200 },
+  "digital-detox-money": { name: "Digital Detox + AI Money Coach Planner", amount: 10200 },
+  "digital-detox-yr-money": { name: "Digital Detox + 2027 Year Reset + AI Money Coach Planner", amount: 15000 },
   // Thank-you offer for planner buyers: only valid with a recent planner payment (checked below).
   "combo-all-4-offer": { name: "Complete Bundle (Planner buyer offer)", amount: 97400 },
 };

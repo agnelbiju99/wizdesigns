@@ -22,6 +22,8 @@ const JOB_TRACKER = "/job-hunt-tracker-app-d058450e2f9d.html";
 const OFFER_CHECK = "/offer-check-app-661c4fb86337.html";
 // Budget Meal Planner: the app itself, hosted on this site at a hard-to-guess address (not linked anywhere, not indexed).
 const MEAL_PLANNER = "/meal-planner-app-11a8f92c6f8b.html";
+// Digital Detox 30-Day Challenge: the app itself, hosted on this site at a hard-to-guess address (not linked anywhere, not indexed).
+const DIGITAL_DETOX = "/digital-detox-app-3886733794de.html";
 const MONEY_PLANNER = "https://drive.google.com/drive/folders/1ZWEOXSbZQ6lVgjLlLZ_xgkUHIBJY1Mh5?usp=sharing";
 // Online versions hosted on this site at hard-to-guess addresses (not linked anywhere).
 // Buyers get "Open … online" first, plus the Drive folder to download a copy.
@@ -81,6 +83,10 @@ const PRODUCT_NAMES = {
   "meal-planner-money": "Budget Meal Planner + AI Money Coach Planner",
   "meal-planner-debt": "Budget Meal Planner + Debt-Free Tracker",
   "meal-planner-money-debt": "Budget Meal Planner + AI Money Coach Planner + Debt-Free Tracker",
+  "digital-detox": "Digital Detox 30-Day Challenge",
+  "digital-detox-yr": "Digital Detox + 2027 Year Reset",
+  "digital-detox-money": "Digital Detox + AI Money Coach Planner",
+  "digital-detox-yr-money": "Digital Detox + 2027 Year Reset + AI Money Coach Planner",
 };
 
 const BUNDLE_FILES = [
@@ -229,6 +235,20 @@ const PRODUCT_FILES = {
     { label: "Open Budget Meal Planner", url: MEAL_PLANNER },
     ...PLANNER_FILES,
     { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
+  ],
+  "digital-detox": [{ label: "Open Digital Detox", url: DIGITAL_DETOX }],
+  "digital-detox-yr": [
+    { label: "Open Digital Detox", url: DIGITAL_DETOX },
+    { label: "2027 Year Reset", url: YEAR_RESET },
+  ],
+  "digital-detox-money": [
+    { label: "Open Digital Detox", url: DIGITAL_DETOX },
+    ...PLANNER_FILES,
+  ],
+  "digital-detox-yr-money": [
+    { label: "Open Digital Detox", url: DIGITAL_DETOX },
+    { label: "2027 Year Reset", url: YEAR_RESET },
+    ...PLANNER_FILES,
   ],
 };
 

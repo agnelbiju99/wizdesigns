@@ -753,6 +753,22 @@ setupAddons({
   },
 });
 
+// Digital Detox page: 2027 Year Reset ₹48 and AI Money Coach Planner ₹58, only with the challenge.
+setupAddons({
+  source: "digital-detox",
+  basePrice: 44,
+  addons: [
+    { id: "detox-yr-addon", key: "yr", price: 48, event: "AddYearResetAddon", imgs: ["images/yr-cover.jpg", "images/yr-phone-dashboard.jpg", "images/yr-app-goals.jpg", "images/yr-vision-phone.jpg", "images/yr-habits-phone.jpg", "images/yr-malayalam-phone.jpg"] },
+    { id: "detox-money-addon", key: "money", price: 58, event: "AddPlannerAddon", imgs: ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"] },
+  ],
+  combos: {
+    "":         { product: "digital-detox", name: "Digital Detox 30-Day Challenge", label: "Start the challenge", short: "Start the challenge" },
+    "yr":       { product: "digital-detox-yr", name: "Digital Detox + 2027 Year Reset", label: "Get Detox + Year Reset", short: "Get both" },
+    "money":    { product: "digital-detox-money", name: "Digital Detox + AI Money Coach Planner", label: "Get Detox + Money Planner", short: "Get both" },
+    "yr+money": { product: "digital-detox-yr-money", name: "Digital Detox + 2027 Year Reset + AI Money Coach Planner", label: "Get all 3", short: "Get all 3" },
+  },
+});
+
 // ---------- Offer countdowns (any .offer-countdown with data-deadline) ----------
 document.querySelectorAll(".offer-countdown[data-deadline]").forEach((box) => {
   const end = Date.parse(box.dataset.deadline);
