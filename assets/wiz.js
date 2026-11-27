@@ -751,7 +751,7 @@ setupAddons({
   addons: [
     { id: "jht-addon", key: "money", price: 48, event: "AddPlannerAddon", imgs: ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"] },
     { id: "jht-yr-addon", key: "yr", price: 48, event: "AddYearResetAddon", imgs: ["images/yr-cover.jpg", "images/yr-phone-dashboard.jpg", "images/yr-app-goals.jpg", "images/yr-vision-phone.jpg", "images/yr-habits-phone.jpg", "images/yr-malayalam-phone.jpg"] },
-    { id: "jht-oc-addon", key: "offer", price: 39, event: "AddOfferCheckAddon", imgs: ["images/oc-cover-v2.jpg", "images/oc-p-realpay.jpg", "images/oc-p-steps.jpg", "images/oc-p-kerala.jpg", "images/oc-m-sheet.jpg"] },
+    { id: "jht-oc-addon", key: "offer", price: 39, event: "AddOfferCheckAddon", imgs: ["images/oc-cover-v3.jpg", "images/oc-p-realpay-hd.jpg", "images/oc-p-steps-hd.jpg", "images/oc-p-kerala-hd.jpg", "images/oc-m-sheet.jpg"] },
   ],
   combos: {
     "":         { product: "job-tracker", name: "Job Hunt Tracker", label: "Get the tracker", short: "Get the tracker" },
