@@ -769,6 +769,22 @@ setupAddons({
   },
 });
 
+// Board Exam Tracker page: Digital Detox ₹39 and 2027 Year Reset ₹48, only with the exam tracker.
+setupAddons({
+  source: "board-exam",
+  basePrice: 149,
+  addons: [
+    { id: "board-detox-addon", key: "detox", price: 39, event: "AddDetoxAddon", imgs: ["images/detox-cover.jpg", "images/detox-m-three.jpg", "images/detox-m-progress.jpg", "images/detox-m-swaps.jpg", "images/detox-m-malayalam.jpg"] },
+    { id: "board-yr-addon", key: "yr", price: 48, event: "AddYearResetAddon", imgs: ["images/yr-cover.jpg", "images/yr-phone-dashboard.jpg", "images/yr-app-goals.jpg", "images/yr-vision-phone.jpg", "images/yr-habits-phone.jpg", "images/yr-malayalam-phone.jpg"] },
+  ],
+  combos: {
+    "":         { product: "board-exam", name: "Board Exam Tracker 2027", label: "Get the exam tracker", short: "Get the exam tracker" },
+    "detox":    { product: "board-exam-detox", name: "Board Exam Tracker 2027 + Digital Detox", label: "Get Exam Tracker + Detox", short: "Get both" },
+    "yr":       { product: "board-exam-yr", name: "Board Exam Tracker 2027 + 2027 Year Reset", label: "Get Exam Tracker + Year Reset", short: "Get both" },
+    "detox+yr": { product: "board-exam-detox-yr", name: "Board Exam Tracker 2027 + Digital Detox + 2027 Year Reset", label: "Get all 3", short: "Get all 3" },
+  },
+});
+
 // ---------- Offer countdowns (any .offer-countdown with data-deadline) ----------
 document.querySelectorAll(".offer-countdown[data-deadline]").forEach((box) => {
   const end = Date.parse(box.dataset.deadline);

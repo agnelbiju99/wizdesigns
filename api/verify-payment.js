@@ -24,6 +24,8 @@ const OFFER_CHECK = "/offer-check-app-661c4fb86337.html";
 const MEAL_PLANNER = "/meal-planner-app-11a8f92c6f8b.html";
 // Digital Detox 30-Day Challenge: the app itself, hosted on this site at a hard-to-guess address (not linked anywhere, not indexed).
 const DIGITAL_DETOX = "/digital-detox-app-3886733794de.html";
+// Board Exam Tracker 2027: the app itself, hosted on this site at a hard-to-guess address (not linked anywhere, not indexed).
+const BOARD_EXAM = "/board-exam-app-3ed203953c75.html";
 const MONEY_PLANNER = "https://drive.google.com/drive/folders/1ZWEOXSbZQ6lVgjLlLZ_xgkUHIBJY1Mh5?usp=sharing";
 // Online versions hosted on this site at hard-to-guess addresses (not linked anywhere).
 // Buyers get "Open … online" first, plus the Drive folder to download a copy.
@@ -87,6 +89,10 @@ const PRODUCT_NAMES = {
   "digital-detox-yr": "Digital Detox + 2027 Year Reset",
   "digital-detox-money": "Digital Detox + AI Money Coach Planner",
   "digital-detox-yr-money": "Digital Detox + 2027 Year Reset + AI Money Coach Planner",
+  "board-exam": "Board Exam Tracker 2027",
+  "board-exam-detox": "Board Exam Tracker 2027 + Digital Detox",
+  "board-exam-yr": "Board Exam Tracker 2027 + 2027 Year Reset",
+  "board-exam-detox-yr": "Board Exam Tracker 2027 + Digital Detox + 2027 Year Reset",
 };
 
 const BUNDLE_FILES = [
@@ -249,6 +255,20 @@ const PRODUCT_FILES = {
     { label: "Open Digital Detox", url: DIGITAL_DETOX },
     { label: "2027 Year Reset", url: YEAR_RESET },
     ...PLANNER_FILES,
+  ],
+  "board-exam": [{ label: "Open Board Exam Tracker", url: BOARD_EXAM }],
+  "board-exam-detox": [
+    { label: "Open Board Exam Tracker", url: BOARD_EXAM },
+    { label: "Open Digital Detox", url: DIGITAL_DETOX },
+  ],
+  "board-exam-yr": [
+    { label: "Open Board Exam Tracker", url: BOARD_EXAM },
+    { label: "2027 Year Reset", url: YEAR_RESET },
+  ],
+  "board-exam-detox-yr": [
+    { label: "Open Board Exam Tracker", url: BOARD_EXAM },
+    { label: "Open Digital Detox", url: DIGITAL_DETOX },
+    { label: "2027 Year Reset", url: YEAR_RESET },
   ],
 };
 

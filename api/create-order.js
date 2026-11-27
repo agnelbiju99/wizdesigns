@@ -48,6 +48,10 @@ const PRODUCTS = {
   "digital-detox-yr": { name: "Digital Detox + 2027 Year Reset", amount: 9200 },
   "digital-detox-money": { name: "Digital Detox + AI Money Coach Planner", amount: 10200 },
   "digital-detox-yr-money": { name: "Digital Detox + 2027 Year Reset + AI Money Coach Planner", amount: 15000 },
+  "board-exam": { name: "Board Exam Tracker 2027", amount: 14900 },
+  "board-exam-detox": { name: "Board Exam Tracker 2027 + Digital Detox", amount: 18800 },
+  "board-exam-yr": { name: "Board Exam Tracker 2027 + 2027 Year Reset", amount: 19700 },
+  "board-exam-detox-yr": { name: "Board Exam Tracker 2027 + Digital Detox + 2027 Year Reset", amount: 23600 },
   // Thank-you offer for planner buyers: only valid with a recent planner payment (checked below).
   "combo-all-4-offer": { name: "Complete Bundle (Planner buyer offer)", amount: 97400 },
 };
