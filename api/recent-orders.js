@@ -1,10 +1,11 @@
 import Razorpay from "razorpay";
 
 // Recent real purchases, for the "someone just bought" pop-up.
-// Returns only payment times and 24-hour / 7-day counts — never names, phone numbers, emails or payment IDs.
+// Returns only payment times and 24-hour / 48-hour / 7-day counts — never names, phone numbers, emails or payment IDs.
 //   /api/recent-orders                 → Complete Bundle orders
 //   /api/recent-orders?product=planner → AI Money Coach Planner orders
 //   /api/recent-orders?product=wedding → Wedding Planning Dashboard orders
+//   /api/recent-orders?product=debt    → Debt-Free Tracker orders (on its own or with add-ons)
 
 const PRODUCTS = {
   // All prices the bundle has been sold at, so recent sales keep showing after each price change:
@@ -15,6 +16,11 @@ const PRODUCTS = {
   planner: [69900, 79800, 8800, 18700, 27800, 37700, 13600, 32600, 18400, 37400],
   // Wedding Planning Dashboard on its own (₹174, now ₹134) and with the ₹49 planner add-on (₹223, now ₹183).
   wedding: [17400, 22300, 13400, 18300],
+};
+// Products counted by the product name saved on each order (exact, whatever the price or add-ons).
+const PRODUCT_NOTES = {
+  // debt-tracker, debt-tracker-money, debt-tracker-yr, debt-tracker-money-yr
+  debt: /^debt-tracker/,
 };
 const MAX_AGE_DAYS = 30;
 const MAX_RESULTS = 10;
@@ -35,7 +41,10 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const amounts = PRODUCTS[(req.query && req.query.product) || "bundle"] || PRODUCTS.bundle;
+  const key = (req.query && req.query.product) || "bundle";
+  const notesMatch = PRODUCT_NOTES[key];
+  const amounts = PRODUCTS[key] || PRODUCTS.bundle;
+  const productOf = (p) => String((p.notes && p.notes.product) || "");
 
   const instance = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
@@ -56,20 +65,24 @@ export default async function handler(req, res) {
     }
 
     const times = items
-      .filter((p) => p.status === "captured" && amounts.includes(p.amount) && !isOwnPayment(p))
-      // Debt-Free / Job Hunt Tracker / Offer Check combos share amounts with others (₹174 = old wedding price), so leave them out.
-      .filter((p) => !/^((debt|job)-tracker|offer-check)/.test(String((p.notes && p.notes.product) || "")))
+      .filter((p) => p.status === "captured" && !isOwnPayment(p))
+      .filter((p) => notesMatch
+        ? notesMatch.test(productOf(p))
+        // By amount. Debt-Free / Job Hunt Tracker / Offer Check combos share amounts with others
+        // (₹174 = old wedding price), so leave them out.
+        : amounts.includes(p.amount) && !/^((debt|job)-tracker|offer-check)/.test(productOf(p)))
       .map((p) => p.created_at)
       .sort((a, b) => b - a);
 
     const last24h = times.filter((t) => t >= now - 24 * 60 * 60).length;
+    const last48h = times.filter((t) => t >= now - 48 * 60 * 60).length;
     const last7d = times.filter((t) => t >= now - 7 * 24 * 60 * 60).length;
 
     // Let Vercel cache this for 5 minutes so visitors don't each call Razorpay.
     res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=600");
-    return res.status(200).json({ purchases: times.slice(0, MAX_RESULTS), last24h, last7d });
+    return res.status(200).json({ purchases: times.slice(0, MAX_RESULTS), last24h, last48h, last7d });
   } catch (err) {
     console.error("Recent orders fetch failed:", err);
-    return res.status(500).json({ purchases: [], last24h: 0, last7d: 0 });
+    return res.status(500).json({ purchases: [], last24h: 0, last48h: 0, last7d: 0 });
   }
 }
