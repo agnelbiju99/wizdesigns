@@ -652,43 +652,21 @@ setupAddons({
   },
 });
 
-// ---------- Wedding planner add-on: AI Money Coach Planner for ₹49 ----------
-(function () {
-  const check = document.getElementById("wedding-addon-check");
-  const btn = document.getElementById("buy-btn");
-  if (!check || !btn) return;
-  const BASE = { product: "wedding-planner", name: "Wedding Planning Dashboard", amount: 13400, label: "Get the wedding planner — ₹134", short: "Get the wedding planner", price: "₹134" };
-  const PLUS = { product: "wedding-planner-money", name: "Wedding Planning Dashboard + AI Money Coach Planner", amount: 18300, label: "Get Wedding + Money Planner — ₹183", short: "Get both — ₹183", price: "₹183" };
-  const IMGS = ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"];
-
-  function apply() {
-    const o = check.checked ? PLUS : BASE;
-    document.getElementById("wedding-addon").classList.toggle("on", check.checked);
-    btn.dataset.product = o.product;
-    btn.dataset.name = o.name;
-    btn.dataset.amount = o.amount;
-    btn.textContent = o.label;
-    document.querySelectorAll(".js-buy-proxy").forEach((b) => {
-      b.textContent = b.closest(".sticky-bar") ? o.short : o.label;
-    });
-    document.querySelectorAll(".sticky-bar .now").forEach((el) => { el.textContent = o.price; });
-  }
-  check.addEventListener("change", () => {
-    apply();
-    if (check.checked && typeof fbq === "function") fbq("trackCustom", "AddPlannerAddon", { value: 49, currency: "INR", source: "wedding" });
-  });
-  apply();
-
-  function preview(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    openGallery(IMGS, 0);
-  }
-  document.getElementById("wedding-addon-preview").addEventListener("click", preview);
-  const thumb = document.getElementById("wedding-addon-thumb");
-  thumb.addEventListener("click", preview);
-  thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
-})();
+// Wedding planner page: AI Money Coach Planner ₹58 and Debt-Free Tracker ₹48, only with the wedding planner.
+setupAddons({
+  source: "wedding",
+  basePrice: 134,
+  addons: [
+    { id: "wedding-addon", key: "money", price: 58, event: "AddPlannerAddon", imgs: ["images/planner-cover.jpg", "images/planner-daily.jpg", "images/planner-payday.jpg", "images/planner-goals.jpg", "images/planner-ai-coach.jpg"] },
+    { id: "wedding-debt-addon", key: "debt", price: 48, event: "AddDebtTrackerAddon", imgs: ["images/dft-cover.jpg", "images/dft-m-laptop.jpg", "images/dft-m-plan.jpg", "images/dft-m-cards.jpg", "images/dft-m-malayalam.jpg", "images/dft-m-dark.jpg"] },
+  ],
+  combos: {
+    "":           { product: "wedding-planner", name: "Wedding Planning Dashboard", label: "Get the wedding planner", short: "Get the wedding planner" },
+    "money":      { product: "wedding-planner-money", name: "Wedding Planning Dashboard + AI Money Coach Planner", label: "Get Wedding + Money Planner", short: "Get both" },
+    "debt":       { product: "wedding-planner-debt", name: "Wedding Planning Dashboard + Debt-Free Tracker", label: "Get Wedding + Debt Tracker", short: "Get both" },
+    "money+debt": { product: "wedding-planner-money-debt", name: "Wedding Planning Dashboard + AI Money Coach Planner + Debt-Free Tracker", label: "Get all 3", short: "Get all 3" },
+  },
+});
 
 // Year Reset page: AI Money Coach Planner ₹58 and Debt-Free Tracker ₹48, only with the Year Reset.
 setupAddons({

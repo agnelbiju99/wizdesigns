@@ -14,8 +14,9 @@ const PRODUCTS = {
   // Planner on its own and with the affirmation cards: ₹699 / ₹798, ₹88 / ₹187, ₹278 / ₹377 (from 20 Nov).
   // With one ₹48 add-on (Debt-Free Tracker or 2027 Year Reset): ₹136 / ₹326; with both: ₹184 / ₹374.
   planner: [69900, 79800, 8800, 18700, 27800, 37700, 13600, 32600, 18400, 37400],
-  // Wedding Planning Dashboard on its own (₹174, now ₹134) and with the ₹49 planner add-on (₹223, now ₹183).
-  wedding: [17400, 22300, 13400, 18300],
+  // Wedding Planning Dashboard on its own (₹174, now ₹134) and with the ₹49 planner add-on (₹223, then ₹183).
+  // From 27 Nov: + ₹58 planner ₹192, + ₹48 Debt-Free Tracker ₹182, + both ₹240.
+  wedding: [17400, 22300, 13400, 18300, 19200, 18200, 24000],
 };
 // Products counted by the product name saved on each order (exact, whatever the price or add-ons).
 const PRODUCT_NOTES = {

@@ -53,6 +53,8 @@ const PRODUCT_NAMES = {
   "product-journey": "What Is A Digital Product?",
   "wedding-planner": "Wedding Planning Dashboard",
   "wedding-planner-money": "Wedding Planning Dashboard + AI Money Coach Planner",
+  "wedding-planner-debt": "Wedding Planning Dashboard + Debt-Free Tracker",
+  "wedding-planner-money-debt": "Wedding Planning Dashboard + AI Money Coach Planner + Debt-Free Tracker",
   "year-reset": "2027 Year Reset",
   "year-reset-money": "2027 Year Reset + AI Money Coach Planner",
   "year-reset-debt": "2027 Year Reset + Debt-Free Tracker",
@@ -122,6 +124,15 @@ const PRODUCT_FILES = {
   "wedding-planner-money": [
     ...WEDDING_FILES,
     ...PLANNER_FILES,
+  ],
+  "wedding-planner-debt": [
+    ...WEDDING_FILES,
+    { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
+  ],
+  "wedding-planner-money-debt": [
+    ...WEDDING_FILES,
+    ...PLANNER_FILES,
+    { label: "Open Debt-Free Tracker", url: DEBT_TRACKER },
   ],
   "year-reset": [{ label: "2027 Year Reset", url: YEAR_RESET }],
   "year-reset-money": [
