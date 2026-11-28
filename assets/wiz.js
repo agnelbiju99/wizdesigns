@@ -774,7 +774,7 @@ setupAddons({
   source: "board-exam",
   basePrice: 149,
   addons: [
-    { id: "board-detox-addon", key: "detox", price: 39, event: "AddDetoxAddon", imgs: ["images/detox-cover.jpg", "images/detox-m-three.jpg", "images/detox-m-progress.jpg", "images/detox-m-swaps.jpg", "images/detox-m-malayalam.jpg"] },
+    { id: "board-detox-addon", key: "detox", price: 39, event: "AddDetoxAddon", imgs: ["images/detox-cover-v2.jpg", "images/detox-p-urge.jpg", "images/detox-p-plan.jpg", "images/detox-p-kerala.jpg", "images/detox-p-wallchart.jpg"] },
     { id: "board-yr-addon", key: "yr", price: 48, event: "AddYearResetAddon", imgs: ["images/yr-cover.jpg", "images/yr-phone-dashboard.jpg", "images/yr-app-goals.jpg", "images/yr-vision-phone.jpg", "images/yr-habits-phone.jpg", "images/yr-malayalam-phone.jpg"] },
   ],
   combos: {
