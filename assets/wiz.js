@@ -786,7 +786,7 @@ setupAddons({
 });
 
 // ---------- Demo video on product pages ----------
-// A muted, looping preview plays in the .demo-hero box once the page has loaded (not on data saver
+// A muted, looping preview plays in the .demo-hero box once the page has loaded and it is near the screen (not on data saver
 // or reduced motion: then the poster shows with a play button). Tapping it, or "Watch with sound",
 // opens the full demo with sound in a pop-up. The full video only downloads when opened.
 (function () {
@@ -804,7 +804,12 @@ setupAddons({
         frame.insertBefore(preview, frame.firstChild.nextSibling);
         const p = preview.play(); if (p && p.catch) p.catch(() => {});
       };
-      if (document.readyState === "complete") start(); else window.addEventListener("load", start);
+      // start only once the page has loaded and the video is near the screen
+      const whenLoaded = (fn) => (document.readyState === "complete" ? fn() : window.addEventListener("load", fn));
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); whenLoaded(start); } }, { rootMargin: "300px 0px" });
+        io.observe(frame);
+      } else whenLoaded(start);
     }
     const open = () => {
       if (preview) preview.pause();
