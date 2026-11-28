@@ -649,3 +649,14 @@ button.btn-gold:disabled { opacity: 0.6; cursor: not-allowed; }
 /* Price line under the product title (title-first layout) */
 .title-price { text-align: center; margin: -6px 0 16px; color: var(--muted, #9aa3a0); font-size: 15px; }
 .title-price b { color: var(--gold, #e8c46a); font-size: 18px; }
+
+/* ---------- Coupon box ---------- */
+.coupon { margin: 14px 0 4px; text-align: left; }
+.coupon summary { cursor: pointer; color: var(--teal, #00c9a7); font-weight: 600; font-size: 14.5px; min-height: 40px; display: flex; align-items: center; }
+.coupon-row { display: flex; gap: 8px; margin-top: 6px; }
+.coupon-row input { flex: 1; min-width: 0; min-height: 46px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--bg, #0b0f14); color: var(--text, #fff); font: inherit; text-transform: uppercase; letter-spacing: .06em; }
+.coupon-row button { min-height: 46px; padding: 0 18px; border-radius: 12px; border: 0; background: var(--teal, #00c9a7); color: #04241c; font: inherit; font-weight: 700; cursor: pointer; }
+.coupon-msg { margin: 8px 2px 0; font-size: 14px; color: var(--muted, #9aa3a0); min-height: 1em; }
+.coupon.ok .coupon-msg { color: var(--teal, #00c9a7); font-weight: 600; }
+.coupon-was { opacity: .55; font-size: .7em; margin-right: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

@@ -1,4 +1,5 @@
 import Razorpay from "razorpay";
+import { findCoupon } from "./_coupons.js";
 
 const PRODUCTS = {
   "zero-to-trader": { name: "From Zero to Trader", amount: 28900 },
@@ -89,7 +90,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { productId, offerPaymentId } = req.body || {};
+  const { productId, offerPaymentId, coupon } = req.body || {};
   const product = PRODUCTS[productId];
 
   if (!product) {
@@ -105,7 +106,12 @@ export default async function handler(req, res) {
     key_secret: process.env.RAZORPAY_KEY_SECRET,
   });
 
+  // Coupon codes (api/_coupons.js): checked here, so the price can't be changed in the browser.
+  const cp = findCoupon(coupon, productId);
+  if (cp && amount - cp.off >= 100) amount -= cp.off;
+
   const notes = { product: productId };
+  if (cp) notes.coupon = cp.code;
   if (productId === "combo-all-4-offer") {
     try {
       const p = await instance.payments.fetch(String(offerPaymentId || ""));

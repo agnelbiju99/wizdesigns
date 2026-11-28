@@ -129,7 +129,7 @@ function startCheckout(btn) {
   fetch("/api/create-order", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ productId, offerPaymentId: btn.dataset.offer || undefined }),
+    body: JSON.stringify({ productId, offerPaymentId: btn.dataset.offer || undefined, coupon: btn.dataset.coupon || undefined }),
   })
     .then((orderRes) => {
       if (!orderRes.ok) throw new Error("Could not start checkout. Please try again.");
@@ -609,7 +609,9 @@ function setupAddons(cfg) {
     const on = cfg.addons.filter((a, i) => checks[i].checked);
     const key = on.map((a) => a.key).join("+");
     const c = cfg.combos[key];
-    const total = cfg.basePrice + on.reduce((s, a) => s + a.price, 0);
+    const cp = window.WIZ_COUPON;   // set by the coupon box (checked by the server)
+    const total = cfg.basePrice + on.reduce((s, a) => s + a.price, 0) - (cp ? cp.off / 100 : 0);
+    if (cp) btn.dataset.coupon = cp.code; else delete btn.dataset.coupon;
     cfg.addons.forEach((a, i) => document.getElementById(a.id).classList.toggle("on", checks[i].checked));
     btn.dataset.product = c.product;
     btn.dataset.name = c.name;
@@ -634,6 +636,7 @@ function setupAddons(cfg) {
     thumb.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") preview(e); });
   });
   apply();
+  window.WIZ_REFRESH_PRICE = apply;
 }
 
 // Planner page: Debt-Free Tracker ₹48 and 2027 Year Reset ₹48, only with the planner.
@@ -829,6 +832,38 @@ setupAddons({
     frame.addEventListener("click", open);
     const btn = box.querySelector(".demo-sound"); if (btn) btn.addEventListener("click", open);
   });
+})();
+
+// ---------- Coupon box (Board Exam Tracker page) ----------
+// The server says whether a code works (api/check-coupon); the checkout checks it again.
+// A link like page.html?coupon=RSRV fills in and applies the code automatically.
+(function () {
+  const box = document.getElementById("coupon-box"); if (!box) return;
+  const input = document.getElementById("coupon-input"), msg = document.getElementById("coupon-msg");
+  const priceEls = [document.querySelector(".price-block .now"), document.querySelector(".title-price b")].filter(Boolean);
+  const base = box.dataset.base, product = box.dataset.product;
+  async function apply(code) {
+    code = String(code || "").trim(); if (!code) return;
+    msg.textContent = "Checking…";
+    try {
+      const r = await fetch("/api/check-coupon", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code, productId: product }) });
+      const d = await r.json();
+      if (!d.ok) { window.WIZ_COUPON = null; msg.textContent = "That code isn't valid for this product."; box.classList.remove("ok"); }
+      else {
+        window.WIZ_COUPON = { code: d.code, off: d.off };
+        const now = parseInt(base, 10) - d.off / 100;
+        priceEls.forEach((el) => { el.innerHTML = '<s class="coupon-was">₹' + base + "</s> ₹" + now; });
+        msg.textContent = "Code " + d.code + " applied: ₹" + now + " instead of ₹" + base + ".";
+        box.classList.add("ok"); input.value = d.code;
+        if (typeof fbq === "function") fbq("trackCustom", "CouponApplied", { code: d.code, product });
+      }
+    } catch (e) { msg.textContent = "Couldn't check the code. Please try again."; }
+    if (window.WIZ_REFRESH_PRICE) window.WIZ_REFRESH_PRICE();
+  }
+  document.getElementById("coupon-apply").addEventListener("click", () => apply(input.value));
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); apply(input.value); } });
+  const fromLink = new URLSearchParams(location.search).get("coupon");
+  if (fromLink) { box.open = true; input.value = fromLink; apply(fromLink); }
 })();
 
 // ---------- Offer countdowns (any .offer-countdown with data-deadline) ----------
