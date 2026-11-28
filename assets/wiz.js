@@ -785,6 +785,47 @@ setupAddons({
   },
 });
 
+// ---------- Demo video on product pages ----------
+// A muted, looping preview plays in the .demo-hero box once the page has loaded (not on data saver
+// or reduced motion: then the poster shows with a play button). Tapping it, or "Watch with sound",
+// opens the full demo with sound in a pop-up. The full video only downloads when opened.
+(function () {
+  document.querySelectorAll(".demo-hero").forEach((box) => {
+    const frame = box.querySelector(".demo-frame");
+    const conn = navigator.connection || {};
+    const lite = reduceMotion || conn.saveData || /(^|-)2g$/.test(conn.effectiveType || "");
+    let preview = null;
+    if (!lite) {
+      const start = () => {
+        preview = document.createElement("video");
+        ["muted", "playsinline", "loop", "autoplay"].forEach((a) => preview.setAttribute(a, ""));
+        preview.muted = true; preview.preload = "auto"; preview.src = box.dataset.demoPreview;
+        preview.addEventListener("playing", () => frame.classList.add("playing"));
+        frame.insertBefore(preview, frame.firstChild.nextSibling);
+        const p = preview.play(); if (p && p.catch) p.catch(() => {});
+      };
+      if (document.readyState === "complete") start(); else window.addEventListener("load", start);
+    }
+    const open = () => {
+      if (preview) preview.pause();
+      const o = document.createElement("div");
+      o.className = "demo-overlay"; o.setAttribute("role", "dialog"); o.setAttribute("aria-label", "Demo video");
+      o.innerHTML = '<video controls playsinline autoplay preload="auto"></video><button class="demo-close" aria-label="Close video">&times;</button>';
+      const v = o.querySelector("video"); v.src = box.dataset.demoFull; v.poster = box.dataset.demoPoster;
+      const close = () => { v.pause(); v.removeAttribute("src"); v.load(); o.remove(); document.removeEventListener("keydown", esc); if (preview) { const p = preview.play(); if (p && p.catch) p.catch(() => {}); } };
+      const esc = (e) => { if (e.key === "Escape") close(); };
+      o.addEventListener("click", (e) => { if (e.target === o) close(); });
+      o.querySelector(".demo-close").addEventListener("click", close);
+      document.addEventListener("keydown", esc);
+      document.body.appendChild(o); o.querySelector(".demo-close").focus();
+      const p = v.play(); if (p && p.catch) p.catch(() => {});
+      if (typeof fbq === "function") fbq("trackCustom", "WatchDemo", { product: box.dataset.product || "" });
+    };
+    frame.addEventListener("click", open);
+    const btn = box.querySelector(".demo-sound"); if (btn) btn.addEventListener("click", open);
+  });
+})();
+
 // ---------- Offer countdowns (any .offer-countdown with data-deadline) ----------
 document.querySelectorAll(".offer-countdown[data-deadline]").forEach((box) => {
   const end = Date.parse(box.dataset.deadline);
