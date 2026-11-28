@@ -775,7 +775,7 @@ setupAddons({
 // Board Exam Tracker page: Digital Detox ₹39 and 2027 Year Reset ₹48, only with the exam tracker.
 setupAddons({
   source: "board-exam",
-  basePrice: 149,
+  basePrice: 46,
   addons: [
     { id: "board-detox-addon", key: "detox", price: 39, event: "AddDetoxAddon", imgs: ["images/detox-cover-v2.jpg", "images/detox-p-urge.jpg", "images/detox-p-plan.jpg", "images/detox-p-kerala.jpg", "images/detox-p-wallchart.jpg"] },
     { id: "board-yr-addon", key: "yr", price: 48, event: "AddYearResetAddon", imgs: ["images/yr-cover.jpg", "images/yr-phone-dashboard.jpg", "images/yr-app-goals.jpg", "images/yr-vision-phone.jpg", "images/yr-habits-phone.jpg", "images/yr-malayalam-phone.jpg"] },
