@@ -645,3 +645,7 @@ button.btn-gold:disabled { opacity: 0.6; cursor: not-allowed; }
 .demo-overlay { position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,.92); display: flex; align-items: center; justify-content: center; padding: 16px; }
 .demo-overlay video { max-height: calc(100vh - 32px); max-width: 100%; aspect-ratio: 9 / 16; border-radius: 16px; background: #000; }
 .demo-overlay .demo-close { position: absolute; top: 12px; right: 12px; width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(255,255,255,.15); color: #fff; font-size: 28px; line-height: 1; cursor: pointer; }
+
+/* Price line under the product title (title-first layout) */
+.title-price { text-align: center; margin: -6px 0 16px; color: var(--muted, #9aa3a0); font-size: 15px; }
+.title-price b { color: var(--gold, #e8c46a); font-size: 18px; }
